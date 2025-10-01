@@ -1,1527 +1,294 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CrossCheck - Foi, Faits et Histoire | Archéologie Biblique & Apologétique</title>
-<meta name="description" content="CrossCheck explore les preuves de la vérité biblique à travers l'archéologie, la science, l'histoire et l'apologétique. Découvrez les découvertes qui confirment la Bible.">
-<meta name="keywords" content="archéologie biblique, apologétique chrétienne, preuves Bible, science et foi, histoire chrétienne, découvertes archéologiques, vérité biblique">
-<meta name="author" content="CrossCheck">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://crosscheck.fr/">
-<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
-<link rel="apple-touch-icon" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root {
---primary: #1e3a8a;
---secondary: #2563eb;
---accent: #3b82f6;
---text: #1f2937;
---text-light: #6b7280;
---bg: #ffffff;
---bg-light: #f8fafc;
---bg-dark: #f1f5f9;
---border: #e2e8f0;
---success: #059669;
---warning: #d97706;
---error: #dc2626;
---gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
---gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
---shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
---shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
---shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
---shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
-body {
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-line-height: 1.6;
-color: var(--text);
-background: var(--bg);
-overflow-x: hidden;
-}
-
-/* Header */
-.header {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-background: rgba(255, 255, 255, 0.98);
-backdrop-filter: blur(20px);
-border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-z-index: 1000;
-padding: 0.75rem 0;
-transition: all 0.3s ease;
-}
-
-.header-container {
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 2rem;
-display: flex;
-align-items: center;
-justify-content: space-between;
-height: 70px;
-}
-
-.logo {
-display: flex;
-align-items: center;
-gap: 0.5rem;
-text-decoration: none;
-color: var(--primary);
-}
-
-.logo-icon {
-font-size: 1.5rem;
-}
-
-.logo-text {
-font-size: 1.5rem;
-font-weight: 700;
-letter-spacing: -0.5px;
-}
-
-.header-nav {
-display: flex;
-gap: 2rem;
-align-items: center;
-}
-
-.mobile-menu-toggle {
-display: none;
-background: none;
-border: none;
-font-size: 1.5rem;
-color: var(--primary);
-cursor: pointer;
-padding: 0.5rem;
-}
-
-.mobile-menu {
-display: none;
-position: fixed;
-top: 70px;
-left: 0;
-right: 0;
-background: white;
-border-bottom: 1px solid var(--border);
-box-shadow: var(--shadow-lg);
-z-index: 999;
-padding: 1rem 2rem;
-}
-
-.mobile-menu.active {
-display: block;
-}
-
-.mobile-nav {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-}
-
-.mobile-nav .nav-link {
-padding: 0.75rem 0;
-border-bottom: 1px solid var(--border);
-}
-
-.nav-link {
-text-decoration: none;
-color: var(--text-light);
-font-weight: 500;
-font-size: 0.95rem;
-padding: 0.75rem 1.25rem;
-border-radius: 12px;
-transition: all 0.3s ease;
-position: relative;
-}
-
-.nav-link:hover {
-color: var(--primary);
-background: rgba(59, 130, 246, 0.08);
-transform: translateY(-1px);
-}
-
-.nav-link.active {
-color: var(--secondary);
-background: rgba(59, 130, 246, 0.12);
-font-weight: 600;
-}
-
-.header-actions {
-display: flex;
-gap: 1rem;
-align-items: center;
-}
-
-.btn-primary,
-.btn-secondary {
-padding: 0.875rem 2rem;
-border-radius: 16px;
-font-weight: 600;
-text-decoration: none;
-transition: all 0.3s ease;
-border: none;
-cursor: pointer;
-font-size: 0.95rem;
-position: relative;
-overflow: hidden;
-}
-
-.btn-primary {
-background: var(--secondary);
-color: white;
-box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover {
-background: #2563eb;
-transform: translateY(-2px);
-box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary {
-background: transparent;
-color: var(--text-light);
-border: 1.5px solid var(--border);
-}
-
-.btn-secondary:hover {
-background: var(--bg-light);
-border-color: var(--secondary);
-color: var(--secondary);
-transform: translateY(-1px);
-box-shadow: var(--shadow-sm);
-}
-
-/* Hero Section */
-.hero {
-background: linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, rgba(37, 99, 235, 0.2) 100%), url('https://i.postimg.cc/nrt8MD0H/Images-Principale.png');
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
-min-height: 100vh;
-display: flex;
-align-items: center;
-position: relative;
-overflow: hidden;
-}
-
-.hero-container {
-max-width: 1400px;
-margin: 0 auto;
-padding: 0 2rem;
-display: flex;
-justify-content: center;
-align-items: center;
-position: relative;
-z-index: 2;
-}
-
-/* Hero Badge */
-.hero-badge {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-background: rgba(59, 130, 246, 0.1);
-color: var(--secondary);
-padding: 0.75rem 1.25rem;
-border-radius: 50px;
-font-size: 0.9rem;
-font-weight: 500;
-margin-bottom: 2rem;
-border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.badge-icon {
-font-size: 1rem;
-}
-
-.hero-content h1 {
-font-size: 3rem;
-font-weight: 800;
-color: white;
-margin-bottom: 0.5rem;
-line-height: 1.1;
-letter-spacing: -0.02em;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.hero-content h2 {
-font-size: 2.5rem;
-font-weight: 700;
-color: rgba(255, 255, 255, 0.95);
-margin-bottom: 1.5rem;
-line-height: 1.2;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.hero-subtitle {
-font-size: 1.25rem;
-color: rgba(255, 255, 255, 0.9);
-margin-bottom: 2.5rem;
-line-height: 1.6;
-max-width: 800px;
-text-align: center;
-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-font-weight: 400;
-}
-
-.hero-actions {
-display: flex;
-gap: 1.5rem;
-align-items: center;
-flex-wrap: wrap;
-}
-
-.btn-hero-primary {
-background: var(--secondary);
-color: white;
-padding: 1rem 2.5rem;
-border-radius: 20px;
-font-weight: 600;
-font-size: 1rem;
-text-decoration: none;
-transition: all 0.3s ease;
-box-shadow: var(--shadow-md);
-border: none;
-cursor: pointer;
-}
-
-.btn-hero-primary:hover {
-background: #2563eb;
-transform: translateY(-3px);
-box-shadow: var(--shadow-xl);
-}
-
-.btn-hero-secondary {
-background: transparent;
-color: var(--text-light);
-padding: 1rem 2.5rem;
-border-radius: 20px;
-font-weight: 500;
-font-size: 1rem;
-text-decoration: none;
-transition: all 0.3s ease;
-border: 1.5px solid var(--border);
-cursor: pointer;
-}
-
-.btn-hero-secondary:hover {
-background: var(--bg-light);
-border-color: var(--secondary);
-color: var(--secondary);
-transform: translateY(-2px);
-box-shadow: var(--shadow-md);
-}
-
-/* Hero Email Form */
-.hero-email-form {
-display: flex;
-gap: 1rem;
-align-items: center;
-margin-top: 2rem;
-}
-
-.email-input {
-flex: 1;
-padding: 1rem 1.5rem;
-border: 1px solid var(--border);
-border-radius: 12px;
-font-size: 1rem;
-background: white;
-transition: all 0.3s ease;
-}
-
-.email-input:focus {
-outline: none;
-border-color: var(--secondary);
-box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
-}
-
-/* Hero Visual */
-
-.hero-card {
-background: white;
-border-radius: 16px;
-padding: 2rem;
-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-border: 1px solid var(--border);
-}
-
-.card-header {
-display: flex;
-align-items: center;
-gap: 1rem;
-margin-bottom: 1.5rem;
-padding-bottom: 1rem;
-border-bottom: 1px solid var(--border);
-}
-
-.card-avatar {
-width: 40px;
-height: 40px;
-border-radius: 50%;
-background: linear-gradient(135deg, var(--secondary), var(--accent));
-display: flex;
-align-items: center;
-justify-content: center;
-color: white;
-font-weight: 600;
-}
-
-.card-info h3 {
-font-size: 1rem;
-font-weight: 600;
-color: var(--primary);
-margin-bottom: 0.2rem;
-}
-
-.card-info p {
-font-size: 0.8rem;
-color: var(--text-light);
-}
-
-.card-content {
-display: flex;
-gap: 1rem;
-}
-
-.before-after {
-flex: 1;
-}
-
-.before-after h4 {
-font-size: 0.9rem;
-font-weight: 600;
-color: var(--primary);
-margin-bottom: 0.5rem;
-}
-
-.before-after p {
-font-size: 0.8rem;
-color: var(--text-light);
-line-height: 1.5;
-}
-
-/* Research Section */
-.research-section {
-padding: 6rem 0;
-background: var(--bg);
-position: relative;
-}
-
-.features-container {
-max-width: 1400px;
-margin: 0 auto;
-padding: 0 2rem;
-}
-
-.research-header {
-text-align: center;
-margin-bottom: 4rem;
-}
-
-.research-header h2 {
-font-size: 2.5rem;
-font-weight: 700;
-color: var(--primary);
-margin-bottom: 1rem;
-}
-
-.research-subtitle {
-font-size: 1.2rem;
-color: var(--text-light);
-font-weight: 500;
-}
-
-.research-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 3rem;
-margin-top: 3rem;
-}
-
-.research-card {
-text-align: center;
-padding: 2rem;
-background: var(--bg);
-border: 1px solid var(--border);
-border-radius: 12px;
-transition: all 0.3s ease;
-}
-
-.research-card:hover {
-transform: translateY(-4px);
-box-shadow: var(--shadow-lg);
-border-color: var(--secondary);
-}
-
-.research-icon {
-margin-bottom: 1.5rem;
-}
-
-.research-icon-bg {
-width: 80px;
-height: 80px;
-border-radius: 20px;
-background: var(--gradient-primary);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 2rem;
-margin: 0 auto;
-box-shadow: var(--shadow-md);
-}
-
-.research-title {
-font-size: 1.5rem;
-font-weight: 600;
-color: var(--primary);
-margin-bottom: 1rem;
-}
-
-.research-description {
-font-size: 1rem;
-color: var(--text-light);
-line-height: 1.6;
-}
-
-/* Projects Section */
-.projects-section {
-padding: 6rem 0;
-background: var(--bg-light);
-}
-
-.projects-header {
-text-align: center;
-margin-bottom: 4rem;
-}
-
-.projects-header h2 {
-font-size: 2.5rem;
-font-weight: 800;
-color: var(--primary);
-margin-bottom: 1rem;
-}
-
-.projects-subtitle {
-font-size: 1.2rem;
-color: var(--text-light);
-}
-
-.projects-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-gap: 2rem;
-}
-
-.project-card {
-background: white;
-border-radius: 16px;
-overflow: hidden;
-box-shadow: var(--shadow-md);
-transition: all 0.3s ease;
-border: 1px solid var(--border);
-}
-
-.project-card:hover {
-transform: translateY(-8px);
-box-shadow: var(--shadow-xl);
-}
-
-.project-image {
-height: 200px;
-overflow: hidden;
-}
-
-.project-image img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image img {
-transform: scale(1.05);
-}
-
-.project-content {
-padding: 1.5rem;
-}
-
-.project-title {
-font-size: 1.3rem;
-font-weight: 700;
-color: var(--primary);
-margin-bottom: 0.5rem;
-}
-
-.project-rating {
-margin-bottom: 0.5rem;
-}
-
-.project-description {
-color: var(--text-light);
-margin-bottom: 1rem;
-line-height: 1.5;
-}
-
-.project-price {
-font-size: 1.2rem;
-font-weight: 700;
-color: var(--secondary);
-margin-bottom: 1rem;
-}
-
-.project-btn {
-background: var(--secondary);
-color: white;
-border: none;
-padding: 0.75rem 1.5rem;
-border-radius: 8px;
-font-weight: 600;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-
-.project-btn:hover {
-background: #ea580c;
-transform: translateY(-2px);
-}
-
-/* Services Section */
-.services-section {
-padding: 6rem 0;
-background: var(--bg);
-}
-
-.services-content {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 4rem;
-align-items: center;
-}
-
-.services-image {
-width: 100%;
-height: 400px;
-object-fit: cover;
-border-radius: 16px;
-box-shadow: var(--shadow-lg);
-}
-
-.services-text h2 {
-font-size: 2.2rem;
-font-weight: 800;
-color: var(--primary);
-margin-bottom: 1rem;
-}
-
-.services-text h3 {
-font-size: 1.5rem;
-font-weight: 600;
-color: var(--secondary);
-margin-bottom: 2rem;
-}
-
-.services-list {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-}
-
-.service-item {
-display: flex;
-align-items: center;
-gap: 1rem;
-}
-
-.service-icon {
-width: 24px;
-height: 24px;
-background: var(--secondary);
-color: white;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-weight: bold;
-font-size: 0.9rem;
-}
-
-.service-text {
-font-size: 1.1rem;
-color: var(--text);
-font-weight: 500;
-}
-
-/* Blog Section */
-.blog-section {
-padding: 6rem 0;
-background: var(--bg-light);
-}
-
-.blog-section h2 {
-text-align: center;
-font-size: 2.5rem;
-font-weight: 800;
-color: var(--primary);
-margin-bottom: 3rem;
-}
-
-.blog-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 2rem;
-}
-
-.blog-card {
-background: white;
-border-radius: 12px;
-overflow: hidden;
-box-shadow: var(--shadow-sm);
-transition: all 0.3s ease;
-}
-
-.blog-card:hover {
-transform: translateY(-4px);
-box-shadow: var(--shadow-md);
-}
-
-.blog-image {
-height: 150px;
-overflow: hidden;
-}
-
-.blog-image img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-}
-
-.blog-content {
-padding: 1.5rem;
-}
-
-.blog-content h3 {
-font-size: 1.2rem;
-font-weight: 600;
-color: var(--primary);
-margin-bottom: 0.5rem;
-line-height: 1.4;
-}
-
-.blog-date {
-font-size: 0.9rem;
-color: var(--text-light);
-}
-
-/* Newsletter Section */
-.newsletter-section {
-padding: 6rem 0;
-background: var(--bg);
-}
-
-.newsletter-content {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 4rem;
-align-items: center;
-}
-
-.newsletter-text h2 {
-font-size: 2.2rem;
-font-weight: 800;
-color: var(--primary);
-margin-bottom: 1rem;
-}
-
-.newsletter-text p {
-font-size: 1.1rem;
-color: var(--text-light);
-margin-bottom: 2rem;
-}
-
-.newsletter-form {
-display: flex;
-gap: 1rem;
-}
-
-.newsletter-input {
-flex: 1;
-padding: 1rem 1.5rem;
-border: 1px solid var(--border);
-border-radius: 8px;
-font-size: 1rem;
-}
-
-.newsletter-input:focus {
-outline: none;
-border-color: var(--secondary);
-}
-
-.newsletter-btn {
-background: var(--secondary);
-color: white;
-border: none;
-padding: 1rem 2rem;
-border-radius: 8px;
-font-weight: 600;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-
-.newsletter-btn:hover {
-background: #ea580c;
-transform: translateY(-2px);
-}
-
-.newsletter-image img {
-width: 100%;
-height: 300px;
-object-fit: cover;
-border-radius: 12px;
-box-shadow: var(--shadow-md);
-}
-
-.features-header {
-text-align: center;
-margin-bottom: 4rem;
-}
-
-.features-header h2 {
-font-size: 2.5rem;
-font-weight: 800;
-color: var(--primary);
-margin-bottom: 1rem;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.5rem;
-}
-
-.features-header .icon {
-font-size: 2rem;
-}
-
-.features-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-gap: 2rem;
-}
-
-.feature-card {
-background: white;
-border: 1px solid rgba(226, 232, 240, 0.6);
-border-radius: 24px;
-padding: 3rem 2.5rem;
-transition: all 0.4s ease;
-position: relative;
-overflow: hidden;
-box-shadow: var(--shadow-sm);
-}
-
-.feature-card:hover {
-transform: translateY(-8px);
-box-shadow: var(--shadow-xl);
-border-color: rgba(59, 130, 246, 0.3);
-background: rgba(255, 255, 255, 0.98);
-}
-
-.feature-header {
-display: flex;
-align-items: center;
-gap: 1rem;
-margin-bottom: 1.5rem;
-}
-
-.feature-icon {
-width: 64px;
-height: 64px;
-border-radius: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 2rem;
-color: white;
-transition: all 0.3s ease;
-box-shadow: var(--shadow-sm);
-}
-
-.feature-card:hover .feature-icon {
-transform: scale(1.1);
-box-shadow: var(--shadow-md);
-}
-
-.feature-icon.letters {
-background: linear-gradient(135deg, var(--secondary), var(--accent));
-}
-
-.feature-icon.transcribe {
-background: linear-gradient(135deg, var(--success), var(--warning));
-}
-
-.feature-title {
-font-size: 1.5rem;
-font-weight: 700;
-color: var(--primary);
-letter-spacing: -0.01em;
-margin-bottom: 1rem;
-}
-
-.feature-description {
-font-size: 1.1rem;
-color: var(--text-light);
-margin-bottom: 2rem;
-line-height: 1.6;
-font-weight: 400;
-}
-
-.feature-inputs {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-margin-bottom: 1.5rem;
-}
-
-.input-group {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-}
-
-.upload-btn {
-padding: 1rem;
-border: 2px dashed var(--border);
-border-radius: 8px;
-background: var(--bg-light);
-color: var(--text-light);
-text-align: center;
-cursor: pointer;
-transition: all 0.3s ease;
-font-size: 0.9rem;
-}
-
-.upload-btn:hover {
-border-color: var(--secondary);
-color: var(--secondary);
-background: rgba(79, 70, 229, 0.05);
-}
-
-.text-input {
-padding: 1rem;
-border: 1px solid var(--border);
-border-radius: 8px;
-font-size: 0.9rem;
-resize: vertical;
-min-height: 80px;
-}
-
-.feature-cta {
-color: var(--secondary);
-text-decoration: none;
-font-weight: 600;
-font-size: 0.9rem;
-}
-
-.feature-cta:hover {
-text-decoration: none;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-.header-nav {
-  display: none;
-}
-
-.hero-container {
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  text-align: center;
-}
-
-.hero-content h1 {
-  font-size: 2.5rem;
-}
-
-.hero-content h2 {
-  font-size: 2rem;
-}
-
-.hero-email-form {
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.email-input {
-  width: 100%;
-}
-
-.research-grid {
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.projects-grid {
-  grid-template-columns: 1fr;
-}
-
-.services-content {
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.newsletter-content {
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.blog-grid {
-  grid-template-columns: 1fr;
-}
-}
-
-@media (max-width: 768px) {
-.header-nav {
-  display: none;
-}
-
-.mobile-menu-toggle {
-  display: block;
-}
-
-.header-container {
-  padding: 0 1rem;
-}
-
-.hero {
-  padding-top: 100px;
-}
-
-.hero-content h1 {
-  font-size: 2rem;
-}
-
-.hero-content h2 {
-  font-size: 1.5rem;
-}
-
-.hero-subtitle {
-  font-size: 1.1rem;
-}
-
-.features-container {
-  padding: 0 1rem;
-}
-
-.research-header h2 {
-  font-size: 2rem;
-}
-
-.projects-header h2 {
-  font-size: 2rem;
-}
-
-.services-text h2 {
-  font-size: 1.8rem;
-}
-
-.blog-section h2 {
-  font-size: 2rem;
-}
-
-.newsletter-text h2 {
-  font-size: 1.8rem;
-}
-
-.newsletter-form {
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.newsletter-input {
-  width: 100%;
-}
-
-/* Additional Modern Responsive Styles */
-@media (max-width: 1200px) {
-.hero-content h1 {
-font-size: 3.5rem;
-}
-}
-
-@media (max-width: 480px) {
-.hero-content h1 {
-font-size: 2.2rem;
-}
-
-.hero-subtitle {
-font-size: 1rem;
-}
-
-.feature-card {
-padding: 1.5rem;
-}
-
-.header-actions {
-flex-direction: column;
-gap: 0.5rem;
-}
-
-.btn-primary,
-.btn-secondary {
-padding: 0.75rem 1.5rem;
-font-size: 0.9rem;
-}
-
-.hero-badge {
-padding: 0.5rem 1rem;
-font-size: 0.8rem;
-}
-}
-
-}
-
-/* Animations */
-@keyframes fadeInUp {
-from {
-  opacity: 0;
-  transform: translateY(30px);
-}
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-}
-
-.fade-in-up {
-animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Smooth scrolling */
-html {
-scroll-behavior: smooth;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossCheck - Foi, Faits et Histoire</title>
+    <meta name="description" content="CrossCheck explore les preuves de la vérité biblique à travers l'archéologie, la science, l'histoire et l'apologétique.">
+    
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-dark: #1e293b;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-light);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 0.9;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://i.postimg.cc/nrt8MD0H/Images-Principale.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header-nav {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Header -->
-<header class="header">
-<div class="header-container">
-<a href="index.html" class="logo">
-<div class="logo-icon">
-<img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
-</div>
-<span class="logo-text">CrossCheck</span>
-</a>
-<nav class="header-nav">
-<a href="index.html" class="nav-link active">Accueil</a>
-<a href="archeologie.html" class="nav-link">Archéologie</a>
-<a href="science.html" class="nav-link">Science</a>
-<a href="histoire.html" class="nav-link">Histoire</a>
-<a href="apologetique.html" class="nav-link">Apologétique</a>
-<a href="togo.html" class="nav-link">Togo</a>
-</nav>
-<button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-<div class="header-actions">
-<!-- Navigation simplifiée -->
-</div>
-</div>
-</header>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo">
+                </div>
+                <span class="logo-text">CrossCheck</span>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link">Histoire</a>
+                <a href="apologetique.html" class="nav-link">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+        </div>
+    </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<nav class="mobile-nav">
-<a href="index.html" class="nav-link active">Accueil</a>
-<a href="archeologie.html" class="nav-link">Archéologie</a>
-<a href="science.html" class="nav-link">Science</a>
-<a href="histoire.html" class="nav-link">Histoire</a>
-<a href="apologetique.html" class="nav-link">Apologétique</a>
-<a href="togo.html" class="nav-link">Togo</a>
-</nav>
-</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>CrossCheck</h1>
+            <p>Explorez les preuves de la vérité biblique à travers l'archéologie, la science, l'histoire et l'apologétique.</p>
+            <a href="#sections" class="btn">Découvrir</a>
+        </div>
+    </section>
 
-<!-- Hero Section -->
-<section class="hero">
-<div class="hero-container">
-<div class="hero-content fade-in-up">
-<div class="hero-badge">
-<span class="badge-icon">✨</span>
-<span class="badge-text">Découvrez la vérité</span>
-</div>
-<h1>CrossCheck</h1>
-<h2>Centre de Recherche en Apologétique Chrétienne</h2>
-<p class="hero-subtitle">Découvrez les preuves archéologiques, scientifiques et historiques qui confirment la vérité biblique. Un centre d'études dédié à l'exploration de la foi chrétienne à travers l'érudition et la recherche.</p>
-</div>
-</div>
-</section>
+    <!-- Sections -->
+    <section id="sections" class="section">
+        <div class="container">
+            <h2 class="section-title">Nos Sections</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Archéologie</h3>
+                    <p>Découvrez les découvertes archéologiques qui confirment les récits bibliques.</p>
+                    <a href="archeologie.html" class="btn">Explorer</a>
+                </div>
+                <div class="card">
+                    <h3>Science</h3>
+                    <p>Explorez l'harmonie entre science et foi à travers des preuves fascinantes.</p>
+                    <a href="science.html" class="btn">Explorer</a>
+                </div>
+                <div class="card">
+                    <h3>Histoire</h3>
+                    <p>Plongez dans l'histoire du christianisme et ses racines profondes.</p>
+                    <a href="histoire.html" class="btn">Explorer</a>
+                </div>
+                <div class="card">
+                    <h3>Apologétique</h3>
+                    <p>Renforcez votre foi avec des arguments rationnels et des preuves solides.</p>
+                    <a href="apologetique.html" class="btn">Explorer</a>
+                </div>
+                <div class="card">
+                    <h3>Togo</h3>
+                    <p>Découvrez l'histoire et la culture chrétienne du Togo.</p>
+                    <a href="togo.html" class="btn">Explorer</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Research Areas Section -->
-<section class="research-section" id="features">
-<div class="features-container">
-<div class="research-header">
-<h2>Domaines de Recherche</h2>
-<p class="research-subtitle">Nos centres d'études spécialisés</p>
-</div>
-<div class="research-grid">
-<div class="research-card">
-<div class="research-icon">
-<div class="research-icon-bg">🏛️</div>
-</div>
-<h3 class="research-title">Archéologie Biblique</h3>
-<p class="research-description">Étude des découvertes archéologiques confirmant l'historicité des récits bibliques.</p>
-</div>
-
-<div class="research-card">
-<div class="research-icon">
-<div class="research-icon-bg">🔬</div>
-</div>
-<h3 class="research-title">Science & Foi</h3>
-<p class="research-description">Recherche sur les relations entre les découvertes scientifiques et la foi chrétienne.</p>
-</div>
-
-<div class="research-card">
-<div class="research-icon">
-<div class="research-icon-bg">📚</div>
-</div>
-<h3 class="research-title">Apologétique</h3>
-<p class="research-description">Défense rationnelle de la foi chrétienne face aux objections contemporaines.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Publications Section -->
-<section class="publications-section">
-<div class="features-container">
-<div class="publications-header">
-<h2>Publications & Recherches</h2>
-<p class="publications-subtitle">Nos dernières études et découvertes</p>
-</div>
-<div class="projects-grid">
-<div class="project-card">
-<div class="project-image">
-<img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop" alt="Archéologie biblique">
-</div>
-<div class="project-content">
-<h3 class="project-title">Recherches Archéologiques</h3>
-<div class="project-rating">📚</div>
-<p class="project-description">Études sur les découvertes archéologiques confirmant l'historicité biblique</p>
-<div class="project-price">Publication</div>
-<a href="article-archeologie-biblique.html" class="project-btn" style="text-decoration: none; color: white; display: inline-block;">Consulter</a>
-</div>
-</div>
-
-<div class="project-card">
-<div class="project-image">
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Science et foi">
-</div>
-<div class="project-content">
-<h3 class="project-title">Science & Théologie</h3>
-<div class="project-rating">🔬</div>
-<p class="project-description">Analyses sur les relations entre science moderne et foi chrétienne</p>
-<div class="project-price">Étude</div>
-<a href="article-science-foi.html" class="project-btn" style="text-decoration: none; color: white; display: inline-block;">Consulter</a>
-</div>
-</div>
-
-<div class="project-card">
-<div class="project-image">
-<img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=300&fit=crop" alt="Apologétique">
-</div>
-<div class="project-content">
-<h3 class="project-title">Apologétique Chrétienne</h3>
-<div class="project-rating">📖</div>
-<p class="project-description">Recherches en défense rationnelle de la foi chrétienne</p>
-<div class="project-price">Thèse</div>
-<a href="article-african-apologetics.html" class="project-btn" style="text-decoration: none; color: white; display: inline-block;">Consulter</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Services Section -->
-<section class="services-section">
-<div class="features-container">
-<div class="services-content">
-<div class="services-visual">
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="Services CrossCheck" class="services-image">
-</div>
-<div class="services-text">
-<h2>Méthodologie de Recherche</h2>
-<h3>Approche scientifique et érudite de l'apologétique chrétienne</h3>
-<div class="services-list">
-<div class="service-item">
-<div class="service-icon">✓</div>
-<div class="service-text">Recherche approfondie et méthodique</div>
-</div>
-<div class="service-item">
-<div class="service-icon">✓</div>
-<div class="service-text">Sources académiques et références vérifiées</div>
-</div>
-<div class="service-item">
-<div class="service-icon">✓</div>
-<div class="service-text">Approche interdisciplinaire rigoureuse</div>
-</div>
-<div class="service-item">
-<div class="service-icon">✓</div>
-<div class="service-text">Publication de travaux de qualité universitaire</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Blog Section -->
-<section class="blog-section">
-<div class="features-container">
-<h2>Publications Récentes</h2>
-<div class="blog-grid">
-<a href="article-archeologie-biblique.html" class="blog-card" style="text-decoration: none; color: inherit; display: block;">
-<div class="blog-image">
-<img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=300&h=200&fit=crop" alt="Blog article">
-</div>
-<div class="blog-content">
-<h3>Méthodologie en archéologie biblique : approche critique</h3>
-<div class="blog-date">Décembre 2024</div>
-</div>
-</div>
-
-<a href="article-science-foi.html" class="blog-card" style="text-decoration: none; color: inherit; display: block;">
-<div class="blog-image">
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop" alt="Blog article">
-</div>
-<div class="blog-content">
-<h3>Dialogue science-théologie : perspectives contemporaines</h3>
-<div class="blog-date">Décembre 2024</div>
-</div>
-</div>
-
-<a href="article-african-apologetics.html" class="blog-card" style="text-decoration: none; color: inherit; display: block;">
-<div class="blog-image">
-<img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=300&h=200&fit=crop" alt="Blog article">
-</div>
-<div class="blog-content">
-<h3>Fondements épistémologiques de l'apologétique chrétienne</h3>
-<div class="blog-date">Décembre 2024</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Newsletter Section -->
-<section class="newsletter-section">
-<div class="features-container">
-<div class="newsletter-content">
-<div class="newsletter-text">
-<h2>Abonnez-vous à notre newsletter</h2>
-<p>Recevez les dernières découvertes et analyses directement dans votre boîte mail.</p>
-<div class="newsletter-form">
-<input type="email" placeholder="Votre email" class="newsletter-input">
-<button class="newsletter-btn">S'abonner</button>
-</div>
-</div>
-<div class="newsletter-image">
-<img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop" alt="Newsletter">
-</div>
-</div>
-</div>
-</section>
-
-<script>
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
-e.preventDefault();
-const target = document.querySelector(this.getAttribute('href'));
-if (target) {
-target.scrollIntoView({
-behavior: 'smooth',
-block: 'start'
-});
-}
-});
-});
-
-// Header scroll effect
-window.addEventListener('scroll', () => {
-const header = document.querySelector('.header');
-if (window.scrollY > 50) {
-header.style.background = 'rgba(255, 255, 255, 0.98)';
-header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-} else {
-header.style.background = 'rgba(255, 255, 255, 0.95)';
-header.style.boxShadow = 'none';
-}
-});
-
-// Intersection Observer for animations
-const observerOptions = {
-threshold: 0.1,
-rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add('fade-in-up');
-}
-});
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.feature-card, .hero-content').forEach(el => {
-observer.observe(el);
-});
-
-// Add waveform animation
-const waveform = document.querySelector('.waveform');
-if (waveform) {
-setInterval(() => {
-const chars = ['〰️', '〰️', '〰️', '〰️', '〰️', '〰️', '〰️'];
-waveform.textContent = chars.map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
-}, 200);
-}
-
-// Mobile menu toggle
-function toggleMobileMenu() {
-const mobileMenu = document.getElementById('mobileMenu');
-mobileMenu.classList.toggle('active');
-}
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
-link.addEventListener('click', () => {
-document.getElementById('mobileMenu').classList.remove('active');
-});
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-const mobileMenu = document.getElementById('mobileMenu');
-const toggleButton = document.querySelector('.mobile-menu-toggle');
-if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
-mobileMenu.classList.remove('active');
-}
-});
-
-// Articles data
-const articles = {
-archeology: {
-category: "Archéologie",
-title: "Recherches Archéologiques",
-content: `
-<p>Nos recherches archéologiques se concentrent sur l'étude des découvertes qui confirment l'historicité des récits bibliques.</p>
-<h2>Découvertes récentes</h2>
-<p>Les fouilles archéologiques modernes continuent de révéler des preuves fascinantes qui corroborent les récits bibliques. Chaque découverte apporte une nouvelle lumière sur l'histoire ancienne.</p>
-<h3>Méthodologie</h3>
-<p>Notre approche combine l'archéologie traditionnelle avec les technologies modernes pour une analyse rigoureuse des sites et artefacts.</p>
-<blockquote>"L'archéologie biblique est une science qui ne cesse de confirmer la fiabilité historique des Écritures."</blockquote>
-`
-},
-science: {
-category: "Science & Théologie",
-title: "Science & Théologie",
-content: `
-<p>Le dialogue entre science et théologie révèle une harmonie profonde entre la foi chrétienne et les découvertes scientifiques.</p>
-<h2>Complexité irréductible</h2>
-<p>Les découvertes en biologie moléculaire révèlent des systèmes d'une complexité telle qu'ils suggèrent un design intelligent.</p>
-<h3>Réglage fin de l'univers</h3>
-<p>Les constantes physiques sont réglées avec une précision extraordinaire pour permettre l'existence de la vie.</p>
-<blockquote>"La science moderne révèle un univers qui pointe vers un Créateur intelligent."</blockquote>
-`
-},
-apologetics: {
-category: "Apologétique",
-title: "Apologétique Chrétienne",
-content: `
-<p>L'apologétique chrétienne offre des arguments rationnels solides pour défendre la foi chrétienne.</p>
-<h2>Arguments cosmologiques</h2>
-<p>L'argument cosmologique de Kalam démontre que l'univers a eu un commencement et nécessite donc une cause première.</p>
-<h3>Arguments moraux</h3>
-<p>L'existence de valeurs morales objectives suggère l'existence d'un fondement moral transcendant.</p>
-<blockquote>"L'apologétique chrétienne combine raison et révélation pour une défense complète de la foi."</blockquote>
-`
-}
-};
-
-// Function to open articles
-function openArticle(id) {
-const article = articles[id];
-if (article) {
-// Create modal
-const modal = document.createElement('div');
-modal.style.cssText = `
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: rgba(0,0,0,0.8);
-z-index: 2000;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 2rem;
-`;
-
-modal.innerHTML = `
-<div style="
-background: white;
-border-radius: 16px;
-max-width: 800px;
-max-height: 90vh;
-overflow-y: auto;
-padding: 2rem;
-position: relative;
-">
-<button onclick="this.closest('.modal').remove()" style="
-position: absolute;
-top: 1rem;
-right: 1rem;
-background: #f3f4f6;
-border: none;
-border-radius: 50%;
-width: 2rem;
-height: 2rem;
-cursor: pointer;
-font-size: 1.2rem;
-">×</button>
-<h1 style="margin-bottom: 1rem; color: var(--primary);">${article.title}</h1>
-<div style="line-height: 1.7; color: var(--text);">${article.content}</div>
-</div>
-`;
-
-modal.className = 'modal';
-document.body.appendChild(modal);
-
-// Close on escape key
-modal.addEventListener('keydown', (e) => {
-if (e.key === 'Escape') modal.remove();
-});
-
-// Close on background click
-modal.addEventListener('click', (e) => {
-if (e.target === modal) modal.remove();
-});
-
-// Focus for keyboard navigation
-modal.querySelector('button').focus();
-}
-}
-</script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

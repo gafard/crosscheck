@@ -1,234 +1,173 @@
-# CrossCheck - Site d'Information en Apologétique Chrétienne
+# 🌟 CrossCheck - Site d'Information en Apologétique Chrétienne
 
-![CrossCheck Logo](https://i.postimg.cc/mr71LmCP/Logo-copie.png)
+> **Quand les preuves rejoignent la foi**
 
-## 🌟 À Propos
+CrossCheck est un site d'information dédié à l'apologétique chrétienne, offrant des articles documentés, des analyses approfondies et des ressources pour renforcer la foi par l'information et l'évidence.
 
-CrossCheck est un site d'information spécialisé en apologétique chrétienne, conçu pour renforcer la foi par l'information et l'évidence. Notre mission est de fournir des informations précises, des analyses approfondies et des ressources éducatives qui renforcent la foi chrétienne face aux défis intellectuels contemporains.
+## 🎯 Mission
 
-## ✨ Fonctionnalités Principales
+CrossCheck s'engage à fournir des informations fiables et documentées sur l'apologétique chrétienne, en explorant les domaines de la science, de l'histoire, de l'archéologie et de la philosophie pour défendre et expliquer la foi chrétienne.
 
-### 🎨 Design Premium
-- **Interface moderne et élégante** avec animations fluides
-- **Design responsive** adapté à tous les appareils
-- **Animations avancées** et micro-interactions engageantes
-- **Thème cohérent** avec couleurs dorées et design sophistiqué
+## 📚 Contenu
 
-### 📚 Contenu Spécialisé
-- **Articles d'apologétique** approfondis et documentés
-- **Archéologie biblique** avec découvertes récentes
-- **Science et foi** - harmonie entre science et christianisme
-- **Histoire du christianisme** en Afrique et dans le monde
-- **Preuves historiques** de la résurrection de Jésus-Christ
+### 📖 Articles (27 articles disponibles)
 
-### 🚀 Technologies Utilisées
-- **HTML5** sémantique et accessible
-- **CSS3** avec animations avancées et variables CSS
-- **JavaScript ES6+** pour les interactions dynamiques
-- **Design responsive** avec media queries
-- **Animations CSS** et micro-interactions
-- **Intersection Observer** pour les animations au scroll
+**Apologétique (8 articles)**
+- Apologétique Africaine : Introduction
+- L'Apologétique en Afrique
+- L'Apologétique au Togo
+- Le Dialogue Interreligieux
+- La Fiabilité des Évangiles
+- Le Problème du Mal
+- La Résurrection du Christ : Fait Historique ?
+- Thomas d'Aquin et la Raison
+
+**Science & Foi (6 articles)**
+- Le Big Bang et l'Existence de Dieu
+- Le Mystère de la Conscience Humaine
+- L'ADN et le Design Intelligent
+- Évolution et Création
+- Le Fine-tuning Cosmologique
+- Science et Foi : Un Dialogue Fructueux
+- La Science Prouve-t-elle Dieu ?
+
+**Archéologie (4 articles)**
+- L'Archéologie en Afrique
+- Découvertes Archéologiques Bibliques
+- Les Catacombes Chrétiennes
+- Les Murs de Jéricho
+- La Stèle de Mesha
+
+**Histoire (9 articles)**
+- Les Croisades : Mythes et Réalités
+- Exode et Animisme : Parallèles
+- Les Missions Chrétiennes en Afrique
+- Les Missions Catholiques
+- Le Pentecôtisme en Afrique
+- Sites Chrétiens Historiques au Togo
+- L'Histoire du Christianisme au Togo
+
+## 🚀 Fonctionnalités
+
+### 🌐 Site Web
+- **Design moderne et responsive** avec animations fluides
+- **Navigation intuitive** avec menu contextuel
+- **Recherche en temps réel** dans tous les articles
+- **Système de catégories** organisé
+- **Footer complet** avec liens et informations
+
+### 📝 CMS (Content Management System)
+- **CMS moderne** avec interface élégante
+- **Gestion des articles** (création, modification, suppression)
+- **Import sélectif** des articles existants
+- **Statistiques en temps réel**
+- **Interface identique** au design du site
+
+## 🛠️ Technologies Utilisées
+
+- **HTML5** - Structure sémantique
+- **CSS3** - Design moderne avec animations
+- **JavaScript** - Interactivité et fonctionnalités
+- **Fonts Google** - Inter & Playfair Display
+- **Responsive Design** - Compatible mobile/tablette/desktop
 
 ## 📁 Structure du Projet
 
 ```
 crosscheck-site/
-├── index.html              # Page d'accueil
-├── articles.html           # Page des articles avec système de tabs
-├── apropos.html           # Page À propos avec formulaire de contact
-├── ressources.html        # Page des ressources
-├── article-*.html         # Articles individuels
-├── css/
-│   └── modern-framework.css
-├── js/
-│   └── modern-interactions.js
-├── manifest.json          # PWA manifest
-├── sw.js                  # Service Worker
-└── README.md              # Ce fichier
+├── 📄 Pages principales
+│   ├── index.html              # Page d'accueil
+│   ├── articles.html           # Page des articles
+│   ├── ressources.html         # Page des ressources
+│   └── apropos.html           # Page à propos
+├── 📚 Articles (27 fichiers)
+│   ├── article-african-apologetics.html
+│   ├── article-big-bang.html
+│   ├── article-dna.html
+│   └── ... (24 autres articles)
+├── 🎨 Ressources
+│   ├── css/
+│   │   └── modern-framework.css
+│   ├── js/
+│   │   └── modern-interactions.js
+│   ├── manifest.json
+│   └── sw.js
+├── 📝 CMS
+│   ├── cms-articles.html       # CMS principal
+│   └── cms-moderne.html        # CMS avec design moderne
+└── 🔧 Scripts Python
+    ├── auto_git_sync.py        # Synchronisation GitHub
+    └── auto_push_loop.py       # Boucle de mise à jour
 ```
 
-## 🎯 Pages Principales
+## 🎨 Design
 
-### 🏠 Page d'Accueil (`index.html`)
-- **Hero section** avec image de fond et animations
-- **Statistiques animées** avec compteurs
-- **Articles en vedette** avec cartes interactives
-- **Menu contextuel** pour les catégories d'articles
-- **Animations avancées** : ripple, heartbeat, magnetic, etc.
+### 🎯 Caractéristiques
+- **Palette de couleurs** : Or (#d4af37), Noir (#0a0a0a), Blanc (#ffffff)
+- **Typographie** : Inter (corps) + Playfair Display (titres)
+- **Animations** : Transitions fluides et effets de survol
+- **Layout** : Design magazine premium avec cartes élégantes
 
-### 📰 Page Articles (`articles.html`)
-- **Système de tabs** pour les catégories
-- **Image de fond** avec manuscrits bibliques
-- **Cartes d'articles** avec animations au survol
-- **Filtrage par catégorie** : Apologétique, Science, Histoire, Archéologie
-- **Animations staggered** pour les cartes
+### 📱 Responsive
+- **Mobile First** - Optimisé pour tous les écrans
+- **Breakpoints** - 768px, 1024px, 1200px
+- **Navigation adaptative** - Menu hamburger sur mobile
 
-### ℹ️ Page À Propos (`apropos.html`)
-- **Mission et valeurs** de CrossCheck
-- **Formulaire de contact** avec validation
-- **Animations de soumission** avec feedback visuel
-- **Design épuré** et professionnel
-
-### 📚 Page Ressources (`ressources.html`)
-- **Domaines d'information** avec cartes interactives
-- **Publications récentes** avec animations
-- **Recherche avancée** avec interface intuitive
-- **Animations de hover** sophistiquées
-
-## 🎨 Animations et Interactions
-
-### ✨ Types d'Animations
-- **fadeInUp** - Apparition depuis le bas
-- **heartbeat** - Effet de battement de cœur
-- **ripple** - Effet de vague au clic
-- **wiggle** - Effet de tremblement
-- **magnetic** - Effet magnétique
-- **subtleFloat** - Flottement subtil
-- **typewriter** - Effet de machine à écrire
-- **morphing** - Transformation de forme
-
-### 🎯 Micro-Interactions
-- **Effets de hover** avancés sur tous les éléments
-- **Animations de clic** avec feedback visuel
-- **Transitions fluides** entre les états
-- **Effets de parallaxe** légers
-- **Compteurs animés** pour les statistiques
-- **Animations staggered** pour les listes
-
-## 📱 Responsive Design
-
-### 🖥️ Breakpoints
-- **Desktop** : 1200px et plus
-- **Tablet** : 768px - 1199px
-- **Mobile** : 320px - 767px
-
-### 📲 Optimisations Mobile
-- **Animations réduites** sur les appareils moins puissants
-- **Support pour prefers-reduced-motion**
-- **Transitions optimisées** pour les performances
-- **Interface tactile** optimisée
-
-## 🚀 Performance
-
-### ⚡ Optimisations
-- **CSS optimisé** avec variables et animations performantes
-- **JavaScript modulaire** avec event listeners efficaces
-- **Images optimisées** avec formats modernes
-- **Lazy loading** pour les animations au scroll
-- **Intersection Observer** pour les performances
-
-### 🎯 Accessibilité
-- **HTML sémantique** avec structure claire
-- **Contraste optimisé** pour la lisibilité
-- **Navigation au clavier** supportée
-- **Alt text** pour toutes les images
-- **ARIA labels** pour les interactions
-
-## 🛠️ Installation et Utilisation
+## 🚀 Installation et Utilisation
 
 ### 📥 Installation
-1. **Cloner le repository** :
+1. **Cloner le repository**
    ```bash
    git clone [url-du-repo]
    cd crosscheck-site
    ```
 
-2. **Ouvrir dans un navigateur** :
-   ```bash
-   # Option 1: Serveur local simple
-   python -m http.server 8000
-   
-   # Option 2: Live Server (VS Code)
-   # Clic droit sur index.html > "Open with Live Server"
-   ```
+2. **Ouvrir dans un navigateur**
+   - Double-cliquer sur `index.html`
+   - Ou utiliser un serveur local
 
-3. **Accéder au site** :
-   ```
-   http://localhost:8000
-   ```
+### 🔧 Serveur Local (Recommandé)
+```bash
+# Python 3
+python -m http.server 8000
 
-### 🔧 Personnalisation
-- **Couleurs** : Modifier les variables CSS dans `:root`
-- **Animations** : Ajuster les durées dans les `@keyframes`
-- **Contenu** : Éditer les fichiers HTML directement
-- **Images** : Remplacer les URLs dans les styles CSS
+# Python 2
+python -m SimpleHTTPServer 8000
 
-## 📊 Statistiques du Site
+# Node.js
+npx http-server
+```
 
-- **5 pages principales** avec design cohérent
-- **10+ types d'animations** différentes
-- **20+ micro-interactions** implémentées
-- **100% des éléments** interactifs animés
-- **Performance optimisée** sur tous les appareils
-- **Design responsive** parfait sur tous les écrans
+### 📝 Utilisation du CMS
+1. **Ouvrir** `cms-moderne.html`
+2. **Parcourir** les articles disponibles
+3. **Sélectionner** l'article à modifier
+4. **Importer** dans le CMS
+5. **Modifier** le contenu
+6. **Sauvegarder** les changements
 
-## 🎯 Catégories de Contenu
+## 📊 Statistiques
 
-### 📖 Apologétique
-- Le Big Bang et l'existence de Dieu
-- L'ADN et le design intelligent
-- La conscience et l'âme humaine
-- Le problème du mal
-- Thomas d'Aquin et les preuves de Dieu
+- **27 articles** documentés
+- **4 catégories** d'étude
+- **100% sources** vérifiées
+- **Design responsive** sur tous les appareils
 
-### 🔬 Science & Foi
-- L'évolution et la création
-- Le fine-tuning de l'univers
-- La science prouve-t-elle Dieu ?
-- L'harmonie entre science et foi
-- Les découvertes scientifiques récentes
+## 🔄 Mise à Jour Automatique
 
-### 🏛️ Histoire
-- Les catacombes chrétiennes
-- Les croisades : mythes et réalités
-- L'histoire du christianisme en Afrique
-- Les missions catholiques
-- Le pentecôtisme en Afrique
+Le projet inclut des scripts Python pour la synchronisation automatique avec GitHub :
 
-### 🏺 Archéologie
-- Découvertes archéologiques bibliques
-- La stèle de Mesha
-- Les sites archéologiques du Togo
-- Jéricho et les preuves bibliques
-- L'archéologie confirme la Bible
-
-## 🌍 Localisation
-
-- **Langue principale** : Français
-- **Public cible** : Francophones d'Afrique et du monde
-- **Contenu adapté** : Contexte africain et international
-- **Références** : Sources académiques et populaires
+- **`auto_git_sync.py`** - Synchronisation des fichiers
+- **`auto_push_loop.py`** - Boucle de mise à jour continue
 
 ## 📞 Contact
 
-- **Email** : contact@crosscheck.org
-- **Localisation** : Lomé, Togo
-- **Horaires** : Lun - Ven: 9h00 - 17h00
-- **Formulaire** : Disponible sur la page À propos
+Pour toute question ou suggestion concernant le contenu ou les fonctionnalités du site.
 
 ## 📄 Licence
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Pour contribuer :
-
-1. **Fork** le projet
-2. **Créer** une branche pour votre fonctionnalité
-3. **Commit** vos changements
-4. **Push** vers la branche
-5. **Ouvrir** une Pull Request
-
-## 🎉 Remerciements
-
-- **Design inspiré** par les meilleures pratiques modernes
-- **Animations** basées sur les standards web actuels
-- **Contenu** basé sur des sources académiques fiables
-- **Inspiration** : Sites d'apologétique chrétienne de référence
+Ce projet est destiné à l'information et à l'éducation en apologétique chrétienne.
 
 ---
 
-**CrossCheck** - *Renforcer la foi par l'information et l'évidence* ✝️
-
-*Dernière mise à jour : Décembre 2024*<!-- ping Wed Oct  1 17:23:10 GMT 2025 -->
+**CrossCheck** - *Quand les preuves rejoignent la foi* ✨

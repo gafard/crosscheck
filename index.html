@@ -1396,6 +1396,28 @@ waveform.textContent = chars.map(() => chars[Math.floor(Math.random() * chars.le
 }, 200);
 }
 
+// Mobile menu toggle
+function toggleMobileMenu() {
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenu.classList.toggle('active');
+}
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
+link.addEventListener('click', () => {
+document.getElementById('mobileMenu').classList.remove('active');
+});
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+const mobileMenu = document.getElementById('mobileMenu');
+const toggleButton = document.querySelector('.mobile-menu-toggle');
+if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
+mobileMenu.classList.remove('active');
+}
+});
+
 // Articles data
 const articles = {
 archeology: {

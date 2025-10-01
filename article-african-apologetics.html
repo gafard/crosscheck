@@ -4,29 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apologétique Africaine : Introduction - CrossCheck</title>
-    <meta name="description" content="Une exploration des défis et des réponses chrétiennes en Afrique, adaptée au contexte togolais et panafricain.">
+    <meta name="description" content="Découvrez l'apologétique chrétienne en Afrique et ses défis spécifiques au contexte togolais et africain.">
+    
     <style>
         :root {
-            --primary: #1e3a8a;
+            --primary: #1e40af;
             --secondary: #2563eb;
             --accent: #3b82f6;
             --text: #1f2937;
             --text-light: #6b7280;
-            --bg: #ffffff;            --bg: #ffffff;
             --bg-light: #f8fafc;
-            --bg-dark: #f1f5f9;
-            --border: #e2e8f0;
-            --success: #059669;
-            --warning: #d97706;
-            --error: #dc2626;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);            --success: #059669;
-            --warning: #d97706;
-            --error: #dc2626;
-            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --bg-dark: #1e293b;
+            --white: #ffffff;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -36,28 +27,35 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background: var(--bg);
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            background: var(--bg-light);
         }
 
         /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            position: fixed;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=1200&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: -1;
         }
 
         .header-container {
@@ -65,31 +63,29 @@
             margin: 0 auto;
             padding: 0 1rem;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            height: 70px;
+            align-items: center;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;            font-size: 1.25rem;
-            color: var(--primary);
             text-decoration: none;
+            color: white;
         }
 
-        .logo-icon {
+        .logo-icon img {
             width: 32px;
             height: 32px;
-            background: var(--gradient-primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
         }
 
         .header-nav {
@@ -98,98 +94,42 @@
         }
 
         .nav-link {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .nav-link.active {
-            color: var(--primary);
-        }
-
-        .nav-link.active::after {
-}
-
-.mobile-menu-toggle {
-display: none;
-background: none;
-border: none;
-font-size: 1.5rem;
-color: var(--primary);
-cursor: pointer;
-padding: 0.5rem;
-}
-
-.mobile-menu {
-display: none;
-position: fixed;
-top: 70px;
-left: 0;
-right: 0;
-background: white;
-border-bottom: 1px solid var(--border);
-box-shadow: var(--shadow-lg);
-z-index: 999;
-padding: 1rem 2rem;
-}
-
-.mobile-menu.active {
-display: block;
-}
-
-.mobile-nav {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-}
-
-.mobile-nav .nav-link {
-padding: 0.75rem 0;
-border-bottom: 1px solid var(--border);
-}            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--primary);
-            border-radius: 1px;
-        }
-
-        .back-btn {
-            background: var(--gradient-primary);
             color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            letter-spacing: -0.025em;            cursor: pointer;
-            transition: transform 0.2s ease;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
         }
 
-        .back-btn:hover {
-            transform: translateY(-2px);
+        .nav-link:hover, .nav-link.active {
+            opacity: 0.9;
         }
 
-        /* Main Content */
-        .main-content {
-            margin-top: 70px;
-            min-height: calc(100vh - 70px);
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--primary);
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         /* Article Header */
         .article-header {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             padding: 4rem 0;
             position: relative;
@@ -203,41 +143,45 @@ border-bottom: 1px solid var(--border);
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=1200&h=600&fit=crop') center/cover;
+            background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=1200&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
             opacity: 0.4;
             z-index: 1;
         }
 
         .article-header-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
             margin: 0 auto;
             padding: 0 1rem;
-            position: relative;
-            z-index: 2;
+            text-align: center;
         }
 
         .article-category {
+            display: inline-block;
             background: rgba(255, 255, 255, 0.2);
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: -0.025em;            margin-bottom: 1rem;
-            display: inline-block;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
         }
 
         .article-title {
             font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -0.025em;            line-height: 1.2;
             margin-bottom: 1rem;
             letter-spacing: -0.025em;
         }
 
         .article-meta {
             display: flex;
+            justify-content: center;
             gap: 2rem;
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
         }
 
@@ -261,7 +205,7 @@ border-bottom: 1px solid var(--border);
             font-size: 1.75rem;
             margin: 2rem 0 1rem 0;
             font-weight: 600;
-            letter-spacing: -0.025em;            letter-spacing: -0.025em;
+            letter-spacing: -0.025em;
         }
 
         .article-body h3 {
@@ -269,7 +213,7 @@ border-bottom: 1px solid var(--border);
             font-size: 1.25rem;
             margin: 1.5rem 0 1rem 0;
             font-weight: 600;
-            letter-spacing: -0.025em;            letter-spacing: -0.025em;
+            letter-spacing: -0.025em;
         }
 
         .article-body p {
@@ -289,7 +233,7 @@ border-bottom: 1px solid var(--border);
         }
 
         .article-body blockquote {
-            background: var(--bg-dark);
+            background: var(--bg-light);
             border-left: 4px solid var(--primary);
             padding: 1.5rem;
             margin: 2rem 0;
@@ -300,19 +244,15 @@ border-bottom: 1px solid var(--border);
         }
 
         .article-body a {
-            text-decoration: none;            color: var(--accent);
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
-            letter-spacing: -0.025em;        }
-
-        .article-body a:hover {
-            
         }
 
         .article-body strong {
             color: var(--primary);
             font-weight: 700;
-            letter-spacing: -0.025em;        }
+        }
 
         /* Image Gallery */
         .article-images {
@@ -326,11 +266,6 @@ border-bottom: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .article-image:hover {
-            transform: translateY(-4px);
         }
 
         .article-image img {
@@ -341,28 +276,23 @@ border-bottom: 1px solid var(--border);
 
         .image-caption {
             padding: 1rem;
-            background: var(--bg);
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;            font-size: 0.9rem;
+            background: var(--bg-light);
+            font-size: 0.9rem;
             color: var(--text-light);
             text-align: center;
         }
 
         /* Related Articles */
         .related-articles {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
+            margin-top: 4rem;
         }
 
         .related-title {
-            color: var(--primary);
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;            margin-bottom: 1.5rem;
             text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--primary);
         }
 
         .related-grid {
@@ -372,9 +302,10 @@ border-bottom: 1px solid var(--border);
         }
 
         .related-card {
-            border: 1px solid var(--border);
+            background: white;
             border-radius: 12px;
             overflow: hidden;
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: inherit;
@@ -385,52 +316,47 @@ border-bottom: 1px solid var(--border);
             box-shadow: var(--shadow-lg);
         }
 
-        .related-card-image {
+        .related-card img {
+            width: 100%;
             height: 150px;
-            background-size: cover;
-            background-position: center;
+            object-fit: cover;
         }
 
-        .related-card-content {
-            padding: 1rem;
+        .related-content {
+            padding: 1.5rem;
         }
 
-        .related-card-title {
+        .related-category {
+            font-size: 0.8rem;
+            color: var(--accent);
             font-weight: 600;
-            letter-spacing: -0.025em;            margin-bottom: 0.5rem;
-            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .related-card-excerpt {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+        .related-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: var(--text);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-.header-nav {
-  display: none;
-}
-
-.mobile-menu-toggle {
-  display: block;
-}
             .header-nav {
                 display: none;
             }
 
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+
             .article-title {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
 
             .article-meta {
@@ -443,7 +369,7 @@ border-bottom: 1px solid var(--border);
             }
 
             .article-body h2 {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
             }
 
             .article-body h3 {
@@ -460,10 +386,6 @@ border-bottom: 1px solid var(--border);
         }
 
         @media (max-width: 480px) {
-            .article-header {
-                padding: 2rem 0;
-            }
-
             .article-title {
                 font-size: 1.75rem;
             }
@@ -484,7 +406,7 @@ border-bottom: 1px solid var(--border);
         <div class="header-container">
             <a href="index.html" class="logo">
                 <div class="logo-icon">
-                    <img src="Logo.png" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo">
                 </div>
                 <span class="logo-text">CrossCheck</span>
             </a>
@@ -496,185 +418,147 @@ border-bottom: 1px solid var(--border);
                 <a href="apologetique.html" class="nav-link active">Apologétique</a>
                 <a href="togo.html" class="nav-link">Togo</a>
             </nav>
-<button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>            <a href="apologetique.html" class="back-btn">
-                ← Retour aux articles
-        </a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link">Histoire</a>
+                <a href="apologetique.html" class="nav-link active">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+        </div>
     </header>
+
     <!-- Back Button -->
     <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
         <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">
-    </div><!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<nav class="mobile-nav">
-<a href="index.html" class="nav-link">Accueil</a>
-<a href="archeologie.html" class="nav-link">Archéologie</a>
-<a href="science.html" class="nav-link">Science</a>
-<a href="histoire.html" class="nav-link">Histoire</a>
-<a href="apologetique.html" class="nav-link">Apologétique</a>
-<a href="togo.html" class="nav-link">Togo</a>
-</nav>
-</a>
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Article Header -->
-        <section class="article-header">
-            <div class="article-header-content">
-                <div class="article-category">Apologétique Africaine</a>
-                <h1 class="article-title">Apologétique Africaine : Introduction</h1>
-                <div class="article-meta">
-                    <span>📅 01 Décembre 2024</span>
-                    <span>⏱️ 8 min de lecture</span>
-                    <span>📝 Adapté de The Gospel Coalition Africa</span>
+            ← Retour aux articles
+        </a>
+    </div>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="article-header-content">
+            <div class="article-category">Apologétique Africaine</div>
+            <h1 class="article-title">Apologétique Africaine : Introduction</h1>
+            <div class="article-meta">
+                <span>📅 28 Décembre 2024</span>
+                <span>⏱️ 10 min de lecture</span>
+                <span>📝 Adapté de The Gospel Coalition Africa</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <article class="article-body">
+            <p><strong>En Afrique, l'apologétique défend la foi face au postmodernisme et à l'évangile de la prospérité. Au Togo, où le christianisme croît rapidement, elle répond aux défis comme le syncrétisme animiste et les influences modernes.</strong></p>
+
+            <!-- Images d'illustration -->
+            <div class="article-images">
+                <div class="article-image">
+                    <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&h=300&fit=crop" alt="Étudiants africains en débat">
+                    <div class="image-caption">Débats apologétiques dans les universités africaines</div>
                 </div>
-            </a>
+                <div class="article-image">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&h=300&fit=crop" alt="Bible et culture africaine">
+                    <div class="image-caption">L'apologétique au service de l'Évangile en Afrique</div>
+                </div>
+            </div>
+
+            <h2>Défis apologétiques en Afrique</h2>
+            <p>L'Afrique contemporaine présente des défis uniques pour l'apologétique chrétienne :</p>
+
+            <h3>1. Le postmodernisme</h3>
+            <p>Le postmodernisme rend la foi "optionnelle" pour les jeunes africains éduqués à l'étranger. Au Togo, les étudiants de l'Université de Lomé confrontent souvent un scepticisme qui remet en question la vérité objective du christianisme.</p>
+
+            <h3>2. L'évangile de la prospérité</h3>
+            <p>L'évangile de la prospérité, populaire dans les églises pentecôtistes de Lomé, déforme la doctrine biblique en promettant richesse matérielle comme signe de bénédiction divine. Cette déformation nécessite une réponse apologétique rigoureuse.</p>
+
+            <h3>3. Le syncrétisme</h3>
+            <p>Au Togo, le syncrétisme entre christianisme et traditions animistes (notamment Éwé) crée des confusions doctrinales qui exigent une clarification apologétique basée sur l'Écriture.</p>
+
+            <!-- Image illustrative -->
+            <div class="article-images">
+                <div class="article-image">
+                    <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Église au Togo">
+                    <div class="image-caption">Églises pentecôtistes de Lomé confrontées aux défis apologétiques</div>
+                </div>
+            </div>
+
+            <h2>Approche apologétique holistique</h2>
+            <p>L'apologétique africaine efficace doit être holistique, touchant :</p>
+            <ul>
+                <li><strong>La tête</strong> : Arguments rationnels et intellectuels</li>
+                <li><strong>Le cœur</strong> : Dimension émotionnelle et spirituelle</li>
+                <li><strong>Les mains</strong> : Application pratique et transformation sociale</li>
+            </ul>
+
+            <h2>Initiatives apologétiques en Afrique</h2>
+            <p>Plusieurs initiatives émergent pour répondre aux défis apologétiques africains :</p>
+
+            <h3>Exemples d'organisations</h3>
+            <ul>
+                <li><strong>Apologetics Kenya</strong> : Débats dans les universités</li>
+                <li><strong>Ratio Christi Afrique du Sud</strong> : Formation apologétique</li>
+                <li><strong>Centres d'apologétique</strong> : Formation de leaders</li>
+            </ul>
+
+            <blockquote>"Soyez toujours prêts à rendre raison de l'espérance qui est en vous." - 1 Pierre 3:15</blockquote>
+
+            <h2>Adaptation au contexte togolais</h2>
+            <p>Au Togo, l'apologétique doit s'adapter aux défis locaux :</p>
+
+            <h3>Stratégies spécifiques</h3>
+            <ul>
+                <li><strong>Débats universitaires</strong> : Confronter le scepticisme intellectuel</li>
+                <li><strong>Formation des pasteurs</strong> : Répondre aux déformations doctrinales</li>
+                <li><strong>Dialogue interculturel</strong> : Respecter les traditions tout en défendant la vérité</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>L'apologétique africaine représente un champ dynamique et essentiel pour la défense de la foi chrétienne sur le continent. Au Togo, elle doit répondre aux défis spécifiques du contexte local tout en s'appuyant sur les fondements bibliques solides.</p>
+
+            <p><strong>Source originale :</strong> <a href="https://africa.thegospelcoalition.org/article/african-apologetics-introduction/" target="_blank">The Gospel Coalition Africa</a></p>
+        </article>
+
+        <!-- Related Articles -->
+        <section class="related-articles">
+            <h2 class="related-title">Articles connexes</h2>
+            <div class="related-grid">
+                <a href="article-apologetique-togo.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop" alt="Apologétique togolaise">
+                    <div class="related-content">
+                        <div class="related-category">Apologétique</div>
+                        <h3 class="related-title">Apologétique togolaise</h3>
+                    </div>
+                </a>
+                <a href="article-thomas-aquinas.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop" alt="Thomas d'Aquin">
+                    <div class="related-content">
+                        <div class="related-category">Philosophie</div>
+                        <h3 class="related-title">L'existence de Dieu : arguments rationnels</h3>
+                    </div>
+                </a>
+                <a href="article-science-foi.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop" alt="Science et foi">
+                    <div class="related-content">
+                        <div class="related-category">Science</div>
+                        <h3 class="related-title">Science et foi : complémentaires ou contradictoires ?</h3>
+                    </div>
+                </a>
+            </div>
         </section>
-
-        <!-- Article Content -->
-        <section class="article-content">
-            <article class="article-body">
-                <p><strong>En Afrique, l'apologétique défend la foi face au postmodernisme et à l'évangile de la prospérité. Au Togo, où le christianisme croît rapidement, elle répond aux défis comme le syncrétisme animiste et les influences modernes.</strong></p>
-
-                <!-- Images d'illustration -->
-                <div class="article-images">
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&h=300&fit=crop" alt="Étudiants africains en débat">
-                        <div class="image-caption">Débats apologétiques dans les universités africaines</div>
-                    </div>
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&h=300&fit=crop" alt="Bible et culture africaine">
-                        <div class="image-caption">L'apologétique au service de l'Évangile en Afrique</div>
-                    </div>
-                </div>
-
-                <h2>Défis apologétiques en Afrique</h2>
-                <p>L'Afrique contemporaine présente des défis uniques pour l'apologétique chrétienne :</p>
-
-                <h3>1. Le postmodernisme</h3>
-                <p>Le postmodernisme rend la foi "optionnelle" pour les jeunes africains éduqués à l'étranger. Au Togo, les étudiants de l'Université de Lomé confrontent souvent un scepticisme qui remet en question la vérité objective du christianisme.</p>
-
-                <h3>2. L'évangile de la prospérité</h3>
-                <p>L'évangile de la prospérité, populaire dans les églises pentecôtistes de Lomé, déforme la doctrine biblique en promettant richesse matérielle comme signe de bénédiction divine. Cette déformation nécessite une réponse apologétique rigoureuse.</p>
-
-                <h3>3. Le syncrétisme</h3>
-                <p>Au Togo, le syncrétisme entre christianisme et traditions animistes (notamment Éwé) crée des confusions doctrinales qui exigent une clarification apologétique basée sur l'Écriture.</p>
-
-                <!-- Image illustrative -->
-                <div class="article-images">
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Église au Togo">
-                        <div class="image-caption">Églises pentecôtistes de Lomé confrontées aux défis apologétiques</div>
-                    </div>
-                </div>
-
-                <h2>Approche apologétique holistique</h2>
-                <p>L'apologétique africaine efficace doit être holistique, touchant :</p>
-                <ul>
-                    <li><strong>La tête</strong> : Arguments rationnels et intellectuels</li>
-                    <li><strong>Le cœur</strong> : Dimension émotionnelle et spirituelle</li>
-                    <li><strong>Les mains</strong> : Application pratique et transformation sociale</li>
-                </ul>
-
-                <h3>Exemples d'initiatives panafricaines</h3>
-                <p>Des initiatives comme <em>Apologetics Kenya</em> ou <em>Ratio Christi</em> en Afrique du Sud montrent comment l'apologétique peut être adaptée aux contextes locaux tout en maintenant une fidélité biblique.</p>
-
-                <h2>Application au contexte togolais</h2>
-                <p>Au Togo, l'apologétique peut s'exprimer à travers :</p>
-                <ul>
-                    <li><strong>Débats universitaires</strong> : Confronter le scepticisme dans les universités comme l'UL</li>
-                    <li><strong>Formation pastorale</strong> : Équiper les pasteurs pour répondre aux défis contemporains</li>
-                    <li><strong>Média chrétien</strong> : Utiliser les plateformes numériques pour diffuser des contenus apologétiques</li>
-                </ul>
-
-                <blockquote>"Soyez toujours prêts à rendre raison de l'espérance qui est en vous, et cela avec douceur et respect." – 1 Pierre 3:15</blockquote>
-
-                <h2>Conclusion</h2>
-                <p>L'apologétique africaine, adaptée au Togo, offre une défense solide de la foi chrétienne face aux défis contemporains. Elle combine rigueur intellectuelle, sensibilité culturelle et fidélité biblique pour une approche holistique de la défense de la foi.</p>
-
-                <p><strong>Source originale :</strong> <a href="https://africa.thegospelcoalition.org/article/african-apologetics-introduction/">The Gospel Coalition Africa - African Apologetics: An Introduction</a></p>
-            </article>
-
-            <!-- Related Articles -->
-            <section class="related-articles">
-                <h2 class="related-title">Articles connexes</h2>
-                <div class="related-grid">
-                    <a href="article-apologetique-togo.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop');"></a>
-                        <div class="related-card-content">
-                            <h3 class="related-card-title">Apologétique togolaise</h3>
-                            <p class="related-card-excerpt">Répondre aux défis de la foi en Afrique de l'Ouest</p>
-                        </div>
-                    </div>
-                    <a href="article-thomas-aquinas.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Thomas_Aquinas_by_Justus_van_Gent.jpg/400px-Thomas_Aquinas_by_Justus_van_Gent.jpg');"></a>
-                        <div class="related-card-content">
-                            <h3 class="related-card-title">L'existence de Dieu</h3>
-                            <p class="related-card-excerpt">Arguments rationnels selon Thomas d'Aquin</p>
-                        </div>
-                    </div>
-                    <a href="article-science-foi.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop');"></a>
-                        <div class="related-card-content">
-                            <h3 class="related-card-title">Science et foi</h3>
-                            <p class="related-card-excerpt">Complémentaires ou contradictoires ?</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 CrossCheck - Centre de Recherche en Apologétique Chrétienne</p>
-    </footer>
+    </section>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-// Mobile menu toggle
-function toggleMobileMenu() {
-const mobileMenu = document.getElementById("mobileMenu");
-mobileMenu.classList.toggle("active");
-}
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll(".mobile-nav .nav-link").forEach(link => {
-link.addEventListener("click", () => {
-document.getElementById("mobileMenu").classList.remove("active");
-});
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener("click", (e) => {
-const mobileMenu = document.getElementById("mobileMenu");
-const toggleButton = document.querySelector(".mobile-menu-toggle");
-if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
-mobileMenu.classList.remove("active");
-}
-});
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
     </script>
 </body>
 </html>

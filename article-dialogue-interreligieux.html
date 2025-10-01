@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialogue Interreligieux et Apologétique - CrossCheck</title>
+    <meta name="description" content="Comment défendre la foi chrétienne dans un contexte de pluralisme religieux et de dialogue respectueux.">
+    
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-dark: #1e293b;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 0.9;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--primary);
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Article Header */
+        .article-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .article-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .article-body {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .article-body h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body h3 {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .article-body strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .article-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-body h3 {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-body {
+                padding: 1.5rem 1rem;
+            }
+
+            .article-content {
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo">
+                </div>
+                <span class="logo-text">CrossCheck</span>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link">Histoire</a>
+                <a href="apologetique.html" class="nav-link active">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link">Histoire</a>
+                <a href="apologetique.html" class="nav-link active">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Back Button -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
+        <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">
+            ← Retour aux articles
+        </a>
+    </div>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="article-header-content">
+            <div class="article-category">Apologétique</div>
+            <h1 class="article-title">Dialogue Interreligieux et Apologétique</h1>
+            <div class="article-meta">
+                <span>📅 02 Novembre 2024</span>
+                <span>⏱️ 9 min de lecture</span>
+                <span>📝 CrossCheck</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <article class="article-body">
+            <p>Dans un monde de plus en plus pluraliste, le dialogue interreligieux devient essentiel. Mais comment concilier respect mutuel et défense de la vérité chrétienne ?</p>
+
+            <h2>Les principes du dialogue respectueux</h2>
+            <p>Un dialogue interreligieux authentique repose sur plusieurs principes fondamentaux :</p>
+
+            <h3>1. Respect mutuel</h3>
+            <p>Le respect ne signifie pas l'acceptation de toutes les croyances comme également vraies, mais la reconnaissance de la dignité de chaque personne.</p>
+
+            <h3>2. Écoute active</h3>
+            <p>Comprendre les convictions de l'autre avant de présenter les siennes, en évitant les préjugés et les caricatures.</p>
+
+            <h3>3. Honnêteté intellectuelle</h3>
+            <p>Présenter sa foi de manière claire et cohérente, sans minimiser les différences réelles entre les religions.</p>
+
+            <h2>L'apologétique dans le dialogue</h2>
+            <p>L'apologétique chrétienne peut s'exercer dans le dialogue de manière constructive :</p>
+
+            <h3>Arguments historiques</h3>
+            <p>Présenter les preuves historiques de la résurrection de Jésus-Christ et de la fiabilité des Écritures.</p>
+
+            <h3>Arguments philosophiques</h3>
+            <p>Discuter des questions fondamentales comme l'existence de Dieu, la nature du mal, ou le sens de la vie.</p>
+
+            <h3>Arguments existentiels</h3>
+            <p>Partager son expérience personnelle de la foi et ses implications pratiques dans la vie quotidienne.</p>
+
+            <h2>Défis du dialogue interreligieux</h2>
+            <p>Plusieurs défis doivent être relevés dans le dialogue :</p>
+
+            <h3>Le relativisme</h3>
+            <p>La tendance à considérer toutes les religions comme également valides peut miner l'engagement authentique au dialogue.</p>
+
+            <h3>Les préjugés</h3>
+            <p>Les stéréotypes et les malentendus peuvent empêcher une compréhension mutuelle réelle.</p>
+
+            <h3>Les différences fondamentales</h3>
+            <p>Certaines croyances sont incompatibles et doivent être reconnues comme telles.</p>
+
+            <h2>Stratégies pratiques</h2>
+            <p>Pour un dialogue fructueux, plusieurs stratégies peuvent être adoptées :</p>
+
+            <h3>Rechercher les points communs</h3>
+            <p>Identifier les valeurs et les aspirations partagées tout en reconnaissant les différences.</p>
+
+            <h3>Pratiquer l'humilité</h3>
+            <p>Reconnaître les limites de sa propre compréhension et être ouvert à l'apprentissage.</p>
+
+            <h3>Maintenir l'intégrité</h3>
+            <p>Ne pas compromettre ses convictions fondamentales tout en restant respectueux.</p>
+
+            <h2>Conclusion</h2>
+            <p>Le dialogue interreligieux et l'apologétique ne sont pas incompatibles. Au contraire, un dialogue respectueux et honnête peut être un moyen efficace de défendre et de partager la foi chrétienne.</p>
+
+            <blockquote>"Soyez toujours prêts à rendre raison de l'espérance qui est en vous, mais faites-le avec douceur et respect." - 1 Pierre 3:15</blockquote>
+
+            <p>L'objectif n'est pas de "gagner" un débat, mais de témoigner de la vérité dans l'amour et le respect mutuel.</p>
+        </article>
+
+        <!-- Related Articles -->
+        <section class="related-articles">
+            <h2 class="related-title">Articles connexes</h2>
+            <div class="related-grid">
+                <a href="article-exode-animisme-paralleles.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=200&fit=crop" alt="Exode et Animisme">
+                    <div class="related-content">
+                        <div class="related-category">Apologétique</div>
+                        <h3 class="related-title">Exode & Animisme : Parallèles</h3>
+                    </div>
+                </a>
+                <a href="article-apologetique-togo.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop" alt="Apologétique togolaise">
+                    <div class="related-content">
+                        <div class="related-category">Apologétique</div>
+                        <h3 class="related-title">Apologétique togolaise</h3>
+                    </div>
+                </a>
+                <a href="article-science-foi.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop" alt="Science et foi">
+                    <div class="related-content">
+                        <div class="related-category">Apologétique</div>
+                        <h3 class="related-title">Science et foi : complémentaires ou contradictoires ?</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

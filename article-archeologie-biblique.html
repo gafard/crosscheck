@@ -109,7 +109,45 @@
         }
 
         .nav-link.active::after {
-            content: '';
+}
+
+.mobile-menu-toggle {
+display: none;
+background: none;
+border: none;
+font-size: 1.5rem;
+color: var(--primary);
+cursor: pointer;
+padding: 0.5rem;
+}
+
+.mobile-menu {
+display: none;
+position: fixed;
+top: 70px;
+left: 0;
+right: 0;
+background: white;
+border-bottom: 1px solid var(--border);
+box-shadow: var(--shadow-lg);
+z-index: 999;
+padding: 1rem 2rem;
+}
+
+.mobile-menu.active {
+display: block;
+}
+
+.mobile-nav {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+.mobile-nav .nav-link {
+padding: 0.75rem 0;
+border-bottom: 1px solid var(--border);
+}            content: '';
             position: absolute;
             bottom: -8px;
             left: 0;
@@ -373,6 +411,13 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+.header-nav {
+  display: none;
+}
+
+.mobile-menu-toggle {
+  display: block;
+}
             .header-nav {
                 display: none;
             }
@@ -444,12 +489,22 @@
                 <a href="apologetique.html" class="nav-link">Apologétique</a>
                 <a href="togo.html" class="nav-link">Togo</a>
             </nav>
-            <a href="archeologie.html" class="back-btn">
+<button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>            <a href="archeologie.html" class="back-btn">
                 ← Retour aux articles
             </a>
         </div>
     </header>
-
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<nav class="mobile-nav">
+<a href="index.html" class="nav-link">Accueil</a>
+<a href="archeologie.html" class="nav-link">Archéologie</a>
+<a href="science.html" class="nav-link">Science</a>
+<a href="histoire.html" class="nav-link">Histoire</a>
+<a href="apologetique.html" class="nav-link">Apologétique</a>
+<a href="togo.html" class="nav-link">Togo</a>
+</nav>
+</div>
     <!-- Main Content -->
     <main class="main-content">
         <!-- Article Header -->
@@ -587,6 +642,27 @@
                 header.style.boxShadow = 'none';
             }
         });
+// Mobile menu toggle
+function toggleMobileMenu() {
+const mobileMenu = document.getElementById("mobileMenu");
+mobileMenu.classList.toggle("active");
+}
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll(".mobile-nav .nav-link").forEach(link => {
+link.addEventListener("click", () => {
+document.getElementById("mobileMenu").classList.remove("active");
+});
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener("click", (e) => {
+const mobileMenu = document.getElementById("mobileMenu");
+const toggleButton = document.querySelector(".mobile-menu-toggle");
+if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
+mobileMenu.classList.remove("active");
+}
+});
     </script>
 </body>
 </html>

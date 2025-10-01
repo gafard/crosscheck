@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'existence de Dieu : arguments rationnels - CrossCheck</title>
+    <meta name="description" content="Exploration des preuves philosophiques et rationnelles de l'existence de Dieu, des arguments cosmologiques aux preuves morales.">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-dark: #f1f5f9;
+            --border: #e2e8f0;
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+        }
+
+        .back-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Article Header */
+        .article-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Thomas_Aquinas_by_Justus_van_Gent.jpg/1200px-Thomas_Aquinas_by_Justus_van_Gent.jpg') center/cover;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .article-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-category {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .article-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .article-body {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .article-body h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 700;
+        }
+
+        .article-body h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-body ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .article-body blockquote {
+            background: var(--bg-dark);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .article-body a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .article-body a:hover {
+            text-decoration: underline;
+        }
+
+        .article-body strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Image Gallery */
+        .article-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .article-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .article-image:hover {
+            transform: translateY(-4px);
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 1rem;
+            background: var(--bg-light);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Related Articles */
+        .related-articles {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .related-card-content {
+            padding: 1rem;
+        }
+
+        .related-card-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .related-card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-nav {
+                display: none;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .article-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-body h3 {
+                font-size: 1.25rem;
+            }
+
+            .article-images {
+                grid-template-columns: 1fr;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-header {
+                padding: 2rem 0;
+            }
+
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-body {
+                padding: 1.5rem 1rem;
+            }
+
+            .article-content {
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="Logo.png" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+                </div>
+                <span class="logo-text">CrossCheck</span>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link">Histoire</a>
+                <a href="apologetique.html" class="nav-link active">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+            <a href="apologetique.html" class="back-btn">
+                ← Retour aux articles
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Article Header -->
+        <section class="article-header">
+            <div class="article-header-content">
+                <div class="article-category">Apologétique</div>
+                <h1 class="article-title">L'existence de Dieu : arguments rationnels</h1>
+                <div class="article-meta">
+                    <span>📅 07 Décembre 2024</span>
+                    <span>⏱️ 8 min de lecture</span>
+                    <span>📚 Thomas d'Aquin</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="article-content">
+            <article class="article-body">
+                <p>L'apologétique chrétienne offre des arguments rationnels solides pour défendre l'existence de Dieu. Ces preuves, développées par des penseurs comme Thomas d'Aquin, restent pertinentes aujourd'hui.</p>
+
+                <!-- Images d'illustration -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Thomas_Aquinas_by_Justus_van_Gent.jpg/600px-Thomas_Aquinas_by_Justus_van_Gent.jpg" alt="Thomas d'Aquin">
+                        <div class="image-caption">Thomas d'Aquin (1225-1274), théologien et philosophe</div>
+                    </div>
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop" alt="Philosophie médiévale">
+                        <div class="image-caption">La philosophie médiévale et les preuves de l'existence de Dieu</div>
+                    </div>
+                </div>
+
+                <h2>Les cinq voies de Thomas d'Aquin</h2>
+                <p>Thomas d'Aquin a formulé cinq arguments rationnels pour l'existence de Dieu :</p>
+                <ul>
+                    <li><strong>Le mouvement</strong> : Tout mouvement nécessite un premier moteur</li>
+                    <li><strong>La causalité</strong> : Toute cause a une cause antérieure, jusqu'à une cause première</li>
+                    <li><strong>La contingence</strong> : Les êtres contingents nécessitent un être nécessaire</li>
+                    <li><strong>La perfection</strong> : Les degrés de perfection supposent un être parfait</li>
+                    <li><strong>Le dessein</strong> : L'ordre de l'univers suggère un concepteur intelligent</li>
+                </ul>
+
+                <!-- Image illustrative -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Univers et cosmologie">
+                        <div class="image-caption">L'ordre de l'univers témoigne d'un concepteur intelligent</div>
+                    </div>
+                </div>
+
+                <h3>L'argument cosmologique</h3>
+                <p>Tout ce qui commence d'exister a une cause. L'univers a commencé d'exister (Big Bang). Donc l'univers a une cause. Cette cause doit être hors du temps et de l'espace, c'est-à-dire Dieu.</p>
+
+                <blockquote>"Au commencement, Dieu créa les cieux et la terre." – Genèse 1:1</blockquote>
+
+                <h2>L'argument moral</h2>
+                <p>Si Dieu n'existe pas, alors les valeurs morales objectives n'existent pas. Mais les valeurs morales objectives existent. Donc Dieu existe.</p>
+
+                <!-- Image illustrative -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&h=300&fit=crop" alt="Justice et moralité">
+                        <div class="image-caption">L'existence de valeurs morales objectives suggère un fondement transcendant</div>
+                    </div>
+                </div>
+
+                <h3>Conclusion</h3>
+                <p>Ces arguments rationnels, combinés à l'expérience personnelle et aux preuves historiques, forment une base solide pour la foi chrétienne. Comme le dit 1 Pierre 3:15 : <em>"Sanctifiez dans vos cœurs le Christ Seigneur, toujours prêts à la défense contre quiconque vous demande de rendre raison de l'espérance qui est en vous."</em></p>
+            </article>
+
+            <!-- Related Articles -->
+            <section class="related-articles">
+                <h2 class="related-title">Articles connexes</h2>
+                <div class="related-grid">
+                    <a href="article-african-apologetics.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Apologétique Africaine</h3>
+                            <p class="related-card-excerpt">Introduction à l'apologétique en Afrique</p>
+                        </div>
+                    </a>
+                    <a href="article-problem-evil.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Répondre au problème du mal</h3>
+                            <p class="related-card-excerpt">La théodicée chrétienne face au mal</p>
+                        </div>
+                    </a>
+                    <a href="article-science-foi.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Science et foi</h3>
+                            <p class="related-card-excerpt">Complémentaires ou contradictoires ?</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 CrossCheck - Centre de Recherche en Apologétique Chrétienne</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

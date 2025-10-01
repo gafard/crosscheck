@@ -14,20 +14,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
---primary: #0f172a;
---secondary: #f97316;
---accent: #fbbf24;
---text: #374151;
+--primary: #1e3a8a;
+--secondary: #2563eb;
+--accent: #3b82f6;
+--text: #1f2937;
 --text-light: #6b7280;
 --bg: #ffffff;
---bg-light: #f9fafb;
---bg-dark: #f3f4f6;
---border: #e5e7eb;
---success: #10b981;
---warning: #f59e0b;
---error: #ef4444;
---gradient-primary: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
---gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+--bg-light: #f8fafc;
+--bg-dark: #f1f5f9;
+--border: #e2e8f0;
+--success: #059669;
+--warning: #d97706;
+--error: #dc2626;
+--gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+--gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
 --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -167,7 +167,10 @@ box-shadow: var(--shadow-sm);
 
 /* Hero Section */
 .hero {
-background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%), url('https://i.postimg.cc/nrt8MD0H/Images-Principale.png');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
 min-height: 100vh;
 display: flex;
 align-items: center;
@@ -390,8 +393,8 @@ color: var(--text-light);
 line-height: 1.5;
 }
 
-/* Steps Section */
-.steps-section {
+/* Research Section */
+.research-section {
 padding: 6rem 0;
 background: var(--bg);
 position: relative;
@@ -403,41 +406,51 @@ margin: 0 auto;
 padding: 0 2rem;
 }
 
-.steps-header {
+.research-header {
 text-align: center;
 margin-bottom: 4rem;
 }
 
-.steps-header h2 {
+.research-header h2 {
 font-size: 2.5rem;
-font-weight: 800;
+font-weight: 700;
 color: var(--primary);
 margin-bottom: 1rem;
 }
 
-.steps-subtitle {
+.research-subtitle {
 font-size: 1.2rem;
 color: var(--text-light);
 font-weight: 500;
 }
 
-.steps-grid {
+.research-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 gap: 3rem;
 margin-top: 3rem;
 }
 
-.step-card {
+.research-card {
 text-align: center;
 padding: 2rem;
+background: var(--bg);
+border: 1px solid var(--border);
+border-radius: 12px;
+transition: all 0.3s ease;
 }
 
-.step-icon {
+.research-card:hover {
+transform: translateY(-4px);
+box-shadow: var(--shadow-lg);
+border-color: var(--secondary);
+}
+
+.research-icon {
 margin-bottom: 1.5rem;
 }
 
-.step-icon-bg {
+.research-icon-bg {
 width: 80px;
 height: 80px;
 border-radius: 20px;
@@ -450,15 +463,15 @@ margin: 0 auto;
 box-shadow: var(--shadow-md);
 }
 
-.step-title {
+.research-title {
 font-size: 1.5rem;
-font-weight: 700;
+font-weight: 600;
 color: var(--primary);
 margin-bottom: 1rem;
 }
 
-.step-description {
-font-size: 1.1rem;
+.research-description {
+font-size: 1rem;
 color: var(--text-light);
 line-height: 1.6;
 }
@@ -934,7 +947,7 @@ text-decoration: underline;
   width: 100%;
 }
 
-.steps-grid {
+.research-grid {
   grid-template-columns: 1fr;
   gap: 2rem;
 }
@@ -983,7 +996,7 @@ text-decoration: underline;
   padding: 0 1rem;
 }
 
-.steps-header h2 {
+.research-header h2 {
   font-size: 2rem;
 }
 
@@ -1092,8 +1105,7 @@ scroll-behavior: smooth;
 <a href="togo.html" class="nav-link">Togo</a>
 </nav>
 <div class="header-actions">
-<button class="btn-secondary">Connexion</button>
-<button class="btn-primary">S'inscrire</button>
+<!-- Navigation simplifiée -->
 </div>
 </div>
 </header>
@@ -1106,13 +1118,9 @@ scroll-behavior: smooth;
 <span class="badge-icon">✨</span>
 <span class="badge-text">Découvrez la vérité</span>
 </div>
-<h1>Bienvenue chez CrossCheck</h1>
-<h2>Explorez Votre Foi</h2>
-<p class="hero-subtitle">Découvrez les preuves archéologiques, scientifiques et historiques qui confirment la vérité biblique. Renforcez votre foi avec des arguments solides et des découvertes fascinantes.</p>
-<div class="hero-email-form">
-<input type="email" placeholder="Entrez votre email" class="email-input">
-<button class="btn-hero-primary">Obtenir un devis</button>
-</div>
+<h1>CrossCheck</h1>
+<h2>Centre de Recherche en Apologétique Chrétienne</h2>
+<p class="hero-subtitle">Découvrez les preuves archéologiques, scientifiques et historiques qui confirment la vérité biblique. Un centre d'études dédié à l'exploration de la foi chrétienne à travers l'érudition et la recherche.</p>
 </div>
 <div class="hero-visual fade-in-up">
 <div class="hero-image-container">
@@ -1122,47 +1130,47 @@ scroll-behavior: smooth;
 </div>
 </section>
 
-<!-- Steps Section -->
-<section class="steps-section" id="features">
+<!-- Research Areas Section -->
+<section class="research-section" id="features">
 <div class="features-container">
-<div class="steps-header">
-<h2>Tout devrait être aussi simple</h2>
-<p class="steps-subtitle">Trois étapes. Trois minutes.</p>
+<div class="research-header">
+<h2>Domaines de Recherche</h2>
+<p class="research-subtitle">Nos centres d'études spécialisés</p>
 </div>
-<div class="steps-grid">
-<div class="step-card">
-<div class="step-icon">
-<div class="step-icon-bg">❓</div>
+<div class="research-grid">
+<div class="research-card">
+<div class="research-icon">
+<div class="research-icon-bg">🏛️</div>
 </div>
-<h3 class="step-title">Répondez aux questions</h3>
-<p class="step-description">Découvrez les preuves archéologiques et scientifiques qui confirment la vérité biblique.</p>
-</div>
-
-<div class="step-card">
-<div class="step-icon">
-<div class="step-icon-bg">📋</div>
-</div>
-<h3 class="step-title">Sélectionnez un domaine</h3>
-<p class="step-description">Choisissez parmi l'archéologie, la science, l'histoire ou l'apologétique.</p>
+<h3 class="research-title">Archéologie Biblique</h3>
+<p class="research-description">Étude des découvertes archéologiques confirmant l'historicité des récits bibliques.</p>
 </div>
 
-<div class="step-card">
-<div class="step-icon">
-<div class="step-icon-bg">⚙️</div>
+<div class="research-card">
+<div class="research-icon">
+<div class="research-icon-bg">🔬</div>
 </div>
-<h3 class="step-title">Renforcez votre foi</h3>
-<p class="step-description">Accédez à des arguments solides et des découvertes fascinantes.</p>
+<h3 class="research-title">Science & Foi</h3>
+<p class="research-description">Recherche sur les relations entre les découvertes scientifiques et la foi chrétienne.</p>
+</div>
+
+<div class="research-card">
+<div class="research-icon">
+<div class="research-icon-bg">📚</div>
+</div>
+<h3 class="research-title">Apologétique</h3>
+<p class="research-description">Défense rationnelle de la foi chrétienne face aux objections contemporaines.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- Projects Section -->
-<section class="projects-section">
+<!-- Publications Section -->
+<section class="publications-section">
 <div class="features-container">
-<div class="projects-header">
-<h2>Nos meilleurs projets</h2>
-<p class="projects-subtitle">Découvrez nos dernières découvertes et analyses</p>
+<div class="publications-header">
+<h2>Publications & Recherches</h2>
+<p class="publications-subtitle">Nos dernières études et découvertes</p>
 </div>
 <div class="projects-grid">
 <div class="project-card">
@@ -1170,11 +1178,11 @@ scroll-behavior: smooth;
 <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop" alt="Archéologie biblique">
 </div>
 <div class="project-content">
-<h3 class="project-title">Archéologie Biblique</h3>
-<div class="project-rating">⭐⭐⭐⭐⭐</div>
-<p class="project-description">Découvertes archéologiques confirmant les récits bibliques</p>
-<div class="project-price">Gratuit</div>
-<button class="project-btn">En savoir plus</button>
+<h3 class="project-title">Recherches Archéologiques</h3>
+<div class="project-rating">📚</div>
+<p class="project-description">Études sur les découvertes archéologiques confirmant l'historicité biblique</p>
+<div class="project-price">Publication</div>
+<button class="project-btn" onclick="openArticle('archeology')">Consulter</button>
 </div>
 </div>
 
@@ -1183,11 +1191,11 @@ scroll-behavior: smooth;
 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Science et foi">
 </div>
 <div class="project-content">
-<h3 class="project-title">Science & Foi</h3>
-<div class="project-rating">⭐⭐⭐⭐⭐</div>
-<p class="project-description">Dialogue entre science moderne et foi chrétienne</p>
-<div class="project-price">Gratuit</div>
-<button class="project-btn">En savoir plus</button>
+<h3 class="project-title">Science & Théologie</h3>
+<div class="project-rating">🔬</div>
+<p class="project-description">Analyses sur les relations entre science moderne et foi chrétienne</p>
+<div class="project-price">Étude</div>
+<button class="project-btn" onclick="openArticle('science')">Consulter</button>
 </div>
 </div>
 
@@ -1196,11 +1204,11 @@ scroll-behavior: smooth;
 <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=300&fit=crop" alt="Apologétique">
 </div>
 <div class="project-content">
-<h3 class="project-title">Apologétique</h3>
-<div class="project-rating">⭐⭐⭐⭐⭐</div>
-<p class="project-description">Défense rationnelle de la foi chrétienne</p>
-<div class="project-price">Gratuit</div>
-<button class="project-btn">En savoir plus</button>
+<h3 class="project-title">Apologétique Chrétienne</h3>
+<div class="project-rating">📖</div>
+<p class="project-description">Recherches en défense rationnelle de la foi chrétienne</p>
+<div class="project-price">Thèse</div>
+<button class="project-btn" onclick="openArticle('apologetics')">Consulter</button>
 </div>
 </div>
 </div>
@@ -1212,27 +1220,27 @@ scroll-behavior: smooth;
 <div class="features-container">
 <div class="services-content">
 <div class="services-visual">
-<img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=400&fit=crop" alt="Services CrossCheck" class="services-image">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="Services CrossCheck" class="services-image">
 </div>
 <div class="services-text">
-<h2>Nos meilleurs services</h2>
-<h3>Et voici comment ? Nous faisons mieux l'apologétique</h3>
+<h2>Méthodologie de Recherche</h2>
+<h3>Approche scientifique et érudite de l'apologétique chrétienne</h3>
 <div class="services-list">
 <div class="service-item">
 <div class="service-icon">✓</div>
-<div class="service-text">Économisez en moyenne 5h par semaine</div>
+<div class="service-text">Recherche approfondie et méthodique</div>
 </div>
 <div class="service-item">
 <div class="service-icon">✓</div>
-<div class="service-text">Accédez aux preuves en 3 minutes</div>
+<div class="service-text">Sources académiques et références vérifiées</div>
 </div>
 <div class="service-item">
 <div class="service-icon">✓</div>
-<div class="service-text">Gérez facilement votre foi en ligne</div>
+<div class="service-text">Approche interdisciplinaire rigoureuse</div>
 </div>
 <div class="service-item">
 <div class="service-icon">✓</div>
-<div class="service-text">Évitez les longues recherches et les doutes</div>
+<div class="service-text">Publication de travaux de qualité universitaire</div>
 </div>
 </div>
 </div>
@@ -1243,15 +1251,15 @@ scroll-behavior: smooth;
 <!-- Blog Section -->
 <section class="blog-section">
 <div class="features-container">
-<h2>Lisez nos derniers articles</h2>
+<h2>Publications Récentes</h2>
 <div class="blog-grid">
-<div class="blog-card">
+<div class="blog-card" onclick="openArticle('archeology')" style="cursor: pointer;">
 <div class="blog-image">
 <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=300&h=200&fit=crop" alt="Blog article">
 </div>
 <div class="blog-content">
-<h3>Comment trouver les meilleures preuves archéologiques</h3>
-<div class="blog-date">15 Déc 2024</div>
+<h3>Méthodologie en archéologie biblique : approche critique</h3>
+<div class="blog-date">Décembre 2024</div>
 </div>
 </div>
 
@@ -1260,8 +1268,8 @@ scroll-behavior: smooth;
 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop" alt="Blog article">
 </div>
 <div class="blog-content">
-<h3>Science et foi : un dialogue enrichissant</h3>
-<div class="blog-date">12 Déc 2024</div>
+<h3>Dialogue science-théologie : perspectives contemporaines</h3>
+<div class="blog-date">Décembre 2024</div>
 </div>
 </div>
 
@@ -1270,8 +1278,8 @@ scroll-behavior: smooth;
 <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=300&h=200&fit=crop" alt="Blog article">
 </div>
 <div class="blog-content">
-<h3>Défendre sa foi avec des arguments solides</h3>
-<div class="blog-date">10 Déc 2024</div>
+<h3>Fondements épistémologiques de l'apologétique chrétienne</h3>
+<div class="blog-date">Décembre 2024</div>
 </div>
 </div>
 </div>
@@ -1350,6 +1358,111 @@ setInterval(() => {
 const chars = ['〰️', '〰️', '〰️', '〰️', '〰️', '〰️', '〰️'];
 waveform.textContent = chars.map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
 }, 200);
+}
+
+// Articles data
+const articles = {
+archeology: {
+category: "Archéologie",
+title: "Recherches Archéologiques",
+content: `
+<p>Nos recherches archéologiques se concentrent sur l'étude des découvertes qui confirment l'historicité des récits bibliques.</p>
+<h2>Découvertes récentes</h2>
+<p>Les fouilles archéologiques modernes continuent de révéler des preuves fascinantes qui corroborent les récits bibliques. Chaque découverte apporte une nouvelle lumière sur l'histoire ancienne.</p>
+<h3>Méthodologie</h3>
+<p>Notre approche combine l'archéologie traditionnelle avec les technologies modernes pour une analyse rigoureuse des sites et artefacts.</p>
+<blockquote>"L'archéologie biblique est une science qui ne cesse de confirmer la fiabilité historique des Écritures."</blockquote>
+`
+},
+science: {
+category: "Science & Théologie",
+title: "Science & Théologie",
+content: `
+<p>Le dialogue entre science et théologie révèle une harmonie profonde entre la foi chrétienne et les découvertes scientifiques.</p>
+<h2>Complexité irréductible</h2>
+<p>Les découvertes en biologie moléculaire révèlent des systèmes d'une complexité telle qu'ils suggèrent un design intelligent.</p>
+<h3>Réglage fin de l'univers</h3>
+<p>Les constantes physiques sont réglées avec une précision extraordinaire pour permettre l'existence de la vie.</p>
+<blockquote>"La science moderne révèle un univers qui pointe vers un Créateur intelligent."</blockquote>
+`
+},
+apologetics: {
+category: "Apologétique",
+title: "Apologétique Chrétienne",
+content: `
+<p>L'apologétique chrétienne offre des arguments rationnels solides pour défendre la foi chrétienne.</p>
+<h2>Arguments cosmologiques</h2>
+<p>L'argument cosmologique de Kalam démontre que l'univers a eu un commencement et nécessite donc une cause première.</p>
+<h3>Arguments moraux</h3>
+<p>L'existence de valeurs morales objectives suggère l'existence d'un fondement moral transcendant.</p>
+<blockquote>"L'apologétique chrétienne combine raison et révélation pour une défense complète de la foi."</blockquote>
+`
+}
+};
+
+// Function to open articles
+function openArticle(id) {
+const article = articles[id];
+if (article) {
+// Create modal
+const modal = document.createElement('div');
+modal.style.cssText = `
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0,0,0,0.8);
+z-index: 2000;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+`;
+
+modal.innerHTML = `
+<div style="
+background: white;
+border-radius: 16px;
+max-width: 800px;
+max-height: 90vh;
+overflow-y: auto;
+padding: 2rem;
+position: relative;
+">
+<button onclick="this.closest('.modal').remove()" style="
+position: absolute;
+top: 1rem;
+right: 1rem;
+background: #f3f4f6;
+border: none;
+border-radius: 50%;
+width: 2rem;
+height: 2rem;
+cursor: pointer;
+font-size: 1.2rem;
+">×</button>
+<h1 style="margin-bottom: 1rem; color: var(--primary);">${article.title}</h1>
+<div style="line-height: 1.7; color: var(--text);">${article.content}</div>
+</div>
+`;
+
+modal.className = 'modal';
+document.body.appendChild(modal);
+
+// Close on escape key
+modal.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') modal.remove();
+});
+
+// Close on background click
+modal.addEventListener('click', (e) => {
+if (e.target === modal) modal.remove();
+});
+
+// Focus for keyboard navigation
+modal.querySelector('button').focus();
+}
 }
 </script>
 </body>

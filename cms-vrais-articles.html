@@ -712,29 +712,78 @@
             const grid = document.getElementById('import-grid');
             
             loadingAlert.style.display = 'block';
+            loadingAlert.textContent = '🔄 Chargement des articles...';
             grid.innerHTML = '<div class="loading"><p>Chargement en cours...</p></div>';
 
             realArticles = [];
+            let loadedCount = 0;
+            let errorCount = 0;
 
             for (let i = 0; i < articleFiles.length; i++) {
                 const fileName = articleFiles[i];
                 try {
+                    loadingAlert.textContent = `🔄 Chargement de ${fileName}... (${i + 1}/${articleFiles.length})`;
+                    
                     const response = await fetch(fileName);
                     if (response.ok) {
                         const html = await response.text();
                         const article = extractArticleFromHTML(html, fileName);
                         if (article) {
                             realArticles.push(article);
+                            loadedCount++;
+                        } else {
+                            errorCount++;
+                            console.log(`Impossible d'extraire le contenu de ${fileName}`);
                         }
+                    } else {
+                        errorCount++;
+                        console.log(`Erreur HTTP ${response.status} pour ${fileName}`);
                     }
                 } catch (error) {
+                    errorCount++;
                     console.log(`Erreur lors du chargement de ${fileName}:`, error);
                 }
             }
 
             loadingAlert.style.display = 'none';
             displayImportArticles(realArticles);
-            showAlert('success', `${realArticles.length} articles chargés avec succès !`);
+            
+            if (loadedCount > 0) {
+                showAlert('success', `${loadedCount} articles chargés avec succès !`);
+            } else {
+                showAlert('error', 'Aucun article n\'a pu être chargé. Vérifiez que vous utilisez un serveur web local.');
+                grid.innerHTML = `
+                    <div class="card">
+                        <h3>⚠️ Problème de chargement</h3>
+                        <p>Les articles n'ont pas pu être chargés. Cela peut être dû à :</p>
+                        <ul style="margin: 1rem 0; padding-left: 2rem;">
+                            <li>Le site n'est pas servi par un serveur web local</li>
+                            <li>Les fichiers d'articles ne sont pas accessibles</li>
+                            <li>Problème de permissions</li>
+                        </ul>
+                        <p><strong>Solution :</strong> Utilisez un serveur web local (Python, Node.js, etc.)</p>
+                        <button class="btn btn-primary" onclick="testServerConnection()">
+                            🔍 Tester la connexion
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Tester la connexion au serveur
+        async function testServerConnection() {
+            const testFile = 'article-big-bang.html';
+            try {
+                const response = await fetch(testFile);
+                if (response.ok) {
+                    showAlert('success', '✅ Connexion au serveur OK ! Les articles devraient se charger.');
+                    loadRealArticles();
+                } else {
+                    showAlert('error', `❌ Erreur HTTP ${response.status}. Vérifiez votre serveur web.`);
+                }
+            } catch (error) {
+                showAlert('error', '❌ Impossible de se connecter au serveur. Utilisez un serveur web local.');
+            }
         }
 
         // Extraire le contenu d'un article HTML

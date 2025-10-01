@@ -1,0 +1,16 @@
+            <p>Saint Thomas d'Aquin a développé des arguments rationnels puissants pour démontrer l'existence de Dieu, arguments qui restent pertinents aujourd'hui.</p>
+
+            <h2>Les cinq voies de Thomas d'Aquin</h2>
+            <p>Thomas d'Aquin propose cinq arguments rationnels pour prouver l'existence de Dieu.</p>
+
+            <h3>1. L'argument du mouvement</h3>
+            <p>Tout ce qui est en mouvement est mû par autre chose. Il doit y avoir un premier moteur immobile : Dieu.</p>
+
+            <h3>2. L'argument de la cause efficiente</h3>
+            <p>Rien ne peut être cause de soi-même. Il doit y avoir une première cause non causée : Dieu.</p>
+
+            <h2>Importance contemporaine</h2>
+            <p>Ces arguments restent valables pour défendre rationnellement l'existence de Dieu.</p>
+
+            <h2>Conclusion</h2>
+            <p>Les arguments de Thomas d'Aquin offrent une base solide pour l'apologétique chrétienne.</p>

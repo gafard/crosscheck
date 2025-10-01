@@ -280,11 +280,51 @@ transform: translateY(-2px);
 box-shadow: var(--shadow-md);
 }
 
+/* Hero Email Form */
+.hero-email-form {
+display: flex;
+gap: 1rem;
+align-items: center;
+margin-top: 2rem;
+}
 
+.email-input {
+flex: 1;
+padding: 1rem 1.5rem;
+border: 1px solid var(--border);
+border-radius: 12px;
+font-size: 1rem;
+background: white;
+transition: all 0.3s ease;
+}
+
+.email-input:focus {
+outline: none;
+border-color: var(--secondary);
+box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
 
 /* Hero Visual */
 .hero-visual {
 position: relative;
+}
+
+.hero-image-container {
+position: relative;
+border-radius: 20px;
+overflow: hidden;
+box-shadow: var(--shadow-xl);
+}
+
+.hero-main-image {
+width: 100%;
+height: 500px;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+.hero-main-image:hover {
+transform: scale(1.05);
 }
 
 .hero-card {

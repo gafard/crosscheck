@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMS CrossCheck - Vrais Articles</title>
+    <title>CMS CrossCheck - Gestion Complète</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -80,6 +80,33 @@
             color: var(--primary);
         }
 
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-tab {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: transparent;
+            color: var(--secondary);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-tab.active {
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-tab:hover {
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
         .main-layout {
             margin-top: 80px;
             min-height: calc(100vh - 80px);
@@ -109,6 +136,26 @@
             font-size: 1.1rem;
         }
 
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .card {
             background: var(--white);
             border-radius: 15px;
@@ -116,6 +163,38 @@
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
             margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 200px;
+            resize: vertical;
         }
 
         .btn {
@@ -152,6 +231,16 @@
 
         .btn-secondary:hover {
             background: #555;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
             transform: translateY(-2px);
         }
 
@@ -242,6 +331,12 @@
             margin-bottom: 1rem;
         }
 
+        .article-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
         .article-status {
             display: inline-block;
             padding: 0.3rem 0.8rem;
@@ -259,6 +354,11 @@
         .status-imported {
             background: #e8f5e8;
             color: #2e7d32;
+        }
+
+        .status-cms {
+            background: #fff3cd;
+            color: #856404;
         }
 
         .loading {
@@ -304,6 +404,34 @@
             }
         }
 
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
         .selected-info {
             background: var(--light);
             padding: 2rem;
@@ -313,14 +441,18 @@
             animation: fadeInUp 0.5s ease;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -331,8 +463,14 @@
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon">C</div>
-                <div class="logo-text">CrossCheck</div>
+                <div class="logo-text">CrossCheck CMS</div>
             </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" onclick="showTab('create')">✨ Créer</button>
+                <button class="nav-tab" onclick="showTab('import')">📚 Importer</button>
+                <button class="nav-tab" onclick="showTab('manage')">📝 Gérer</button>
+                <button class="nav-tab" onclick="showTab('stats')">📊 Stats</button>
+            </nav>
         </div>
     </header>
 
@@ -340,54 +478,145 @@
     <div class="main-layout">
         <div class="container">
             <div class="page-header">
-                <h1 class="page-title">Vos Vrais Articles</h1>
-                <p class="page-subtitle">Chargement du contenu réel de vos articles HTML</p>
+                <h1 class="page-title">Gestion des Articles</h1>
+                <p class="page-subtitle">Créez, importez et gérez vos articles CrossCheck</p>
             </div>
 
+            <!-- Alerts -->
             <div class="alert alert-info" id="loading-alert">
-                🔄 Chargement de vos articles...
+                🔄 Chargement en cours...
             </div>
 
             <div class="alert alert-success" id="success-alert">
-                ✅ Article importé avec succès !
+                ✅ Opération réussie !
             </div>
 
             <div class="alert alert-error" id="error-alert">
-                ❌ Erreur lors de l'import
+                ❌ Erreur lors de l'opération
             </div>
 
-            <div class="card">
-                <h3>Instructions</h3>
-                <p>Ce CMS charge le contenu réel de vos fichiers HTML. Cliquez sur "Charger les articles" pour lire vos vrais fichiers.</p>
-                <button class="btn btn-primary" onclick="loadRealArticles()">
-                    📚 Charger les articles
-                </button>
-            </div>
-
-            <div class="article-grid" id="articles-grid">
-                <div class="loading">
-                    <p>Cliquez sur "Charger les articles" pour voir vos vrais articles</p>
+            <!-- Tab: Créer un article -->
+            <div id="create-tab" class="tab-content active">
+                <div class="card">
+                    <h3>✨ Créer un Nouvel Article</h3>
+                    <form id="article-form">
+                        <div class="form-group">
+                            <label class="form-label" for="title">Titre de l'article</label>
+                            <input type="text" id="title" name="title" class="form-input" placeholder="Entrez le titre de l'article" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="category">Catégorie</label>
+                            <select id="category" name="category" class="form-select" required>
+                                <option value="">Sélectionnez une catégorie</option>
+                                <option value="apologetique">Apologétique</option>
+                                <option value="science">Science & Foi</option>
+                                <option value="histoire">Histoire</option>
+                                <option value="archeologie">Archéologie</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="description">Description</label>
+                            <textarea id="description" name="description" class="form-textarea" placeholder="Description courte de l'article" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="content">Contenu</label>
+                            <textarea id="content" name="content" class="form-textarea" placeholder="Contenu complet de l'article" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="image">URL de l'image</label>
+                            <input type="url" id="image" name="image" class="form-input" placeholder="https://exemple.com/image.jpg">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            ✨ Créer l'article
+                        </button>
+                    </form>
                 </div>
             </div>
 
-            <div class="selected-info" id="selected-info" style="display: none;">
-                <h3>Article sélectionné</h3>
-                <div id="selected-details"></div>
-                <div style="margin-top: 1rem;">
-                    <button class="btn btn-primary" onclick="importSelectedArticle()">
-                        📥 Importer dans le CMS
+            <!-- Tab: Importer des articles -->
+            <div id="import-tab" class="tab-content">
+                <div class="card">
+                    <h3>📚 Importer des Articles Existants</h3>
+                    <p>Chargez et importez vos articles HTML existants dans le CMS.</p>
+                    <button class="btn btn-primary" onclick="loadRealArticles()">
+                        📚 Charger les articles
                     </button>
-                    <button class="btn btn-secondary" onclick="clearSelection()">
-                        ❌ Annuler
-                    </button>
+                </div>
+
+                <div class="article-grid" id="import-grid">
+                    <div class="loading">
+                        <p>Cliquez sur "Charger les articles" pour voir vos articles existants</p>
+                    </div>
+                </div>
+
+                <div class="selected-info" id="import-selected-info" style="display: none;">
+                    <h3>Article sélectionné</h3>
+                    <div id="import-selected-details"></div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-primary" onclick="importSelectedArticle()">
+                            📥 Importer dans le CMS
+                        </button>
+                        <button class="btn btn-secondary" onclick="clearImportSelection()">
+                            ❌ Annuler
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Gérer les articles -->
+            <div id="manage-tab" class="tab-content">
+                <div class="card">
+                    <h3>📝 Gérer les Articles du CMS</h3>
+                    <p>Modifiez, supprimez ou exportez vos articles créés dans le CMS.</p>
+                </div>
+
+                <div class="article-grid" id="manage-grid">
+                    <div class="loading">
+                        <p>Chargement des articles du CMS...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Statistiques -->
+            <div id="stats-tab" class="tab-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-articles">0</div>
+                        <div class="stat-label">Articles CMS</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-imported">0</div>
+                        <div class="stat-label">Articles Importés</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-available">0</div>
+                        <div class="stat-label">Articles Disponibles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-categories">4</div>
+                        <div class="stat-label">Catégories</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Détails des Statistiques</h3>
+                    <div id="stats-details">
+                        <p>Chargement des statistiques...</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let selectedArticle = null;
+        let selectedImportArticle = null;
         let realArticles = [];
+        let editingArticleId = null;
 
         // Liste des vrais fichiers d'articles
         const articleFiles = [
@@ -420,10 +649,67 @@
             'article-togo-histoire.html'
         ];
 
+        // Gestion des onglets
+        function showTab(tabName) {
+            // Désactiver tous les onglets
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Activer l'onglet sélectionné
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+
+            // Charger le contenu selon l'onglet
+            switch(tabName) {
+                case 'manage':
+                    loadCMSArticles();
+                    break;
+                case 'stats':
+                    updateStats();
+                    break;
+            }
+        }
+
+        // Créer un nouvel article
+        document.getElementById('article-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const article = {
+                id: Date.now(),
+                title: formData.get('title'),
+                category: formData.get('category'),
+                description: formData.get('description'),
+                content: formData.get('content'),
+                image: formData.get('image') || 'https://via.placeholder.com/800x400?text=Article+CrossCheck',
+                date: new Date().toLocaleDateString('fr-FR'),
+                isCMS: true,
+                createdDate: new Date().toISOString()
+            };
+
+            // Sauvegarder dans le localStorage
+            let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            articles.push(article);
+            localStorage.setItem('cms-articles', JSON.stringify(articles));
+
+            showAlert('success', `Article "${article.title}" créé avec succès !`);
+            this.reset();
+            
+            // Si on est en mode édition, retourner à la gestion
+            if (editingArticleId) {
+                editingArticleId = null;
+                showTab('manage');
+            }
+        });
+
         // Charger les vrais articles
         async function loadRealArticles() {
             const loadingAlert = document.getElementById('loading-alert');
-            const grid = document.getElementById('articles-grid');
+            const grid = document.getElementById('import-grid');
             
             loadingAlert.style.display = 'block';
             grid.innerHTML = '<div class="loading"><p>Chargement en cours...</p></div>';
@@ -447,25 +733,22 @@
             }
 
             loadingAlert.style.display = 'none';
-            displayArticles(realArticles);
+            displayImportArticles(realArticles);
             showAlert('success', `${realArticles.length} articles chargés avec succès !`);
         }
 
         // Extraire le contenu d'un article HTML
         function extractArticleFromHTML(html, fileName) {
             try {
-                // Créer un élément temporaire pour parser le HTML
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
 
-                // Extraire le titre
                 const titleElement = tempDiv.querySelector('title');
                 let title = 'Titre non trouvé';
                 if (titleElement) {
                     title = titleElement.textContent.replace(' - CrossCheck', '').trim();
                 }
 
-                // Extraire la catégorie basée sur le nom du fichier
                 let category = 'apologetique';
                 if (fileName.includes('science') || fileName.includes('big-bang') || fileName.includes('dna') || fileName.includes('evolution') || fileName.includes('fine-tuning')) {
                     category = 'science';
@@ -475,32 +758,27 @@
                     category = 'histoire';
                 }
 
-                // Extraire le contenu
                 const contentElement = tempDiv.querySelector('.article-content');
                 let content = 'Contenu non trouvé';
                 let description = 'Description non trouvée';
                 
                 if (contentElement) {
                     content = contentElement.textContent.trim();
-                    // Prendre les premiers 200 caractères comme description
                     description = content.substring(0, 200) + '...';
                 }
 
-                // Extraire l'image
                 const imageElement = tempDiv.querySelector('.article-image img');
                 let image = 'https://via.placeholder.com/800x400?text=Article+CrossCheck';
                 if (imageElement) {
                     image = imageElement.src;
                 }
 
-                // Extraire la date
                 const dateElement = tempDiv.querySelector('.article-meta span');
                 let date = new Date().toLocaleDateString('fr-FR');
                 if (dateElement) {
                     date = dateElement.textContent.trim();
                 }
 
-                // Icône basée sur la catégorie
                 const icons = {
                     'apologetique': '🛡️',
                     'science': '🔬',
@@ -525,9 +803,9 @@
             }
         }
 
-        // Afficher les articles
-        function displayArticles(articles) {
-            const grid = document.getElementById('articles-grid');
+        // Afficher les articles à importer
+        function displayImportArticles(articles) {
+            const grid = document.getElementById('import-grid');
             
             if (articles.length === 0) {
                 grid.innerHTML = '<div class="loading"><p>Aucun article trouvé.</p></div>';
@@ -537,7 +815,7 @@
             grid.innerHTML = articles.map(article => {
                 const isImported = isArticleImported(article.originalFile);
                 return `
-                    <div class="article-card" onclick="selectArticle('${article.id}')" data-id="${article.id}">
+                    <div class="article-card" onclick="selectImportArticle('${article.id}')" data-id="${article.id}">
                         <div class="article-image">
                             ${article.icon}
                             <div class="article-category">${article.category}</div>
@@ -557,36 +835,77 @@
             }).join('');
         }
 
+        // Charger les articles du CMS
+        function loadCMSArticles() {
+            const grid = document.getElementById('manage-grid');
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            
+            if (articles.length === 0) {
+                grid.innerHTML = '<div class="loading"><p>Aucun article créé dans le CMS pour le moment.</p></div>';
+                return;
+            }
+            
+            grid.innerHTML = articles.map(article => {
+                const icons = {
+                    'apologetique': '🛡️',
+                    'science': '🔬',
+                    'history': '📚',
+                    'archeologie': '🏛️'
+                };
+                
+                return `
+                    <div class="article-card">
+                        <div class="article-image">
+                            ${icons[article.category] || '📄'}
+                            <div class="article-category">${article.category}</div>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">${article.title}</h3>
+                            <p class="article-description">${article.description}</p>
+                            <div class="article-meta">
+                                <span>${article.date}</span>
+                                <div class="article-status status-cms">CMS</div>
+                            </div>
+                            <div class="article-actions">
+                                <button class="btn btn-primary" onclick="editCMSArticle('${article.id}')">
+                                    ✏️ Modifier
+                                </button>
+                                <button class="btn btn-danger" onclick="deleteCMSArticle('${article.id}')">
+                                    🗑️ Supprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         // Vérifier si un article est déjà importé
         function isArticleImported(originalFile) {
             const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             return cmsArticles.some(article => article.originalFile === originalFile);
         }
 
-        // Sélectionner un article
-        function selectArticle(id) {
-            // Désélectionner tous les articles
-            document.querySelectorAll('.article-card').forEach(card => {
+        // Sélectionner un article à importer
+        function selectImportArticle(id) {
+            document.querySelectorAll('#import-grid .article-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // Sélectionner l'article cliqué
-            const articleElement = document.querySelector(`[data-id="${id}"]`);
+            const articleElement = document.querySelector(`#import-grid [data-id="${id}"]`);
             if (articleElement) {
                 articleElement.classList.add('selected');
-                selectedArticle = realArticles.find(a => a.id == id);
+                selectedImportArticle = realArticles.find(a => a.id == id);
                 
-                // Afficher les détails de l'article sélectionné
-                const selectedInfo = document.getElementById('selected-info');
-                const selectedDetails = document.getElementById('selected-details');
+                const selectedInfo = document.getElementById('import-selected-info');
+                const selectedDetails = document.getElementById('import-selected-details');
                 
                 selectedDetails.innerHTML = `
-                    <h4>${selectedArticle.title}</h4>
-                    <p><strong>Catégorie:</strong> ${selectedArticle.category}</p>
-                    <p><strong>Date:</strong> ${selectedArticle.date}</p>
-                    <p><strong>Description:</strong> ${selectedArticle.description}</p>
-                    <p><strong>Fichier:</strong> ${selectedArticle.originalFile}</p>
-                    <p><strong>Contenu:</strong> ${selectedArticle.content.substring(0, 300)}...</p>
+                    <h4>${selectedImportArticle.title}</h4>
+                    <p><strong>Catégorie:</strong> ${selectedImportArticle.category}</p>
+                    <p><strong>Date:</strong> ${selectedImportArticle.date}</p>
+                    <p><strong>Description:</strong> ${selectedImportArticle.description}</p>
+                    <p><strong>Fichier:</strong> ${selectedImportArticle.originalFile}</p>
                 `;
                 
                 selectedInfo.style.display = 'block';
@@ -595,17 +914,15 @@
 
         // Importer l'article sélectionné
         function importSelectedArticle() {
-            if (!selectedArticle) return;
+            if (!selectedImportArticle) return;
             
-            // Vérifier si déjà importé
-            if (isArticleImported(selectedArticle.originalFile)) {
+            if (isArticleImported(selectedImportArticle.originalFile)) {
                 showAlert('error', 'Cet article est déjà importé dans le CMS !');
                 return;
             }
             
-            // Ajouter l'article au CMS
             const cmsArticle = {
-                ...selectedArticle,
+                ...selectedImportArticle,
                 id: Date.now(),
                 isImported: true,
                 importDate: new Date().toLocaleDateString('fr-FR')
@@ -615,20 +932,129 @@
             cmsArticles.push(cmsArticle);
             localStorage.setItem('cms-articles', JSON.stringify(cmsArticles));
             
-            showAlert('success', `Article "${selectedArticle.title}" importé avec succès !`);
+            showAlert('success', `Article "${selectedImportArticle.title}" importé avec succès !`);
             
-            // Mettre à jour l'affichage
-            displayArticles(realArticles);
-            clearSelection();
+            displayImportArticles(realArticles);
+            clearImportSelection();
         }
 
-        // Effacer la sélection
-        function clearSelection() {
-            selectedArticle = null;
-            document.getElementById('selected-info').style.display = 'none';
-            document.querySelectorAll('.article-card').forEach(card => {
+        // Effacer la sélection d'import
+        function clearImportSelection() {
+            selectedImportArticle = null;
+            document.getElementById('import-selected-info').style.display = 'none';
+            document.querySelectorAll('#import-grid .article-card').forEach(card => {
                 card.classList.remove('selected');
             });
+        }
+
+        // Modifier un article du CMS
+        function editCMSArticle(articleId) {
+            const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const article = cmsArticles.find(a => a.id == articleId);
+            
+            if (!article) {
+                showAlert('error', 'Article non trouvé !');
+                return;
+            }
+            
+            // Remplir le formulaire
+            document.getElementById('title').value = article.title;
+            document.getElementById('category').value = article.category;
+            document.getElementById('description').value = article.description;
+            document.getElementById('content').value = article.content;
+            document.getElementById('image').value = article.image || '';
+            
+            // Aller à l'onglet créer
+            showTab('create');
+            editingArticleId = articleId;
+            
+            // Modifier le bouton
+            const submitBtn = document.querySelector('#article-form button[type="submit"]');
+            submitBtn.textContent = '✨ Modifier l\'article';
+            submitBtn.onclick = function(e) {
+                e.preventDefault();
+                updateArticle(articleId);
+            };
+            
+            showAlert('success', 'Article chargé pour modification !');
+        }
+
+        // Mettre à jour un article
+        function updateArticle(articleId) {
+            const formData = new FormData(document.getElementById('article-form'));
+            const updatedArticle = {
+                title: formData.get('title'),
+                category: formData.get('category'),
+                description: formData.get('description'),
+                content: formData.get('content'),
+                image: formData.get('image')
+            };
+            
+            let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const index = articles.findIndex(a => a.id == articleId);
+            if (index !== -1) {
+                articles[index] = {
+                    ...articles[index],
+                    ...updatedArticle
+                };
+                localStorage.setItem('cms-articles', JSON.stringify(articles));
+                
+                showAlert('success', 'Article modifié avec succès !');
+                
+                // Remettre le bouton normal
+                const submitBtn = document.querySelector('#article-form button[type="submit"]');
+                submitBtn.textContent = '✨ Créer l\'article';
+                submitBtn.onclick = null;
+                
+                // Vider le formulaire
+                document.getElementById('article-form').reset();
+                editingArticleId = null;
+                
+                // Retourner à l'onglet gérer
+                showTab('manage');
+            } else {
+                showAlert('error', 'Erreur lors de la modification !');
+            }
+        }
+
+        // Supprimer un article du CMS
+        function deleteCMSArticle(articleId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet article du CMS ?')) {
+                let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+                articles = articles.filter(article => article.id != articleId);
+                localStorage.setItem('cms-articles', JSON.stringify(articles));
+                
+                showAlert('success', 'Article supprimé du CMS !');
+                loadCMSArticles();
+                updateStats();
+            }
+        }
+
+        // Mettre à jour les statistiques
+        function updateStats() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const cmsArticles = articles.filter(a => a.isCMS);
+            const importedArticles = articles.filter(a => a.isImported);
+            
+            document.getElementById('total-articles').textContent = cmsArticles.length;
+            document.getElementById('total-imported').textContent = importedArticles.length;
+            document.getElementById('total-available').textContent = articleFiles.length;
+            
+            // Détails des statistiques
+            const statsDetails = document.getElementById('stats-details');
+            const categoryStats = {};
+            
+            articles.forEach(article => {
+                categoryStats[article.category] = (categoryStats[article.category] || 0) + 1;
+            });
+            
+            let statsHTML = '<h4>Articles par catégorie :</h4><ul>';
+            Object.entries(categoryStats).forEach(([category, count]) => {
+                statsHTML += `<li><strong>${category}:</strong> ${count} articles</li>`;
+            });
+            statsHTML += '</ul>';
+            
+            statsDetails.innerHTML = statsHTML;
         }
 
         // Affichage des alertes
@@ -643,7 +1069,8 @@
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('CMS Vrais Articles chargé');
+            console.log('CMS CrossCheck chargé');
+            updateStats();
         });
     </script>
 </body>

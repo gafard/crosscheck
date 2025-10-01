@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header Premium */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            min-height: 100vh;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 60px 20px 20px;
+            border: 2px solid var(--border);
+            border-radius: 0;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            
+        }
+
+        .search-button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Research Areas */
+        .research-areas {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .research-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            
+        }
+
+        .research-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 32px;
+            color: white;
+        }
+
+        .research-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .research-description {
+            color: var(--secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .research-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .research-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Publications */
+        .publications-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .publication-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            
+        }
+
+        .publication-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .publication-authors {
+            color: var(--accent);
+            font-size: 14px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .publication-abstract {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .publication-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--secondary);
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .research-grid,
+            .publications-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .content-wrapper {
+                padding: 0 1rem;
+            }
+
+            .page-header {
+                padding: 4rem 0 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .search-section {
+                padding: 2rem 0;
+            }
+
+            .research-areas,
+            .publications-section {
+                padding: 2rem 0;
+            }
+
+            .research-grid,
+            .publications-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .research-card,
+            .publication-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .research-card,
+            .publication-card {
+                padding: 1rem;
+            }
+
+            .research-title {
+                font-size: 20px;
+            }
+
+            .publication-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="articles.html" class="nav-link">Articles</a>
+                <a href="recherche.html" class="nav-link active">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
+            </nav>
+            <div class="search-container">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher..." class="search-input">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1 class="page-title">Ressources</h1>
+            <p class="page-subtitle">Explorez nos ressources en apologétique chrétienne et découvrez nos articles et analyses</p>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="content-wrapper">
+                <div class="search-container">
+                    <input type="text" placeholder="Rechercher dans nos publications..." class="search-input">
+                    <button class="search-button">Rechercher</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Areas -->
+        <section class="research-areas">
+            <div class="content-wrapper">
+                <h2 class="section-title">Domaines d'Information</h2>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="research-icon">🏛️</div>
+                        <h3 class="research-title">Archéologie Biblique</h3>
+                        <p class="research-description">Informations sur les découvertes archéologiques qui confirment l'historicité des récits bibliques et éclairent le contexte historique.</p>
+                        <a href="archeologie.html" class="research-link">En savoir plus →</a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon">🔬</div>
+                        <h3 class="research-title">Science & Foi</h3>
+                        <p class="research-description">Études sur l'harmonie entre la science moderne et la foi chrétienne, incluant la cosmologie, la biologie et la physique.</p>
+                        <a href="science.html" class="research-link">En savoir plus →</a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon">📚</div>
+                        <h3 class="research-title">Histoire Chrétienne</h3>
+                        <p class="research-description">Recherches sur l'histoire du christianisme, particulièrement en Afrique, et son impact sur les civilisations.</p>
+                        <a href="histoire.html" class="research-link">En savoir plus →</a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon">⚖️</div>
+                        <h3 class="research-title">Apologétique</h3>
+                        <p class="research-description">Développement d'arguments rationnels et d'évidences pour défendre la foi chrétienne face aux objections contemporaines.</p>
+                        <a href="apologetique.html" class="research-link">En savoir plus →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section class="publications-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Publications Récentes</h2>
+                <div class="publications-grid">
+                    <div class="publication-card">
+                        <h3 class="publication-title">"Découvertes archéologiques récentes en Israël et leur impact sur l'étude biblique"</h3>
+                        <p class="publication-authors">Rédaction</p>
+                        <p class="publication-abstract">Cette étude examine les découvertes archéologiques des cinq dernières années en Israël et leur contribution à notre compréhension de l'historicité biblique...</p>
+                        <div class="publication-meta">
+                            <span>Journal of Biblical Archaeology</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+
+                    <div class="publication-card">
+                        <h3 class="publication-title">"Le fine-tuning cosmologique : une nouvelle perspective apologétique"</h3>
+                        <p class="publication-authors">Rédaction</p>
+                        <p class="publication-abstract">Analyse des constantes physiques fondamentales et de leur précision remarquable, offrant une nouvelle approche apologétique basée sur la science...</p>
+                        <div class="publication-meta">
+                            <span>Science & Christian Faith</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+
+                    <div class="publication-card">
+                        <h3 class="publication-title">"L'expansion du christianisme en Afrique subsaharienne : une analyse historique"</h3>
+                        <p class="publication-authors">Rédaction</p>
+                        <p class="publication-abstract">Étude approfondie de l'expansion du christianisme en Afrique subsaharienne, de ses origines à son développement contemporain...</p>
+                        <div class="publication-meta">
+                            <span>African Christian Studies</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+
+                    <div class="publication-card">
+                        <h3 class="publication-title">"Preuves historiques de la résurrection : une réévaluation critique"</h3>
+                        <p class="publication-authors">Rédaction</p>
+                        <p class="publication-abstract">Réévaluation critique des preuves historiques de la résurrection de Jésus-Christ à la lumière des dernières recherches historiographiques...</p>
+                        <div class="publication-meta">
+                            <span>Journal of Christian Apologetics</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value;
+            if (searchTerm.trim()) {
+                // Here you would implement the actual search functionality
+                console.log('Searching for:', searchTerm);
+            }
+        });
+
+        // Card interactions
+        document.querySelectorAll('.research-card, .publication-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

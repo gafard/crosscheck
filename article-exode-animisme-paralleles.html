@@ -3,395 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallèles entre Pratiques Animistes Africaines et le Livre de l'Exode - CrossCheck</title>
-    <meta name="description" content="Analyse des parallèles entre l'Exode biblique et les pratiques animistes togolaises pour une apologétique contextuelle respectueuse.">
-    
+    <title>Exode et Animisme : Parallèles - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1e40af;
-            --secondary: #2563eb;
-            --accent: #3b82f6;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
-            --bg-dark: #1e293b;
-            --white: #ffffff;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--text);
-            background: var(--bg-light);
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
         }
 
-        /* Header */
+        /* Header Premium */
         .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=400&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
-            z-index: -1;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .header-container {
-            max-width: 1200px;
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             text-decoration: none;
-            color: white;
+            color: var(--primary);
+            transition: transform 0.3s ease;
         }
 
-        .logo-icon img {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.5px;
         }
 
-        .header-nav {
+        .nav {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
+            align-items: center;
         }
 
         .nav-link {
-            color: white;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: opacity 0.3s ease;
+            font-size: 15px;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .nav-link:hover, .nav-link.active {
-            opacity: 0.9;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
         }
 
-        .mobile-menu {
-            display: none;
-            background: var(--primary);
-            padding: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
         }
 
-        .mobile-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            min-height: 100vh;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Article Header */
         .article-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .article-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=400&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
-            z-index: 1;
-        }
-
-        .article-header-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            padding: 4rem 0 2rem;
             text-align: center;
         }
 
         .article-category {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 1rem;
-            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
         }
 
         .article-title {
-            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
         .article-meta {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            color: var(--secondary);
+            font-size: 14px;
+            margin-bottom: 2rem;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0;
+            margin-bottom: 3rem;
         }
 
         /* Article Content */
         .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
+            padding: 0 0 4rem;
         }
 
-        .article-body {
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 2rem;
-        }
-
-        .article-body .lead {
-            font-size: 1.1rem;
-            font-weight: 500;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            color: var(--text);
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .article-body h2 {
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
             color: var(--primary);
-            font-size: 1.75rem;
-            margin: 2rem 0 1rem 0;
-            font-weight: 600;
-            letter-spacing: -0.025em;
         }
 
-        .article-body h3 {
-            color: var(--secondary);
-            font-size: 1.25rem;
-            margin: 1.5rem 0 1rem 0;
+        .article-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
             font-weight: 600;
-            letter-spacing: -0.025em;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary);
         }
 
-        .article-body p {
+        .article-content p {
+            font-size: 16px;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
+            color: var(--primary);
         }
 
-        .article-body ul, .article-body ol {
-            margin: 1rem 0 1.5rem 2rem;
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
         }
 
-        .article-body li {
+        .article-content li {
             margin-bottom: 0.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body blockquote {
-            background: var(--bg-light);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .article-body a:hover {
-            text-decoration: none;
-        }
-
-        .article-body strong {
             color: var(--primary);
-            font-weight: 700;
         }
 
-        .article-body em {
-            color: var(--secondary);
-            font-style: italic;
-        }
-
-        /* Table */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .table th, .table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .table th {
-            background: var(--bg-dark);
-            color: white;
-            font-weight: 600;
-        }
-
-        .table tr:hover {
-            background: var(--bg-light);
-        }
-
-        /* Callout */
-        .callout {
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem 0;
+        .article-content blockquote {
             border-left: 4px solid var(--accent);
+            padding-left: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 18px;
         }
 
-        .callout.info {
-            background: #eff6ff;
-            border-left-color: var(--primary);
+        .article-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+            margin: 2rem 0;
         }
 
-        .callout strong {
+        /* Related Articles */
+        .related-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .related-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
             color: var(--primary);
         }
 
-        /* Details/Summary */
-        details {
-            margin: 1rem 0;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            overflow: hidden;
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        summary {
-            padding: 1rem;
-            background: var(--bg-light);
+        .related-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.4s ease;
             cursor: pointer;
-            font-weight: 600;
-            color: var(--primary);
         }
 
-        details[open] summary {
-            border-bottom: 1px solid #e5e7eb;
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            
         }
 
-        details p {
-            padding: 1rem;
-            margin: 0;
-        }
-
-        /* References */
-        .refs {
-            counter-reset: ref-counter;
-        }
-
-        .refs li {
-            counter-increment: ref-counter;
+        .related-image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
             margin-bottom: 1rem;
-            padding-left: 0.5rem;
+            border-radius: 0;
         }
 
-        .refs li::before {
-            content: "[" counter(ref-counter) "] ";
-            font-weight: bold;
+        .related-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
-        /* Note and disclaimer */
-        .note {
-            background: #f0f9ff;
-            border: 1px solid #0ea5e9;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 2rem 0;
-            font-size: 0.95rem;
+        .related-card-excerpt {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        .disclaimer {
-            background: #fef3c7;
-            border: 1px solid #f59e0b;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 2rem 0;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .header-nav {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .nav {
                 display: none;
             }
 
-            .mobile-menu-toggle {
-                display: block;
+            .content-wrapper {
+                padding: 0 1rem;
             }
 
-            .mobile-menu.active {
-                display: block;
+            .article-header {
+                padding: 2rem 0 1rem;
             }
 
             .article-title {
@@ -403,44 +331,39 @@
                 gap: 0.5rem;
             }
 
-            .article-body {
-                padding: 2rem 1.5rem;
+            .article-image {
+                height: 250px;
             }
 
-            .article-body h2 {
-                font-size: 1.5rem;
+            .article-content {
+                padding: 0 0 2rem;
             }
 
-            .article-body h3 {
-                font-size: 1.25rem;
+            .article-content h2 {
+                font-size: 24px;
             }
 
-            .table {
-                font-size: 0.9rem;
+            .article-content h3 {
+                font-size: 20px;
             }
 
-            .table th, .table td {
-                padding: 0.75rem 0.5rem;
+            .related-section {
+                padding: 2rem 0;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
 
         @media (max-width: 480px) {
             .article-title {
-                font-size: 1.75rem;
+                font-size: 1.8rem;
             }
 
-            .article-body {
-                padding: 1.5rem 1rem;
-            }
-
-            .article-content {
-                padding: 1.5rem 0.5rem;
-            }
-
-            .table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
+            .related-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -448,169 +371,105 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-container">
+        <div class="header-content">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo">
-                </div>
-                <span class="logo-text">CrossCheck</span>
-            <nav class="header-nav">
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <a href="archeologie.html" class="nav-link">Archéologie</a>
-                <a href="science.html" class="nav-link">Science</a>
-                <a href="histoire.html" class="nav-link">Histoire</a>
-                <a href="apologetique.html" class="nav-link active">Apologétique</a>
-                <a href="togo.html" class="nav-link">Togo</a>
+                <a href="articles.html" class="nav-link">Articles</a>
+                <a href="ressources.html" class="nav-link">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
             </nav>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <nav class="mobile-nav">
-                <a href="index.html" class="nav-link">Accueil</a>
-                <a href="archeologie.html" class="nav-link">Archéologie</a>
-                <a href="science.html" class="nav-link">Science</a>
-                <a href="histoire.html" class="nav-link">Histoire</a>
-                <a href="apologetique.html" class="nav-link active">Apologétique</a>
-                <a href="togo.html" class="nav-link">Togo</a>
-            </nav>
+            <a href="#" class="cta-button">Commencer</a>
         </div>
     </header>
 
-    <!-- Back Button -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
-        <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">
-            ← Retour aux articles
-    </div>
-
-    <!-- Article Header -->
-    <section class="article-header">
-        <div class="article-header-content">
-            <div class="article-category">Apologétique Togolaise</div>
-            <h1 class="article-title">Parallèles entre Pratiques Animistes Africaines et le Livre de l'Exode</h1>
-            <div class="article-meta">
-                <span>📅 01 Octobre 2025</span>
-                <span>⏱️ 12 min de lecture</span>
-                <span>📝 Rédaction CrossCheck</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Article Content -->
-    <section class="article-content">
-        <article class="article-body">
-            <p class="lead">Partant des rituels Éwé et Gen–Mina au Togo (Vodun), cet article met en parallèle <em>Exode</em> (libération, alliance, sortie de l'oppression) et les quêtes locales de protection/délivrance. L'argument : l'être humain porte une <strong>prédisposition créaturelle</strong> à chercher Dieu (Ex 19:5–6), souvent détournée vers l'idolâtrie/oppressions spirituelles (Ex 20:3–5 ; 23:24).</p>
-
-            <h2>1) Cadre biblique : Exode comme matrice de libération et d'alliance</h2>
-            <ul>
-                <li><strong>Libération</strong> : Dieu entend le cri des opprimés et les délivre (Ex 3:7–8 ; 6:6).</li>
-                <li><strong>Alliance</strong> : vocation à être « royaume de prêtres et nation sainte » (Ex 19:5–6).</li>
-                <li><strong>Exclusivisme cultuel</strong> : « Tu n'auras pas d'autres dieux… » (Ex 20:3–5 ; 23:24 ; 34:12–14).</li>
-            </ul>
-
-            <h2>2) Cadre ethnographique (Togo, Éwé/Gen–Mina)</h2>
-            <p>Au sud Togo (Éwé, Gen–Mina), la tradition <em>Vodun</em> (gbe : « esprit/divinité ») structure des pratiques de protection, de serments communautaires et de gestion de l'adversité ; elle reconnaît un créateur (Mawu) et des esprits subalternes (<em>trɔwo/vodun</em>), avec cultes, offrandes et divinations. Les travaux d'ethnographie décrivent des <em>vodun</em> publics et lignagers, des sanctuaires côtiers (p. ex. Gorovodu), et des logiques d'efficacité/soin rituel.</p>
-
-            <div class="callout info"><strong>Point d'attention missiologique</strong> : ces pratiques expriment des <em>désirs universels</em> (protection, justice, alliance, délivrance). L'apologétique chrétienne cherche le <em>pont</em> entre ces désirs et l'accomplissement en Christ, tout en refusant le culte des esprits.</div>
-
-            <h2>3) Trois parallèles structurants</h2>
-            <h3>3.1 Libération</h3>
-            <p><em>Exode</em> met en scène l'Éternel qui libère de l'esclavage (Ex 20:2). Les rites locaux de « déliement » contre malédictions ou envoûtements visent aussi une <em>sortie</em>. L'apologétique peut reconnaître la <em>bonne question</em> (désir de délivrance), tout en re-dirigeant vers l'Agneau véritable (Ex 12 ; Jn 1:29).</p>
-
-            <h3>3.2 Alliance et serments</h3>
-            <p>Au Sinaï, l'alliance forme un peuple (Ex 19–24). Certains serments communautaires autour des fétiches/règles lignagères rappellent la <em>dimension sociale</em> de l'alliance : fidélité, bénédictions/sanctions. La lecture chrétienne requalifie ces loyautés sous l'alliance nouvelle (He 8:13), sans pacte avec des esprits (Ex 23:32 ; 34:12).</p>
-
-            <h3>3.3 Sortie de l'oppression</h3>
-            <p>Les exorcismes/sacrifices visant la protection familiale résonnent avec la Pâque (Ex 12) : passer de la mort à la vie par un sang substitutif. L'Évangile situe l'ultime délivrance dans la croix et la résurrection (Ga 5:1), non dans des esprits locaux.</p>
-
-            <h2>4) Tableau comparatif (discernement)</h2>
-            <table class="table">
-                <thead><tr><th>Thème</th><th>Exode</th><th>Pratiques locales (Togo)</th><th>Lecture apologétique</th></tr></thead>
-                <tbody>
-                    <tr><td>Autorité</td><td>YHWH libère et commande</td><td>Vodun/esprits lignagers</td><td>Recentrer l'autorité sur le Dieu créateur</td></tr>
-                    <tr><td>Signe de délivrance</td><td>Sang de l'Agneau (Ex 12)</td><td>Sacrifices/objets consacrés</td><td>Christ accomplit les signes (1 Co 5:7)</td></tr>
-                    <tr><td>Alliance</td><td>Peuple sacerdotal (Ex 19:5–6)</td><td>Serments communautaires/fétiches</td><td>Fidélités sociales transformées en fidélité au Christ</td></tr>
-                    <tr><td>Crainte</td><td>Crainte de Dieu → liberté</td><td>Peur des esprits/sorcellerie</td><td>Parole/Esprit → liberté et paix (2 Tm 1:7)</td></tr>
-                </tbody>
-            </table>
-
-            <h2>5) Apologétique contextuelle : cadre pratique</h2>
-            <ol>
-                <li><strong>Honorer l'histoire</strong> : écouter récits lignagers et rituels, nommer les aspirations légitimes (justice, guérison).</li>
-                <li><strong>Clarifier l'exclusivisme biblique</strong> : pas de culte aux esprits (Ex 20:3–5 ; 23:24), mais accueil pastoral des personnes.</li>
-                <li><strong>Proposer des liturgies de substitution</strong> : confession, onction, intercession communautaire, cène ; témoigner de délivrances centrées sur Christ.</li>
-                <li><strong>Aller du symbole à l'accomplissement</strong> : de la « sortie » rituelle à l'Exode pascal en Christ.</li>
-            </ol>
-
-            <h2>6) Études de cas (vignettes pédagogiques)</h2>
-            <details>
-                <summary>Serment de clan → Alliance nouvelle</summary>
-                <p>Catéchèse en 3 rencontres : (1) <em>Exode 19–24</em> ; (2) loyautés familiales et Christ ; (3) prière de renonciation aux esprits + engagement d'église (baptême/communion).</p>
-            </details>
-            <details>
-                <summary>Rite de « déliement » → Pâque accomplie</summary>
-                <p>Méditation de Ex 12 ; enseignement sur le Sang de l'Alliance (Lc 22:20) ; prière pastorale et accompagnement.</p>
-            </details>
-
-            <h2>FAQ</h2>
-            <p><strong>Le christianisme nie-t-il l'expérience spirituelle africaine ?</strong> Non. Il reconnaît la quête de sens/délivrance et l'oriente vers Dieu en Christ, en refusant le culte des esprits.</p>
-            <p><strong>Parler de « démoniaque », est-ce traiter les personnes d'ennemies ?</strong> Non : l'Écriture sépare personnes (aimées) et puissances à rejeter (Ep 6:12).</p>
-
-            <h2>Glossaire</h2>
-            <ul>
-                <li><em>Vodun</em> : esprit/divinité ; système religieux d'Afrique de l'Ouest (Éwé/Adja/Fon).</li>
-                <li><em>Trɔwo</em> : « dieux/puissances » (éwé).</li>
-                <li><em>Gorovodu</em> : courant vodun côtier documenté au sud Togo.</li>
-            </ul>
-
-            <h2>Passages bibliques clés</h2>
-            <p>Ex 3:7–8 ; 6:6 ; 12 ; 19:5–6 ; 20:3–5 ; 23:24 ; 34:12–14 ; cf. 1 P 2:9 ; Ga 5:1.</p>
-
-            <h2>Références web & notes</h2>
-            <ol class="refs">
-                <li>Britannica : panorama Vodou/Vodun et lexique (« tout est esprit »). L'entrée précise l'origine fon du terme et son extension religieuse. <a href="https://www.britannica.com/topic/Vodou" target="_blank" rel="noopener">Lire</a>.</li>
-                <li>Britannica : peuple Éwé, théologie (Mawu, divinités subalternes), culte quotidien, place des ancêtres. <a href="https://www.britannica.com/topic/Ewe-people" target="_blank" rel="noopener">Lire</a>.</li>
-                <li>Montgomery & Vannier, <em>An Ethnography of a Vodu Shrine in Southern Togo</em> : étude du sanctuaire Gorovodu, pratiques rituelles, ancrage côtier. <a href="https://www.researchgate.net/.../An-Ethnography-of-a-Vodu-Shrine..." target="_blank" rel="noopener">PDF</a>.</li>
-                <li>OpenEdition : « Vodun d'esclaves et vodun d'ethnologues » : définitions, niveaux (publics/lignagers), champs éwé/adja-fon/yoruba. <a href="https://journals.openedition.org/assr/38919" target="_blank" rel="noopener">Lire</a>.</li>
-                <li>Lecture biblique en ligne (Ex 19:5–6 ; 1 P 2:9). <a href="https://www.biblegateway.com/passage/?search=Exodus+19%3A6%2C1+Peter+2%3A9&version=NIV" target="_blank" rel="noopener">BibleGateway</a>.</li>
-            </ol>
-
-            <div class="note">👀 Voir aussi : <a href="article-apologetique-togo.html">Apologétique Togolaise</a> • <a href="article-thomas-aquinas.html">Arguments de Thomas d'Aquin</a> • <a href="article-problem-evil.html">Le Problème du Mal</a></div>
-
-            <hr>
-            <p class="disclaimer"><strong>Avertissement pastoral</strong> : cet article reflète une position chrétienne historique (rejet du culte des esprits) et vise le dialogue respectueux avec les cultures togolaises. Toute pratique mettant en danger des personnes doit être refusée.</p>
-        </article>
-
-        <!-- Related Articles -->
-        <section class="related-articles">
-            <h2 class="related-title">Articles connexes</h2>
-            <div class="related-grid">
-                <a href="article-apologetique-togo.html" class="related-card">
-                    <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop" alt="Apologétique togolaise">
-                    <div class="related-content">
-                        <div class="related-category">Apologétique</div>
-                        <h3 class="related-title">Apologétique togolaise</h3>
-                    </div>
-                <a href="article-thomas-aquinas.html" class="related-card">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop" alt="Thomas d'Aquin">
-                    <div class="related-content">
-                        <div class="related-category">Philosophie</div>
-                        <h3 class="related-title">L'existence de Dieu : arguments rationnels</h3>
-                    </div>
-                <a href="article-african-apologetics.html" class="related-card">
-                    <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop" alt="Apologétique africaine">
-                    <div class="related-content">
-                        <div class="related-category">Apologétique</div>
-                        <h3 class="related-title">Apologétique Africaine : Introduction</h3>
-                    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Article Header -->
+        <section class="article-header">
+            <div class="content-wrapper">
+                <div class="article-category">Apologétique</div>
+                <h1 class="article-title">Exode et Animisme : Parallèles</h1>
+                <div class="article-meta">
+                    <span>Par Rédaction</span>
+                    <span>23 Février 2024</span>
+                    <span>10 min de lecture</span>
+                </div>
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
             </div>
         </section>
-    </section>
+
+        <!-- Article Content -->
+        <section class="article-content">
+            <div class="content-wrapper">
+                {{ARTICLE_CONTENT}}
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        <section class="related-section">
+            <div class="content-wrapper">
+                <h2 class="related-title">Articles Connexes</h2>
+                <div class="related-grid">
+                    <div class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="related-card-title">Article Connexe 1</h3>
+                        <p class="related-card-excerpt">Description de l'article connexe qui complète le sujet traité.</p>
+                    </div>
+
+                    <div class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="related-card-title">Article Connexe 2</h3>
+                        <p class="related-card-excerpt">Description de l'article connexe qui complète le sujet traité.</p>
+                    </div>
+
+                    <div class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="related-card-title">Article Connexe 3</h3>
+                        <p class="related-card-excerpt">Description de l'article connexe qui complète le sujet traité.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
-        }
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Card interactions
+        document.querySelectorAll('.related-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

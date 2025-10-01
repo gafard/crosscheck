@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #0a0a0a 0%, #333333 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.postimg.cc/YqtbZqhz/manuscrits-biblique.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+            animation: subtleFloat 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.3) 100%);
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tabs Section */
+        .tabs-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: white;
+            border: 2px solid var(--border);
+            color: var(--secondary);
+            padding: 12px 24px;
+            border-radius: 0;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .tab-button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px) scale(1.05);
+            animation: heartbeat 0.6s ease-in-out;
+        }
+
+        .tab-button.active {
+            background: black;
+            border-color: black;
+            color: white;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .tab-button:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transform-origin: center bottom;
+            position: relative;
+            z-index: 3;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            z-index: -1;
+        }
+
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+
+        .article-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .article-card:hover::after {
+            opacity: 1;
+        }
+
+        .article-card:hover {
+            transform: translateY(-15px) scale(1.03) rotateX(5deg);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+            border-color: var(--accent);
+            animation: glow 2s ease-in-out infinite, wiggle 0.5s ease-in-out;
+        }
+
+        .article-card:active {
+            transform: translateY(-10px) scale(0.98);
+            animation: ripple 0.4s ease-out;
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .article-card:hover .article-category {
+            background: #333;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-title {
+            transition: all 0.3s ease;
+        }
+
+        .article-category {
+            transition: all 0.3s ease;
+        }
+
+        /* Animations */
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(1deg);
+            }
+            75% {
+                transform: rotate(-1deg);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes magnetic {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(2px, -2px);
+            }
+            50% {
+                transform: translate(-1px, 1px);
+            }
+            75% {
+                transform: translate(1px, 1px);
+            }
+        }
+
+        @keyframes tabSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            25% {
+                transform: translateY(-5px) scale(1.01);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.02);
+            }
+            75% {
+                transform: translateY(-5px) scale(1.01);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .article-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--secondary);
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .search-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .search-box {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 50px;
+            background: white;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .search-container:hover .search-box {
+            width: 300px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 20px;
+            font-size: 14px;
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .search-input::placeholder {
+            color: var(--secondary);
+        }
+
+        /* Search Results */
+        .search-results-message {
+            background: linear-gradient(135deg, var(--accent), #b8941f);
+            color: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+            text-align: center;
+            animation: slideInFromTop 0.5s ease-out;
+        }
+
+        .search-results-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .search-results-content p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .clear-search-btn {
+            background: white;
+            color: var(--accent);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-search-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .search-highlight {
+            animation: searchHighlight 0.5s ease-out;
+        }
+
+        @keyframes searchHighlight {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+        }
+
+        .footer-logo .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-link:hover {
+            color: #b8941f;
+        }
+
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 3rem;
+            padding: 2rem 0;
+        }
+
+        .footer-bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0.5rem 0;
+        }
+
+        .footer-mission {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .content-wrapper {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .tabs-section {
+                padding: 3rem 0;
+            }
+
+            .tabs-container {
+                padding: 0 1rem;
+            }
+
+            .tabs-nav {
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .tab-button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="articles.html" class="nav-link active">Articles</a>
+                <a href="ressources.html" class="nav-link">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
+            </nav>
+            <div class="search-container">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher..." class="search-input">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="content-wrapper">
+                <h1 class="hero-title">Articles & Recherches</h1>
+                <p class="hero-subtitle">Explorez nos articles approfondis en apologétique chrétienne, archéologie biblique, science et foi</p>
+            </div>
+        </section>
+
+        <!-- Tabs Section -->
+        <section class="tabs-section">
+            <div class="tabs-container">
+                <div class="tabs-nav">
+                    <button class="tab-button active" data-tab="all">Tous les Articles</button>
+                    <button class="tab-button" data-tab="apologetique">Apologétique</button>
+                    <button class="tab-button" data-tab="science">Science & Foi</button>
+                    <button class="tab-button" data-tab="histoire">Histoire</button>
+                    <button class="tab-button" data-tab="archeologie">Archéologie</button>
+                </div>
+
+                <!-- Tous les Articles -->
+                <div class="tab-content active" id="all">
+                    <div class="articles-grid">
+                        <a href="article-big-bang.html" class="article-card" data-category="apologetique">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Apologétique</div>
+                                <h3 class="article-title">Le Big Bang et l'Existence de Dieu</h3>
+                                <p class="article-excerpt">Comment la théorie du Big Bang confirme l'existence d'un Créateur intelligent et renforce la foi chrétienne.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>15 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-dna.html" class="article-card" data-category="science">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Science & Foi</div>
+                                <h3 class="article-title">L'ADN et le Design Intelligent</h3>
+                                <p class="article-excerpt">Comment l'information complexe de l'ADN pointe vers un Designer intelligent et confirme la création divine.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>18 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-conscience.html" class="article-card" data-category="science">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Science & Foi</div>
+                                <h3 class="article-title">Le Mystère de la Conscience</h3>
+                                <p class="article-excerpt">Comment la conscience humaine suggère une dimension spirituelle de l'être humain et pointe vers Dieu.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>20 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-resurrection-christ.html" class="article-card" data-category="apologetique">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Apologétique</div>
+                                <h3 class="article-title">La Résurrection du Christ</h3>
+                                <p class="article-excerpt">Examen des preuves historiques de la résurrection de Jésus-Christ et leur impact sur la foi chrétienne.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Marie Koffi</span>
+                                    <span>12 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-archeologie-biblique.html" class="article-card" data-category="archeologie">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Archéologie</div>
+                                <h3 class="article-title">Découvertes Archéologiques Bibliques</h3>
+                                <p class="article-excerpt">Comment les découvertes archéologiques confirment l'historicité biblique et renforcent la crédibilité des Écritures.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Karen Lawson</span>
+                                    <span>15 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-catacombes.html" class="article-card" data-category="histoire">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Histoire</div>
+                                <h3 class="article-title">Les Catacombes Chrétiennes</h3>
+                                <p class="article-excerpt">L'histoire des premiers chrétiens et leurs lieux de culte secrets, témoignant de leur foi inébranlable.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Marie Koffi</span>
+                                    <span>12 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Apologétique -->
+                <div class="tab-content" id="apologetique">
+                    <div class="articles-grid">
+                        <a href="article-big-bang.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Apologétique</div>
+                                <h3 class="article-title">Le Big Bang et l'Existence de Dieu</h3>
+                                <p class="article-excerpt">Comment la théorie du Big Bang confirme l'existence d'un Créateur intelligent et renforce la foi chrétienne.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>15 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-resurrection-christ.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Apologétique</div>
+                                <h3 class="article-title">La Résurrection du Christ</h3>
+                                <p class="article-excerpt">Examen des preuves historiques de la résurrection de Jésus-Christ et leur impact sur la foi chrétienne.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Marie Koffi</span>
+                                    <span>12 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-problem-evil.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Apologétique</div>
+                                <h3 class="article-title">Le Problème du Mal</h3>
+                                <p class="article-excerpt">Réponses chrétiennes au défi intellectuel du mal et de la souffrance dans le monde.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Marie Koffi</span>
+                                    <span>14 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Science & Foi -->
+                <div class="tab-content" id="science">
+                    <div class="articles-grid">
+                        <a href="article-dna.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Science & Foi</div>
+                                <h3 class="article-title">L'ADN et le Design Intelligent</h3>
+                                <p class="article-excerpt">Comment l'information complexe de l'ADN pointe vers un Designer intelligent et confirme la création divine.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>18 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-conscience.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Science & Foi</div>
+                                <h3 class="article-title">Le Mystère de la Conscience</h3>
+                                <p class="article-excerpt">Comment la conscience humaine suggère une dimension spirituelle de l'être humain et pointe vers Dieu.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>20 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-fine-tuning.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Science & Foi</div>
+                                <h3 class="article-title">Le Fine-tuning Cosmologique</h3>
+                                <p class="article-excerpt">Les constantes physiques réglées avec une précision remarquable pour permettre la vie dans l'univers.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>15 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Histoire -->
+                <div class="tab-content" id="histoire">
+                    <div class="articles-grid">
+                        <a href="article-catacombes.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Histoire</div>
+                                <h3 class="article-title">Les Catacombes Chrétiennes</h3>
+                                <p class="article-excerpt">L'histoire des premiers chrétiens et leurs lieux de culte secrets, témoignant de leur foi inébranlable.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Marie Koffi</span>
+                                    <span>12 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-croisades.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Histoire</div>
+                                <h3 class="article-title">Les Croisades : Mythes et Réalités</h3>
+                                <p class="article-excerpt">Une analyse historique des croisades et leur contexte, séparant les faits des légendes.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>14 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-togo-histoire.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Histoire</div>
+                                <h3 class="article-title">L'Histoire du Christianisme au Togo</h3>
+                                <p class="article-excerpt">L'évolution du christianisme au Togo et son impact sur la société togolaise contemporaine.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Thomas Agbé</span>
+                                    <span>13 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Archéologie -->
+                <div class="tab-content" id="archeologie">
+                    <div class="articles-grid">
+                        <a href="article-archeologie-biblique.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Archéologie</div>
+                                <h3 class="article-title">Découvertes Archéologiques Bibliques</h3>
+                                <p class="article-excerpt">Comment les découvertes archéologiques confirment l'historicité biblique et renforcent la crédibilité des Écritures.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Karen Lawson</span>
+                                    <span>15 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-jericho.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Archéologie</div>
+                                <h3 class="article-title">Les Murs de Jéricho</h3>
+                                <p class="article-excerpt">Découvertes archéologiques confirmant la conquête de Jéricho par Josué selon le récit biblique.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Karen Lawson</span>
+                                    <span>10 min</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="article-mesha.html" class="article-card">
+                            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                            <div class="article-content">
+                                <div class="article-category">Archéologie</div>
+                                <h3 class="article-title">La Stèle de Mesha</h3>
+                                <p class="article-excerpt">Découverte archéologique confirmant les récits bibliques sur les relations entre Israël et Moab.</p>
+                                <div class="article-meta">
+                                    <span>Dr. Karen Lawson</span>
+                                    <span>8 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">CrossCheck</div>
+                </div>
+                <p class="footer-description">Site d'information en apologétique chrétienne dédié à renforcer la foi par l'information et l'évidence.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="ressources.html">Ressources</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Catégories</h3>
+                <ul class="footer-links">
+                    <li><a href="articles.html#apologetique">Apologétique</a></li>
+                    <li><a href="articles.html#science">Science & Foi</a></li>
+                    <li><a href="articles.html#histoire">Histoire</a></li>
+                    <li><a href="articles.html#archeologie">Archéologie</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Contact</h3>
+                <p class="footer-contact">Pour toute question ou suggestion</p>
+                <a href="apropos.html" class="footer-contact-link">Nous contacter</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2025 CrossCheck. Tous droits réservés.</p>
+                <p class="footer-mission">Quand les preuves rejoignent la foi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchContainer = document.querySelector('.search-container');
+
+        // Handle search input
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Real-time search as user types
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            if (query.length >= 2) {
+                filterArticles(query);
+            } else if (query.length === 0) {
+                showAllArticles();
+            }
+        });
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                // Filter articles based on search query
+                filterArticles(query);
+            } else {
+                // Show all articles if no query
+                showAllArticles();
+            }
+        }
+
+        function filterArticles(query) {
+            const articles = document.querySelectorAll('.article-card');
+            const searchTerm = query.toLowerCase();
+            let visibleCount = 0;
+
+            articles.forEach(article => {
+                const title = article.querySelector('.article-title')?.textContent.toLowerCase() || '';
+                const category = article.querySelector('.article-category')?.textContent.toLowerCase() || '';
+                const description = article.querySelector('.article-description')?.textContent.toLowerCase() || '';
+                
+                const isMatch = title.includes(searchTerm) || 
+                               category.includes(searchTerm) || 
+                               description.includes(searchTerm);
+                
+                if (isMatch) {
+                    article.style.display = 'block';
+                    article.classList.add('search-highlight');
+                    visibleCount++;
+                } else {
+                    article.style.display = 'none';
+                    article.classList.remove('search-highlight');
+                }
+            });
+
+            // Show search results message
+            showSearchResults(query, visibleCount);
+        }
+
+        function showAllArticles() {
+            const articles = document.querySelectorAll('.article-card');
+            articles.forEach(article => {
+                article.style.display = 'block';
+                article.classList.remove('search-highlight');
+            });
+            hideSearchResults();
+        }
+
+        function showSearchResults(query, count) {
+            // Remove existing search results message
+            const existingMessage = document.querySelector('.search-results-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            // Create search results message
+            const message = document.createElement('div');
+            message.className = 'search-results-message';
+            message.innerHTML = `
+                <div class="search-results-content">
+                    <h3>Résultats de recherche pour "${query}"</h3>
+                    <p>${count} article${count > 1 ? 's' : ''} trouvé${count > 1 ? 's' : ''}</p>
+                    <button onclick="clearSearch()" class="clear-search-btn">Effacer la recherche</button>
+                </div>
+            `;
+
+            // Insert before the first tab content
+            const firstTabContent = document.querySelector('.tab-content');
+            if (firstTabContent) {
+                firstTabContent.parentNode.insertBefore(message, firstTabContent);
+            }
+        }
+
+        function hideSearchResults() {
+            const existingMessage = document.querySelector('.search-results-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+        }
+
+        function clearSearch() {
+            searchInput.value = '';
+            showAllArticles();
+        }
+
+        // Make clearSearch globally available
+        window.clearSearch = clearSearch;
+
+        // Handle URL search parameters
+        function handleURLSearch() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            
+            if (searchQuery) {
+                searchInput.value = searchQuery;
+                filterArticles(searchQuery);
+            }
+        }
+
+        // Initialize search on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            handleURLSearch();
+        });
+
+        searchContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                searchContainer.classList.remove('active');
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced tabs functionality with animations
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Add click animation
+                this.style.animation = 'ripple 0.4s ease-out';
+                
+                // Remove active class from all buttons and contents
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.style.animation = '';
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                    content.style.animation = '';
+                });
+                
+                // Add active class to clicked button and corresponding content
+                this.classList.add('active');
+                const targetContent = document.getElementById(tabId);
+                targetContent.classList.add('active');
+                targetContent.style.animation = 'tabSlide 0.5s ease-out';
+                
+                // Re-observe elements for animations with enhanced effects
+                setTimeout(() => {
+                    const cards = targetContent.querySelectorAll('.article-card');
+                    cards.forEach((el, index) => {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(30px) scale(0.9)';
+                        el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                        el.style.animationDelay = `${index * 0.1}s`;
+                        
+                        // Add magnetic effect on hover (disabled to fix disappearing cards)
+                        // el.addEventListener('mouseenter', function() {
+                        //     this.style.animation = 'magnetic 0.3s ease-in-out';
+                        // });
+                        
+                        // el.addEventListener('mouseleave', function() {
+                        //     this.style.animation = '';
+                        // });
+                        
+                        observer.observe(el);
+                    });
+                }, 100);
+            });
+        });
+
+        // Enhanced Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.05,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                    
+                    // Add staggered animation for cards
+                    if (entry.target.classList.contains('article-card')) {
+                        const cards = document.querySelectorAll('.article-card');
+                        const index = Array.from(cards).indexOf(entry.target);
+                        entry.target.style.animationDelay = `${index * 0.15}s`;
+                        entry.target.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.article-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px) scale(0.95)';
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // Enhanced article card interactions
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Add click animation with ripple effect
+                this.style.transform = 'scale(0.95) rotateX(10deg)';
+                this.style.animation = 'ripple 0.4s ease-out';
+                
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.animation = '';
+                }, 400);
+            });
+        });
+
+        // Ripple effect disabled - too distracting
+        // function createRipple(event) {
+        //     const button = event.currentTarget;
+        //     const ripple = document.createElement('span');
+        //     const rect = button.getBoundingClientRect();
+        //     const size = Math.max(rect.width, rect.height);
+        //     const x = event.clientX - rect.left - size / 2;
+        //     const y = event.clientY - rect.top - size / 2;
+        //     
+        //     ripple.style.width = ripple.style.height = size + 'px';
+        //     ripple.style.left = x + 'px';
+        //     ripple.style.top = y + 'px';
+        //     ripple.style.position = 'absolute';
+        //     ripple.style.borderRadius = '50%';
+        //     ripple.style.background = 'rgba(0, 0, 0, 0.1)';
+        //     ripple.style.transform = 'scale(0)';
+        //     ripple.style.animation = 'ripple 0.6s linear';
+        //     ripple.style.pointerEvents = 'none';
+        //     
+        //     button.appendChild(ripple);
+        //     
+        //     setTimeout(() => {
+        //         ripple.remove();
+        //     }, 600);
+        // }
+
+        // Ripple effect disabled for all buttons
+        // document.querySelectorAll('.tab-button').forEach(button => {
+        //     button.addEventListener('click', createRipple);
+        // });
+    </script>
+</body>
+</html>

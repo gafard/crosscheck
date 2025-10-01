@@ -3,405 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'ADN et la Complexité de la Vie - CrossCheck</title>
-    <meta name="description" content="Découvrez comment l'ADN révèle la complexité irréductible de la vie et témoigne d'un Créateur intelligent.">
+    <title>L'ADN et le Design Intelligent - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1e3a8a;
-            --secondary: #2563eb;
-            --accent: #3b82f6;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg: #ffffff;
-            --bg-light: #f8fafc;
-            --bg-dark: #f1f5f9;
-            --border: #e2e8f0;
-            --success: #059669;
-            --warning: #d97706;
-            --error: #dc2626;
-            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
         }
 
-        /* Header */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header Premium */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
-        .header-container {
-            max-width: 1200px;
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            height: 70px;
+            align-items: center;
+            height: 80px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
+            gap: 1rem;
             text-decoration: none;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--gradient-primary);
-            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
+            
         }
 
-        .header-nav {
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
+            align-items: center;
         }
 
         .nav-link {
+            color: var(--primary);
             text-decoration: none;
-            color: var(--text);
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 15px;
             position: relative;
+            transition: all 0.3s ease;
         }
 
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .nav-link.active {
-            color: var(--primary);
-        }
-
-        .nav-link.active::after {
+        .nav-link::after {
             content: '';
             position: absolute;
             bottom: -8px;
             left: 0;
-            right: 0;
+            width: 0;
             height: 2px;
-            background: var(--primary);
-            border-radius: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            padding: 0.5rem;
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
         }
 
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background: white;
-            border-bottom: 1px solid var(--border);
-            box-shadow: var(--shadow-lg);
-            z-index: 999;
-            padding: 1rem 2rem;
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
         }
 
-        .mobile-menu.active {
-            display: block;
-        }
 
-        .mobile-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .mobile-nav .nav-link {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-        }
 
         /* Main Content */
         .main-content {
-            margin-top: 70px;
-            min-height: calc(100vh - 70px);
+            background: var(--white);
+            min-height: 100vh;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Article Header */
         .article-header {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .article-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1200&h=600&fit=crop') center/cover;
-            opacity: 0.4;
-            z-index: 1;
-        }
-
-        .article-header-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 2;
+            padding: 4rem 0 2rem;
+            text-align: center;
         }
 
         .article-category {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
             display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
         }
 
         .article-title {
-            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
         .article-meta {
             display: flex;
+            justify-content: center;
             gap: 2rem;
-            font-size: 1rem;
-            opacity: 0.9;
+            color: var(--secondary);
+            font-size: 14px;
+            margin-bottom: 2rem;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0;
+            margin-bottom: 3rem;
         }
 
         /* Article Content */
         .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
+            padding: 0 0 4rem;
         }
 
-        .article-body {
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 2rem;
-        }
-
-        .article-body h2 {
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
             color: var(--primary);
-            font-size: 1.75rem;
-            margin: 2rem 0 1rem 0;
-            font-weight: 600;
-            letter-spacing: -0.025em;
         }
 
-        .article-body h3 {
-            color: var(--secondary);
-            font-size: 1.25rem;
-            margin: 1.5rem 0 1rem 0;
+        .article-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
             font-weight: 600;
-            letter-spacing: -0.025em;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary);
         }
 
-        .article-body p {
+        .article-content p {
+            font-size: 16px;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body ul {
-            margin: 1rem 0 1.5rem 2rem;
-        }
-
-        .article-body li {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body blockquote {
-            background: var(--bg-dark);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body a {
-            text-decoration: none;            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .article-body a:hover {
-            
-        }
-
-        .article-body strong {
             color: var(--primary);
-            font-weight: 700;
         }
 
-        /* Image Gallery */
-        .article-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 2rem;
             margin: 2rem 0;
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 18px;
         }
 
-        .article-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .article-image:hover {
-            transform: translateY(-4px);
-        }
-
-        .article-image img {
+        .article-content img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .image-caption {
-            padding: 1rem;
-            background: var(--bg-light);
-            font-size: 0.9rem;
-            color: var(--text-light);
-            text-align: center;
+            height: auto;
+            border-radius: 0;
+            margin: 2rem 0;
         }
 
         /* Related Articles */
-        .related-articles {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
+        .related-section {
+            padding: 4rem 0;
+            background: var(--light);
         }
 
         .related-title {
-            color: var(--primary);
-            font-size: 1.25rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 1.5rem;
             text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
         }
 
         .related-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .related-card {
+            background: white;
             border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
 
         .related-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow);
+            
         }
 
-        .related-card-image {
+        .related-image {
+            width: 100%;
             height: 150px;
             background-size: cover;
             background-position: center;
-        }
-
-        .related-card-content {
-            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0;
         }
 
         .related-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
         .related-card-excerpt {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            line-height: 1.5;
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        /* Footer */
-        .footer {
-            background: var(--primary);
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
+            background: black;
             color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 12px 20px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Responsive Design */
+        .back-button:hover {
+            transform: translateY(-50%) translateX(8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            background: #333;
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Mobile Back Button */
         @media (max-width: 768px) {
-            .header-nav {
+            .back-button {
+                position: fixed;
+                top: auto;
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 14px 24px;
+                font-size: 16px;
+                border-radius: 25px;
+            }
+
+            .back-button:hover {
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
+            background: black;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-50%) translateX(8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            background: #333;
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Mobile Back Button */
+        @media (max-width: 768px) {
+            .back-button {
+                position: fixed;
+                top: auto;
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 14px 24px;
+                font-size: 16px;
+                border-radius: 25px;
+            }
+
+            .back-button:hover {
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .nav {
                 display: none;
             }
 
-            .mobile-menu-toggle {
-                display: block;
+            .content-wrapper {
+                padding: 0 1rem;
+            }
+
+            .article-header {
+                padding: 2rem 0 1rem;
             }
 
             .article-title {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
 
             .article-meta {
@@ -409,42 +437,39 @@
                 gap: 0.5rem;
             }
 
-            .article-body {
-                padding: 2rem 1.5rem;
+            .article-image {
+                height: 250px;
             }
 
-            .article-body h2 {
-                font-size: 1.25rem;
+            .article-content {
+                padding: 0 0 2rem;
             }
 
-            .article-body h3 {
-                font-size: 1.25rem;
+            .article-content h2 {
+                font-size: 24px;
             }
 
-            .article-images {
-                grid-template-columns: 1fr;
+            .article-content h3 {
+                font-size: 20px;
+            }
+
+            .related-section {
+                padding: 2rem 0;
             }
 
             .related-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
 
         @media (max-width: 480px) {
-            .article-header {
-                padding: 2rem 0;
-            }
-
             .article-title {
-                font-size: 1.75rem;
+                font-size: 1.8rem;
             }
 
-            .article-body {
-                padding: 1.5rem 1rem;
-            }
-
-            .article-content {
-                padding: 1.5rem 0.5rem;
+            .related-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -452,184 +477,155 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-container">
+        <div class="header-content">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
-                </div>
-                <span class="logo-text">CrossCheck</span>
-            <nav class="header-nav">
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <a href="archeologie.html" class="nav-link">Archéologie</a>
-                <a href="science.html" class="nav-link active">Science</a>
-                <a href="histoire.html" class="nav-link">Histoire</a>
-                <a href="apologetique.html" class="nav-link">Apologétique</a>
-                <a href="togo.html" class="nav-link">Togo</a>
+                <a href="articles.html" class="nav-link">Articles</a>
+                <a href="ressources.html" class="nav-link">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
             </nav>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
         </div>
     </header>
-    <!-- Back Button -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
-        <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">
-            ← Retour aux articles
-    </div>
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <nav class="mobile-nav">
-            <a href="index.html" class="nav-link">Accueil</a>
-            <a href="archeologie.html" class="nav-link">Archéologie</a>
-            <a href="science.html" class="nav-link active">Science</a>
-            <a href="histoire.html" class="nav-link">Histoire</a>
-            <a href="apologetique.html" class="nav-link">Apologétique</a>
-            <a href="togo.html" class="nav-link">Togo</a>
-        </nav>
-    </div>
 
     <!-- Main Content -->
     <main class="main-content">
         <!-- Article Header -->
         <section class="article-header">
-            <div class="article-header-content">
+            <div class="content-wrapper">
                 <div class="article-category">Science & Foi</div>
-                <h1 class="article-title">L'ADN et la Complexité de la Vie</h1>
+                <h1 class="article-title">L'ADN et le Design Intelligent</h1>
                 <div class="article-meta">
-                    <span>📅 25 Décembre 2024</span>
-                    <span>⏱️ 18 min de lecture</span>
-                    <span>🧬 Complexité irréductible</span>
+                    <span>Par Rédaction</span>
+                    <span>25 Janvier 2024</span>
+                    <span>18 min de lecture</span>
                 </div>
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
             </div>
         </section>
 
         <!-- Article Content -->
         <section class="article-content">
-            <article class="article-body">
-                <p>L'ADN (Acide Désoxyribonucléique) représente l'un des plus grands défis pour la théorie de l'évolution. Sa complexité irréductible et son organisation sophistiquée témoignent d'un design intelligent qui dépasse largement les capacités d'une évolution aveugle.</p>
+            <div class="content-wrapper">
+                <p>L'ADN, cette molécule fascinante qui contient le code de la vie, représente l'un des arguments les plus convaincants en faveur du design intelligent. Sa complexité irréductible et son information codée suggèrent fortement l'existence d'un Designer intelligent.</p>
 
-                <!-- Images d'illustration -->
-                <div class="article-images">
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Structure de l'ADN">
-                        <div class="image-caption">Double hélice de l'ADN - Structure complexe</div>
-                    </div>
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&h=300&fit=crop" alt="Code génétique">
-                        <div class="image-caption">Le code génétique - Langage de la vie</div>
-                    </div>
-                </div>
+                <h2>Qu'est-ce que l'ADN ?</h2>
+                
+                <p>L'ADN (Acide Désoxyribonucléique) est une molécule complexe qui contient les instructions génétiques utilisées dans le développement et le fonctionnement de tous les organismes vivants connus. Cette molécule est composée de quatre bases azotées : adénine (A), thymine (T), guanine (G) et cytosine (C).</p>
 
-                <h2>La complexité de l'ADN</h2>
-                <p>L'ADN est une molécule extraordinairement complexe qui contient toutes les instructions nécessaires à la construction et au fonctionnement d'un organisme vivant. Chaque cellule humaine contient environ 2 mètres d'ADN, soigneusement enroulé dans le noyau.</p>
+                <p>L'ADN humain contient environ 3,2 milliards de paires de bases, organisées en 23 paires de chromosomes. Si on étirait l'ADN d'une seule cellule humaine, il mesurerait environ 2 mètres de long !</p>
 
-                <h3>Structure et fonction</h3>
-                <p>L'ADN fonctionne comme un programme informatique ultra-sophistiqué :</p>
+                <h2>La Complexité Irréductible de l'ADN</h2>
 
+                <p>Le concept de complexité irréductible, développé par le biochimiste Michael Behe, s'applique parfaitement à l'ADN. L'ADN présente plusieurs caractéristiques qui suggèrent un design intelligent :</p>
+
+                <h3>1. Information Codée</h3>
+                <p>L'ADN contient de l'information codée, similaire à un langage informatique. Cette information est spécifique, complexe et fonctionnelle. Comme l'a dit le généticien Francis Collins : "L'ADN est un langage, et les langages sont le produit d'esprits intelligents."</p>
+
+                <h3>2. Système de Réplication</h3>
+                <p>L'ADN possède un système de réplication sophistiqué qui implique de nombreuses protéines spécialisées. Chaque composant de ce système est nécessaire pour que la réplication fonctionne. Sans tous ces composants, le système s'effondre.</p>
+
+                <h3>3. Mécanisme de Réparation</h3>
+                <p>L'ADN possède des mécanismes de réparation complexes qui corrigent automatiquement les erreurs. Ces mécanismes sont si sophistiqués qu'ils suggèrent une conception intentionnelle.</p>
+
+                <h2>L'Argument de l'Information</h2>
+
+                <p>L'argument de l'information, développé par le mathématicien William Dembski, est particulièrement pertinent pour l'ADN :</p>
+
+                <blockquote>
+                    "L'information complexe spécifiée ne peut pas être produite par des processus naturels non dirigés. L'ADN contient exactement ce type d'information."
+                </blockquote>
+
+                <h3>Caractéristiques de l'Information Complexe Spécifiée :</h3>
                 <ul>
-                    <li><strong>Double hélice</strong> : Structure stable et élégante</li>
-                    <li><strong>Code à 4 lettres</strong> : A, T, G, C (bases azotées)</li>
-                    <li><strong>Séquence spécifique</strong> : Ordre précis des bases</li>
-                    <li><strong>Réplication parfaite</strong> : Copie fidèle à chaque division cellulaire</li>
+                    <li><strong>Complexe :</strong> L'ADN contient des milliards de paires de bases</li>
+                    <li><strong>Spécifique :</strong> L'ordre des bases est crucial pour la fonction</li>
+                    <li><strong>Fonctionnel :</strong> L'ADN produit des protéines fonctionnelles</li>
                 </ul>
 
-                <!-- Image illustrative -->
-                <div class="article-images">
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&h=300&fit=crop" alt="Réplication ADN">
-                        <div class="image-caption">Processus de réplication de l'ADN</div>
-                    </div>
-                </div>
+                <h2>Objections et Réponses</h2>
 
-                <h2>Complexité irréductible</h2>
-                <p>Le concept de complexité irréductible, développé par le biochimiste Michael Behe, s'applique parfaitement à l'ADN. Pour que l'ADN fonctionne, tous ses composants doivent être présents simultanément :</p>
+                <h3>Objection : "L'évolution peut expliquer l'ADN"</h3>
+                <p>L'évolution par sélection naturelle peut expliquer des changements mineurs dans l'ADN existant, mais elle ne peut pas expliquer l'origine de l'information complexe initiale. L'évolution présuppose l'existence d'ADN fonctionnel.</p>
 
-                <blockquote>"Un système complexe irréductible est un système composé de plusieurs parties qui interagissent et qui contribuent à la fonction de base, de telle sorte que la suppression de l'une de ces parties fait cesser le fonctionnement du système." - Michael Behe</blockquote>
+                <h3>Objection : "Les mutations peuvent créer de nouvelles informations"</h3>
+                <p>Les mutations observées dans la nature sont généralement délétères ou neutres. Les mutations bénéfiques sont extrêmement rares et ne créent généralement pas de nouvelles informations complexes.</p>
 
-                <h3>Composants nécessaires</h3>
-                <p>Pour que l'ADN fonctionne, il faut :</p>
+                <h2>Implications pour la Foi Chrétienne</h2>
 
-                <ul>
-                    <li><strong>Les bases azotées</strong> : A, T, G, C</li>
-                    <li><strong>Le squelette sucre-phosphate</strong> : Structure de soutien</li>
-                    <li><strong>Les enzymes de réplication</strong> : ADN polymérase</li>
-                    <li><strong>Les enzymes de réparation</strong> : Correction des erreurs</li>
-                    <li><strong>Le système de transcription</strong> : ARN polymérase</li>
-                </ul>
+                <p>L'ADN et sa complexité irréductible ont des implications profondes pour la foi chrétienne :</p>
 
-                <h2>L'information génétique</h2>
-                <p>L'ADN contient de l'information spécifique, comparable à un livre ou à un programme informatique. Cette information ne peut pas provenir de processus aléatoires.</p>
+                <h3>1. Preuve d'un Créateur Intelligent</h3>
+                <p>L'ADN fournit des preuves solides de l'existence d'un Créateur intelligent qui a conçu la vie avec une précision remarquable.</p>
 
-                <h3>Analogies informatiques</h3>
-                <p>L'ADN peut être comparé à :</p>
+                <h3>2. Harmonie entre Science et Foi</h3>
+                <p>Les découvertes sur l'ADN montrent que la science et la foi ne sont pas en opposition, mais se complètent mutuellement.</p>
 
-                <ul>
-                    <li><strong>Un programme informatique</strong> : Code source de la vie</li>
-                    <li><strong>Une bibliothèque</strong> : Vaste collection d'informations</li>
-                    <li><strong>Une recette</strong> : Instructions précises</li>
-                    <li><strong>Un plan d'architecte</strong> : Blueprint détaillé</li>
-                </ul>
-
-                <h2>Défis pour l'évolution</h2>
-                <p>L'ADN pose plusieurs défis majeurs à la théorie de l'évolution :</p>
-
-                <h3>1. Origine de l'information</h3>
-                <p>Comment l'information génétique complexe a-t-elle pu apparaître par hasard ? La probabilité mathématique est astronomiquement faible.</p>
-
-                <h3>2. Complexité irréductible</h3>
-                <p>Tous les composants de l'ADN doivent être présents simultanément pour fonctionner. Une évolution graduelle est impossible.</p>
-
-                <h3>3. Code génétique universel</h3>
-                <p>Le même code génétique est utilisé par tous les organismes vivants, suggérant un concepteur commun plutôt qu'une évolution indépendante.</p>
-
-                <!-- Image illustrative -->
-                <div class="article-images">
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Code génétique universel">
-                        <div class="image-caption">Le code génétique universel</div>
-                    </div>
-                </div>
-
-                <h2>Implications théologiques</h2>
-                <p>La complexité de l'ADN témoigne d'un Créateur intelligent qui a conçu la vie avec une précision et une sophistication extraordinaires.</p>
-
-                <blockquote>"Car ses perfections invisibles, sa puissance éternelle et sa divinité, se voient comme à l'œil nu, depuis la création du monde, quand on les considère dans ses ouvrages." - Romains 1:20</blockquote>
+                <h3>3. Dignité de la Vie Humaine</h3>
+                <p>La complexité de l'ADN humain renforce la conviction que la vie humaine a une valeur et une dignité particulières.</p>
 
                 <h2>Conclusion</h2>
-                <p>L'ADN représente l'une des plus grandes preuves du design intelligent dans la nature. Sa complexité irréductible, son information spécifique et son organisation sophistiquée témoignent d'un Créateur intelligent plutôt que d'une évolution aveugle.</p>
-            </article>
 
-            <!-- Related Articles -->
-            <section class="related-articles">
-                <h2 class="related-title">Articles connexes</h2>
+                <p>L'ADN représente l'un des arguments les plus convaincants en faveur du design intelligent. Sa complexité irréductible, son information codée et ses mécanismes sophistiqués suggèrent fortement l'existence d'un Designer intelligent.</p>
+
+                <p>Pour le chrétien, l'ADN confirme la vérité biblique que nous sommes "craints et merveilleusement faits" (Psaume 139:14). Cette molécule fascinante témoigne de la sagesse et de la créativité du Créateur.</p>
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        <section class="related-section">
+            <div class="content-wrapper">
+                <h2 class="related-title">Articles Connexes</h2>
                 <div class="related-grid">
-                    <a href="article-science-foi.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop');"></div>
-                        <div class="related-card-content">
-                            <h3 class="related-card-title">Science et foi</h3>
-                            <p class="related-card-excerpt">Complémentaires ou contradictoires ?</p>
-                        </div>
-                    <a href="article-thomas-aquinas.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop');"></div>
-                        <div class="related-card-content">
-                            <h3 class="related-card-title">L'existence de Dieu</h3>
-                            <p class="related-card-excerpt">Arguments rationnels selon Thomas d'Aquin</p>
-                        </div>
-                    <a href="article-problem-evil.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop');"></div>
-                        <div class="related-card-content">
-                            <h3 class="related-card-title">Le problème du mal</h3>
-                            <p class="related-card-excerpt">Réponses apologétiques</p>
-                        </div>
+                    <a href="article-big-bang.html" class="related-card" style="text-decoration: none; color: inherit;">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="related-card-title">Le Big Bang et l'Existence de Dieu</h3>
+                        <p class="related-card-excerpt">Comment la théorie du Big Bang confirme l'existence d'un Créateur intelligent.</p>
+                    </a>
+
+                    <a href="article-conscience.html" class="related-card" style="text-decoration: none; color: inherit;">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="related-card-title">Le Mystère de la Conscience</h3>
+                        <p class="related-card-excerpt">Comment la conscience humaine suggère une dimension spirituelle de l'être humain.</p>
+                    </a>
+
+                    <a href="article-evolution-creation.html" class="related-card" style="text-decoration: none; color: inherit;">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="related-card-title">Évolution et Création</h3>
+                        <p class="related-card-excerpt">Les différentes perspectives sur l'origine de la vie et l'évolution des espèces.</p>
+                    </a>
                 </div>
-            </section>
+            </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 CrossCheck - Centre de Recherche en Apologétique Chrétienne</p>
-    </footer>
+    <!-- Back Button -->
+    <a href="articles.html" class="back-button">Retour aux Articles</a>
 
     <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Card interactions
+        document.querySelectorAll('.related-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -642,40 +638,6 @@
                     });
                 }
             });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobileMenu').classList.remove('active');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const toggleButton = document.querySelector('.mobile-menu-toggle');
-            if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-            }
         });
     </script>
 </body>

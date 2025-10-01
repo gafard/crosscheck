@@ -3,959 +3,693 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apologétique Chrétienne | CrossCheck - Défense rationnelle de la foi</title>
-<meta name="description" content="Défense rationnelle de la foi chrétienne. Arguments pour l'existence de Dieu, problème du mal, fiabilité des Évangiles et dialogue interreligieux.">
-<meta name="keywords" content="apologétique chrétienne, défense foi, arguments existence Dieu, problème mal, fiabilité Évangiles, dialogue interreligieux, preuves christianisme">
-<meta name="author" content="CrossCheck">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://crosscheck.fr/apologetique.html">
-<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
-<link rel="apple-touch-icon" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Apologétique Chrétienne - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
---primary: #1e3a8a;
---secondary: #2563eb;
---accent: #3b82f6;
---text: #1f2937;
---text-light: #6b7280;
---bg: #ffffff;
---bg-light: #f8fafc;
---bg-dark: #f1f5f9;
---border: #e2e8f0;
---success: #059669;
---warning: #d97706;
---error: #dc2626;
---gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
---gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
---shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
---shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
---shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
---shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
 
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+}
+
 body {
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
 line-height: 1.6;
-color: var(--text);
-background: var(--bg);
+            color: var(--primary);
+            background: var(--white);
 overflow-x: hidden;
 }
 
-/* Header */
+        /* Header Premium */
 .header {
 position: fixed;
 top: 0;
 left: 0;
 right: 0;
-background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.95);
 backdrop-filter: blur(20px);
-border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 z-index: 1000;
-padding: 0.75rem 0;
 transition: all 0.3s ease;
 }
 
-.header-container {
-max-width: 1200px;
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
 margin: 0 auto;
 padding: 0 2rem;
 display: flex;
+            justify-content: space-between;
 align-items: center;
-justify-content: space-between;
-height: 70px;
+            height: 80px;
 }
 
 .logo {
 display: flex;
 align-items: center;
-gap: 0.5rem;
+            gap: 1rem;
 text-decoration: none;
 color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
 }
 
 .logo-icon {
-font-size: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .logo-text {
-font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
 font-weight: 700;
 letter-spacing: -0.5px;
 }
 
-.header-nav {
+        .nav {
 display: flex;
-gap: 2rem;
+            gap: 3rem;
 align-items: center;
 }
 
 .nav-link {
+            color: var(--primary);
 text-decoration: none;
-color: var(--text-light);
 font-weight: 500;
-font-size: 0.95rem;
-padding: 0.75rem 1.25rem;
-border-radius: 12px;
+            font-size: 15px;
+            position: relative;
 transition: all 0.3s ease;
-position: relative;
-}
+        }
 
-.nav-link:hover {
-color: var(--primary);
-background: rgba(59, 130, 246, 0.08);
-transform: translateY(-1px);
-}
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
 
-.nav-link.active {
-color: var(--secondary);
-background: rgba(59, 130, 246, 0.12);
-font-weight: 600;
-}
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-.header-actions {
-display: flex;
-gap: 1rem;
-align-items: center;
-}
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
+        }
 
-.btn-primary,
-.btn-secondary {
-padding: 0.875rem 2rem;
-border-radius: 16px;
-font-weight: 600;
-text-decoration: none;
-transition: all 0.3s ease;
-border: none;
-cursor: pointer;
-font-size: 0.95rem;
-position: relative;
-overflow: hidden;
-}
 
-.btn-primary {
-background: var(--secondary);
-color: white;
-box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover {
-background: #2563eb;
-transform: translateY(-2px);
-box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary {
-background: transparent;
-color: var(--text-light);
-border: 1.5px solid var(--border);
-}
-
-.btn-secondary:hover {
-background: var(--bg-light);
-border-color: var(--secondary);
-color: var(--secondary);
-transform: translateY(-1px);
-box-shadow: var(--shadow-sm);
-}
 
 /* Main Content */
 .main-content {
-padding-top: 90px;
+            background: var(--white);
 min-height: 100vh;
-background: var(--bg-light);
+            position: relative;
+            padding-top: 80px;
 }
 
-.content-container {
-max-width: 1200px;
+        .content-wrapper {
+            max-width: 1400px;
 margin: 0 auto;
-padding: 2rem;
+            padding: 0 2rem;
 }
 
-.page-header {
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
 text-align: center;
-margin-bottom: 4rem;
-padding: 3rem 0;
-background: white;
-border-radius: 16px;
-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
 
-.page-title {
-font-size: 3rem;
-font-weight: 800;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
 color: var(--primary);
-margin-bottom: 1rem;
-letter-spacing: -1px;
-}
+        }
 
-.page-subtitle {
-font-size: 1.2rem;
-color: var(--text-light);
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--secondary);
 max-width: 600px;
 margin: 0 auto;
-line-height: 1.6;
-}
+        }
 
-/* Articles Grid */
-.articles-grid {
+        /* Introduction Section */
+        .intro-section {
+            padding: 6rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .intro-content p {
+            font-size: 16px;
+            color: var(--secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-image {
+            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80') center/cover;
+            height: 400px;
+            border-radius: 0;
+        }
+
+        /* Topics Section */
+        .topics-section {
+            padding: 6rem 0;
+            background: var(--light);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .topics-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 gap: 2rem;
-margin-bottom: 4rem;
 }
 
-.article-card {
+        .topic-card {
 background: white;
-border-radius: 24px;
-overflow: hidden;
-box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
 transition: all 0.4s ease;
 cursor: pointer;
-border: 1px solid rgba(226, 232, 240, 0.6);
 }
 
-.article-card:hover {
+        .topic-card:hover {
 transform: translateY(-8px);
-box-shadow: var(--shadow-xl);
-border-color: rgba(59, 130, 246, 0.3);
-background: rgba(255, 255, 255, 0.98);
-}
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
 
-.article-image {
-width: 100%;
-height: 220px;
-background-size: cover;
-background-position: center;
-position: relative;
-overflow: hidden;
-}
+        .topic-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: white;
+        }
 
-.article-image::after {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
-transition: opacity 0.3s;
-}
+        .topic-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
 
-.article-card:hover .article-image::after {
-opacity: 0.8;
-}
+        .topic-description {
+            color: var(--secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
 
-.article-body {
-padding: 2rem;
-}
+        .topic-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.article-category {
-display: inline-block;
-background: linear-gradient(135deg, var(--secondary), var(--accent));
-color: white;
-padding: 0.5rem 1rem;
-border-radius: 50px;
-font-size: 0.8rem;
-font-weight: 600;
-margin-bottom: 1.25rem;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-box-shadow: var(--shadow-sm);
-}
+        .topic-link:hover {
+            text-decoration: underline;
+        }
 
-.article-title {
-font-size: 1.4rem;
-font-weight: 700;
-line-height: 1.3;
-color: var(--primary);
-margin-bottom: 1rem;
-letter-spacing: -0.01em;
-}
+        /* Arguments Section */
+        .arguments-section {
+            padding: 6rem 0;
+        }
 
-.article-excerpt {
-color: var(--text-light);
-margin-bottom: 1rem;
-line-height: 1.6;
-font-size: 1rem;
-font-weight: 400;
-}
+        .arguments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-.article-footer {
+        .argument-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .argument-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .argument-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 0;
 display: flex;
-justify-content: space-between;
 align-items: center;
-font-size: 0.9rem;
-color: var(--text-light);
-font-weight: 500;
-}
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
 
-/* CTA Section */
-.cta-section {
-background: linear-gradient(135deg, var(--secondary), var(--accent));
-padding: 4rem 2rem;
-border-radius: 24px;
-text-align: center;
-color: white;
-margin: 4rem 0;
-}
+        .argument-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
 
-.cta-title {
-font-size: 2.2rem;
-font-weight: 800;
-margin-bottom: 1.25rem;
-letter-spacing: -0.02em;
-}
+        .argument-description {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-.cta-description {
-font-size: 1.2rem;
-margin-bottom: 2.5rem;
-opacity: 0.9;
-font-weight: 400;
-}
+        /* Resources Section */
+        .resources-section {
+            padding: 6rem 0;
+            background: var(--light);
+            text-align: center;
+        }
 
-.cta-buttons {
-display: flex;
-gap: 1.5rem;
-justify-content: center;
-flex-wrap: wrap;
-}
+        .resources-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
 
-.btn-cta-primary,
-.btn-cta-secondary {
-padding: 1rem 2.5rem;
-border-radius: 20px;
-font-weight: 600;
-text-decoration: none;
-transition: all 0.3s ease;
-font-size: 1rem;
-border: none;
-cursor: pointer;
-}
+        .resources-subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+        }
 
-.btn-cta-primary {
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
 background: white;
-color: var(--primary);
-box-shadow: var(--shadow-md);
-}
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
 
-.btn-cta-primary:hover {
-background: var(--bg-light);
-transform: translateY(-3px);
-box-shadow: var(--shadow-xl);
-}
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
 
-.btn-cta-secondary {
-background: transparent;
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 24px;
 color: white;
-border: 2px solid white;
 }
 
-.btn-cta-secondary:hover {
-background: white;
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
 color: var(--primary);
-transform: translateY(-2px);
-box-shadow: var(--shadow-md);
-}
+        }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-.header-nav {
-  display: none;
-}
+        .resource-description {
+            color: var(--secondary);
+            font-size: 14px;
+        }
 
-.page-title {
-  font-size: 2.5rem;
-}
-
-.articles-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .intro-section {
+                gap: 3rem;
 }
 }
 
 @media (max-width: 768px) {
-.header-container {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .content-wrapper {
   padding: 0 1rem;
 }
 
-.content-container {
-  padding: 1rem;
-}
+            .hero {
+                padding: 4rem 0;
+            }
 
-.page-title {
-  font-size: 2rem;
-}
+            .hero-title {
+                font-size: 2.5rem;
+            }
 
-.page-subtitle {
-  font-size: 1rem;
-}
+            .intro-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 4rem 0;
+            }
 
-.articles-grid {
-  grid-template-columns: 1fr;
-}
+            .intro-image {
+                height: 250px;
+            }
 
-.article-body {
-  padding: 1.5rem;
-}
+            .topics-section,
+            .arguments-section,
+            .resources-section {
+                padding: 4rem 0;
+            }
 
-.cta-buttons {
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
 
-.btn-cta-primary,
-.btn-cta-secondary {
-  width: 100%;
-  max-width: 300px;
-  padding: 0.875rem 2rem;
-}
-}
+            .topics-grid,
+            .arguments-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
 
-/* Media Queries pour très petits écrans */
 @media (max-width: 480px) {
-.page-title {
-  font-size: 1.8rem;
-}
+            .hero-title {
+                font-size: 2rem;
+            }
 
-.page-subtitle {
-  font-size: 0.95rem;
-}
+            .topic-card,
+            .argument-card,
+            .resource-card {
+                padding: 1.5rem;
+            }
 
-.article-body {
-  padding: 1.25rem;
-}
+            .topic-title {
+                font-size: 20px;
+            }
 
-.cta-section {
-  padding: 2.5rem 1rem;
-}
-
-.cta-title {
-  font-size: 1.6rem;
-}
-
-.cta-description {
-  font-size: 1rem;
-}
-
-.header-actions {
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.btn-primary,
-.btn-secondary {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
-}
-}
-
-/* Animations */
-@keyframes fadeInUp {
-from {
-  opacity: 0;
-  transform: translateY(30px);
-}
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-}
-
-.fade-in-up {
-animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Smooth scrolling */
-html {
-scroll-behavior: smooth;
-}
+            .argument-title {
+                font-size: 18px;
+            }
+        }
   </style>
 </head>
 <body>
 <!-- Header -->
 <header class="header">
-<div class="header-container">
+        <div class="header-content">
 <a href="index.html" class="logo">
-<div class="logo-icon">
-<img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
-</a>
-<span class="logo-text">CrossCheck</span>
-</div>
-<nav class="header-nav">
-<a href="index.html" class="nav-link">Accueil</a>
-<a href="archeologie.html" class="nav-link">Archéologie</a>
-<a href="science.html" class="nav-link">Science</a>
-<a href="histoire.html" class="nav-link">Histoire</a>
-<a href="apologetique.html" class="nav-link active">Apologétique</a>
-<a href="togo.html" class="nav-link">Togo</a>
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
+                <a href="articles.html" class="nav-link active">Articles</a>
+                <a href="ressources.html" class="nav-link">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
 </nav>
-<div class="header-actions">
-<!-- Navigation simplifiée -->
-</div>
+            <div class="search-container">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher..." class="search-input">
+                </div>
+            </div>
 </div>
 </header>
 
 <!-- Main Content -->
 <main class="main-content">
-<div class="content-container">
-<!-- Page Header -->
-<section class="page-header">
-<h1 class="page-title">Apologétique Chrétienne</h1>
-<p class="page-subtitle">Défense rationnelle de la foi chrétienne face aux objections contemporaines. Découvrez les arguments solides qui soutiennent la vérité du christianisme.</p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="content-wrapper">
+                <div style="margin-bottom: 2rem;">
+                    <a href="articles.html" style="color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                        ← Retour aux Articles
+                    </a>
+                </div>
+                <h1 class="hero-title">Apologétique Chrétienne</h1>
+                <p class="hero-subtitle">Défense rationnelle et scientifique de la foi chrétienne face aux défis intellectuels contemporains</p>
+            </div>
 </section>
 
-<!-- Articles Grid -->
-<section class="articles-grid">
-<a href="article-african-apologetics.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique Africaine</div>
-<h3 class="article-title">Apologétique Africaine : Introduction</h3>
-<p class="article-excerpt">Une exploration des défis et des réponses chrétiennes en Afrique, adaptée au contexte togolais et panafricain.</p>
-<div class="article-footer">
-<span>📅 01 Déc</span>
-<span>⏱️ 8 min</span>
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <div class="content-wrapper">
+                <div class="intro-content">
+                    <h2>Qu'est-ce que l'Apologétique ?</h2>
+                    <p>L'apologétique chrétienne est la discipline qui défend la foi chrétienne de manière rationnelle et scientifique. Elle répond aux objections intellectuelles et fournit des preuves solides de la vérité du christianisme.</p>
+                    <p>À CrossCheck, nous croyons que la foi chrétienne peut être défendue avec des arguments rationnels, des preuves historiques et des découvertes scientifiques. Notre approche combine rigueur intellectuelle et respect pour les questions légitimes.</p>
+                    <p>Nous nous concentrons sur les domaines clés de l'apologétique : l'existence de Dieu, la fiabilité des Évangiles, le problème du mal, et le dialogue interreligieux.</p>
+                </div>
+                <div class="intro-image"></div>
 </div>
-</div>
-</a>
+        </section>
 
-<a href="article-apologetique-togo.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Apologétique togolaise : Répondre aux défis de la foi en Afrique de l'Ouest</h3>
-<p class="article-excerpt">Défense de la foi chrétienne face aux défis spécifiques du contexte togolais : syncrétisme, islam, et scepticisme moderne.</p>
-<div class="article-footer">
-<span>📅 25 Nov</span>
-<span>⏱️ 14 min</span>
+        <!-- Topics Section -->
+        <section class="topics-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Domaines d'Apologétique</h2>
+                <div class="topics-grid">
+                    <div class="topic-card">
+                        <div class="topic-icon">🏛️</div>
+                        <h3 class="topic-title">Arguments Cosmologiques</h3>
+                        <p class="topic-description">Preuves de l'existence de Dieu basées sur l'origine de l'univers, le fine-tuning cosmologique et les constantes physiques.</p>
+                        <a href="article-big-bang.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<a href="article-thomas-aquinas.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Thomas_Aquinas_by_Justus_van_Gent.jpg/800px-Thomas_Aquinas_by_Justus_van_Gent.jpg');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">L'existence de Dieu : arguments rationnels</h3>
-<p class="article-excerpt">Exploration des preuves philosophiques et rationnelles de l'existence de Dieu, des arguments cosmologiques aux preuves morales.</p>
-<div class="article-footer">
-<span>📅 07 Déc</span>
-<span>⏱️ 8 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">📚</div>
+                        <h3 class="topic-title">Fiabilité des Évangiles</h3>
+                        <p class="topic-description">Analyse critique de l'historicité des Évangiles, de leur transmission et de leur fiabilité comme sources historiques.</p>
+                        <a href="article-gospel-reliability.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<a href="article-problem-evil.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Répondre au problème du mal</h3>
-<p class="article-excerpt">Comment la théologie chrétienne aborde-t-elle la question du mal et de la souffrance dans le monde ?</p>
-<div class="article-footer">
-<span>📅 30 Nov</span>
-<span>⏱️ 12 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">⚖️</div>
+                        <h3 class="topic-title">Problème du Mal</h3>
+                        <p class="topic-description">Réponses chrétiennes au problème du mal et de la souffrance, incluant les théodicées classiques et contemporaines.</p>
+                        <a href="article-problem-evil.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<a href="article-science-foi.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Science et foi : complémentaires ou contradictoires ?</h3>
-<p class="article-excerpt">Analyse des relations entre la science moderne et la foi chrétienne, de Galilée à nos jours.</p>
-<div class="article-footer">
-<span>📅 23 Nov</span>
-<span>⏱️ 10 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">🤝</div>
+                        <h3 class="topic-title">Dialogue Interreligieux</h3>
+                        <p class="topic-description">Approche chrétienne du dialogue avec les autres religions, basée sur le respect mutuel et la recherche de vérité.</p>
+                        <a href="article-dialogue-interreligieux.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<a href="article-gospel-reliability.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Fiabilité des Évangiles : preuves historiques</h3>
-<p class="article-excerpt">Les arguments historiques et textuels qui soutiennent la fiabilité des récits évangéliques.</p>
-<div class="article-footer">
-<span>📅 16 Nov</span>
-<span>⏱️ 14 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">🔬</div>
+                        <h3 class="topic-title">Science & Foi</h3>
+                        <p class="topic-description">Harmonie entre la science moderne et la foi chrétienne, incluant l'évolution, la cosmologie et la biologie.</p>
+                        <a href="article-science-foi.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<a href="article-exode-animisme-paralleles.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique Togolaise</div>
-<h3 class="article-title">Exode & Animisme : Parallèles</h3>
-<p class="article-excerpt">Libération, alliance et sortie de l'oppression : vers une apologétique contextuelle au Togo.</p>
-<div class="article-footer">
-<span>📅 01 Oct 2025</span>
-<span>⏱️ 12 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">🌍</div>
+                        <h3 class="topic-title">Apologétique Africaine</h3>
+                        <p class="topic-description">Défense de la foi chrétienne dans le contexte africain, incluant les traditions religieuses et culturelles locales.</p>
+                        <a href="article-african-apologetics.html" class="topic-link">En savoir plus →</a>
+                    </div>
 </div>
 </div>
-</a>
+        </section>
 
-<a href="article-resurrection-christ.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">La résurrection du Christ : fait historique ?</h3>
-<p class="article-excerpt">Examen des preuves historiques de la résurrection de Jésus-Christ et de ses implications.</p>
-<div class="article-footer">
-<span>📅 09 Nov</span>
-<span>⏱️ 11 min</span>
-</div>
-</div>
-</a>
+        <!-- Arguments Section -->
+        <section class="arguments-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Arguments Clés</h2>
+                <div class="arguments-grid">
+                    <div class="argument-card">
+                        <div class="argument-number">1</div>
+                        <h3 class="argument-title">Argument Cosmologique</h3>
+                        <p class="argument-description">L'univers a un commencement, donc il a une cause première qui est Dieu.</p>
+                    </div>
 
-<a href="article-dialogue-interreligieux.html" class="article-card fade-in-up" style="text-decoration: none; color: inherit;">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Dialogue interreligieux et apologétique</h3>
-<p class="article-excerpt">Comment défendre la foi chrétienne dans un contexte de pluralisme religieux et de dialogue.</p>
-<div class="article-footer">
-<span>📅 02 Nov</span>
-<span>⏱️ 9 min</span>
+                    <div class="argument-card">
+                        <div class="argument-number">2</div>
+                        <h3 class="argument-title">Argument du Fine-tuning</h3>
+                        <p class="argument-description">Les constantes physiques sont réglées avec une précision remarquable pour permettre la vie.</p>
+</div>
+
+                    <div class="argument-card">
+                        <div class="argument-number">3</div>
+                        <h3 class="argument-title">Argument Moral</h3>
+                        <p class="argument-description">L'existence de valeurs morales objectives nécessite un fondement transcendant.</p>
+</div>
+
+                    <div class="argument-card">
+                        <div class="argument-number">4</div>
+                        <h3 class="argument-title">Argument Historique</h3>
+                        <p class="argument-description">Les preuves historiques de la résurrection de Jésus-Christ sont solides et cohérentes.</p>
+</div>
+
+                    <div class="argument-card">
+                        <div class="argument-number">5</div>
+                        <h3 class="argument-title">Argument de la Conscience</h3>
+                        <p class="argument-description">L'existence de la conscience morale suggère un législateur moral transcendant.</p>
+</div>
+
+                    <div class="argument-card">
+                        <div class="argument-number">6</div>
+                        <h3 class="argument-title">Argument de l'Expérience</h3>
+                        <p class="argument-description">L'expérience religieuse authentique fournit une preuve personnelle de l'existence de Dieu.</p>
+                    </div>
 </div>
 </div>
-</a>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="resources-section">
+            <div class="content-wrapper">
+                <h2 class="resources-title">Ressources d'Apologétique</h2>
+                <p class="resources-subtitle">Explorez nos articles, vidéos et ressources pour approfondir votre compréhension de l'apologétique chrétienne</p>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📖</div>
+                        <h3 class="resource-title">Articles</h3>
+                        <p class="resource-description">Plus de 20 articles approfondis sur l'apologétique</p>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">🎥</div>
+                        <h3 class="resource-title">Vidéos</h3>
+                        <p class="resource-description">Conférences et débats apologétiques</p>
+</div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">📚</div>
+                        <h3 class="resource-title">Bibliographie</h3>
+                        <p class="resource-description">Livres recommandés par nos experts</p>
+</div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">💬</div>
+                        <h3 class="resource-title">Forum</h3>
+                        <p class="resource-description">Discussions avec la communauté</p>
+</div>
+</div>
+</div>
 </section>
-
-<!-- CTA Section -->
-<section class="cta-section">
-<h2 class="cta-title">Approfondissez Vos Arguments</h2>
-<p class="cta-description">Découvrez nos autres sections pour renforcer votre compréhension de la vérité biblique.</p>
-<div class="cta-buttons">
-<a href="archeologie.html" class="btn-cta-primary">Archéologie</a>
-<a href="science.html" class="btn-cta-secondary">Science & Foi</a>
-</div>
-</section>
-</div>
 </main>
 
 <script>
 // Header scroll effect
 window.addEventListener('scroll', () => {
 const header = document.querySelector('.header');
-if (window.scrollY > 50) {
-header.style.background = 'rgba(255, 255, 255, 0.98)';
-header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
 } else {
-header.style.background = 'rgba(255, 255, 255, 0.95)';
-header.style.boxShadow = 'none';
-}
-});
+                header.classList.remove('scrolled');
+            }
+        });
 
-// Intersection Observer for animations
-const observerOptions = {
-threshold: 0.1,
-rootMargin: '0px 0px -50px 0px'
-};
+        // Card interactions
+        document.querySelectorAll('.topic-card, .argument-card, .resource-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
 
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add('fade-in-up');
-}
-});
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.article-card, .page-header').forEach(el => {
-observer.observe(el);
-});
-
-// Articles data
-const articles = {
-'apologetique_togo': {
-category: "Apologétique",
-title: "Apologétique togolaise : Répondre aux défis de la foi en Afrique de l'Ouest",
-content: `
-<p>L'apologétique au Togo doit répondre aux défis spécifiques du contexte ouest-africain, notamment le syncrétisme, l'islam, et le scepticisme moderne.</p>
-
-<h2>Défis spécifiques au Togo</h2>
-<p>Le contexte togolais présente des défis uniques pour l'apologétique chrétienne :</p>
-
-<h3>1. Le syncrétisme animiste</h3>
-<p>Le mélange entre christianisme et traditions animistes Éwé crée des confusions doctrinales qui nécessitent une clarification basée sur l'Écriture.</p>
-
-<h3>2. L'islam</h3>
-<p>Avec environ 20% de musulmans au Togo, l'apologétique doit aborder les objections islamiques à la Trinité et à la divinité du Christ.</p>
-
-<h3>3. Le scepticisme moderne</h3>
-<p>Les jeunes togolais éduqués confrontent souvent un scepticisme qui remet en question la vérité objective du christianisme.</p>
-
-<h2>Réponses apologétiques</h2>
-<p>Une apologétique togolaise efficace doit :</p>
-<ul>
-<li><strong>Respecter la culture</strong> tout en défendant la vérité biblique</li>
-<li><strong>Utiliser des exemples locaux</strong> pour illustrer les arguments</li>
-<li><strong>Intégrer la dimension communautaire</strong> de la foi africaine</li>
-</ul>
-
-<blockquote>"Soyez toujours prêts à rendre raison de l'espérance qui est en vous." – 1 Pierre 3:15</blockquote>
-`
-},
-aquinas: {
-category: "Apologétique",
-title: "L'existence de Dieu : arguments rationnels",
-content: `
-<p>L'apologétique chrétienne offre des arguments rationnels solides pour défendre l'existence de Dieu. Ces preuves, développées par des penseurs comme Thomas d'Aquin, restent pertinentes aujourd'hui.</p>
-<h2>Les cinq voies de Thomas d'Aquin</h2>
-<p>Thomas d'Aquin a formulé cinq arguments rationnels pour l'existence de Dieu :</p>
-<ul>
-<li><strong>Le mouvement</strong> : Tout mouvement nécessite un premier moteur</li>
-<li><strong>La causalité</strong> : Toute cause a une cause antérieure, jusqu'à une cause première</li>
-<li><strong>La contingence</strong> : Les êtres contingents nécessitent un être nécessaire</li>
-<li><strong>La perfection</strong> : Les degrés de perfection supposent un être parfait</li>
-<li><strong>Le dessein</strong> : L'ordre de l'univers suggère un concepteur intelligent</li>
-</ul>
-<h3>L'argument cosmologique</h3>
-<p>Tout ce qui commence d'exister a une cause. L'univers a commencé d'exister (Big Bang). Donc l'univers a une cause. Cette cause doit être hors du temps et de l'espace, c'est-à-dire Dieu.</p>
-<blockquote>"Au commencement, Dieu créa les cieux et la terre." – Genèse 1:1</blockquote>
-<h2>L'argument moral</h2>
-<p>Si Dieu n'existe pas, alors les valeurs morales objectives n'existent pas. Mais les valeurs morales objectives existent. Donc Dieu existe.</p>
-<h3>Conclusion</h3>
-<p>Ces arguments rationnels, combinés à l'expérience personnelle et aux preuves historiques, forment une base solide pour la foi chrétienne. Comme le dit 1 Pierre 3:15 : <em>"Sanctifiez dans vos cœurs le Christ Seigneur, toujours prêts à la défense contre quiconque vous demande de rendre raison de l'espérance qui est en vous."</em></p>
-`
-},
-'african-apologetics': {
-category: "Apologétique Africaine",
-title: "Apologétique Africaine : Introduction",
-content: `
-<p><strong>Adapté de The Gospel Coalition Africa</strong> • 01 Déc 2024 • 8 min de lecture</p>
-<p>En Afrique, l'apologétique défend la foi face au postmodernisme et à l'évangile de la prospérité. Au Togo, où le christianisme croît rapidement, elle répond aux défis comme le syncrétisme animiste et les influences modernes.</p>
-
-<h2>Défis apologétiques en Afrique</h2>
-<p>L'Afrique contemporaine présente des défis uniques pour l'apologétique chrétienne :</p>
-
-<h3>1. Le postmodernisme</h3>
-<p>Le postmodernisme rend la foi "optionnelle" pour les jeunes africains éduqués à l'étranger. Au Togo, les étudiants de l'Université de Lomé confrontent souvent un scepticisme qui remet en question la vérité objective du christianisme.</p>
-
-<h3>2. L'évangile de la prospérité</h3>
-<p>L'évangile de la prospérité, populaire dans les églises pentecôtistes de Lomé, déforme la doctrine biblique en promettant richesse matérielle comme signe de bénédiction divine. Cette déformation nécessite une réponse apologétique rigoureuse.</p>
-
-<h3>3. Le syncrétisme</h3>
-<p>Au Togo, le syncrétisme entre christianisme et traditions animistes (notamment Éwé) crée des confusions doctrinales qui exigent une clarification apologétique basée sur l'Écriture.</p>
-
-<h2>Approche apologétique holistique</h2>
-<p>L'apologétique africaine efficace doit être holistique, touchant :</p>
-<ul>
-<li><strong>La tête</strong> : Arguments rationnels et intellectuels</li>
-<li><strong>Le cœur</strong> : Dimension émotionnelle et spirituelle</li>
-<li><strong>Les mains</strong> : Application pratique et transformation sociale</li>
-</ul>
-
-<h3>Exemples d'initiatives panafricaines</h3>
-<p>Des initiatives comme <em>Apologetics Kenya</em> ou <em>Ratio Christi</em> en Afrique du Sud montrent comment l'apologétique peut être adaptée aux contextes locaux tout en maintenant une fidélité biblique.</p>
-
-<h2>Application au contexte togolais</h2>
-<p>Au Togo, l'apologétique peut s'exprimer à travers :</p>
-<ul>
-<li><strong>Débats universitaires</strong> : Confronter le scepticisme dans les universités comme l'UL</li>
-<li><strong>Formation pastorale</strong> : Équiper les pasteurs pour répondre aux défis contemporains</li>
-<li><strong>Média chrétien</strong> : Utiliser les plateformes numériques pour diffuser des contenus apologétiques</li>
-</ul>
-
-<blockquote>"Soyez toujours prêts à rendre raison de l'espérance qui est en vous, et cela avec douceur et respect." – 1 Pierre 3:15</blockquote>
-
-<h2>Conclusion</h2>
-<p>L'apologétique africaine, adaptée au Togo, offre une défense solide de la foi chrétienne face aux défis contemporains. Elle combine rigueur intellectuelle, sensibilité culturelle et fidélité biblique pour une approche holistique de la défense de la foi.</p>
-
-<p><strong>Source originale :</strong> <a href="https://africa.thegospelcoalition.org/article/african-apologetics-introduction/" style="color: var(--accent); text-decoration: none;">The Gospel Coalition Africa - African Apologetics: An Introduction</a></p>
-`
-},
-'problem-evil': {
-category: "Apologétique",
-title: "Répondre au problème du mal",
-content: `
-<p>Le problème du mal constitue l'une des objections les plus puissantes contre l'existence d'un Dieu bon et tout-puissant. Comment la théologie chrétienne aborde-t-elle cette question ?</p>
-
-<h2>Formulation du problème</h2>
-<p>Le problème du mal peut être formulé ainsi : Si Dieu est tout-puissant, tout-sachant et tout-bon, pourquoi permet-il le mal et la souffrance ?</p>
-
-<h3>Types de mal</h3>
-<ul>
-<li><strong>Mal moral</strong> : Actions mauvaises commises par des êtres libres</li>
-<li><strong>Mal naturel</strong> : Catastrophes naturelles, maladies, etc.</li>
-</ul>
-
-<h2>Réponses apologétiques</h2>
-
-<h3>1. L'argument du libre arbitre</h3>
-<p>Le mal moral est le prix nécessaire du libre arbitre. Un monde sans liberté serait un monde sans amour véritable.</p>
-
-<h3>2. La théodicée du soul-making</h3>
-<p>La souffrance peut contribuer au développement du caractère et de la vertu (Romains 5:3-4).</p>
-
-<h3>3. La perspective eschatologique</h3>
-<p>Dieu promet de rédimer toute souffrance et de faire concourir toutes choses au bien (Romains 8:28).</p>
-
-<blockquote>"Nous savons, du reste, que toutes choses concourent au bien de ceux qui aiment Dieu." – Romains 8:28</blockquote>
-
-<h2>Conclusion</h2>
-<p>Le problème du mal, bien que difficile, ne réfute pas l'existence de Dieu. Il invite plutôt à une compréhension plus profonde de la souveraineté divine et de la destinée humaine.</p>
-`
-},
-'science-faith': {
-category: "Apologétique",
-title: "Science et foi : complémentaires ou contradictoires ?",
-content: `
-<p>La relation entre science et foi chrétienne a souvent été présentée comme conflictuelle, mais cette vision simpliste ne résiste pas à l'analyse historique et philosophique.</p>
-
-<h2>Histoire de la relation science-foi</h2>
-<p>Contrairement aux idées reçues, le christianisme a souvent été un moteur du développement scientifique :</p>
-<ul>
-<li><strong>Moyen Âge</strong> : Les universités chrétiennes ont favorisé l'étude de la nature</li>
-<li><strong>Renaissance</strong> : Copernic, Kepler et Newton étaient des chrétiens convaincus</li>
-<li><strong>Époque moderne</strong> : Pasteur, Mendel, et d'autres scientifiques chrétiens</li>
-</ul>
-
-<h2>Perspectives contemporaines</h2>
-
-<h3>1. Science et foi : domaines complémentaires</h3>
-<p>La science répond au "comment", la théologie au "pourquoi". Elles explorent des aspects différents de la réalité.</p>
-
-<h3>2. La complexité irréductible</h3>
-<p>Les découvertes en biologie moléculaire révèlent des systèmes d'une complexité telle qu'ils suggèrent un design intelligent.</p>
-
-<h3>3. Le réglage fin de l'univers</h3>
-<p>Les constantes physiques sont réglées avec une précision extraordinaire pour permettre l'existence de la vie.</p>
-
-<h2>Exemples d'harmonie</h2>
-<p>De nombreux domaines montrent l'harmonie entre science et foi :</p>
-<ul>
-<li><strong>Cosmologie</strong> : Le Big Bang corrobore "Au commencement, Dieu créa..."</li>
-<li><strong>Biologie</strong> : L'information génétique suggère un concepteur intelligent</li>
-<li><strong>Physique</strong> : Les lois de la nature témoignent d'un ordre divin</li>
-</ul>
-
-<blockquote>"Les cieux racontent la gloire de Dieu, et l'étendue manifeste l'œuvre de ses mains." – Psaume 19:1</blockquote>
-
-<h2>Conclusion</h2>
-<p>Science et foi chrétienne sont complémentaires, non contradictoires. Elles offrent ensemble une vision plus complète de la réalité.</p>
-`
-},
-'gospel-reliability': {
-category: "Apologétique",
-title: "Fiabilité des Évangiles : preuves historiques",
-content: `
-<p>La fiabilité historique des Évangiles constitue un pilier fondamental de l'apologétique chrétienne. Quels sont les arguments qui soutiennent leur authenticité ?</p>
-
-<h2>Preuves textuelles</h2>
-
-<h3>1. Manuscrits anciens</h3>
-<p>Les Évangiles bénéficient d'une transmission textuelle exceptionnelle :</p>
-<ul>
-<li><strong>Plus de 5 800 manuscrits grecs</strong> du Nouveau Testament</li>
-<li><strong>Découvertes récentes</strong> : P52 (fragment de Jean daté de 125-175)</li>
-<li><strong>Citations patristiques</strong> : Plus de 36 000 citations dans les Pères de l'Église</li>
-</ul>
-
-<h3>2. Proximité temporelle</h3>
-<p>Les Évangiles ont été écrits très tôt après les événements qu'ils rapportent, permettant une vérification par des témoins oculaires.</p>
-
-<h2>Preuves historiques</h2>
-
-<h3>1. Cohérence avec l'histoire séculière</h3>
-<p>Les détails géographiques, politiques et culturels des Évangiles correspondent aux données archéologiques et historiques.</p>
-
-<h3>2. Critères d'authenticité</h3>
-<ul>
-<li><strong>Attestation multiple</strong> : Les événements sont rapportés par plusieurs sources</li>
-<li><strong>Critère d'embarras</strong> : Les auteurs incluent des détails qui les embarrassent</li>
-<li><strong>Critère de dissimilarité</strong> : Les enseignements de Jésus sont uniques</li>
-</ul>
-
-<h2>Preuves archéologiques</h2>
-<p>L'archéologie confirme de nombreux détails des Évangiles :</p>
-<ul>
-<li><strong>Piscine de Béthesda</strong> (Jean 5:2)</li>
-<li><strong>Pilier de Pilate</strong> à Césarée</li>
-<li><strong>Inscription de Tibère</strong> mentionnant Pilate</li>
-</ul>
-
-<blockquote>"Ces choses ont été écrites afin que vous croyiez que Jésus est le Christ, le Fils de Dieu, et qu'en croyant vous ayez la vie en son nom." – Jean 20:31</blockquote>
-
-<h2>Conclusion</h2>
-<p>Les Évangiles présentent toutes les caractéristiques de documents historiques fiables. Leur authenticité est solidement étayée par les preuves textuelles, historiques et archéologiques.</p>
-`
-}
-};
-
-function openArticle(id) {
-const article = articles[id];
-if (article) {
-// Create modal
-const modal = document.createElement('div');
-modal.style.cssText = `
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: rgba(0,0,0,0.8);
-z-index: 2000;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 2rem;
-`;
-
-modal.innerHTML = `
-<div style="
-background: white;
-border-radius: 16px;
-max-width: 800px;
-max-height: 90vh;
-overflow-y: auto;
-padding: 2rem;
-position: relative;
-">
-<button onclick="this.closest('.modal').remove()" style="
-position: absolute;
-top: 1rem;
-right: 1rem;
-background: #f3f4f6;
-border: none;
-border-radius: 50%;
-width: 2rem;
-height: 2rem;
-cursor: pointer;
-font-size: 1.2rem;
-">×</button>
-<h1 style="margin-bottom: 1rem; color: var(--primary);">${article.title}</h1>
-<div style="line-height: 1.7; color: var(--text);">${article.content}</div>
-</div>
-`;
-
-modal.className = 'modal';
-document.body.appendChild(modal);
-
-// Close on escape key
-modal.addEventListener('keydown', (e) => {
-if (e.key === 'Escape') modal.remove();
-});
-
-// Close on background click
-modal.addEventListener('click', (e) => {
-if (e.target === modal) modal.remove();
-});
-
-// Focus for keyboard navigation
-modal.querySelector('button').focus();
-}
-}
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 </script>
 </body>
 </html>

@@ -1,0 +1,90 @@
+{
+  "name": "CrossCheck - Foi, Faits et Histoire",
+  "short_name": "CrossCheck",
+  "description": "Explorez les preuves de la vérité biblique à travers l'archéologie, la science, l'histoire et l'apologétique.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["education", "religion", "reference"],
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1280&h=720&fit=crop",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Page d'accueil CrossCheck"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=750&h=1334&fit=crop",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Interface mobile CrossCheck"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Archéologie",
+      "short_name": "Archéologie",
+      "description": "Découvertes archéologiques bibliques",
+      "url": "/archeologie.html",
+      "icons": [
+        {
+          "src": "https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Science & Foi",
+      "short_name": "Science",
+      "description": "Science et foi chrétienne",
+      "url": "/science.html",
+      "icons": [
+        {
+          "src": "https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Apologétique",
+      "short_name": "Apologétique",
+      "description": "Défense de la foi chrétienne",
+      "url": "/apologetique.html",
+      "icons": [
+        {
+          "src": "https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
+}

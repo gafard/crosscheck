@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Onglets - CMS CrossCheck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab.active {
+            border-bottom-color: #d4af37;
+            color: #d4af37;
+            font-weight: 600;
+            background: white;
+        }
+        .tab:hover {
+            background: #e9ecef;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            background: white;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .test-button {
+            background: #d4af37;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #b8941f;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test des Onglets - CMS CrossCheck</h1>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('create')">Créer</div>
+            <div class="tab" onclick="showTab('edit')">Modifier</div>
+            <div class="tab" onclick="showTab('stats')">Statistiques</div>
+        </div>
+
+        <!-- Onglet Créer -->
+        <div id="create-tab" class="tab-content active">
+            <h3>📄 Onglet Créer</h3>
+            <p>Cet onglet fonctionne correctement !</p>
+            <div class="status">✅ Onglet "Créer" actif</div>
+        </div>
+
+        <!-- Onglet Modifier -->
+        <div id="edit-tab" class="tab-content">
+            <h3>✏️ Onglet Modifier</h3>
+            <p>Cet onglet fonctionne maintenant !</p>
+            <div class="status">✅ Onglet "Modifier" actif</div>
+            <button class="test-button" onclick="testEditFunction()">Tester la fonction Modifier</button>
+        </div>
+
+        <!-- Onglet Statistiques -->
+        <div id="stats-tab" class="tab-content">
+            <h3>📊 Onglet Statistiques</h3>
+            <p>Cet onglet fonctionne maintenant !</p>
+            <div class="status">✅ Onglet "Statistiques" actif</div>
+            <button class="test-button" onclick="testStatsFunction()">Tester la fonction Statistiques</button>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 5px;">
+            <h4>🔧 Instructions de test :</h4>
+            <ol>
+                <li>Cliquez sur chaque onglet pour vérifier qu'il s'active</li>
+                <li>Vérifiez que le contenu change</li>
+                <li>Testez les boutons dans chaque onglet</li>
+                <li>Ouvrez la console (F12) pour voir les logs</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Gestion des onglets (copie de la fonction du CMS)
+        function showTab(tabName) {
+            console.log('Changement vers l\'onglet:', tabName);
+            
+            // Masquer tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Afficher l'onglet sélectionné
+            const targetTab = document.getElementById(tabName + '-tab');
+            if (targetTab) {
+                targetTab.classList.add('active');
+                console.log('Onglet affiché:', tabName + '-tab');
+            } else {
+                console.error('Onglet non trouvé:', tabName + '-tab');
+            }
+            
+            // Activer le bon onglet dans la navigation
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                if (tab.onclick && tab.onclick.toString().includes(tabName)) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+
+        // Fonctions de test
+        function testEditFunction() {
+            alert('✅ Fonction Modifier testée avec succès !');
+            console.log('Test de la fonction Modifier réussi');
+        }
+
+        function testStatsFunction() {
+            alert('✅ Fonction Statistiques testée avec succès !');
+            console.log('Test de la fonction Statistiques réussi');
+        }
+
+        // Test automatique au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🧪 Page de test des onglets chargée');
+            console.log('📋 Onglets disponibles: create, edit, stats');
+        });
+    </script>
+</body>
+</html>

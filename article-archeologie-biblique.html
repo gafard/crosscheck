@@ -3,189 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archéologie Biblique : Découvertes et Preuves - CrossCheck</title>
-    <meta name="description" content="Découvrez les découvertes archéologiques qui confirment l'historicité des récits bibliques.">
+    <title>Découvertes Archéologiques Bibliques - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1e3a8a;
-            --secondary: #2563eb;
-            --accent: #3b82f6;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg: #ffffff;
-            --bg-light: #f8fafc;
-            --bg-dark: #f1f5f9;
-            --border: #e2e8f0;
-            --success: #059669;
-            --warning: #d97706;
-            --error: #dc2626;
-            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
         }
 
-        /* Header */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header Premium */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
-        .header-container {
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 70px;
+            height: 80px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
+            gap: 12px;
             text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 24px;
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--gradient-primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            
+            
+            transition: all 0.3s ease;
         }
 
-        .header-nav {
+        .nav {
             display: flex;
             gap: 2rem;
         }
 
         .nav-link {
+            color: var(--primary);
             text-decoration: none;
-            color: var(--text);
             font-weight: 500;
-            transition: color 0.3s ease;
             position: relative;
+            transition: all 0.3s ease;
         }
 
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .nav-link.active {
-            color: var(--primary);
-        }
-
-        .nav-link.active::after {
-}
-
-.mobile-menu-toggle {
-display: none;
-background: none;
-border: none;
-font-size: 1.5rem;
-color: var(--primary);
-cursor: pointer;
-padding: 0.5rem;
-}
-
-.mobile-menu {
-display: none;
-position: fixed;
-top: 70px;
-left: 0;
-right: 0;
-background: white;
-border-bottom: 1px solid var(--border);
-box-shadow: var(--shadow-lg);
-z-index: 999;
-padding: 1rem 2rem;
-}
-
-.mobile-menu.active {
-display: block;
-}
-
-.mobile-nav {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-}
-
-.mobile-nav .nav-link {
-padding: 0.75rem 0;
-border-bottom: 1px solid var(--border);
-}            content: '';
+        .nav-link::after {
+            content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -5px;
             left: 0;
-            right: 0;
+            width: 0;
             height: 2px;
-            background: var(--primary);
-            border-radius: 1px;
+            background: black;
+            transition: width 0.3s ease;
         }
 
-        .back-btn {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        .nav-link:hover::after {
+            width: 100%;
         }
 
-        .back-btn:hover {
-            transform: translateY(-2px);
-        }
+
 
         /* Main Content */
         .main-content {
-            margin-top: 70px;
-            min-height: calc(100vh - 70px);
+            padding-top: 80px;
         }
 
         /* Article Header */
         .article-header {
-            background: var(--gradient-primary);
-            color: white;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             padding: 4rem 0;
             position: relative;
             overflow: hidden;
@@ -198,275 +130,237 @@ border-bottom: 1px solid var(--border);
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1200&h=600&fit=crop') center/cover;
-            opacity: 0.4;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
             z-index: 1;
         }
 
-        .article-header-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
         .article-category {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 14px;
             font-weight: 600;
             margin-bottom: 1rem;
-            display: inline-block;
         }
 
         .article-title {
-            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            background: black;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .article-meta {
             display: flex;
             gap: 2rem;
-            font-size: 1rem;
-            opacity: 0.9;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
+            border-radius: 16px;
+            margin-top: 2rem;
         }
 
         /* Article Content */
         .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
+            padding: 4rem 0;
         }
 
-        .article-body {
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 2rem;
-        }
-
-        .article-body h2 {
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem 0;
             color: var(--primary);
-            font-size: 1.75rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
             margin: 2rem 0 1rem 0;
-            font-weight: 600;
-            letter-spacing: -0.025em;
-        }
-
-        .article-body h3 {
-            color: var(--secondary);
-            font-size: 1.25rem;
-            margin: 1.5rem 0 1rem 0;
-            font-weight: 600;
-            letter-spacing: -0.025em;
-        }
-
-        .article-body p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body ul {
-            margin: 1rem 0 1.5rem 2rem;
-        }
-
-        .article-body li {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body blockquote {
-            background: var(--bg-dark);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .article-body a {
-            text-decoration: none;            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .article-body a:hover {
-            
-        }
-
-        .article-body strong {
             color: var(--primary);
-            font-weight: 700;
         }
 
-        /* Image Gallery */
-        .article-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+        .article-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 2rem;
             margin: 2rem 0;
-        }
-
-        .article-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .article-image:hover {
-            transform: translateY(-4px);
-        }
-
-        .article-image img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .image-caption {
-            padding: 1rem;
-            background: var(--bg-light);
-            font-size: 0.9rem;
-            color: var(--text-light);
-            text-align: center;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--secondary);
         }
 
         /* Related Articles */
-        .related-articles {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
+        .related-section {
+            background: var(--light);
+            padding: 4rem 0;
         }
 
         .related-title {
-            color: var(--primary);
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
             text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
         }
 
         .related-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .related-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            background: white;
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
             text-decoration: none;
             color: inherit;
         }
 
         .related-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .related-card-image {
-            height: 150px;
+        .related-image {
+            height: 200px;
             background-size: cover;
             background-position: center;
         }
 
         .related-card-content {
-            padding: 1rem;
+            padding: 1.5rem;
         }
 
         .related-card-title {
+            font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
         .related-card-excerpt {
+            color: var(--secondary);
             font-size: 0.9rem;
-            color: var(--text-light);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        /* Footer */
-        .footer {
-            background: var(--primary);
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
+            background: black;
             color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 12px 20px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-.header-nav {
-  display: none;
-}
+        .back-button:hover {
+            transform: translateY(-50%) translateX(8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            background: #333;
+        }
 
-.mobile-menu-toggle {
-  display: block;
-}
-            .header-nav {
+        .back-button::before {
+            content: '←';
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Mobile Back Button */
+        @media (max-width: 768px) {
+            .back-button {
+                position: fixed;
+                top: auto;
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 14px 24px;
+                font-size: 16px;
+                border-radius: 25px;
+            }
+
+            .back-button:hover {
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .nav {
                 display: none;
             }
 
             .article-title {
-                font-size: 1.75rem;
+                font-size: 2.5rem;
+            }
+
+            .content-wrapper {
+                padding: 0 1rem;
             }
 
             .article-meta {
                 flex-direction: column;
                 gap: 0.5rem;
-            }
-
-            .article-body {
-                padding: 2rem 1.5rem;
-            }
-
-            .article-body h2 {
-                font-size: 1.25rem;
-            }
-
-            .article-body h3 {
-                font-size: 1.25rem;
-            }
-
-            .article-images {
-                grid-template-columns: 1fr;
-            }
-
-            .related-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .article-header {
-                padding: 2rem 0;
-            }
-
-            .article-title {
-                font-size: 1.75rem;
-            }
-
-            .article-body {
-                padding: 1.5rem 1rem;
-            }
-
-            .article-content {
-                padding: 1.5rem 0.5rem;
             }
         }
     </style>
@@ -474,148 +368,172 @@ border-bottom: 1px solid var(--border);
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-container">
+        <div class="header-content">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
-                </div>
-                <span class="logo-text">CrossCheck</span>
-            <nav class="header-nav">
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <a href="archeologie.html" class="nav-link active">Archéologie</a>
-                <a href="science.html" class="nav-link">Science</a>
-                <a href="histoire.html" class="nav-link">Histoire</a>
-                <a href="apologetique.html" class="nav-link">Apologétique</a>
-                <a href="togo.html" class="nav-link">Togo</a>
+                <a href="articles.html" class="nav-link">Articles</a>
+                <a href="ressources.html" class="nav-link">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
             </nav>
-<button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>            <a href="archeologie.html" class="back-btn">
-                ← Retour aux articles
+            <a href="#" class="cta-button">Commencer</a>
+        </div>
     </header>
-    <!-- Back Button -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
-        <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">
-            ← Retour aux articles
-    </div><!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<nav class="mobile-nav">
-<a href="index.html" class="nav-link">Accueil</a>
-<a href="archeologie.html" class="nav-link">Archéologie</a>
-<a href="science.html" class="nav-link">Science</a>
-<a href="histoire.html" class="nav-link">Histoire</a>
-<a href="apologetique.html" class="nav-link">Apologétique</a>
-<a href="togo.html" class="nav-link">Togo</a>
-</nav>
+
     <!-- Main Content -->
     <main class="main-content">
         <!-- Article Header -->
         <section class="article-header">
-            <div class="article-header-content">
-                <div class="article-category">Archéologie Biblique</div>
-                <h1 class="article-title">Archéologie Biblique : Découvertes et Preuves</h1>
+            <div class="content-wrapper">
+                <div class="article-category">Archéologie</div>
+                <h1 class="article-title">Découvertes Archéologiques Bibliques</h1>
                 <div class="article-meta">
-                    <span>📅 15 Décembre 2024</span>
-                    <span>⏱️ 12 min de lecture</span>
-                    <span>🏛️ Découvertes archéologiques</span>
+                    <span>Par Rédaction</span>
+                    <span>18 Janvier 2024</span>
+                    <span>15 min de lecture</span>
                 </div>
+                <div class="article-image"></div>
+            </div>
         </section>
 
         <!-- Article Content -->
         <section class="article-content">
-            <article class="article-body">
-                <p>L'archéologie biblique continue de révéler des découvertes fascinantes qui confirment l'historicité des récits bibliques. Ces découvertes offrent des preuves tangibles de l'exactitude historique des Écritures.</p>
+            <div class="content-wrapper">
+                <p>L'archéologie biblique a révolutionné notre compréhension de l'historicité des récits bibliques. Depuis plus d'un siècle, les découvertes archéologiques ont fourni des preuves remarquables qui confirment l'exactitude historique de nombreux événements et personnages mentionnés dans la Bible.</p>
 
-                <!-- Images d'illustration -->
-                <div class="article-images">
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Fouilles archéologiques">
-                        <div class="image-caption">Fouilles archéologiques en cours au Proche-Orient</div>
-                    </div>
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&h=300&fit=crop" alt="Artéfacts bibliques">
-                        <div class="image-caption">Artéfacts découverts confirmant les récits bibliques</div>
-                    </div>
-                </div>
+                <h2>Découvertes Majeures</h2>
 
-                <h2>Découvertes majeures récentes</h2>
-                <p>Les dernières décennies ont été marquées par des découvertes archéologiques exceptionnelles qui éclairent notre compréhension de l'histoire biblique.</p>
+                <h3>La Stèle de Tel Dan</h3>
 
-                <h3>1. La stèle de Tel Dan</h3>
-                <p>Découverte en 1993, cette stèle mentionne la "maison de David", fournissant la première preuve archéologique extrabiblique de l'existence du roi David.</p>
+                <p>Découverte en 1993, cette stèle mentionne la "maison de David", fournissant la première preuve archéologique extrabiblique de l'existence du roi David. Cette découverte a été cruciale pour confirmer l'historicité de la dynastie davidique.</p>
 
-                <h3>2. L'inscription de Pilate</h3>
-                <p>Découverte à Césarée en 1961, cette inscription confirme l'existence historique de Ponce Pilate, mentionné dans les Évangiles.</p>
+                <h3>L'Inscription de Mesha</h3>
 
-                <!-- Image illustrative -->
-                <div class="article-images">
-                    <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&h=300&fit=crop" alt="Inscription de Pilate">
-                        <div class="image-caption">Inscription de Pilate découverte à Césarée</div>
-                    </div>
-                </div>
+                <p>Cette stèle moabite du IXe siècle av. J.-C. mentionne Omri, roi d'Israël, confirmant les récits bibliques concernant les relations entre Israël et Moab.</p>
 
-                <h2>Sites archéologiques confirmant la Bible</h2>
-                <p>De nombreux sites mentionnés dans la Bible ont été identifiés et fouillés, révélant une correspondance remarquable entre les récits bibliques et les découvertes archéologiques.</p>
+                <h3>Les Manuscrits de la Mer Morte</h3>
+
+                <p>Découverts entre 1947 et 1956, ces manuscrits ont fourni les plus anciens textes bibliques connus, confirmant l'exactitude de la transmission textuelle de la Bible sur plus de 2000 ans.</p>
+
+                <h2>Confirmation de l'Historicité</h2>
+
+                <h3>Personnages Bibliques</h3>
 
                 <ul>
-                    <li><strong>Jéricho</strong> : Murs effondrés confirmant Josué 6</li>
-                    <li><strong>Hazor</strong> : Destruction datée de l'époque de Josué</li>
-                    <li><strong>Lachis</strong> : Correspondance avec les récits de 2 Rois</li>
-                    <li><strong>Megiddo</strong> : Palais de Salomon identifié</li>
+                    <li><strong>David :</strong> Confirmé par la stèle de Tel Dan</li>
+                    <li><strong>Omri :</strong> Mentionné dans l'inscription de Mesha</li>
+                    <li><strong>Ponce Pilate :</strong> Confirmé par l'inscription de Césarée</li>
+                    <li><strong>Caïphe :</strong> Ossuaire découvert à Jérusalem</li>
                 </ul>
 
-                <blockquote>"L'archéologie ne peut pas prouver que la Bible est la Parole de Dieu, mais elle peut confirmer que la Bible est un document historique fiable." – Dr. Randall Price</blockquote>
+                <h3>Événements Historiques</h3>
 
-                <h2>Méthodologie archéologique</h2>
-                <p>L'archéologie biblique utilise des méthodes scientifiques rigoureuses pour étudier les sites et artefacts liés aux récits bibliques.</p>
+                <p>L'archéologie a confirmé de nombreux événements bibliques, notamment :</p>
 
-                <h3>Techniques modernes</h3>
                 <ul>
-                    <li><strong>Datation au carbone 14</strong> : Pour déterminer l'âge des artefacts organiques</li>
-                    <li><strong>Analyse de la céramique</strong> : Pour dater les niveaux archéologiques</li>
-                    <li><strong>Géoradar</strong> : Pour explorer sans creuser</li>
-                    <li><strong>Photogrammétrie</strong> : Pour documenter précisément les découvertes</li>
+                    <li>La destruction de Jérusalem en 586 av. J.-C.</li>
+                    <li>L'exil babylonien</li>
+                    <li>La reconstruction du Temple</li>
+                    <li>La crucifixion de Jésus</li>
+                </ul>
+
+                <h2>Découvertes Récents</h2>
+
+                <h3>L'Inscription de Pilate</h3>
+
+                <p>Découverte en 1961 à Césarée, cette inscription confirme l'existence de Ponce Pilate comme préfet de Judée, exactement comme décrit dans les Évangiles.</p>
+
+                <h3>L'Ossuaire de Jacques</h3>
+
+                <p>Cet ossuaire du Ier siècle porte l'inscription "Jacques, fils de Joseph, frère de Jésus", fournissant une preuve archéologique de l'existence de Jésus et de sa famille.</p>
+
+                <h2>Implications pour la Foi</h2>
+
+                <blockquote>
+                    "L'archéologie ne peut pas prouver la divinité de Jésus, mais elle peut et confirme l'historicité des récits bibliques."
+                </blockquote>
+
+                <p>Ces découvertes archéologiques renforcent la crédibilité historique de la Bible et fournissent un fondement solide pour la foi chrétienne. Elles démontrent que les récits bibliques ne sont pas des légendes, mais des témoignages historiques fiables.</p>
+
+                <h3>L'Importance de l'Archéologie</h3>
+
+                <p>L'archéologie biblique joue un rôle crucial dans l'apologétique chrétienne en :</p>
+
+                <ul>
+                    <li>Confirmant l'historicité des récits bibliques</li>
+                    <li>Fournissant le contexte culturel et historique</li>
+                    <li>Réfutant les critiques sceptiques</li>
+                    <li>Renforçant la confiance dans la fiabilité de la Bible</li>
                 </ul>
 
                 <h2>Conclusion</h2>
-                <p>L'archéologie biblique continue de fournir des preuves solides de l'historicité des récits bibliques. Chaque nouvelle découverte renforce notre confiance dans l'exactitude historique des Écritures et ouvre de nouvelles perspectives sur la compréhension du monde biblique.</p>
-            </article>
 
-            <!-- Related Articles -->
-            <section class="related-articles">
-                <h2 class="related-title">Articles connexes</h2>
+                <p>Les découvertes archéologiques bibliques continuent de confirmer l'exactitude historique de la Bible. Chaque nouvelle découverte renforce notre compréhension du monde biblique et confirme que les récits bibliques sont ancrés dans l'histoire réelle.</p>
+
+                <p>Pour le chrétien, ces découvertes archéologiques ne sont pas seulement des curiosités historiques, mais des confirmations de la fiabilité de la Parole de Dieu et de la véracité de la foi chrétienne.</p>
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        <section class="related-section">
+            <div class="content-wrapper">
+                <h2 class="related-title">Articles Connexes</h2>
                 <div class="related-grid">
-                    <a href="article-african-apologetics.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop');"></a>
+                    <a href="article-jericho.html" class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
                         <div class="related-card-content">
-                            <h3 class="related-card-title">Apologétique Africaine</h3>
-                            <p class="related-card-excerpt">Introduction à l'apologétique en Afrique</p>
+                            <h3 class="related-card-title">Les Murs de Jéricho</h3>
+                            <p class="related-card-excerpt">Découvertes archéologiques confirmant la conquête de Jéricho par Josué.</p>
                         </div>
-                    </div>
-                    <a href="article-thomas-aquinas.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Thomas_Aquinas_by_Justus_van_Gent.jpg/400px-Thomas_Aquinas_by_Justus_van_Gent.jpg');"></a>
+                    </a>
+
+                    <a href="article-mesha.html" class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
                         <div class="related-card-content">
-                            <h3 class="related-card-title">L'existence de Dieu</h3>
-                            <p class="related-card-excerpt">Arguments rationnels selon Thomas d'Aquin</p>
+                            <h3 class="related-card-title">La Stèle de Mesha</h3>
+                            <p class="related-card-excerpt">Découverte archéologique confirmant les récits bibliques sur Moab.</p>
                         </div>
-                    </div>
-                    <a href="article-gospel-reliability.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop');"></a>
+                    </a>
+
+                    <a href="article-resurrection-christ.html" class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
                         <div class="related-card-content">
-                            <h3 class="related-card-title">Fiabilité des Évangiles</h3>
-                            <p class="related-card-excerpt">Preuves historiques et archéologiques</p>
+                            <h3 class="related-card-title">La Résurrection du Christ</h3>
+                            <p class="related-card-excerpt">Preuves historiques et archéologiques de la résurrection de Jésus.</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </section>
+            </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 CrossCheck - Centre de Recherche en Apologétique Chrétienne</p>
-    </footer>
+    <!-- Back Button -->
+    <a href="articles.html" class="back-button">Retour aux Articles</a>
 
     <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Card interactions
+        document.querySelectorAll('.related-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -629,39 +547,6 @@ border-bottom: 1px solid var(--border);
                 }
             });
         });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-// Mobile menu toggle
-function toggleMobileMenu() {
-const mobileMenu = document.getElementById("mobileMenu");
-mobileMenu.classList.toggle("active");
-}
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll(".mobile-nav .nav-link").forEach(link => {
-link.addEventListener("click", () => {
-document.getElementById("mobileMenu").classList.remove("active");
-});
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener("click", (e) => {
-const mobileMenu = document.getElementById("mobileMenu");
-const toggleButton = document.querySelector(".mobile-menu-toggle");
-if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
-mobileMenu.classList.remove("active");
-}
-});
     </script>
 </body>
 </html>

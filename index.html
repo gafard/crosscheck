@@ -3,101 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrossCheck - Foi, Faits et Histoire</title>
-    <meta name="description" content="CrossCheck explore les preuves de la vérité biblique à travers l'archéologie, la science, l'histoire et l'apologétique.">
-    
+    <title>CrossCheck - Site d'Information en Apologétique Chrétienne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1e40af;
-            --secondary: #2563eb;
-            --accent: #3b82f6;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
-            --bg-dark: #1e293b;
-            --white: #ffffff;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--text);
-            background: var(--bg-light);
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
         }
 
+        /* Header Premium */
         .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-lg);
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .header-container {
-            max-width: 1200px;
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             text-decoration: none;
-            color: white;
+            color: var(--primary);
+            transition: transform 0.3s ease;
         }
 
-        .logo-icon img {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05) rotate(5deg);
+            animation: heartbeat 0.6s ease-in-out;
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.5px;
         }
 
-        .header-nav {
+        .nav {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
+            align-items: center;
         }
 
         .nav-link {
-            color: white;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: opacity 0.3s ease;
+            font-size: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .nav-link:hover {
-            opacity: 0.9;
+            color: var(--accent);
+            transform: translateY(-2px);
         }
 
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 6rem 0;
-            text-align: center;
+        .nav-link.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        /* Menu contextuel simple pour Articles */
+        .nav-item {
             position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-category {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-category:hover {
+            background: rgba(212, 175, 55, 0.05);
+            color: var(--accent);
+            border-left-color: var(--accent);
+            transform: translateX(8px);
+        }
+
+        .dropdown-category::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .dropdown-category:hover::before {
+            width: 3px;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .search-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .search-box {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 50px;
+            background: white;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .search-container:hover .search-box {
+            width: 300px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 20px;
+            font-size: 14px;
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .search-input::placeholder {
+            color: var(--secondary);
+        }
+
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+        }
+
+        .footer-logo .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-link:hover {
+            color: #b8941f;
+        }
+
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 3rem;
+            padding: 2rem 0;
+        }
+
+        .footer-bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0.5rem 0;
+        }
+
+        .footer-mission {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        /* Ensure navigation is visible on larger screens */
+        @media (min-width: 769px) {
+            .nav {
+                display: flex !important;
+            }
+        }
+
+        /* Hero Section Premium */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
             overflow: hidden;
         }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: 0;
+        }
+
+        .hero-background.active {
+            opacity: 0.3;
+        }
+
+        .hero-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 50%, rgba(42, 42, 42, 0.4) 100%);
+            z-index: 1;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-video-container.active {
+            opacity: 0.3;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            border: none;
+        }
+
 
         .hero::before {
             content: '';
@@ -106,107 +471,925 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('https://i.postimg.cc/nrt8MD0H/Images-Principale.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            z-index: 1;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.05) 70%, transparent 100%);
+            pointer-events: none;
         }
 
         .hero-content {
+            width: 100%;
+            padding: 0;
+            display: flex;
+            align-items: center;
             position: relative;
             z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            min-height: 100vh;
+            margin-left: 0;
+            padding-left: 5rem;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.025em;
+        .hero-text {
+            padding: 2rem 0 2rem 0;
+            max-width: 600px;
+            flex: 1;
+            margin-left: 0;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .btn {
+        .hero-badge {
             display: inline-block;
             background: var(--accent);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
+            padding: 10px 24px;
+            border-radius: 0;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: white;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: black;
+            color: white;
+            padding: 18px 36px;
+            border-radius: 0;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover::after {
+            transform: translateX(100%);
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: pulse 0.6s ease-in-out, magnetic 2s ease-in-out infinite;
+        }
+
+        .btn-primary:active {
+            transform: translateY(-2px) scale(0.98);
+            transition: all 0.1s ease;
+            animation: ripple 0.6s ease-out;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 18px 0;
+            border-bottom: 2px solid var(--accent);
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
+        .btn-secondary:hover {
+            color: var(--accent);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
+        .hero-image {
+            display: none;
         }
 
-        .section {
-            padding: 4rem 0;
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--primary);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .card {
+        .floating-card {
+            position: absolute;
             background: white;
-            border-radius: 12px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 20px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+        .floating-card:nth-child(1) {
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
         }
 
-        .card h3 {
+        .floating-card:nth-child(2) {
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .floating-card:nth-child(3) {
+            top: 50%;
+            right: 5%;
+            animation-delay: 4s;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
             color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 8px;
         }
 
-        .card p {
-            color: var(--text-light);
+        .card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Featured Section Premium */
+        .featured-section {
+            padding: 8rem 0;
+            background: var(--white);
+        }
+
+        .featured-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 1.5rem;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+            transform-origin: center bottom;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            z-index: 1;
+        }
+
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .article-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .article-card:hover::after {
+            opacity: 1;
+        }
+
+        .article-card:hover {
+            transform: translateY(-15px) scale(1.03) rotateX(5deg);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+            border-color: var(--accent);
+            animation: glow 2s ease-in-out infinite, wiggle 0.5s ease-in-out;
+        }
+
+        .article-card:active {
+            transform: translateY(-10px) scale(0.98);
+            animation: ripple 0.4s ease-out;
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .article-card:hover .article-category {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+
+        .article-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .article-content {
+            padding: 2rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .article-excerpt {
+            color: var(--secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .article-date {
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 8rem 0;
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-15px) rotate(1deg);
+            }
+            50% {
+                transform: translateY(-25px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(-1deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7) rotate(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-180deg) scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(1deg);
+            }
+            75% {
+                transform: rotate(-1deg);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                border-color: transparent;
+            }
+            51%, 100% {
+                border-color: var(--accent);
+            }
+        }
+
+        @keyframes morphing {
+            0%, 100% {
+                border-radius: 12px;
+            }
+            25% {
+                border-radius: 20px;
+            }
+            50% {
+                border-radius: 8px;
+            }
+            75% {
+                border-radius: 16px;
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes magnetic {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(2px, -2px);
+            }
+            50% {
+                transform: translate(-1px, 1px);
+            }
+            75% {
+                transform: translate(1px, 1px);
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        /* Responsive Design Avancé */
+        @media (max-width: 1400px) {
+            .hero-content {
+                gap: 3rem;
             }
             
-            .header-nav {
+            .floating-cards {
+                transform: scale(0.9);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .hero-content {
+                gap: 4rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+            }
+
+            .article-card:hover {
+                transform: translateY(-10px) scale(1.02);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                padding: 7rem 0 4rem;
+            }
+
+            .hero-title {
+                font-size: 3.2rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .article-card {
+                transition: all 0.3s ease;
+            }
+
+            .article-card:hover {
+                transform: translateY(-8px) scale(1.01);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .nav {
                 display: none;
+            }
+
+            .search-container:hover .search-box {
+                width: 250px;
+            }
+
+            .search-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero-content {
+                padding: 0;
+                text-align: left;
+                padding-left: 2.5rem;
+            }
+
+            .hero-text {
+                padding: 1rem 0 1rem 0;
+                max-width: 100%;
+                margin-left: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-cta {
+                justify-content: flex-start;
+            }
+
+
+            .featured-section,
+            .stats-section {
+                padding: 4rem 0;
+            }
+
+            .featured-container,
+            .stats-container {
+                padding: 0 1rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .article-card:hover {
+                transform: translateY(-5px) scale(1.005);
+                animation: none;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px) scale(1.01);
+            }
+
+            /* Menu contextuel responsive */
+            .dropdown-menu {
+                min-width: 180px;
+                padding: 0.5rem 0;
+            }
+
+            .dropdown-category {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 14px 28px;
+                font-size: 14px;
+            }
+
+            .article-content {
+                padding: 1.5rem;
+            }
+
+            .article-title {
+                font-size: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card:hover {
+                transform: translateY(-3px);
+                animation: none;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-1px);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 13px;
+            }
+
+            .btn-primary {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+
+            .article-card:hover {
+                transform: translateY(-2px);
+            }
+        }
+
+        /* Animations réduites pour les appareils moins puissants */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .article-card:hover {
+                transform: none !important;
+                animation: none !important;
+            }
+            
+            .btn-primary:hover {
+                transform: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* Mode sombre automatique */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary: #ffffff;
+                --secondary: #cccccc;
+                --light: #1a1a1a;
+                --white: #0a0a0a;
+                --border: #333333;
+            }
+        }
+
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -214,69 +1397,538 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-container">
+        <div class="header-content">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo">
-                </div>
-                <span class="logo-text">CrossCheck</span>
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
             </a>
-            <nav class="header-nav">
-                <a href="index.html" class="nav-link">Accueil</a>
-                <a href="archeologie.html" class="nav-link">Archéologie</a>
-                <a href="science.html" class="nav-link">Science</a>
-                <a href="histoire.html" class="nav-link">Histoire</a>
-                <a href="apologetique.html" class="nav-link">Apologétique</a>
-                <a href="togo.html" class="nav-link">Togo</a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Accueil</a>
+                <div class="nav-item">
+                    <a href="articles.html" class="nav-link">Articles</a>
+                    <div class="dropdown-menu">
+                        <a href="articles.html#apologetique" class="dropdown-category">Apologétique</a>
+                        <a href="articles.html#science" class="dropdown-category">Science & Foi</a>
+                        <a href="articles.html#histoire" class="dropdown-category">Histoire</a>
+                        <a href="articles.html#archeologie" class="dropdown-category">Archéologie</a>
+                    </div>
+                </div>
+                <a href="ressources.html" class="nav-link">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
             </nav>
+            <div class="search-container">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher..." class="search-input">
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>CrossCheck</h1>
-            <p>Explorez les preuves de la vérité biblique à travers l'archéologie, la science, l'histoire et l'apologétique.</p>
-            <a href="#sections" class="btn">Découvrir</a>
+        <!-- Images de fond rotatives -->
+        <div class="hero-background active" style="background-image: url('https://i.postimg.cc/nrt8MD0H/Images-Principale.png');"></div>
+        <div class="hero-background" style="background-image: url('https://i.postimg.cc/YqtbZqhz/manuscrits-biblique.png');"></div>
+        <div class="hero-background" style="background-image: url('https://i.postimg.cc/zXLs7YGh/6a9bfbfdaa75ff6c7355c040f2a444a0652d8b3dd59b23ecf32c955404a05a3d.png');"></div>
+        <div class="hero-background" style="background-image: url('https://i.postimg.cc/j2Gm66dL/947dc882ed15c601098e96accc86f5d0.jpg');"></div>
+        
+        <!-- Vidéo de fond YouTube -->
+        <div class="hero-video-container">
+            <iframe 
+                class="hero-video" 
+                src="https://www.youtube.com/embed/kCLhwKf_sOI?autoplay=1&mute=1&loop=1&playlist=kCLhwKf_sOI&start=241&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1"
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
         </div>
-    </section>
-
-    <!-- Sections -->
-    <section id="sections" class="section">
-        <div class="container">
-            <h2 class="section-title">Nos Sections</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Archéologie</h3>
-                    <p>Découvrez les découvertes archéologiques qui confirment les récits bibliques.</p>
-                    <a href="archeologie.html" class="btn">Explorer</a>
-                </div>
-                <div class="card">
-                    <h3>Science</h3>
-                    <p>Explorez l'harmonie entre science et foi à travers des preuves fascinantes.</p>
-                    <a href="science.html" class="btn">Explorer</a>
-                </div>
-                <div class="card">
-                    <h3>Histoire</h3>
-                    <p>Plongez dans l'histoire du christianisme et ses racines profondes.</p>
-                    <a href="histoire.html" class="btn">Explorer</a>
-                </div>
-                <div class="card">
-                    <h3>Apologétique</h3>
-                    <p>Renforcez votre foi avec des arguments rationnels et des preuves solides.</p>
-                    <a href="apologetique.html" class="btn">Explorer</a>
-                </div>
-                <div class="card">
-                    <h3>Togo</h3>
-                    <p>Découvrez l'histoire et la culture chrétienne du Togo.</p>
-                    <a href="togo.html" class="btn">Explorer</a>
+        
+        
+        <div class="hero-content">
+            <div class="hero-text fade-in-left">
+                <div class="hero-badge">Site d'Information</div>
+                <h1 class="hero-title">
+                    Apologétique<br>
+                    qui renforce<br>
+                    votre foi
+                </h1>
+                <p class="hero-subtitle">
+                    Informations, analyses et ressources sur l'apologétique chrétienne. Découvrez les preuves historiques, scientifiques et philosophiques qui confirment la vérité du christianisme.
+                </p>
+            <div class="hero-cta">
+                    <a href="articles.html" class="btn-primary">
+                    Explorer les articles
+                        <span>→</span>
+                    </a>
+                    <a href="apropos.html" class="btn-secondary">
+                        À propos
+                        <span>→</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Featured Articles Section -->
+    <section class="featured-section">
+        <div class="featured-container">
+            <div class="section-header fade-in-up">
+                <div class="section-badge">Articles en vedette</div>
+                <h2 class="section-title">Nos dernières recherches</h2>
+                <p class="section-subtitle">Découvrez nos articles les plus récents en apologétique chrétienne et archéologie biblique</p>
+        </div>
+        <div class="articles-grid">
+                <a href="article-archeologie-biblique.html" class="article-card fade-in-up">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                        <div class="article-category">Archéologie</div>
+                    </div>
+                <div class="article-content">
+                        <h3 class="article-title">Découvertes archéologiques qui confirment la fiabilité de la Bible</h3>
+                        <p class="article-excerpt">L'archéologie biblique continue de révéler des découvertes fascinantes qui confirment l'historicité des récits bibliques. Ces trouvailles renforcent la crédibilité historique de la Bible.</p>
+                    <div class="article-meta">
+                            <span class="article-author">Rédaction</span>
+                            <span class="article-date">15 déc. 2024</span>
+                    </div>
+                </div>
+            </a>
+
+                <a href="article-science-foi.html" class="article-card fade-in-up">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                        <div class="article-category">Science & Foi</div>
+                    </div>
+                <div class="article-content">
+                        <h3 class="article-title">Science et foi : une harmonie parfaite</h3>
+                        <p class="article-excerpt">Découvrez comment la science moderne confirme et enrichit notre compréhension de la foi chrétienne. Une exploration des preuves scientifiques de l'existence de Dieu.</p>
+                    <div class="article-meta">
+                            <span class="article-author">Rédaction</span>
+                            <span class="article-date">12 déc. 2024</span>
+                    </div>
+                </div>
+            </a>
+
+                <a href="article-resurrection-christ.html" class="article-card fade-in-up">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                    <div class="article-category">Résurrection</div>
+                    </div>
+                    <div class="article-content">
+                    <h3 class="article-title">Preuves historiques de la résurrection de Jésus</h3>
+                        <p class="article-excerpt">Examinez les preuves historiques solides qui soutiennent la résurrection de Jésus-Christ. Une analyse rigoureuse des témoignages et des faits historiques.</p>
+                    <div class="article-meta">
+                            <span class="article-author">Rédaction</span>
+                            <span class="article-date">10 déc. 2024</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">28</div>
+                    <div class="stat-label">Articles documentés</div>
+            </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Découvertes archéologiques</div>
+        </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Catégories d'étude</div>
+                </div>
+                <div class="stat-item fade-in-up">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Sources vérifiées</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+            <div class="footer-logo">
+                    <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </div>
+                <p class="footer-description">Site d'information en apologétique chrétienne dédié à renforcer la foi par l'information et l'évidence.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="ressources.html">Ressources</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Catégories</h3>
+                <ul class="footer-links">
+                    <li><a href="articles.html#apologetique">Apologétique</a></li>
+                    <li><a href="articles.html#science">Science & Foi</a></li>
+                    <li><a href="articles.html#histoire">Histoire</a></li>
+                    <li><a href="articles.html#archeologie">Archéologie</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Contact</h3>
+                <p class="footer-contact">Pour toute question ou suggestion</p>
+                <a href="apropos.html" class="footer-contact-link">Nous contacter</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2025 CrossCheck. Tous droits réservés.</p>
+                <p class="footer-mission">Quand les preuves rejoignent la foi</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Smooth scrolling
+        // Hero automatic cycle system
+        let currentBackgroundIndex = 0;
+        const backgrounds = document.querySelectorAll('.hero-background');
+        const totalBackgrounds = backgrounds.length;
+        const heroVideoContainer = document.querySelector('.hero-video-container');
+        const heroVideo = document.querySelector('.hero-video');
+        
+        // Timing configuration
+        const IMAGE_DURATION = 10000; // 10 seconds per image
+        const VIDEO_DURATION = 240000; // 4 minutes for video
+        const TOTAL_IMAGES_DURATION = totalBackgrounds * IMAGE_DURATION; // Total time for all images
+        
+        let currentCycle = 'images'; // 'images' or 'video'
+        let cycleStartTime = Date.now();
+        let backgroundInterval;
+        let videoTimeout;
+        
+        // Video starts at 241 seconds and continues automatically
+        const VIDEO_START_TIME = 241; // 4 minutes 1 second
+        
+        function rotateHeroBackground() {
+            // Remove active class from current background
+            backgrounds[currentBackgroundIndex].classList.remove('active');
+            
+            // Move to next background
+            currentBackgroundIndex = (currentBackgroundIndex + 1) % totalBackgrounds;
+            
+            // Add active class to new background
+            backgrounds[currentBackgroundIndex].classList.add('active');
+        }
+        
+        function showImages() {
+            currentCycle = 'images';
+            cycleStartTime = Date.now();
+            
+            // Show images, hide video
+            backgrounds.forEach(bg => bg.style.display = 'block');
+            if (heroVideoContainer) {
+                heroVideoContainer.style.display = 'none';
+                heroVideoContainer.classList.remove('active');
+            }
+            
+            // Start image rotation
+            if (backgroundInterval) clearInterval(backgroundInterval);
+            if (totalBackgrounds > 1) {
+                backgroundInterval = setInterval(rotateHeroBackground, IMAGE_DURATION);
+            }
+            
+            // Schedule video after all images
+            if (videoTimeout) clearTimeout(videoTimeout);
+            videoTimeout = setTimeout(showVideo, TOTAL_IMAGES_DURATION);
+        }
+        
+        function showVideo() {
+            currentCycle = 'video';
+            cycleStartTime = Date.now();
+            
+            // Hide images, show video
+            backgrounds.forEach(bg => bg.style.display = 'none');
+            if (heroVideoContainer) {
+                heroVideoContainer.style.display = 'block';
+                heroVideoContainer.classList.add('active');
+            }
+            
+            // Stop image rotation
+            if (backgroundInterval) clearInterval(backgroundInterval);
+            
+            // Video continues from where it left off (YouTube handles this automatically)
+            // The video starts at 241 seconds and continues playing
+            console.log('Video started at position 241 seconds and continues...');
+            
+            // Schedule return to images after video duration
+            if (videoTimeout) clearTimeout(videoTimeout);
+            videoTimeout = setTimeout(showImages, VIDEO_DURATION);
+        }
+        
+        // Start the cycle
+        showImages();
+        
+        // Handle page visibility change to pause/resume
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden, video continues in background
+                console.log('Page hidden, video continues...');
+            } else {
+                // Page is visible again, continue from where we left off
+                const timeSinceStart = Date.now() - cycleStartTime;
+                
+                if (currentCycle === 'images') {
+                    const timeInImages = timeSinceStart % TOTAL_IMAGES_DURATION;
+                    const imageIndex = Math.floor(timeInImages / IMAGE_DURATION);
+                    
+                    // Set correct image
+                    backgrounds.forEach((bg, index) => {
+                        bg.classList.toggle('active', index === imageIndex);
+                    });
+                    currentBackgroundIndex = imageIndex;
+                } else if (currentCycle === 'video') {
+                    // Video continues from where it was (YouTube handles this)
+                    console.log('Page visible again, video continues from current position...');
+                }
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.05,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                    
+                    // Add staggered animation for cards
+                    if (entry.target.classList.contains('article-card')) {
+                        const cards = document.querySelectorAll('.article-card');
+                        const index = Array.from(cards).indexOf(entry.target);
+                        entry.target.style.animationDelay = `${index * 0.15}s`;
+                        entry.target.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                        
+                        // Add magnetic effect on hover
+                        entry.target.addEventListener('mouseenter', function() {
+                            this.style.animation = 'magnetic 0.3s ease-in-out';
+                        });
+                        
+                        entry.target.addEventListener('mouseleave', function() {
+                            this.style.animation = '';
+                        });
+                    }
+                    
+                    // Add bounce animation for stats
+                    if (entry.target.classList.contains('stat-item')) {
+                        entry.target.style.animation = 'bounce 0.6s ease-out forwards';
+                        
+                        // Add counter animation
+                        const number = entry.target.querySelector('.stat-number');
+                        if (number) {
+                            animateCounter(number);
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Counter animation function
+        function animateCounter(element) {
+            const target = parseInt(element.textContent.replace(/\D/g, ''));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + '+';
+            }, 16);
+        }
+
+        // Observe all animated elements with enhanced effects
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .article-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px) scale(0.95)';
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // Add smooth reveal animation for hero elements
+        window.addEventListener('load', () => {
+            const heroElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-cta');
+            heroElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px) scale(0.9)';
+                setTimeout(() => {
+                    el.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0) scale(1)';
+                }, index * 250);
+            });
+            
+            // Animate floating cards with enhanced effects
+            const floatingCards = document.querySelectorAll('.floating-card');
+            floatingCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(100px) rotate(10deg)';
+                setTimeout(() => {
+                    card.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0) rotate(0deg)';
+                    
+                    // Add continuous floating animation
+                    card.style.animation = `float 6s ease-in-out infinite ${index * 0.5}s`;
+                }, 1000 + index * 300);
+                
+                // Add interactive hover effects
+                card.addEventListener('mouseenter', function() {
+                    this.style.animation = 'heartbeat 0.6s ease-in-out, morphing 2s ease-in-out infinite';
+                    this.style.transform = 'translateY(-10px) scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.animation = `float 6s ease-in-out infinite ${index * 0.5}s`;
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Add ripple effect to buttons
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add ripple effect to all buttons
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchContainer = document.querySelector('.search-container');
+
+        // Handle search input
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                // Redirect to articles page with search query
+                window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Keep search box open when clicking inside
+        searchContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close search box when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                searchContainer.classList.remove('active');
+            }
+        });
+
+        // Menu contextuel amélioré
+        const navItem = document.querySelector('.nav-item');
+        const dropdownCategories = document.querySelectorAll('.dropdown-category');
+
+        // Animation fluide des catégories
+        dropdownCategories.forEach((category, index) => {
+            category.style.opacity = '0';
+            category.style.transform = 'translateX(-20px) scale(0.9)';
+            category.style.transition = `all 0.4s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+
+            navItem.addEventListener('mouseenter', () => {
+                setTimeout(() => {
+                    category.style.opacity = '1';
+                    category.style.transform = 'translateX(0) scale(1)';
+                }, index * 80);
+            });
+
+            navItem.addEventListener('mouseleave', () => {
+                category.style.opacity = '0';
+                category.style.transform = 'translateX(-20px) scale(0.9)';
+            });
+        });
+
+        // Effet de parallaxe léger sur le menu
+        navItem.addEventListener('mousemove', (e) => {
+            const rect = navItem.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            dropdownCategories.forEach((category, index) => {
+                const intensity = (index + 1) * 0.3;
+                const moveX = (x - rect.width / 2) * intensity * 0.01;
+                const moveY = (y - rect.height / 2) * intensity * 0.01;
+                
+                if (category.style.opacity === '1') {
+                    category.style.transform = `translate(${moveX}px, ${moveY}px) scale(1)`;
+                }
+            });
+        });
+
+        navItem.addEventListener('mouseleave', () => {
+            dropdownCategories.forEach(category => {
+                if (category.style.opacity === '0') {
+                    category.style.transform = 'translateX(-20px) scale(0.9)';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -288,6 +1940,20 @@
                     });
                 }
             });
+        });
+
+        // Parallax effect for hero image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.main-image');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
         });
     </script>
 </body>

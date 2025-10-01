@@ -3,1201 +3,678 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Foi au Togo | CrossCheck - Histoire du christianisme togolais</title>
-<meta name="description" content="Découvrez l'histoire fascinante du christianisme au Togo, des missions catholiques de 1892 aux églises pentecôtistes contemporaines.">
-<meta name="keywords" content="christianisme Togo, missions catholiques Togo, histoire Église Togo, évangélisation Afrique, foi togolaise, Cathédrale Lomé">
-<meta name="author" content="CrossCheck">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://crosscheck.fr/togo.html">
-<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
-<link rel="apple-touch-icon" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Science & Foi - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
---primary: #1e3a8a;
---secondary: #2563eb;
---accent: #3b82f6;
---text: #1f2937;
---text-light: #6b7280;
---bg: #ffffff;
---bg-light: #f8fafc;
---bg-dark: #f1f5f9;
---border: #e2e8f0;
---success: #10b981;
---warning: #f59e0b;
---error: #ef4444;
---gradient-primary: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
---gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
---shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
---shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
---shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
---shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
 
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
 body {
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
 line-height: 1.6;
-color: var(--text);
-background: var(--bg);
+            color: var(--primary);
+            background: var(--white);
 overflow-x: hidden;
 }
 
-/* Header */
+        /* Header Premium */
 .header {
 position: fixed;
 top: 0;
 left: 0;
 right: 0;
-background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.95);
 backdrop-filter: blur(20px);
-border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 z-index: 1000;
-padding: 0.75rem 0;
 transition: all 0.3s ease;
 }
 
-.header-container {
-max-width: 1200px;
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
 margin: 0 auto;
 padding: 0 2rem;
 display: flex;
-align-items: center;
 justify-content: space-between;
-height: 70px;
+            align-items: center;
+            height: 80px;
 }
 
 .logo {
 display: flex;
 align-items: center;
-gap: 0.5rem;
+            gap: 1rem;
 text-decoration: none;
 color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
 }
 
 .logo-icon {
-font-size: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .logo-text {
-font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
 font-weight: 700;
 letter-spacing: -0.5px;
 }
 
-.header-nav {
+        .nav {
 display: flex;
-gap: 2rem;
+            gap: 3rem;
 align-items: center;
 }
 
 .nav-link {
+            color: var(--primary);
 text-decoration: none;
-color: var(--text-light);
 font-weight: 500;
-font-size: 0.95rem;
-padding: 0.75rem 1.25rem;
-border-radius: 12px;
-transition: all 0.3s ease;
+            font-size: 15px;
 position: relative;
-}
+            transition: all 0.3s ease;
+        }
 
-.nav-link:hover {
-color: var(--primary);
-background: rgba(59, 130, 246, 0.08);
-transform: translateY(-1px);
-}
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
 
-.nav-link.active {
-color: var(--secondary);
-background: rgba(59, 130, 246, 0.12);
-font-weight: 600;
-}
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-.header-actions {
-display: flex;
-gap: 1rem;
-align-items: center;
-}
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
+        }
 
-.btn-primary,
-.btn-secondary {
-padding: 0.875rem 2rem;
-border-radius: 16px;
-font-weight: 600;
-text-decoration: none;
-transition: all 0.3s ease;
-border: none;
-cursor: pointer;
-font-size: 0.95rem;
-position: relative;
-overflow: hidden;
-}
 
-.btn-primary {
-background: var(--secondary);
-color: white;
-box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover {
-background: #2563eb;
-transform: translateY(-2px);
-box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary {
-background: transparent;
-color: var(--text-light);
-border: 1.5px solid var(--border);
-}
-
-.btn-secondary:hover {
-background: var(--bg-light);
-border-color: var(--secondary);
-color: var(--secondary);
-transform: translateY(-1px);
-box-shadow: var(--shadow-sm);
-}
 
 /* Main Content */
 .main-content {
-padding-top: 90px;
+            background: var(--white);
 min-height: 100vh;
-background: var(--bg-light);
+            position: relative;
+            padding-top: 80px;
 }
 
-.content-container {
-max-width: 1200px;
+        .content-wrapper {
+            max-width: 1400px;
 margin: 0 auto;
-padding: 2rem;
+            padding: 0 2rem;
 }
 
-.page-header {
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
 text-align: center;
-margin-bottom: 4rem;
-padding: 3rem 0;
-background: white;
-border-radius: 16px;
-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
 
-.page-title {
-font-size: 3rem;
-font-weight: 800;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
 color: var(--primary);
-margin-bottom: 1rem;
-letter-spacing: -1px;
-}
+        }
 
-.page-subtitle {
-font-size: 1.2rem;
-color: var(--text-light);
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--secondary);
 max-width: 600px;
 margin: 0 auto;
-line-height: 1.6;
 }
 
-/* Articles Grid */
-.articles-grid {
+        /* Introduction Section */
+        .intro-section {
+            padding: 6rem 0;
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-gap: 2rem;
-margin-bottom: 4rem;
-}
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
 
-.article-card {
-background: white;
-border-radius: 24px;
-overflow: hidden;
-box-shadow: var(--shadow-sm);
-transition: all 0.4s ease;
-cursor: pointer;
-border: 1px solid rgba(226, 232, 240, 0.6);
-}
+        .intro-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
 
-.article-card:hover {
-transform: translateY(-8px);
-box-shadow: var(--shadow-xl);
-border-color: rgba(59, 130, 246, 0.3);
-background: rgba(255, 255, 255, 0.98);
-}
+        .intro-content p {
+            font-size: 16px;
+            color: var(--secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
 
-.article-image {
-width: 100%;
-height: 220px;
-background-size: cover;
-background-position: center;
-position: relative;
-overflow: hidden;
-}
+        .intro-image {
+            background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80') center/cover;
+            height: 400px;
+            border-radius: 0;
+        }
 
-.article-image::after {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
-transition: opacity 0.3s;
-}
+        /* Topics Section */
+        .topics-section {
+            padding: 6rem 0;
+            background: var(--light);
+        }
 
-.article-card:hover .article-image::after {
-opacity: 0.8;
-}
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
 
-.article-body {
-padding: 2rem;
-}
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
 
-.article-category {
-display: inline-block;
-background: linear-gradient(135deg, var(--secondary), var(--accent));
-color: white;
-padding: 0.5rem 1rem;
-border-radius: 50px;
-font-size: 0.8rem;
-font-weight: 600;
-margin-bottom: 1.25rem;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-box-shadow: var(--shadow-sm);
-}
+        .topic-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
 
-.article-title {
-font-size: 1.4rem;
-font-weight: 700;
-line-height: 1.3;
-color: var(--primary);
-margin-bottom: 1rem;
-letter-spacing: -0.01em;
-}
+        .topic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
 
-.article-excerpt {
-color: var(--text-light);
-margin-bottom: 1rem;
-line-height: 1.6;
-font-size: 1rem;
-font-weight: 400;
-}
-
-.article-footer {
+        .topic-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 0;
 display: flex;
-justify-content: space-between;
 align-items: center;
-font-size: 0.9rem;
-color: var(--text-light);
-font-weight: 500;
-}
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: white;
+        }
 
-/* CTA Section */
-/* Visualizations */
-.visualizations-container {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-gap: 2rem;
-margin: 2rem 0;
-}
+        .topic-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
 
-.visualization-card {
-background: white;
-border-radius: 24px;
-padding: 2.5rem;
-box-shadow: var(--shadow-sm);
-border: 1px solid rgba(226, 232, 240, 0.6);
-transition: all 0.4s ease;
-}
+        .topic-description {
+            color: var(--secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
 
-.visualization-card:hover {
-transform: translateY(-4px);
-box-shadow: var(--shadow-lg);
-border-color: rgba(59, 130, 246, 0.3);
-}
+        .topic-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.visualization-card h3 {
-color: var(--primary);
-margin-bottom: 1.5rem;
-font-size: 1.4rem;
-font-weight: 700;
-letter-spacing: -0.01em;
-}
+        .topic-link:hover {
+            text-decoration: underline;
+        }
 
-.visualization-caption {
-color: var(--text-light);
-font-size: 1rem;
-margin-top: 1.5rem;
-font-weight: 400;
-line-height: 1.5;
-text-align: center;
-font-style: italic;
-}
+        /* Evidence Section */
+        .evidence-section {
+            padding: 6rem 0;
+        }
 
-.cta-section {
-background: linear-gradient(135deg, var(--secondary), var(--accent));
-padding: 4rem 2rem;
-border-radius: 24px;
-text-align: center;
-color: white;
-margin: 4rem 0;
-}
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-.cta-title {
-font-size: 2.2rem;
-font-weight: 800;
-margin-bottom: 1.25rem;
-letter-spacing: -0.02em;
-}
+        .evidence-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
 
-.cta-description {
-font-size: 1.2rem;
-margin-bottom: 2.5rem;
-opacity: 0.9;
-font-weight: 400;
-}
+        .evidence-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
 
-.cta-buttons {
+        .evidence-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 0;
 display: flex;
-gap: 1.5rem;
+            align-items: center;
 justify-content: center;
-flex-wrap: wrap;
-}
+            margin: 0 auto 1.5rem;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
 
-.btn-cta-primary,
-.btn-cta-secondary {
-padding: 1rem 2.5rem;
-border-radius: 20px;
+        .evidence-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
 font-weight: 600;
-text-decoration: none;
-transition: all 0.3s ease;
-font-size: 1rem;
-border: none;
-cursor: pointer;
-}
-
-.btn-cta-primary {
-background: white;
+            margin-bottom: 1rem;
 color: var(--primary);
-box-shadow: var(--shadow-md);
-}
+        }
 
-.btn-cta-primary:hover {
-background: var(--bg-light);
-transform: translateY(-3px);
-box-shadow: var(--shadow-xl);
-}
+        .evidence-description {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-.btn-cta-secondary {
-background: transparent;
-color: white;
-border: 2px solid white;
-}
+        /* Articles Section */
+        .articles-section {
+            padding: 6rem 0;
+            background: var(--light);
+            text-align: center;
+        }
 
-.btn-cta-secondary:hover {
-background: white;
+        .articles-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
 color: var(--primary);
-transform: translateY(-2px);
-box-shadow: var(--shadow-md);
-}
+        }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-.header-nav {
-  display: none;
-}
-
-.page-title {
-  font-size: 2.5rem;
+        .articles-subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            margin-bottom: 3rem;
 }
 
 .articles-grid {
+            display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-}
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-@media (max-width: 768px) {
-.header-container {
-  padding: 0 1rem;
-}
+        .article-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
 
-.content-container {
-  padding: 1rem;
-}
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
 
-.page-title {
-  font-size: 2rem;
-}
+        .article-image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 1rem;
+            border-radius: 0;
+        }
 
-.page-subtitle {
-  font-size: 1rem;
-}
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
 
-.articles-grid {
-  grid-template-columns: 1fr;
-}
+        .article-excerpt {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-.article-body {
-  padding: 1.5rem;
-}
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .intro-section {
+                gap: 3rem;
+            }
+        }
 
-.visualizations-container {
-  grid-template-columns: 1fr;
-}
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
 
-.visualization-card {
-  padding: 2rem;
-}
+            .nav {
+                display: none;
+            }
 
-.cta-buttons {
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
+            .content-wrapper {
+                padding: 0 1rem;
+            }
 
-.btn-cta-primary,
-.btn-cta-secondary {
-  width: 100%;
-  max-width: 300px;
-  padding: 0.875rem 2rem;
-}
-}
+            .hero {
+                padding: 4rem 0;
+            }
 
-/* Media Queries pour très petits écrans */
-@media (max-width: 480px) {
-.page-title {
-  font-size: 1.8rem;
-}
+            .hero-title {
+                font-size: 2.5rem;
+            }
 
-.page-subtitle {
-  font-size: 0.95rem;
-}
+            .intro-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 4rem 0;
+            }
 
-.article-body {
-  padding: 1.25rem;
-}
+            .intro-image {
+                height: 250px;
+            }
 
-.visualization-card {
-  padding: 1.5rem;
-}
+            .topics-section,
+            .evidence-section,
+            .articles-section {
+                padding: 4rem 0;
+            }
 
-.cta-section {
-  padding: 2.5rem 1rem;
-}
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
 
-.cta-title {
-  font-size: 1.6rem;
-}
+            .topics-grid,
+            .evidence-grid,
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
 
-.cta-description {
-  font-size: 1rem;
-}
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
 
-.header-actions {
-  flex-direction: column;
-  gap: 0.5rem;
-}
+            .topic-card,
+            .evidence-card,
+            .article-card {
+                padding: 1.5rem;
+            }
 
-.btn-primary,
-.btn-secondary {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
-}
-}
+            .topic-title {
+                font-size: 20px;
+            }
 
-/* Animations */
-@keyframes fadeInUp {
-from {
-  opacity: 0;
-  transform: translateY(30px);
-}
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-}
-
-.fade-in-up {
-animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Smooth scrolling */
-html {
-scroll-behavior: smooth;
+            .evidence-title {
+                font-size: 18px;
+            }
 }
   </style>
 </head>
 <body>
 <!-- Header -->
 <header class="header">
-<div class="header-container">
+        <div class="header-content">
 <a href="index.html" class="logo">
-<div class="logo-icon">
-<img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
-</a>
-<span class="logo-text">CrossCheck</span>
-</div>
-<nav class="header-nav">
-<a href="index.html" class="nav-link">Accueil</a>
-<a href="archeologie.html" class="nav-link">Archéologie</a>
-<a href="science.html" class="nav-link">Science</a>
-<a href="histoire.html" class="nav-link">Histoire</a>
-<a href="apologetique.html" class="nav-link">Apologétique</a>
-<a href="togo.html" class="nav-link active">Togo</a>
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
+                <a href="articles.html" class="nav-link active">Articles</a>
+                <a href="ressources.html" class="nav-link">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
 </nav>
-<div class="header-actions">
-<!-- Navigation simplifiée -->
-</div>
+            <div class="search-container">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher..." class="search-input">
+                </div>
+            </div>
 </div>
 </header>
 
 <!-- Main Content -->
 <main class="main-content">
-<div class="content-container">
-<!-- Page Header -->
-<section class="page-header">
-<h1 class="page-title">Foi au Togo</h1>
-<p class="page-subtitle">Découvrez l'histoire fascinante du christianisme au Togo, des missions catholiques de 1892 aux églises pentecôtistes contemporaines. Un voyage dans la foi africaine.</p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="content-wrapper">
+                <h1 class="hero-title">Science & Foi</h1>
+                <p class="hero-subtitle">Explorez l'harmonie entre la science moderne et la foi chrétienne</p>
+            </div>
 </section>
 
-<!-- Articles Grid -->
-<section class="articles-grid">
-<a href="article-missions-catholiques.html" class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Foi au Togo</div>
-<h3 class="article-title">Les Missions Catholiques au Togo : Une Foi Ancrée dans l'Histoire</h3>
-<p class="article-excerpt">Découvrez comment les missionnaires catholiques ont semé la foi au Togo, de la Cathédrale de Lomé aux écoles rurales.</p>
-<div class="article-footer">
-<span>📅 01 Déc</span>
-<span>⏱️ 7 min</span>
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <div class="content-wrapper">
+                <div class="intro-content">
+                    <h2>Science et Foi : Un Dialogue Fécond</h2>
+                    <p>Contrairement à ce que certains pensent, la science et la foi chrétienne ne sont pas en opposition. Au contraire, elles se complètent et s'enrichissent mutuellement.</p>
+                    <p>La science nous aide à comprendre le "comment" de l'univers, tandis que la foi nous révèle le "pourquoi" et le sens ultime de notre existence.</p>
+                    <p>À CrossCheck, nous explorons cette harmonie à travers des recherches rigoureuses et des preuves scientifiques qui pointent vers l'existence d'un Créateur intelligent.</p>
 </div>
+                <div class="intro-image"></div>
 </div>
-</a>
+        </section>
 
-<a href="article-thomas-aquinas.html" class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Thomas_Aquinas_by_Justus_van_Gent.jpg/800px-Thomas_Aquinas_by_Justus_van_Gent.jpg');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">L'existence de Dieu : arguments rationnels</h3>
-<p class="article-excerpt">Exploration des preuves philosophiques et rationnelles de l'existence de Dieu, des arguments cosmologiques aux preuves morales.</p>
-<div class="article-footer">
-<span>📅 07 Déc</span>
-<span>⏱️ 8 min</span>
+        <!-- Topics Section -->
+        <section class="topics-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Domaines de Recherche</h2>
+                <div class="topics-grid">
+                    <div class="topic-card">
+                        <div class="topic-icon">🌌</div>
+                        <h3 class="topic-title">Cosmologie</h3>
+                        <p class="topic-description">Le Big Bang, l'expansion de l'univers et les preuves d'un commencement qui suggèrent l'existence d'un Créateur.</p>
+                        <a href="article-big-bang.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<article class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Répondre au problème du mal</h3>
-<p class="article-excerpt">Comment la théologie chrétienne aborde-t-elle la question du mal et de la souffrance dans le monde ?</p>
-<div class="article-footer">
-<span>📅 30 Nov</span>
-<span>⏱️ 12 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">⚖️</div>
+                        <h3 class="topic-title">Fine-tuning Cosmologique</h3>
+                        <p class="topic-description">Les constantes physiques réglées avec une précision remarquable pour permettre la vie dans l'univers.</p>
+                        <a href="article-fine-tuning.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<article class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Science et foi : complémentaires ou contradictoires ?</h3>
-<p class="article-excerpt">Analyse des relations entre la science moderne et la foi chrétienne, de Galilée à nos jours.</p>
-<div class="article-footer">
-<span>📅 23 Nov</span>
-<span>⏱️ 10 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">🧬</div>
+                        <h3 class="topic-title">Complexité Irréductible</h3>
+                        <p class="topic-description">Les systèmes biologiques complexes qui ne peuvent pas être simplifiés sans perdre leur fonctionnalité.</p>
+                        <a href="article-dna.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<article class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Fiabilité des Évangiles : preuves historiques</h3>
-<p class="article-excerpt">Les arguments historiques et textuels qui soutiennent la fiabilité des récits évangéliques.</p>
-<div class="article-footer">
-<span>📅 16 Nov</span>
-<span>⏱️ 14 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">🧠</div>
+                        <h3 class="topic-title">Conscience Humaine</h3>
+                        <p class="topic-description">Le mystère de la conscience et son incompatibilité avec une explication purement matérialiste.</p>
+                        <a href="article-conscience.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<article class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">La résurrection du Christ : fait historique ?</h3>
-<p class="article-excerpt">Examen des preuves historiques de la résurrection de Jésus-Christ et de ses implications.</p>
-<div class="article-footer">
-<span>📅 09 Nov</span>
-<span>⏱️ 11 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">🔄</div>
+                        <h3 class="topic-title">Évolution & Création</h3>
+                        <p class="topic-description">Les différentes perspectives sur l'origine de la vie et l'évolution des espèces.</p>
+                        <a href="article-evolution-creation.html" class="topic-link">En savoir plus →</a>
 </div>
-</div>
-</a>
 
-<article class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Apologétique</div>
-<h3 class="article-title">Dialogue interreligieux et apologétique</h3>
-<p class="article-excerpt">Comment défendre la foi chrétienne dans un contexte de pluralisme religieux et de dialogue.</p>
-<div class="article-footer">
-<span>📅 02 Nov</span>
-<span>⏱️ 9 min</span>
+                    <div class="topic-card">
+                        <div class="topic-icon">🔬</div>
+                        <h3 class="topic-title">Design Intelligent</h3>
+                        <p class="topic-description">Les preuves de design intelligent dans la nature et leur signification pour la foi chrétienne.</p>
+                        <a href="article-science-prouve-dieu.html" class="topic-link">En savoir plus →</a>
 </div>
 </div>
-</a>
+            </div>
 </section>
 
-<!-- Foi en Afrique Section -->
+        <!-- Evidence Section -->
+        <section class="evidence-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Preuves Scientifiques</h2>
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <div class="evidence-number">1</div>
+                        <h3 class="evidence-title">Commencement de l'Univers</h3>
+                        <p class="evidence-description">Le Big Bang confirme que l'univers a eu un commencement, nécessitant une cause première.</p>
+</div>
+
+                    <div class="evidence-card">
+                        <div class="evidence-number">2</div>
+                        <h3 class="evidence-title">Réglage Fin</h3>
+                        <p class="evidence-description">Les constantes physiques sont réglées avec une précision extraordinaire pour permettre la vie.</p>
+</div>
+
+                    <div class="evidence-card">
+                        <div class="evidence-number">3</div>
+                        <h3 class="evidence-title">Information Complexe</h3>
+                        <p class="evidence-description">L'ADN contient une information complexe qui suggère une source intelligente.</p>
+</div>
+
+                    <div class="evidence-card">
+                        <div class="evidence-number">4</div>
+                        <h3 class="evidence-title">Conscience</h3>
+                        <p class="evidence-description">La conscience humaine transcende les explications purement matérielles.</p>
+</div>
+
+                    <div class="evidence-card">
+                        <div class="evidence-number">5</div>
+                        <h3 class="evidence-title">Lois Naturelles</h3>
+                        <p class="evidence-description">L'ordre et la régularité de l'univers suggèrent un Législateur.</p>
+</div>
+
+                    <div class="evidence-card">
+                        <div class="evidence-number">6</div>
+                        <h3 class="evidence-title">Beauté</h3>
+                        <p class="evidence-description">La beauté de l'univers pointe vers un Créateur artiste.</p>
+</div>
+</div>
+            </div>
+</section>
+
+        <!-- Articles Section -->
 <section class="articles-section">
-<div class="section-divider">
-<h2 class="section-title">Foi en Afrique</h2>
-<p class="section-subtitle">Découvrez la richesse du christianisme à travers l'Afrique, du Togo au Nigeria, de l'Éthiopie à l'Afrique du Sud</p>
+            <div class="content-wrapper">
+                <h2 class="articles-title">Articles sur Science & Foi</h2>
+                <p class="articles-subtitle">Découvrez nos articles approfondis sur l'harmonie entre science et foi</p>
+                <div class="articles-grid">
+                    <div class="article-card">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="article-title">Le Big Bang et l'Existence de Dieu</h3>
+                        <p class="article-excerpt">Comment la théorie du Big Bang confirme l'existence d'un Créateur.</p>
 </div>
 
-<section class="articles-grid">
-<a href="article-missions-afrique.html" class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Foi en Afrique</div>
-<h3 class="article-title">Les Missions Catholiques au Togo et en Afrique : Une Foi Transfrontalière</h3>
-<p class="article-excerpt">De Lomé à Yamoussoukro, explorez l'héritage des missions catholiques qui ont façonné la foi chrétienne en Afrique.</p>
-<div class="article-footer">
-<span>📅 01 Déc</span>
-<span>⏱️ 8 min</span>
-</div>
-</div>
-</a>
-
-<a href="article-pentecotisme-afrique.html" class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Foi en Afrique</div>
-<h3 class="article-title">Le Réveil Pentecôtiste en Afrique : Du Togo au Nigeria</h3>
-<p class="article-excerpt">La vitalité pentecôtiste transforme l'Afrique, des Assemblées de Dieu au Togo aux méga-églises du Nigeria.</p>
-<div class="article-footer">
-<span>📅 01 Déc</span>
-<span>⏱️ 7 min</span>
-</div>
-</div>
-</a>
-
-<a href="article-archeologie-afrique.html" class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Foi en Afrique</div>
-<h3 class="article-title">Archéologie Chrétienne en Afrique : Traces de Foi Ancienne</h3>
-<p class="article-excerpt">Des églises de Lalibela aux vestiges des missions allemandes au Togo, découvrez les traces archéologiques de la foi.</p>
-<div class="article-footer">
-<span>📅 01 Déc</span>
-<span>⏱️ 9 min</span>
-</div>
-</div>
-</a>
-
-<a href="article-apologetique-afrique.html" class="article-card fade-in-up">
-<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&q=80');"></div>
-<div class="article-body">
-<div class="article-category">Foi en Afrique</div>
-<h3 class="article-title">Défis Apologétiques en Afrique : Syncrétisme et Modernité</h3>
-<p class="article-excerpt">Face au syncrétisme et à la sécularisation, découvrez comment l'apologétique chrétienne répond aux défis africains.</p>
-<div class="article-footer">
-<span>📅 01 Déc</span>
-<span>⏱️ 10 min</span>
-</div>
-</div>
-</a>
-</section>
-</section>
-
-<!-- Visualisations Panafricaines -->
-<section class="articles-section">
-<div class="section-divider">
-<h2 class="section-title">Visualisations Panafricaines</h2>
-<p class="section-subtitle">Explorez la géographie et l'histoire du christianisme africain à travers des cartes et chronologies interactives</p>
+                    <div class="article-card">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="article-title">Le Fine-tuning Cosmologique</h3>
+                        <p class="article-excerpt">Les constantes physiques et leur réglage remarquable pour la vie.</p>
 </div>
 
-<div class="visualizations-container">
-<div class="visualization-card">
-<h3>Carte des Missions Catholiques en Afrique</h3>
-<canvas id="missionMap" width="400" height="300"></canvas>
-<p class="visualization-caption">Localisation des principales missions catholiques africaines depuis le XIXe siècle</p>
+                    <div class="article-card">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                        <h3 class="article-title">L'ADN et le Design Intelligent</h3>
+                        <p class="article-excerpt">Comment l'information complexe de l'ADN pointe vers un Designer.</p>
 </div>
-
-<div class="visualization-card">
-<h3>Chronologie du Christianisme en Afrique</h3>
-<canvas id="timeline" width="400" height="300"></canvas>
-<p class="visualization-caption">Évolution du christianisme africain de l'Antiquité à nos jours</p>
 </div>
 </div>
 </section>
-
-<!-- CTA Section -->
-<section class="cta-section">
-<h2 class="cta-title">Approfondissez Vos Arguments</h2>
-<p class="cta-description">Découvrez nos autres sections pour renforcer votre compréhension de la vérité biblique.</p>
-<div class="cta-buttons">
-<a href="archeologie.html" class="btn-cta-primary">Archéologie</a>
-<a href="science.html" class="btn-cta-secondary">Science & Foi</a>
-</div>
-</section>
-</div>
 </main>
 
 <script>
 // Header scroll effect
 window.addEventListener('scroll', () => {
 const header = document.querySelector('.header');
-if (window.scrollY > 50) {
-header.style.background = 'rgba(255, 255, 255, 0.98)';
-header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
 } else {
-header.style.background = 'rgba(255, 255, 255, 0.95)';
-header.style.boxShadow = 'none';
-}
-});
+                header.classList.remove('scrolled');
+            }
+        });
 
-// Intersection Observer for animations
-const observerOptions = {
-threshold: 0.1,
-rootMargin: '0px 0px -50px 0px'
-};
+        // Card interactions
+        document.querySelectorAll('.topic-card, .evidence-card, .article-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
 
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add('fade-in-up');
-}
-});
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.article-card, .page-header').forEach(el => {
-observer.observe(el);
-});
-
-// Articles data
-const articles = {
-missions_catholiques: {
-category: "Foi au Togo",
-title: "Les Missions Catholiques au Togo : Une Foi Ancrée dans l'Histoire",
-content: `
-<p>Les missions catholiques ont transformé le paysage spirituel du Togo depuis leur arrivée en 1892. De la Cathédrale du Sacré-Cœur de Lomé aux écoles d'Atakpamé, elles ont semé une foi durable qui continue de fleurir aujourd'hui.</p>
-
-<h2>Arrivée sous l'ère allemande (1892-1914)</h2>
-<p>En 1892, les <strong>Spiritains français</strong>, suivis des <strong>Pères Blancs allemands</strong>, établirent leurs premières missions à Lomé. La <strong>Cathédrale du Sacré-Cœur</strong>, construite en 1902, devint un symbole de paix au cœur du grand marché. Leur approche combinait évangélisation, éducation et soins médicaux, attirant les populations Éwé et Mina.</p>
-
-<h3>Contexte socio-politique</h3>
-<p>Le Togo était sous protectorat allemand (1884-1914), et les missionnaires catholiques devaient naviguer entre leur mission spirituelle et les exigences coloniales. Les Allemands favorisaient initialement les protestants (Société des missions de Bade, Bremen Mission), mais toléraient les catholiques pour apaiser les tensions internationales.</p>
-
-<blockquote>"Allez, faites de toutes les nations des disciples, les baptisant au nom du Père, du Fils et du Saint-Esprit." – Matthieu 28:19</blockquote>
-
-<h2>Développement et impact culturel</h2>
-<p>Les missionnaires traduisirent le catéchisme en <strong>Éwé</strong> et intégrèrent des chants locaux, surmontant les résistances animistes. Ils établirent :</p>
-<ul>
-<li><strong>Écoles primaires</strong> combinant catéchisme et éducation générale</li>
-<li><strong>Dispensaires</strong> pour lutter contre les maladies tropicales</li>
-<li><strong>Traductions</strong> de textes liturgiques en langues locales</li>
-</ul>
-
-<h3>Expansion géographique</h3>
-<p>Outre Lomé et Atakpamé, les missionnaires s'étendirent vers <strong>Kpalimé</strong> et <strong>Dapaong</strong> (nord), où ils rencontrèrent plus de résistances en raison des traditions animistes et de l'influence croissante de l'islam.</p>
-
-<h2>Transition française et croissance (1914-1960)</h2>
-<p>Avec la fin du contrôle allemand en 1914, les missionnaires catholiques français reprirent l'avantage sous le mandat français (1920-1960). Les Spiritains consolidèrent leurs missions, et le Togo vit une croissance rapide du catholicisme, atteignant <strong>20% de la population</strong> dans les années 1950.</p>
-
-<h3>Héritage contemporain</h3>
-<p>Aujourd'hui, environ <strong>28% des Togolais</strong> sont chrétiens, dont une majorité de catholiques dans le sud (Lomé, Aného, Kpalimé). La <strong>Cathédrale du Sacré-Cœur de Lomé</strong>, construite par les missionnaires, reste un symbole fort, décrite comme un "havre de paix" au cœur du marché.</p>
-
-<h2>Défis apologétiques et syncrétisme</h2>
-<p>Le syncrétisme avec l'animisme reste un défi. Pourtant, la cohérence des Écritures (Jean 10:35) et l'impact social des missions (écoles, hôpitaux) témoignent de la pertinence de la foi chrétienne au Togo.</p>
-
-<h3>Objections contemporaines</h3>
-<p>Face aux défis du modernisme et du pluralisme religieux, les églises catholiques togolaises démontrent leur résilience par :</p>
-<ul>
-<li>L'engagement social continu (éducation, santé)</li>
-<li>L'adaptation culturelle (liturgies en langues locales)</li>
-<li>La formation de prêtres et religieuses togolais</li>
-</ul>
-
-<h2>Conclusion</h2>
-<p>Les missions catholiques ont façonné une foi vivante, visible dans les églises de Lomé à Dapaong. Leur héritage perdure dans la vitalité de la communauté catholique togolaise, incarnant la promesse biblique : <em>"Sur cette pierre je bâtirai mon Église, et les portes du séjour des morts ne prévaudront point contre elle."</em> (Matthieu 16:18)</p>
-
-<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-<h4>📸 Suggestions d'illustrations locales :</h4>
-<ul>
-<li>Photo de la Cathédrale du Sacré-Cœur de Lomé (façade et intérieur)</li>
-<li>Image d'une école missionnaire catholique à Atakpamé</li>
-<li>Photo d'une messe en éwé dans une église togolaise</li>
-<li>Portrait d'un prêtre togolais ou d'une religieuse locale</li>
-<li>Carte du Togo avec les sites de missions catholiques marqués</li>
-</ul>
-</div>
-
-<p><strong>Références :</strong> Archives Spiritains ; <a href="https://www.tiktok.com/@thegodproof" style="color: var(--accent);">TikTok @thegodproof</a> ; Bible (Louis Segond).</p>
-`,
-catholic_missions_africa: {
-category: "Foi en Afrique",
-title: "Les Missions Catholiques au Togo et en Afrique : Une Foi Transfrontalière",
-content: `
-<p>Les missions catholiques ont façonné la foi chrétienne en Afrique, du Togo à la Côte d'Ivoire. Au Togo, les Spiritains arrivèrent en 1892, construisant la Cathédrale du Sacré-Cœur de Lomé (1902), un havre de paix au cœur du grand marché.</p>
-
-<h2>Expansion panafricaine</h2>
-<p>En Ouganda, les <strong>Pères Blancs</strong> fondèrent des missions dès 1879, tandis qu'au Nigeria, les <strong>jésuites</strong> adaptèrent le catholicisme aux rites Igbo. Cette universalité reflète Matthieu 28:19 : <em>"Allez, faites de toutes les nations des disciples."</em></p>
-
-<h3>Adaptation culturelle</h3>
-<p>Les missionnaires ont su s'adapter aux cultures locales :</p>
-<ul>
-<li><strong>Togo</strong> : Chants en éwé et intégration des traditions locales</li>
-<li><strong>Nigeria</strong> : Respect des rites Igbo et Yoruba</li>
-<li><strong>Côte d'Ivoire</strong> : Basilique Notre-Dame de la Paix à Yamoussoukro</li>
-<li><strong>Ouganda</strong> : Martyrs ougandais canonisés (1885-1887)</li>
-</ul>
-
-<h2>Héritage contemporain</h2>
-<p>Des écoles aux hôpitaux, les missions catholiques ont laissé un héritage durable, visible dans la vitalité des communautés togolaises et africaines. Aujourd'hui, le catholicisme représente une force spirituelle et sociale majeure en Afrique.</p>
-
-<h3>Défis et opportunités</h3>
-<p>Face au syncrétisme et à la modernité, l'Église catholique africaine continue de s'adapter tout en préservant l'essence de la foi chrétienne.</p>
-
-<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-<h4>📸 Suggestions d'illustrations panafricaines :</h4>
-<ul>
-<li>Photo de la Cathédrale du Sacré-Cœur de Lomé (Togo)</li>
-<li>Image de la Basilique Notre-Dame de la Paix à Yamoussoukro (Côte d'Ivoire)</li>
-<li>Photo des églises de Lalibela (Éthiopie)</li>
-<li>Carte des missions catholiques en Afrique</li>
-</ul>
-</div>
-`,
-pentecostal_africa: {
-category: "Foi en Afrique",
-title: "Le Réveil Pentecôtiste en Afrique : Du Togo au Nigeria",
-content: `
-<p>Le pentecôtisme explose en Afrique, transformant des communautés au Togo (Assemblées de Dieu, 1948) et au Nigeria (Redeemed Christian Church). Ce réveil s'inspire d'<strong>Actes 2:4</strong>, marquant une foi vivante et dynamique.</p>
-
-<h2>Croissance explosive</h2>
-<p>Le mouvement pentecôtiste africain se caractérise par :</p>
-<ul>
-<li><strong>Guérisons miraculeuses</strong> et manifestations spirituelles</li>
-<li><strong>Théologie de la prospérité</strong> adaptée aux défis économiques</li>
-<li><strong>Leadership autochtone</strong> et indépendance des missions occidentales</li>
-<li><strong>Méga-églises</strong> avec des millions de fidèles</li>
-</ul>
-
-<h3>Impact au Togo</h3>
-<p>Les <strong>Assemblées de Dieu</strong> ont transformé le paysage religieux togolais depuis 1948, introduisant de nouvelles pratiques spirituelles qui résonnent avec les croyances traditionnelles africaines.</p>
-
-<h2>Défis et apologétique</h2>
-<p>Face au syncrétisme et à la théologie de la prospérité, l'apologétique (2 Timothée 3:16) rappelle la centralité des Écritures et la nécessité d'un discernement spirituel.</p>
-
-<h3>Réponses aux objections</h3>
-<p>L'apologétique pentecôtiste africaine doit répondre aux défis du :</p>
-<ul>
-<li><strong>Syncrétisme</strong> avec l'animisme traditionnel</li>
-<li><strong>Matérialisme</strong> de la théologie de la prospérité</li>
-<li><strong>Manipulation</strong> de certains leaders charismatiques</li>
-</ul>
-
-<h2>Conclusion</h2>
-<p>Le réveil pentecôtiste africain illustre la vitalité du christianisme sur le continent, tout en nécessitant une approche apologétique équilibrée pour préserver l'authenticité de la foi.</p>
-
-<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-<h4>📸 Suggestions d'illustrations :</h4>
-<ul>
-<li>Photo d'un culte à l'Impact Centre Chrétien de Lomé</li>
-<li>Image d'une méga-église nigériane (Redeemed Christian Church)</li>
-<li>Photo d'un service de guérison pentecôtiste</li>
-</ul>
-</div>
-`,
-archaeology_africa: {
-category: "Foi en Afrique",
-title: "Archéologie Chrétienne en Afrique : Traces de Foi Ancienne",
-content: `
-<p>L'Afrique regorge de trésors archéologiques chrétiens, des églises taillées dans la roche de Lalibela (Éthiopie, XIe siècle) aux vestiges des missions allemandes au Togo. Ces découvertes témoignent de l'ancienneté et de la vitalité du christianisme africain.</p>
-
-<h2>Sites emblématiques</h2>
-<p><strong>Lalibela (Éthiopie)</strong> : 11 églises monolithiques creusées dans la roche, témoignant d'un christianisme africain précolonial sophistiqué.</p>
-
-<p><strong>Nubie (Soudan)</strong> : Premières communautés chrétiennes africaines datant du IVe siècle, avec des églises et des inscriptions en grec et copte.</p>
-
-<p><strong>Togo</strong> : Vestiges de l'église de Little Popo (Aného, 1847), première mission protestante allemande en Afrique de l'Ouest.</p>
-
-<h3>Signification apologétique</h3>
-<p>Ces découvertes archéologiques renforcent la crédibilité historique du christianisme et démontrent sa capacité à s'enraciner dans des contextes culturels variés.</p>
-
-<h2>Défis archéologiques contemporains</h2>
-<p>L'archéologie chrétienne africaine doit composer avec :</p>
-<ul>
-<li><strong>Climat tropical</strong> qui dégrade rapidement les vestiges</li>
-<li><strong>Urbanisation rapide</strong> qui menace les sites historiques</li>
-<li><strong>Financement limité</strong> pour les fouilles archéologiques</li>
-</ul>
-
-<h3>Perspectives d'avenir</h3>
-<p>Les nouvelles technologies (imagerie satellite, datation au carbone) ouvrent de nouvelles possibilités pour découvrir l'histoire chrétienne africaine.</p>
-
-<h2>Conclusion</h2>
-<p>L'archéologie chrétienne africaine révèle une foi ancienne et enracinée, confirmant que le christianisme n'est pas une religion étrangère mais une foi qui a toujours été présente en Afrique.</p>
-
-<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-<h4>📸 Suggestions d'illustrations :</h4>
-<ul>
-<li>Photo des églises de Lalibela (Éthiopie)</li>
-<li>Image des vestiges chrétiens de Nubie (Soudan)</li>
-<li>Photo de l'église de Little Popo à Aného (Togo)</li>
-<li>Carte des sites archéologiques chrétiens en Afrique</li>
-</ul>
-</div>
-`,
-apologetics_africa: {
-category: "Foi en Afrique",
-title: "Défis Apologétiques en Afrique : Syncrétisme et Modernité",
-content: `
-<p>L'apologétique chrétienne en Afrique doit répondre à des défis uniques : syncrétisme avec l'animisme, influence islamique, sécularisation croissante, et théologies de la prospérité. Ces défis nécessitent des réponses contextualisées tout en préservant l'essence de la foi chrétienne.</p>
-
-<h2>Défis spécifiques à l'Afrique</h2>
-<p><strong>Syncrétisme</strong> : Mélange entre christianisme et pratiques animistes traditionnelles, particulièrement visible au Togo avec les cultes vodou.</p>
-
-<p><strong>Théologie de la prospérité</strong> : Focus excessif sur la richesse matérielle, popularisée par certaines églises pentecôtistes.</p>
-
-<p><strong>Influence islamique</strong> : Croissance de l'islam en Afrique de l'Ouest, nécessitant un dialogue interreligieux respectueux.</p>
-
-<p><strong>Sécularisation</strong> : Impact de la modernité et de la mondialisation sur les valeurs traditionnelles.</p>
-
-<h3>Réponses apologétiques</h3>
-<p>Face à ces défis, l'apologétique africaine doit :</p>
-<ul>
-<li><strong>Affirmer l'exclusivité du Christ</strong> (Jean 14:6) face au syncrétisme</li>
-<li><strong>Rétablir l'équilibre spirituel</strong> face à la théologie de la prospérité</li>
-<li><strong>Démontrer la cohérence biblique</strong> face aux objections islamiques</li>
-<li><strong>Valoriser la tradition chrétienne</strong> face à la sécularisation</li>
-</ul>
-
-<h2>Stratégies d'évangélisation</h2>
-<p>L'apologétique africaine efficace combine :</p>
-<ul>
-<li><strong>Approche culturelle</strong> : Respect des traditions locales tout en affirmant la vérité chrétienne</li>
-<li><strong>Témoignage personnel</strong> : Impact transformateur de la foi dans la vie quotidienne</li>
-<li><strong>Engagement social</strong> : Écoles, hôpitaux, et programmes de développement</li>
-<li><strong>Formation des leaders</strong> : Équiper les pasteurs et évangélistes locaux</li>
-</ul>
-
-<h3>Exemples concrets</h3>
-<p>Au Togo, les églises catholiques et protestantes répondent aux défis par :</p>
-<ul>
-<li>Écoles chrétiennes de qualité (ex. à Dapaong)</li>
-<li>Programmes de santé communautaire</li>
-<li>Formation théologique des leaders locaux</li>
-<li>Dialogue interreligieux avec les musulmans</li>
-</ul>
-
-<h2>Conclusion</h2>
-<p>L'apologétique chrétienne en Afrique doit être à la fois fidèle aux Écritures et sensible aux défis culturels spécifiques. Elle démontre que le christianisme n'est pas une religion occidentale mais une foi universelle qui s'enracine et fleurit dans chaque culture africaine.</p>
-
-<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-<h4>📸 Suggestions d'illustrations :</h4>
-<ul>
-<li>Photo d'une école chrétienne au Togo</li>
-<li>Image d'un dialogue interreligieux</li>
-<li>Photo d'un programme de santé communautaire</li>
-<li>Portrait d'un pasteur ou prêtre togolais</li>
-</ul>
-</div>
-`
-},
-aquinas: {
-category: "Apologétique",
-title: "L'existence de Dieu : arguments rationnels",
-content: `
-<p>L'apologétique chrétienne offre des arguments rationnels solides pour défendre l'existence de Dieu. Ces preuves, développées par des penseurs comme Thomas d'Aquin, restent pertinentes aujourd'hui.</p>
-<h2>Les cinq voies de Thomas d'Aquin</h2>
-<p>Thomas d'Aquin a formulé cinq arguments rationnels pour l'existence de Dieu :</p>
-<ul>
-<li><strong>Le mouvement</strong> : Tout mouvement nécessite un premier moteur</li>
-<li><strong>La causalité</strong> : Toute cause a une cause antérieure, jusqu'à une cause première</li>
-<li><strong>La contingence</strong> : Les êtres contingents nécessitent un être nécessaire</li>
-<li><strong>La perfection</strong> : Les degrés de perfection supposent un être parfait</li>
-<li><strong>Le dessein</strong> : L'ordre de l'univers suggère un concepteur intelligent</li>
-</ul>
-<h3>L'argument cosmologique</h3>
-<p>Tout ce qui commence d'exister a une cause. L'univers a commencé d'exister (Big Bang). Donc l'univers a une cause. Cette cause doit être hors du temps et de l'espace, c'est-à-dire Dieu.</p>
-<blockquote>"Au commencement, Dieu créa les cieux et la terre." – Genèse 1:1</blockquote>
-<h2>L'argument moral</h2>
-<p>Si Dieu n'existe pas, alors les valeurs morales objectives n'existent pas. Mais les valeurs morales objectives existent. Donc Dieu existe.</p>
-<h3>Conclusion</h3>
-<p>Ces arguments rationnels, combinés à l'expérience personnelle et aux preuves historiques, forment une base solide pour la foi chrétienne. Comme le dit 1 Pierre 3:15 : <em>"Sanctifiez dans vos cœurs le Christ Seigneur, toujours prêts à la défense contre quiconque vous demande de rendre raison de l'espérance qui est en vous."</em></p>
-`
-}
-}
-const articles = {
-
-function openArticle(id) {
-const article = articles[id];
-if (article) {
-// Create modal
-const modal = document.createElement('div');
-modal.style.cssText = `
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: rgba(0,0,0,0.8);
-z-index: 2000;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 2rem;
-`;
-
-modal.innerHTML = `
-<div style="
-background: white;
-border-radius: 16px;
-max-width: 800px;
-max-height: 90vh;
-overflow-y: auto;
-padding: 2rem;
-position: relative;
-">
-<button onclick="this.closest('.modal').remove()" style="
-position: absolute;
-top: 1rem;
-right: 1rem;
-background: #f3f4f6;
-border: none;
-border-radius: 50%;
-width: 2rem;
-height: 2rem;
-cursor: pointer;
-font-size: 1.2rem;
-">×</button>
-<h1 style="margin-bottom: 1rem; color: var(--primary);">${article.title}</h1>
-<div style="line-height: 1.7; color: var(--text);">${article.content}</div>
-</div>
-`;
-
-modal.className = 'modal';
-document.body.appendChild(modal);
-
-// Close on escape key
-modal.addEventListener('keydown', (e) => {
-if (e.key === 'Escape') modal.remove();
-});
-
-// Close on background click
-modal.addEventListener('click', (e) => {
-if (e.target === modal) modal.remove();
-});
-
-// Focus for keyboard navigation
-modal.querySelector('button').focus();
-}
-}
-
-// Chart.js Visualizations
-document.addEventListener('DOMContentLoaded', function() {
-// Carte des Missions Catholiques en Afrique
-const ctx = document.getElementById('missionMap').getContext('2d');
-new Chart(ctx, {
-type: 'scatter',
-data: {
-datasets: [{
-label: 'Missions Catholiques en Afrique',
-data: [
-{ x: 1.1, y: 6.2, label: 'Lomé (Togo, 1892)' },
-{ x: -4.0, y: 5.3, label: 'Yamoussoukro (Côte d\'Ivoire)' },
-{ x: 32.5, y: 1.5, label: 'Kampala (Ouganda, 1879)' },
-{ x: 3.4, y: 6.4, label: 'Lagos (Nigeria)' },
-{ x: 39.6, y: 11.5, label: 'Lalibela (Éthiopie)' },
-{ x: 31.2, y: 30.0, label: 'Le Caire (Égypte)' }
-],
-backgroundColor: '#4f46e5',
-pointRadius: 8,
-pointHoverRadius: 10
-}]
-},
-options: {
-scales: {
-x: {
-title: { display: true, text: 'Longitude' },
-min: -10,
-max: 45
-},
-y: {
-title: { display: true, text: 'Latitude' },
-min: -10,
-max: 35
-}
-},
-plugins: {
-title: {
-display: true,
-text: 'Missions Catholiques en Afrique',
-font: { size: 16, weight: 'bold' }
-},
-legend: {
-display: true,
-position: 'bottom'
-}
-}
-}
-});
-
-// Chronologie du Christianisme en Afrique
-const ctxTimeline = document.getElementById('timeline').getContext('2d');
-new Chart(ctxTimeline, {
-type: 'line',
-data: {
-labels: ['300', '600', '1200', '1500', '1847', '1892', '1950', '2025'],
-datasets: [{
-label: 'Croissance du Christianisme (%)',
-data: [5, 15, 20, 15, 25, 30, 40, 47],
-borderColor: '#06b6d4',
-backgroundColor: 'rgba(6, 182, 212, 0.1)',
-fill: true,
-tension: 0.4,
-pointRadius: 6,
-pointHoverRadius: 8
-}]
-},
-options: {
-scales: {
-x: {
-title: { display: true, text: 'Année' },
-grid: { display: true }
-},
-y: {
-title: { display: true, text: '% Population Chrétienne' },
-min: 0,
-max: 50,
-grid: { display: true }
-}
-},
-plugins: {
-title: {
-display: true,
-text: 'Chronologie du Christianisme en Afrique',
-font: { size: 16, weight: 'bold' }
-},
-legend: {
-display: true,
-position: 'bottom'
-}
-}
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
 }
 });
 });

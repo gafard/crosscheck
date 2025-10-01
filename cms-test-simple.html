@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Simple - CrossCheck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab.active {
+            border-bottom-color: #d4af37;
+            color: #d4af37;
+            font-weight: 600;
+            background: white;
+        }
+        .tab:hover {
+            background: #e9ecef;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            background: white;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background: #d4af37;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #b8941f;
+        }
+        .alert {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: none;
+        }
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test CMS Simple - CrossCheck</h1>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('create')">Créer</div>
+            <div class="tab" onclick="showTab('edit')">Modifier</div>
+            <div class="tab" onclick="showTab('stats')">Statistiques</div>
+        </div>
+
+        <!-- Onglet Créer -->
+        <div id="create-tab" class="tab-content active">
+            <h3>📄 Créer un nouvel article</h3>
+            
+            <div class="alert alert-success" id="success-alert">
+                ✅ Article créé avec succès !
+            </div>
+            
+            <div class="alert alert-error" id="error-alert">
+                ❌ Erreur lors de la création
+            </div>
+            
+            <form id="article-form" onsubmit="createArticle(event)">
+                <div class="form-group">
+                    <label for="title">Titre de l'article *</label>
+                    <input type="text" id="title" name="title" required placeholder="Ex: Les preuves archéologiques de l'Exode">
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Catégorie *</label>
+                    <select id="category" name="category" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="apologetique">Apologétique</option>
+                        <option value="science">Science & Foi</option>
+                        <option value="histoire">Histoire</option>
+                        <option value="archeologie">Archéologie</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description courte *</label>
+                    <textarea id="description" name="description" rows="3" required placeholder="Résumé de l'article en 2-3 phrases"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">Contenu de l'article *</label>
+                    <textarea id="content" name="content" rows="10" required placeholder="Contenu complet de l'article..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">URL de l'image</label>
+                    <input type="url" id="image" name="image" placeholder="https://exemple.com/image.jpg">
+                </div>
+                
+                <button type="submit">Créer l'article</button>
+            </form>
+        </div>
+
+        <!-- Onglet Modifier -->
+        <div id="edit-tab" class="tab-content">
+            <h3>✏️ Modifier/Supprimer des articles</h3>
+            <div class="status">
+                📋 Articles sauvegardés localement
+            </div>
+            <div id="articles-list">
+                <p>Aucun article créé pour le moment.</p>
+            </div>
+        </div>
+
+        <!-- Onglet Statistiques -->
+        <div id="stats-tab" class="tab-content">
+            <h3>📊 Statistiques</h3>
+            <div class="status">
+                📈 Statistiques du CMS
+            </div>
+            <div id="stats-content">
+                <p>Articles créés: <span id="articles-count">0</span></p>
+                <p>Dernière activité: <span id="last-activity">Aucune</span></p>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 5px;">
+            <h4>🔧 Instructions de test :</h4>
+            <ol>
+                <li>Cliquez sur chaque onglet pour vérifier qu'il s'active</li>
+                <li>Remplissez le formulaire de création</li>
+                <li>Cliquez "Créer l'article"</li>
+                <li>Vérifiez que les fichiers se téléchargent</li>
+                <li>Ouvrez la console (F12) pour voir les logs</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Gestion des onglets
+        function showTab(tabName) {
+            console.log('Changement vers l\'onglet:', tabName);
+            
+            // Masquer tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Afficher l'onglet sélectionné
+            const targetTab = document.getElementById(tabName + '-tab');
+            if (targetTab) {
+                targetTab.classList.add('active');
+                console.log('Onglet affiché:', tabName + '-tab');
+            } else {
+                console.error('Onglet non trouvé:', tabName + '-tab');
+            }
+            
+            // Activer le bon onglet dans la navigation
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                if (tab.onclick && tab.onclick.toString().includes(tabName)) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Charger le contenu spécifique à l'onglet
+            if (tabName === 'edit') {
+                loadArticles();
+            } else if (tabName === 'stats') {
+                updateStats();
+            }
+        }
+
+        // Création d'un article
+        function createArticle(e) {
+            e.preventDefault();
+            console.log('Création d\'article...');
+            
+            const formData = new FormData(e.target);
+            const article = {
+                title: formData.get('title'),
+                category: formData.get('category'),
+                description: formData.get('description'),
+                content: formData.get('content'),
+                image: formData.get('image') || 'https://via.placeholder.com/800x400?text=Article+CrossCheck',
+                date: new Date().toLocaleDateString('fr-FR'),
+                id: Date.now()
+            };
+            
+            console.log('Article créé:', article);
+            
+            // Sauvegarder localement
+            let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            articles.push(article);
+            localStorage.setItem('cms-articles', JSON.stringify(articles));
+            
+            // Générer et télécharger les fichiers
+            generateFiles(article);
+            
+            // Afficher le succès
+            showAlert('success', 'Article créé avec succès !');
+            
+            // Vider le formulaire
+            e.target.reset();
+        }
+
+        // Génération des fichiers
+        function generateFiles(article) {
+            console.log('Génération des fichiers...');
+            
+            // Générer le nom de fichier
+            const fileName = `article-${article.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.html`;
+            
+            // Générer le contenu HTML de l'article
+            const articleHTML = generateArticleHTML(article);
+            
+            // Télécharger le fichier article
+            downloadFile(fileName, articleHTML);
+            
+            // Générer le code d'intégration
+            const integrationCode = generateIntegrationCode(article, fileName);
+            downloadFile('integration-articles.html', integrationCode);
+            
+            console.log('Fichiers générés et téléchargés');
+        }
+
+        // Génération du HTML de l'article
+        function generateArticleHTML(article) {
+            return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${article.title} - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Styles de base - copier depuis un article existant */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #0a0a0a; background: #ffffff; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .article-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: #0a0a0a; }
+        .article-meta { color: #666666; margin-bottom: 2rem; }
+        .article-image { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 2rem; }
+        .article-content { font-size: 1.1rem; line-height: 1.8; }
+        .back-button { display: inline-block; background: #0a0a0a; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 5px; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="articles.html" class="back-button">← Retour aux Articles</a>
+        
+        <div class="article-header">
+            <h1 class="article-title">${article.title}</h1>
+            <div class="article-meta">
+                <span>Par Rédaction</span> • 
+                <span>${article.date}</span> • 
+                <span>${article.category}</span>
+            </div>
+        </div>
+        
+        ${article.image ? `<img src="${article.image}" alt="${article.title}" class="article-image">` : ''}
+        
+        <div class="article-content">
+            ${article.content.replace(/\n/g, '<br><br>')}
+        </div>
+    </div>
+</body>
+</html>`;
+        }
+
+        // Génération du code d'intégration
+        function generateIntegrationCode(article, fileName) {
+            return `<!-- Code à ajouter dans articles.html pour l'onglet ${article.category} -->
+<div class="article-card" data-category="${article.category}">
+    <div class="article-image">
+        <img src="${article.image}" alt="${article.title}">
+        <div class="article-category">${article.category}</div>
+    </div>
+    <div class="article-content">
+        <h3 class="article-title">${article.title}</h3>
+        <p class="article-description">${article.description}</p>
+        <div class="article-meta">
+            <span class="article-author">Rédaction</span>
+            <span class="article-date">${article.date}</span>
+        </div>
+        <a href="${fileName}" class="article-link">Lire l'article</a>
+    </div>
+</div>`;
+        }
+
+        // Téléchargement de fichier
+        function downloadFile(filename, content) {
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Chargement des articles
+        function loadArticles() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const listContainer = document.getElementById('articles-list');
+            
+            if (articles.length === 0) {
+                listContainer.innerHTML = '<p>Aucun article créé pour le moment.</p>';
+                return;
+            }
+            
+            listContainer.innerHTML = articles.map(article => `
+                <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px;">
+                    <h4>${article.title}</h4>
+                    <p><strong>Catégorie:</strong> ${article.category}</p>
+                    <p><strong>Date:</strong> ${article.date}</p>
+                    <button onclick="deleteArticle(${article.id})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Supprimer</button>
+                </div>
+            `).join('');
+        }
+
+        // Suppression d'un article
+        function deleteArticle(id) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+                let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+                articles = articles.filter(article => article.id !== id);
+                localStorage.setItem('cms-articles', JSON.stringify(articles));
+                loadArticles();
+                updateStats();
+                showAlert('success', 'Article supprimé avec succès !');
+            }
+        }
+
+        // Mise à jour des statistiques
+        function updateStats() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            document.getElementById('articles-count').textContent = articles.length;
+            document.getElementById('last-activity').textContent = articles.length > 0 ? articles[articles.length - 1].date : 'Aucune';
+        }
+
+        // Affichage des alertes
+        function showAlert(type, message) {
+            const alert = document.getElementById(type === 'success' ? 'success-alert' : 'error-alert');
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('CMS Test Simple chargé');
+            updateStats();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archéologie Biblique | CrossCheck - Découvertes qui confirment la Bible</title>
+<meta name="description" content="Découvrez les découvertes archéologiques qui confirment l'historicité de la Bible. Stèle de Mesha, Jéricho, Tel Dan et autres preuves archéologiques.">
+<meta name="keywords" content="archéologie biblique, stèle de Mesha, Jéricho, Tel Dan, tunnel de Siloé, manuscrits Qumrân, découvertes archéologiques, preuves Bible">
+<meta name="author" content="CrossCheck">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://crosscheck.fr/archeologie.html">
+<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
+<link rel="apple-touch-icon" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a1a1a;
+--secondary: #4f46e5;
+--accent: #06b6d4;
+--text: #374151;
+--text-light: #6b7280;
+--bg: #ffffff;
+--bg-light: #f8fafc;
+--border: #e5e7eb;
+--success: #10b981;
+--warning: #f59e0b;
+--error: #ef4444;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+line-height: 1.6;
+color: var(--text);
+background: var(--bg);
+overflow-x: hidden;
+}
+
+/* Header */
+.header {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+background: rgba(255, 255, 255, 0.95);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border);
+z-index: 1000;
+transition: all 0.3s ease;
+}
+
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 70px;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+text-decoration: none;
+color: var(--primary);
+}
+
+.logo-icon {
+font-size: 1.5rem;
+}
+
+.logo-text {
+font-size: 1.5rem;
+font-weight: 700;
+letter-spacing: -0.5px;
+}
+
+.header-nav {
+display: flex;
+gap: 2rem;
+align-items: center;
+}
+
+.nav-link {
+text-decoration: none;
+color: var(--text);
+font-weight: 500;
+padding: 0.5rem 1rem;
+border-radius: 8px;
+transition: all 0.3s ease;
+position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+color: var(--secondary);
+background: rgba(79, 70, 229, 0.1);
+}
+
+.header-actions {
+display: flex;
+gap: 1rem;
+align-items: center;
+}
+
+.btn-primary,
+.btn-secondary {
+padding: 0.75rem 1.5rem;
+border-radius: 8px;
+font-weight: 600;
+text-decoration: none;
+transition: all 0.3s ease;
+border: none;
+cursor: pointer;
+font-size: 0.9rem;
+}
+
+.btn-primary {
+background: var(--primary);
+color: white;
+}
+
+.btn-primary:hover {
+background: #333;
+transform: translateY(-1px);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(--text);
+border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+background: var(--bg-light);
+border-color: var(--text);
+}
+
+/* Main Content */
+.main-content {
+padding-top: 90px;
+min-height: 100vh;
+background: var(--bg-light);
+}
+
+.content-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 2rem;
+}
+
+.page-header {
+text-align: center;
+margin-bottom: 4rem;
+padding: 3rem 0;
+background: white;
+border-radius: 16px;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+font-size: 3rem;
+font-weight: 800;
+color: var(--primary);
+margin-bottom: 1rem;
+letter-spacing: -1px;
+}
+
+.page-subtitle {
+font-size: 1.2rem;
+color: var(--text-light);
+max-width: 600px;
+margin: 0 auto;
+line-height: 1.6;
+}
+
+/* Articles Grid */
+.articles-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 2rem;
+margin-bottom: 4rem;
+}
+
+.article-card {
+background: white;
+border-radius: 16px;
+overflow: hidden;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+cursor: pointer;
+border: 1px solid var(--border);
+}
+
+.article-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+border-color: var(--secondary);
+}
+
+.article-image {
+width: 100%;
+height: 220px;
+background-size: cover;
+background-position: center;
+position: relative;
+overflow: hidden;
+}
+
+.article-image::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+transition: opacity 0.3s;
+}
+
+.article-card:hover .article-image::after {
+opacity: 0.8;
+}
+
+.article-body {
+padding: 1.5rem;
+}
+
+.article-category {
+display: inline-block;
+background: var(--secondary);
+color: white;
+padding: 0.3rem 0.8rem;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 600;
+margin-bottom: 1rem;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.article-title {
+font-size: 1.3rem;
+font-weight: 700;
+line-height: 1.3;
+color: var(--primary);
+margin-bottom: 0.8rem;
+}
+
+.article-excerpt {
+color: var(--text-light);
+margin-bottom: 1rem;
+line-height: 1.6;
+}
+
+.article-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.85rem;
+color: var(--text-light);
+}
+
+/* CTA Section */
+.cta-section {
+background: linear-gradient(135deg, var(--secondary), var(--accent));
+padding: 4rem 2rem;
+border-radius: 16px;
+text-align: center;
+color: white;
+margin: 4rem 0;
+}
+
+.cta-title {
+font-size: 2rem;
+font-weight: 800;
+margin-bottom: 1rem;
+}
+
+.cta-description {
+font-size: 1.1rem;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+.cta-buttons {
+display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.btn-cta-primary,
+.btn-cta-secondary {
+padding: 1rem 2rem;
+border-radius: 12px;
+font-weight: 600;
+text-decoration: none;
+transition: all 0.3s ease;
+font-size: 1rem;
+border: none;
+cursor: pointer;
+}
+
+.btn-cta-primary {
+background: white;
+color: var(--secondary);
+}
+
+.btn-cta-primary:hover {
+background: var(--bg-light);
+transform: translateY(-2px);
+}
+
+.btn-cta-secondary {
+background: transparent;
+color: white;
+border: 2px solid white;
+}
+
+.btn-cta-secondary:hover {
+background: white;
+color: var(--secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+.header-nav {
+  display: none;
+}
+
+.page-title {
+  font-size: 2.5rem;
+}
+
+.articles-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+}
+
+@media (max-width: 768px) {
+.header-container {
+  padding: 0 1rem;
+}
+
+.content-container {
+  padding: 1rem;
+}
+
+.page-title {
+  font-size: 2rem;
+}
+
+.page-subtitle {
+font-size: 1rem;
+}
+
+.articles-grid {
+  grid-template-columns: 1fr;
+}
+
+.cta-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-cta-primary,
+.btn-cta-secondary {
+  width: 100%;
+  max-width: 300px;
+}
+}
+
+/* Animations */
+@keyframes fadeInUp {
+from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+.fade-in-up {
+animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Smooth scrolling */
+html {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+<div class="header-container">
+<div class="logo">
+<div class="logo-icon">
+<img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+</div>
+<span class="logo-text">CrossCheck</span>
+</div>
+<nav class="header-nav">
+<a href="index.html" class="nav-link">Accueil</a>
+<a href="archeologie.html" class="nav-link active">Archéologie</a>
+<a href="science.html" class="nav-link">Science</a>
+<a href="histoire.html" class="nav-link">Histoire</a>
+<a href="apologetique.html" class="nav-link">Apologétique</a>
+<a href="togo.html" class="nav-link">Togo</a>
+</nav>
+<div class="header-actions">
+<button class="btn-secondary">Connexion</button>
+<button class="btn-primary">S'inscrire</button>
+</div>
+</div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+<div class="content-container">
+<!-- Page Header -->
+<section class="page-header">
+<h1 class="page-title">Archéologie Biblique</h1>
+<p class="page-subtitle">Découvrez les découvertes archéologiques qui confirment l'historicité de la Bible et renforcent la crédibilité des récits bibliques.</p>
+</section>
+
+<!-- Articles Grid -->
+<section class="articles-grid">
+<article class="article-card fade-in-up" onclick="openArticle('sites_togo')">
+<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&q=80');"></div>
+<div class="article-body">
+<div class="article-category">Archéologie</div>
+<h3 class="article-title">Sites chrétiens emblématiques du Togo : Témoins de la foi vivante</h3>
+<p class="article-excerpt">Découverte des lieux de culte historiques et contemporains qui incarnent la vitalité du christianisme togolais.</p>
+<div class="article-footer">
+<span>📅 25 Nov</span>
+<span>⏱️ 10 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up" onclick="openArticle('mesha')">
+<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Mesha_stele.jpg/800px-Mesha_stele.jpg');"></div>
+<div class="article-body">
+<div class="article-category">Archéologie</div>
+<h3 class="article-title">La stèle de Mesha : Une preuve historique</h3>
+<p class="article-excerpt">Texte du roi moabite Mesha évoquant un conflit contre Israël et mentionnant Yahvé, confirmant des récits bibliques.</p>
+<div class="article-footer">
+<span>📅 29 Sept</span>
+<span>⏱️ 8 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up" onclick="openArticle('jericho')">
+<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jericho_ancient_walls.jpg/800px-Jericho_ancient_walls.jpg');"></div>
+<div class="article-body">
+<div class="article-category">Archéologie</div>
+<h3 class="article-title">Jéricho : Quand l'archéologie confirme Josué 6</h3>
+<p class="article-excerpt">Les fouilles de Jéricho révèlent des murs effondrés, cohérents avec le récit biblique de la conquête.</p>
+<div class="article-footer">
+<span>📅 15 Oct</span>
+<span>⏱️ 7 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Tel_Dan_Stele.jpg/800px-Tel_Dan_Stele.jpg');"></div>
+<div class="article-body">
+<div class="article-category">Archéologie</div>
+<h3 class="article-title">La stèle de Tel Dan : La maison de David confirmée</h3>
+<p class="article-excerpt">Une inscription de 850 av. J.-C. mentionne la "maison de David", confirmant l'existence historique du roi David.</p>
+<div class="article-footer">
+<span>📅 22 Août</span>
+<span>⏱️ 6 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80');"></div>
+<div class="article-body">
+<div class="article-category">Archéologie</div>
+<h3 class="article-title">Le tunnel de Siloé : Une merveille biblique</h3>
+<p class="article-excerpt">Un tunnel creusé sous Jérusalem, mentionné en 2 Rois 20:20, découvert intact et confirmant l'histoire d'Ézéchias.</p>
+<div class="article-footer">
+<span>📅 10 Sept</span>
+<span>⏱️ 6 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Dead_Sea_Scrolls_-_Isaiah.jpg/1280px-Dead_Sea_Scrolls_-_Isaiah.jpg');"></div>
+<div class="article-body">
+<div class="article-category">Archéologie</div>
+<h3 class="article-title">Les manuscrits de Qumrân</h3>
+<p class="article-excerpt">Les rouleaux de la mer Morte confirment la préservation des textes bibliques et leur fiabilité historique.</p>
+<div class="article-footer">
+<span>📅 05 Juil</span>
+<span>⏱️ 8 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&q=80');"></div>
+<div class="article-body">
+<div class="article-category">Archéologie</div>
+<h3 class="article-title">Nouvelles découvertes en Terre Sainte</h3>
+<p class="article-excerpt">Les dernières fouilles archéologiques apportent des preuves supplémentaires de l'exactitude historique des récits bibliques.</p>
+<div class="article-footer">
+<span>📅 12 Nov</span>
+<span>⏱️ 9 min</span>
+</div>
+</div>
+</article>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+<h2 class="cta-title">Découvrez Plus de Preuves</h2>
+<p class="cta-description">Explorez nos autres sections pour approfondir votre compréhension de la vérité biblique.</p>
+<div class="cta-buttons">
+<a href="science.html" class="btn-cta-primary">Science & Foi</a>
+<a href="apologetique.html" class="btn-cta-secondary">Apologétique</a>
+</div>
+</section>
+</div>
+</main>
+
+<script>
+// Header scroll effect
+window.addEventListener('scroll', () => {
+const header = document.querySelector('.header');
+if (window.scrollY > 50) {
+header.style.background = 'rgba(255, 255, 255, 0.98)';
+header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+} else {
+header.style.background = 'rgba(255, 255, 255, 0.95)';
+header.style.boxShadow = 'none';
+}
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('fade-in-up');
+}
+});
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.article-card, .page-header').forEach(el => {
+observer.observe(el);
+});
+
+// Articles data
+const articles = {
+sites_togo: {
+category: "Archéologie",
+title: "Sites chrétiens emblématiques du Togo : Témoins de la foi vivante",
+content: `
+<p>Les lieux de culte chrétiens au Togo constituent des témoignages architecturaux et spirituels remarquables de l'enracinement de la foi. Ces sites incarnent parfaitement 1 Pierre 3:15 : <em>"Toujours prêts à rendre compte de l'espérance qui est en vous."</em></p>
+
+<h2>La Cathédrale du Sacré-Cœur de Lomé</h2>
+<p>Construite en 1952, cette cathédrale catholique se dresse comme un havre de paix au cœur du marché central de Lomé. Son architecture moderne contraste avec le tumulte commercial environnant, symbolisant la transcendance divine dans le quotidien togolais.</p>
+
+<h3>Architecture et symbolisme</h3>
+<p>La cathédrale combine des éléments architecturaux occidentaux avec des adaptations climatiques locales. Ses grandes ouvertures permettent la ventilation naturelle, tandis que son clocher domine le paysage urbain de Lomé.</p>
+
+<h2>L'Église Notre-Dame de Lourdes</h2>
+<p>Située dans un quartier résidentiel de Lomé, cette église catholique est devenue un lieu de pèlerinage important. Elle témoigne de la dévotion mariale profondément ancrée dans la spiritualité catholique togolaise.</p>
+
+<h3>Pèlerinages et dévotions</h3>
+<p>Chaque année, des milliers de fidèles se rassemblent pour honorer Notre-Dame de Lourdes, créant un lien spirituel entre la France et le Togo, héritage de l'époque coloniale transformé en enrichissement culturel.</p>
+
+<h2>Impact Centre Chrétien</h2>
+<p>Cette église pentecôtiste moderne, située à Lomé, représente la vitalité du christianisme charismatique au Togo. Son architecture contemporaine et ses équipements multimédias reflètent l'adaptation du christianisme aux défis du XXIe siècle.</p>
+
+<h3>Innovation et tradition</h3>
+<p>L'Impact Centre Chrétien illustre comment les églises africaines intègrent les technologies modernes tout en préservant l'essence de la foi chrétienne. Ses services télévisés et ses programmes sociaux montrent l'engagement social des églises togolaises.</p>
+
+<h2>L'Église des Assemblées de Dieu</h2>
+<p>Établie en 1948, cette église historique marque l'arrivée du pentecôtisme au Togo. Son bâtiment, bien que modeste, symbolise la révolution spirituelle qu'a représenté l'introduction des pratiques charismatiques.</p>
+
+<h3>Héritage spirituel</h3>
+<p>Cette église-mère des Assemblées de Dieu au Togo a formé des centaines de pasteurs et a influencé l'ensemble du mouvement pentecôtiste en Afrique de l'Ouest.</p>
+
+<h2>Églises de Kara et autres régions</h2>
+<p>Au-delà de Lomé, des églises remarquables parsèment le territoire togolais :</p>
+<ul>
+<li><strong>Kara</strong> : Église catholique avec architecture traditionnelle africaine</li>
+<li><strong>Atakpamé</strong> : Centre protestant historique</li>
+<li><strong>Kpalimé</strong> : Église de montagne avec vue panoramique</li>
+</ul>
+
+<h2>Signification apologétique</h2>
+<p>Ces sites chrétiens togolais démontrent la capacité du christianisme à s'incarner dans des contextes culturels variés. Ils constituent des <em>"pierres vivantes"</em> (1 Pierre 2:5) qui témoignent de la vitalité de la foi chrétienne en Afrique.</p>
+
+<h3>Défis contemporains</h3>
+<p>Ces lieux de culte font face aux défis du modernisme, du pluralisme religieux et de l'urbanisation rapide. Leur adaptation témoigne de la résilience et de l'adaptabilité du christianisme africain.</p>
+
+<h2>Conclusion</h2>
+<p>Les sites chrétiens du Togo incarnent la promesse biblique : <em>"Sur cette pierre je bâtirai mon Église, et les portes du séjour des morts ne prévaudront point contre elle."</em> (Matthieu 16:18). Ils témoignent que l'Évangile n'est pas une religion étrangère, mais une foi qui s'enracine et fleurit dans chaque culture.</p>
+
+<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+<h4>📸 Suggestions d'illustrations locales :</h4>
+<ul>
+<li>Photo extérieure de la Cathédrale du Sacré-Cœur avec le marché en arrière-plan</li>
+<li>Intérieur de l'église Notre-Dame de Lourdes pendant un pèlerinage</li>
+<li>Façade moderne de l'Impact Centre Chrétien</li>
+<li>Portrait de l'Église des Assemblées de Dieu (vue historique)</li>
+<li>Vue panoramique d'une église de montagne à Kpalimé</li>
+<li>Photo d'une cérémonie de mariage dans une église togolaise</li>
+</ul>
+</div>
+`
+},
+mesha: {
+category: "Archéologie",
+title: "La stèle de Mesha : Une preuve historique",
+content: `
+<p>Découverte en 1868 en Jordanie, la stèle de Mesha, datée d'environ 840 av. J.-C., est une inscription du roi moabite Mesha mentionnant une victoire contre Israël. Elle cite explicitement la "maison d'Omri" et le nom divin "Yahvé", corroborant des récits bibliques (2 Rois 3).</p>
+<h2>Un témoignage extra-biblique</h2>
+<p>Ce monument en basalte, conservé au Louvre, est l'une des premières preuves archéologiques confirmant l'existence d'Israël et de son Dieu. Il mentionne des événements parallèles à ceux décrits dans la Bible, renforçant la fiabilité historique des Écritures.</p>
+<h3>Contexte historique</h3>
+<p>Le texte de la stèle décrit la révolte de Mesha contre le joug d'Israël après la mort d'Achab, fils d'Omri. Cela correspond à 2 Rois 3:4-27. La mention de Yahvé est particulièrement significative, car elle montre que le nom de Dieu était connu au-delà d'Israël.</p>
+<blockquote>"J'ai emporté de là les vases de Yahvé et je les ai traînés devant Kemosh." – Stèle de Mesha</blockquote>
+<h2>Implications pour la foi</h2>
+<ul>
+<li>Confirmation historique : La stèle prouve l'existence d'Omri et de son royaume.</li>
+<li>Contexte spirituel : La mention de Yahvé montre la reconnaissance du Dieu d'Israël par ses ennemis.</li>
+<li>Fiabilité biblique : Les parallèles avec 2 Rois renforcent la crédibilité des récits bibliques.</li>
+</ul>
+<h3>Conclusion</h3>
+<p>La stèle de Mesha est une fenêtre sur le IXe siècle av. J.-C., reliant directement les Écritures à l'histoire. Comme le dit Psaume 119:160 : <em>"La somme de ta parole est vérité."</em></p>
+`,
+jericho: {
+category: "Archéologie",
+title: "Jéricho : Quand l'archéologie confirme Josué 6",
+content: `
+<p>Les fouilles de Jéricho, l'une des plus anciennes villes du monde, ont révélé des preuves fascinantes qui s'alignent avec le récit de Josué 6, où les murs de la ville s'effondrent après l'intervention divine.</p>
+<h2>Les découvertes archéologiques</h2>
+<p>Les fouilles de John Garstang (1930-1936) et Kathleen Kenyon (1950) ont montré des murs effondrés datant d'environ 1400 av. J.-C., une période proche de la conquête israélite décrite dans la Bible. Des traces de feu et des réserves de grains intacts suggèrent une destruction soudaine.</p>
+<h3>Parallèles bibliques</h3>
+<p>Josué 6:20 décrit les murs de Jéricho s'effondrant après que les Israélites ont marché autour de la ville. Les découvertes montrent que les murs se sont effondrés vers l'extérieur, permettant un accès direct, ce qui est cohérent avec le récit biblique.</p>
+<blockquote>"Les murailles s'écroulèrent, et le peuple monta dans la ville." – Josué 6:20</blockquote>
+<h2>Signification</h2>
+<ul>
+<li>Preuves matérielles : Les murs effondrés et les traces de feu corroborent Josué 6.</li>
+<li>Contexte culturel : La destruction soudaine suggère un événement exceptionnel.</li>
+<li>Foi et histoire : Ces découvertes renforcent la crédibilité des récits bibliques.</li>
+</ul>
+<h3>Conclusion</h3>
+<p>Jéricho illustre comment l'archéologie peut éclairer les Écritures. Comme le dit Hébreux 11:30 : <em>"C'est par la foi que les murailles de Jéricho tombèrent."</em></p>
+`
+}
+};
+
+function openArticle(id) {
+const article = articles[id];
+if (article) {
+// Create modal
+const modal = document.createElement('div');
+modal.style.cssText = `
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0,0,0,0.8);
+z-index: 2000;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+`;
+
+modal.innerHTML = `
+<div style="
+background: white;
+border-radius: 16px;
+max-width: 800px;
+max-height: 90vh;
+overflow-y: auto;
+padding: 2rem;
+position: relative;
+">
+<button onclick="this.closest('.modal').remove()" style="
+position: absolute;
+top: 1rem;
+right: 1rem;
+background: #f3f4f6;
+border: none;
+border-radius: 50%;
+width: 2rem;
+height: 2rem;
+cursor: pointer;
+font-size: 1.2rem;
+">×</button>
+<h1 style="margin-bottom: 1rem; color: var(--primary);">${article.title}</h1>
+<div style="line-height: 1.7; color: var(--text);">${article.content}</div>
+</div>
+`;
+
+modal.className = 'modal';
+document.body.appendChild(modal);
+
+// Close on escape key
+modal.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') modal.remove();
+});
+
+// Close on background click
+modal.addEventListener('click', (e) => {
+if (e.target === modal) modal.remove();
+});
+
+// Focus for keyboard navigation
+modal.querySelector('button').focus();
+}
+}
+</script>
+</body>
+</html>

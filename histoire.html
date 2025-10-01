@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histoire Chrétienne | CrossCheck - L'histoire du christianisme et de l'Église</title>
+<meta name="description" content="Explorez l'histoire fascinante du christianisme, de l'Église primitive aux temps modernes. Découvrez les événements, personnages et développements qui ont façonné la foi chrétienne.">
+<meta name="keywords" content="histoire chrétienne, Église primitive, Réforme protestante, croisades, martyrs chrétiens, développement christianisme, histoire Église">
+<meta name="author" content="CrossCheck">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://crosscheck.fr/histoire.html">
+<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
+<link rel="apple-touch-icon" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #1a1a1a;
+--secondary: #4f46e5;
+--accent: #06b6d4;
+--text: #374151;
+--text-light: #6b7280;
+--bg: #ffffff;
+--bg-light: #f8fafc;
+--border: #e5e7eb;
+--success: #10b981;
+--warning: #f59e0b;
+--error: #ef4444;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+line-height: 1.6;
+color: var(--text);
+background: var(--bg);
+overflow-x: hidden;
+}
+
+/* Header */
+.header {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+background: rgba(255, 255, 255, 0.95);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border);
+z-index: 1000;
+transition: all 0.3s ease;
+}
+
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 70px;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+text-decoration: none;
+color: var(--primary);
+}
+
+.logo-icon {
+font-size: 1.5rem;
+}
+
+.logo-text {
+font-size: 1.5rem;
+font-weight: 700;
+letter-spacing: -0.5px;
+}
+
+.header-nav {
+display: flex;
+gap: 2rem;
+align-items: center;
+}
+
+.nav-link {
+text-decoration: none;
+color: var(--text);
+font-weight: 500;
+padding: 0.5rem 1rem;
+border-radius: 8px;
+transition: all 0.3s ease;
+position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+color: var(--secondary);
+background: rgba(79, 70, 229, 0.1);
+}
+
+.header-actions {
+display: flex;
+gap: 1rem;
+align-items: center;
+}
+
+.btn-primary,
+.btn-secondary {
+padding: 0.75rem 1.5rem;
+border-radius: 8px;
+font-weight: 600;
+text-decoration: none;
+transition: all 0.3s ease;
+border: none;
+cursor: pointer;
+font-size: 0.9rem;
+}
+
+.btn-primary {
+background: var(--primary);
+color: white;
+}
+
+.btn-primary:hover {
+background: #333;
+transform: translateY(-1px);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(--text);
+border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+background: var(--bg-light);
+border-color: var(--text);
+}
+
+/* Main Content */
+.main-content {
+padding-top: 90px;
+min-height: 100vh;
+background: var(--bg-light);
+}
+
+.content-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 2rem;
+}
+
+.page-header {
+text-align: center;
+margin-bottom: 4rem;
+padding: 3rem 0;
+background: white;
+border-radius: 16px;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+font-size: 3rem;
+font-weight: 800;
+color: var(--primary);
+margin-bottom: 1rem;
+letter-spacing: -1px;
+}
+
+.page-subtitle {
+font-size: 1.2rem;
+color: var(--text-light);
+max-width: 600px;
+margin: 0 auto;
+line-height: 1.6;
+}
+
+/* Articles Grid */
+.articles-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 2rem;
+margin-bottom: 4rem;
+}
+
+.article-card {
+background: white;
+border-radius: 16px;
+overflow: hidden;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+cursor: pointer;
+border: 1px solid var(--border);
+}
+
+.article-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+border-color: var(--secondary);
+}
+
+.article-image {
+width: 100%;
+height: 220px;
+background-size: cover;
+background-position: center;
+position: relative;
+overflow: hidden;
+}
+
+.article-image::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+transition: opacity 0.3s;
+}
+
+.article-card:hover .article-image::after {
+opacity: 0.8;
+}
+
+.article-body {
+padding: 1.5rem;
+}
+
+.article-category {
+display: inline-block;
+background: var(--warning);
+color: white;
+padding: 0.3rem 0.8rem;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 600;
+margin-bottom: 1rem;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.article-title {
+font-size: 1.3rem;
+font-weight: 700;
+line-height: 1.3;
+color: var(--primary);
+margin-bottom: 0.8rem;
+}
+
+.article-excerpt {
+color: var(--text-light);
+margin-bottom: 1rem;
+line-height: 1.6;
+}
+
+.article-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.85rem;
+color: var(--text-light);
+}
+
+/* CTA Section */
+.cta-section {
+background: linear-gradient(135deg, var(--warning), var(--accent));
+padding: 4rem 2rem;
+border-radius: 16px;
+text-align: center;
+color: white;
+margin: 4rem 0;
+}
+
+.cta-title {
+font-size: 2rem;
+font-weight: 800;
+margin-bottom: 1rem;
+}
+
+.cta-description {
+font-size: 1.1rem;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+.cta-buttons {
+display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.btn-cta-primary,
+.btn-cta-secondary {
+padding: 1rem 2rem;
+border-radius: 12px;
+font-weight: 600;
+text-decoration: none;
+transition: all 0.3s ease;
+font-size: 1rem;
+border: none;
+cursor: pointer;
+}
+
+.btn-cta-primary {
+background: white;
+color: var(--warning);
+}
+
+.btn-cta-primary:hover {
+background: var(--bg-light);
+transform: translateY(-2px);
+}
+
+.btn-cta-secondary {
+background: transparent;
+color: white;
+border: 2px solid white;
+}
+
+.btn-cta-secondary:hover {
+background: white;
+color: var(--warning);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+.header-nav {
+  display: none;
+}
+
+.page-title {
+  font-size: 2.5rem;
+}
+
+.articles-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+}
+
+@media (max-width: 768px) {
+.header-container {
+  padding: 0 1rem;
+}
+
+.content-container {
+  padding: 1rem;
+}
+
+.page-title {
+  font-size: 2rem;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+}
+
+.articles-grid {
+  grid-template-columns: 1fr;
+}
+
+.cta-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-cta-primary,
+.btn-cta-secondary {
+  width: 100%;
+  max-width: 300px;
+}
+}
+
+/* Animations */
+@keyframes fadeInUp {
+from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+.fade-in-up {
+animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Smooth scrolling */
+html {
+scroll-behavior: smooth;
+}
+  </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+<div class="header-container">
+<div class="logo">
+<div class="logo-icon">
+<img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+</div>
+<span class="logo-text">CrossCheck</span>
+</div>
+<nav class="header-nav">
+<a href="index.html" class="nav-link">Accueil</a>
+<a href="archeologie.html" class="nav-link">Archéologie</a>
+<a href="science.html" class="nav-link">Science</a>
+<a href="histoire.html" class="nav-link active">Histoire</a>
+<a href="apologetique.html" class="nav-link">Apologétique</a>
+<a href="togo.html" class="nav-link">Togo</a>
+</nav>
+<div class="header-actions">
+<button class="btn-secondary">Connexion</button>
+<button class="btn-primary">S'inscrire</button>
+</div>
+</div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+<div class="content-container">
+<!-- Page Header -->
+<section class="page-header">
+<h1 class="page-title">Histoire Chrétienne</h1>
+<p class="page-subtitle">Explorez l'histoire fascinante du christianisme, de l'Église primitive aux temps modernes. Découvrez les événements et personnages qui ont façonné la foi chrétienne.</p>
+</section>
+
+<!-- Articles Grid -->
+<section class="articles-grid">
+<article class="article-card fade-in-up" onclick="openArticle('togo')">
+<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80');"></div>
+<div class="article-body">
+<div class="article-category">Histoire</div>
+<h3 class="article-title">Histoire du christianisme au Togo : Des missions allemandes à la foi contemporaine</h3>
+<p class="article-excerpt">L'évangélisation atypique au Togo depuis les premiers protestants en 1847 jusqu'à l'impact des églises pentecôtistes contemporaines.</p>
+<div class="article-footer">
+<span>📅 25 Nov</span>
+<span>⏱️ 12 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up" onclick="openArticle('catacombes')">
+<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Catacombe_di_San_Callisto_-_Cripta_dei_Papi_-_Foto_Giovanni_Dall%27Orto_22-5-2006.jpg/800px-Catacombe_di_San_Callisto_-_Cripta_dei_Papi_-_Foto_Giovanni_Dall%27Orto_22-5-2006.jpg');"></div>
+<div class="article-body">
+<div class="article-category">Histoire</div>
+<h3 class="article-title">L'Église primitive : des apôtres aux persécutions</h3>
+<p class="article-excerpt">L'histoire des premiers chrétiens, leur organisation, leurs défis et leur expansion dans l'Empire romain.</p>
+<div class="article-footer">
+<span>📅 30 Nov</span>
+<span>⏱️ 16 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up" onclick="openArticle('croisades')">
+<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Crusader_knights.jpg/800px-Crusader_knights.jpg');"></div>
+<div class="article-body">
+<div class="article-category">Histoire</div>
+<h3 class="article-title">Les croisades : mythes et réalités</h3>
+<p class="article-excerpt">Une analyse historique des croisades, leurs causes, leurs conséquences et leur impact sur l'histoire européenne.</p>
+<div class="article-footer">
+<span>📅 23 Nov</span>
+<span>⏱️ 18 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Luther_at_the_Diet_of_Worms.jpg/800px-Luther_at_the_Diet_of_Worms.jpg');"></div>
+<div class="article-body">
+<div class="article-category">Histoire</div>
+<h3 class="article-title">La Réforme protestante : un tournant historique</h3>
+<p class="article-excerpt">Luther, Calvin et les autres réformateurs qui ont transformé le christianisme au XVIe siècle.</p>
+<div class="article-footer">
+<span>📅 16 Nov</span>
+<span>⏱️ 14 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&q=80');"></div>
+<div class="article-body">
+<div class="article-category">Histoire</div>
+<h3 class="article-title">Les martyrs chrétiens : témoins de la foi</h3>
+<p class="article-excerpt">L'histoire des chrétiens qui ont donné leur vie pour leur foi, de l'époque romaine à nos jours.</p>
+<div class="article-footer">
+<span>📅 09 Nov</span>
+<span>⏱️ 12 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80');"></div>
+<div class="article-body">
+<div class="article-category">Histoire</div>
+<h3 class="article-title">Le développement de la théologie chrétienne</h3>
+<p class="article-excerpt">Comment la doctrine chrétienne s'est développée et affinée au cours des siècles.</p>
+<div class="article-footer">
+<span>📅 02 Nov</span>
+<span>⏱️ 15 min</span>
+</div>
+</div>
+</article>
+
+<article class="article-card fade-in-up">
+<div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80');"></div>
+<div class="article-body">
+<div class="article-category">Histoire</div>
+<h3 class="article-title">L'expansion du christianisme dans le monde</h3>
+<p class="article-excerpt">Comment le christianisme s'est répandu de Jérusalem aux confins de la terre.</p>
+<div class="article-footer">
+<span>📅 26 Oct</span>
+<span>⏱️ 13 min</span>
+</div>
+</div>
+</article>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+<h2 class="cta-title">Explorez Plus d'Histoire</h2>
+<p class="cta-description">Découvrez nos autres sections pour approfondir votre compréhension de la vérité biblique.</p>
+<div class="cta-buttons">
+<a href="archeologie.html" class="btn-cta-primary">Archéologie</a>
+<a href="apologetique.html" class="btn-cta-secondary">Apologétique</a>
+</div>
+</section>
+</div>
+</main>
+
+<script>
+// Header scroll effect
+window.addEventListener('scroll', () => {
+const header = document.querySelector('.header');
+if (window.scrollY > 50) {
+header.style.background = 'rgba(255, 255, 255, 0.98)';
+header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+} else {
+header.style.background = 'rgba(255, 255, 255, 0.95)';
+header.style.boxShadow = 'none';
+}
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('fade-in-up');
+}
+});
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.article-card, .page-header').forEach(el => {
+observer.observe(el);
+});
+
+// Articles data
+const articles = {
+togo: {
+category: "Histoire",
+title: "Histoire du christianisme au Togo : Des missions allemandes à la foi contemporaine",
+content: `
+<p>L'histoire du christianisme au Togo présente un parcours unique en Afrique de l'Ouest, marqué par une évangélisation précoce et une diversité confessionnelle remarquable. Cette histoire illustre parfaitement la Grande Commission biblique (Matthieu 28:19) en action sur le continent africain.</p>
+
+<h2>Les premières missions : 1847-1892</h2>
+<p>Le Togo se distingue par une évangélisation protestante particulièrement précoce. Dès 1847, les missions protestantes allemandes, principalement de la Société des Missions de Brême, établissent les premiers postes missionnaires. Cette date fait du Togo l'un des premiers territoires africains évangélisés par les protestants.</p>
+
+<h3>L'arrivée des catholiques</h3>
+<p>Les missions catholiques suivent en 1892 avec les Pères du Saint-Esprit, créant une situation unique de coexistence confessionnelle précoce. Cette diversité religieuse initiale a façonné durablement le paysage chrétien togolais.</p>
+
+<blockquote>"Allez donc, et faites disciples toutes les nations, les baptisant au nom du Père, du Fils et du Saint-Esprit." – Matthieu 28:19</blockquote>
+
+<h2>Le développement du pentecôtisme : 1948 et après</h2>
+<p>Un tournant majeur survient en 1948 avec l'arrivée des Assemblées de Dieu. Cette dénomination pentecôtiste connaît un succès fulgurant, transformant radicalement le paysage religieux togolais. Aujourd'hui, les églises pentecôtistes représentent une part significative du christianisme togolais.</p>
+
+<h3>Impact contemporain</h3>
+<p>Les églises pentecôtistes ont introduit de nouvelles pratiques religieuses (guérisons, prophéties, exorcismes) qui résonnent avec les croyances traditionnelles africaines, créant une synthèse culturelle unique.</p>
+
+<h2>Sites emblématiques de la foi togolaise</h2>
+<ul>
+<li><strong>Cathédrale du Sacré-Cœur de Lomé</strong> : Construite en 1952, elle symbolise l'enracinement catholique dans la capitale</li>
+<li><strong>Église Notre-Dame de Lourdes</strong> : Un lieu de pèlerinage important pour les catholiques togolais</li>
+<li><strong>Impact Centre Chrétien</strong> : Église pentecôtiste moderne influente à Lomé</li>
+<li><strong>Église des Assemblées de Dieu</strong> : Première église pentecôtiste établie en 1948</li>
+</ul>
+
+<h2>Défis et adaptations</h2>
+<p>Le christianisme togolais a dû s'adapter aux réalités locales : syncrétisme avec l'animisme traditionnel, dialogue avec l'islam (présent depuis le XIXe siècle), et adaptation aux langues locales comme l'éwé.</p>
+
+<h3>Perspectives d'avenir</h3>
+<p>Avec environ 47% de chrétiens (29% catholiques, 18% protestants et autres), le Togo présente un modèle de pluralisme religieux pacifique, illustrant la capacité du christianisme à s'enraciner dans des contextes culturels variés.</p>
+
+<h2>Conclusion</h2>
+<p>L'histoire du christianisme au Togo démontre la vitalité et l'adaptabilité de la foi chrétienne. De l'évangélisation précoce de 1847 aux mouvements pentecôtistes contemporains, cette histoire illustre comment l'Évangile transcende les barrières culturelles et temporelles, confirmant la promesse du Christ : <em>"Et cette bonne nouvelle du royaume sera prêchée dans le monde entier, pour servir de témoignage à toutes les nations."</em> (Matthieu 24:14)</p>
+
+<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+<h4>📸 Suggestions d'illustrations locales :</h4>
+<ul>
+<li>Photo de la Cathédrale du Sacré-Cœur de Lomé (à prendre sur place)</li>
+<li>Image de l'église Notre-Dame de Lourdes</li>
+<li>Photo d'une messe ou d'un culte pentecôtiste</li>
+<li>Portrait d'un pasteur ou prêtre togolais</li>
+<li>Carte du Togo avec les sites chrétiens marqués</li>
+</ul>
+</div>
+`
+},
+catacombes: {
+category: "Histoire",
+title: "L'Église primitive : des apôtres aux persécutions",
+content: `
+<p>L'Église primitive, née de la prédication des apôtres, a rapidement grandi malgré les persécutions romaines. Cette période fondatrice révèle la vitalité et la résilience de la foi chrétienne.</p>
+<h2>L'expansion apostolique</h2>
+<p>Après la Pentecôte (Actes 2), les apôtres ont répandu l'Évangile dans tout l'Empire romain. Pierre à Rome, Paul en Asie Mineure et en Grèce, et d'autres dans diverses régions ont établi des communautés chrétiennes.</p>
+<h3>Organisation de l'Église</h3>
+<p>Les premières communautés étaient organisées autour des évêques, presbytres et diacres. Cette structure hiérarchique a permis à l'Église de maintenir l'unité doctrinale et de résister aux hérésies.</p>
+<blockquote>"Vous êtes le sel de la terre... Vous êtes la lumière du monde." – Matthieu 5:13-14</blockquote>
+<h2>Les persécutions</h2>
+<ul>
+<li>Néron (64-68) : Premier empereur à persécuter les chrétiens</li>
+<li>Domitien (81-96) : Persécution pour "athéisme"</li>
+<li>Trajan (98-117) : Politique de persécution sélective</li>
+<li>Dèce (249-251) : Première persécution générale</li>
+</ul>
+<h3>Résilience et croissance</h3>
+<p>Malgré les persécutions, l'Église a continué à croître. Tertullien a pu dire : <em>"Le sang des martyrs est la semence de l'Église."</em></p>
+<h2>Conclusion</h2>
+<p>L'Église primitive témoigne de la puissance transformatrice de l'Évangile et de la fidélité de Dieu à son peuple, même dans l'adversité.</p>
+`,
+croisades: {
+category: "Histoire",
+title: "Les croisades : mythes et réalités",
+content: `
+<p>Les croisades (1095-1291) sont souvent mal comprises et caricaturées. Une analyse historique révèle un phénomène complexe aux motivations multiples, religieuses et politiques.</p>
+<h2>Contexte historique</h2>
+<p>Les croisades ont été lancées en réponse à la menace turque sur l'Empire byzantin et aux pèlerinages chrétiens vers Jérusalem. L'appel du pape Urbain II en 1095 a mobilisé la chrétienté occidentale.</p>
+<h3>Motivations des croisés</h3>
+<p>Les motivations étaient variées : foi religieuse, recherche de rédemption, ambitions politiques, espoir de richesse, et esprit d'aventure. Contrairement aux clichés, la plupart des croisés étaient motivés par une sincère piété.</p>
+<blockquote>"Dieu le veut !" – Cri des croisés lors de l'appel d'Urbain II</blockquote>
+<h2>Les principales croisades</h2>
+<ul>
+<li>Première croisade (1096-1099) : Conquête de Jérusalem</li>
+<li>Deuxième croisade (1147-1149) : Échec contre Damas</li>
+<li>Troisième croisade (1189-1192) : Richard Cœur de Lion</li>
+<li>Quatrième croisade (1202-1204) : Déviation vers Constantinople</li>
+</ul>
+<h3>Conséquences</h3>
+<p>Les croisades ont eu des effets durables : échanges culturels entre Orient et Occident, développement du commerce, renforcement de l'autorité papale, et parfois tensions entre chrétiens et musulmans.</p>
+<h2>Conclusion</h2>
+<p>Les croisades reflètent la complexité de l'histoire médiévale, mêlant foi, politique et guerre. Elles méritent une analyse nuancée plutôt que des jugements simplistes.</p>
+`
+}
+};
+
+function openArticle(id) {
+const article = articles[id];
+if (article) {
+// Create modal
+const modal = document.createElement('div');
+modal.style.cssText = `
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0,0,0,0.8);
+z-index: 2000;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+`;
+
+modal.innerHTML = `
+<div style="
+background: white;
+border-radius: 16px;
+max-width: 800px;
+max-height: 90vh;
+overflow-y: auto;
+padding: 2rem;
+position: relative;
+">
+<button onclick="this.closest('.modal').remove()" style="
+position: absolute;
+top: 1rem;
+right: 1rem;
+background: #f3f4f6;
+border: none;
+border-radius: 50%;
+width: 2rem;
+height: 2rem;
+cursor: pointer;
+font-size: 1.2rem;
+">×</button>
+<h1 style="margin-bottom: 1rem; color: var(--primary);">${article.title}</h1>
+<div style="line-height: 1.7; color: var(--text);">${article.content}</div>
+</div>
+`;
+
+modal.className = 'modal';
+document.body.appendChild(modal);
+
+// Close on escape key
+modal.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') modal.remove();
+});
+
+// Close on background click
+modal.addEventListener('click', (e) => {
+if (e.target === modal) modal.remove();
+});
+
+// Focus for keyboard navigation
+modal.querySelector('button').focus();
+}
+}
+</script>
+</body>
+</html>

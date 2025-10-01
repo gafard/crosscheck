@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrossCheck - Foi, Faits et Histoire | Archéologie Biblique & Apologétique</title>
+<meta name="description" content="CrossCheck explore les preuves de la vérité biblique à travers l'archéologie, la science, l'histoire et l'apologétique. Découvrez les découvertes qui confirment la Bible.">
+<meta name="keywords" content="archéologie biblique, apologétique chrétienne, preuves Bible, science et foi, histoire chrétienne, découvertes archéologiques, vérité biblique">
+<meta name="author" content="CrossCheck">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://crosscheck.fr/">
+<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
+<link rel="apple-touch-icon" href="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary: #0f172a;
+--secondary: #3b82f6;
+--accent: #06b6d4;
+--text: #334155;
+--text-light: #64748b;
+--bg: #ffffff;
+--bg-light: #f8fafc;
+--bg-dark: #f1f5f9;
+--border: #e2e8f0;
+--success: #10b981;
+--warning: #f59e0b;
+--error: #ef4444;
+--gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+--gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+line-height: 1.6;
+color: var(--text);
+background: var(--bg);
+overflow-x: hidden;
+}
+
+/* Header */
+.header {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+background: rgba(255, 255, 255, 0.98);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+z-index: 1000;
+padding: 0.75rem 0;
+transition: all 0.3s ease;
+}
+
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 70px;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+text-decoration: none;
+color: var(--primary);
+}
+
+.logo-icon {
+font-size: 1.5rem;
+}
+
+.logo-text {
+font-size: 1.5rem;
+font-weight: 700;
+letter-spacing: -0.5px;
+}
+
+.header-nav {
+display: flex;
+gap: 2rem;
+align-items: center;
+}
+
+.nav-link {
+text-decoration: none;
+color: var(--text-light);
+font-weight: 500;
+font-size: 0.95rem;
+padding: 0.75rem 1.25rem;
+border-radius: 12px;
+transition: all 0.3s ease;
+position: relative;
+}
+
+.nav-link:hover {
+color: var(--primary);
+background: rgba(59, 130, 246, 0.08);
+transform: translateY(-1px);
+}
+
+.nav-link.active {
+color: var(--secondary);
+background: rgba(59, 130, 246, 0.12);
+font-weight: 600;
+}
+
+.header-actions {
+display: flex;
+gap: 1rem;
+align-items: center;
+}
+
+.btn-primary,
+.btn-secondary {
+padding: 0.875rem 2rem;
+border-radius: 16px;
+font-weight: 600;
+text-decoration: none;
+transition: all 0.3s ease;
+border: none;
+cursor: pointer;
+font-size: 0.95rem;
+position: relative;
+overflow: hidden;
+}
+
+.btn-primary {
+background: var(--secondary);
+color: white;
+box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+background: #2563eb;
+transform: translateY(-2px);
+box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(--text-light);
+border: 1.5px solid var(--border);
+}
+
+.btn-secondary:hover {
+background: var(--bg-light);
+border-color: var(--secondary);
+color: var(--secondary);
+transform: translateY(-1px);
+box-shadow: var(--shadow-sm);
+}
+
+/* Hero Section */
+.hero {
+background: linear-gradient(135deg, #fafbfc 0%, #f1f5f9 100%);
+min-height: 100vh;
+display: flex;
+align-items: center;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-image: 
+  radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+  radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+}
+
+.hero-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+position: relative;
+z-index: 2;
+}
+
+/* Hero Badge */
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+background: rgba(59, 130, 246, 0.1);
+color: var(--secondary);
+padding: 0.75rem 1.25rem;
+border-radius: 50px;
+font-size: 0.9rem;
+font-weight: 500;
+margin-bottom: 2rem;
+border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.badge-icon {
+font-size: 1rem;
+}
+
+.hero-content h1 {
+font-size: 4rem;
+font-weight: 800;
+color: var(--primary);
+margin-bottom: 1.5rem;
+line-height: 1.1;
+letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+font-size: 1.25rem;
+color: var(--text-light);
+margin-bottom: 2.5rem;
+line-height: 1.6;
+max-width: 600px;
+font-weight: 400;
+}
+
+.hero-actions {
+display: flex;
+gap: 1.5rem;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.btn-hero-primary {
+background: var(--secondary);
+color: white;
+padding: 1rem 2.5rem;
+border-radius: 20px;
+font-weight: 600;
+font-size: 1rem;
+text-decoration: none;
+transition: all 0.3s ease;
+box-shadow: var(--shadow-md);
+border: none;
+cursor: pointer;
+}
+
+.btn-hero-primary:hover {
+background: #2563eb;
+transform: translateY(-3px);
+box-shadow: var(--shadow-xl);
+}
+
+.btn-hero-secondary {
+background: transparent;
+color: var(--text-light);
+padding: 1rem 2.5rem;
+border-radius: 20px;
+font-weight: 500;
+font-size: 1rem;
+text-decoration: none;
+transition: all 0.3s ease;
+border: 1.5px solid var(--border);
+cursor: pointer;
+}
+
+.btn-hero-secondary:hover {
+background: var(--bg-light);
+border-color: var(--secondary);
+color: var(--secondary);
+transform: translateY(-2px);
+box-shadow: var(--shadow-md);
+}
+
+
+
+/* Hero Visual */
+.hero-visual {
+position: relative;
+}
+
+.hero-card {
+background: white;
+border-radius: 16px;
+padding: 2rem;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+border: 1px solid var(--border);
+}
+
+.card-header {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1.5rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+}
+
+.card-avatar {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(--secondary), var(--accent));
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-weight: 600;
+}
+
+.card-info h3 {
+font-size: 1rem;
+font-weight: 600;
+color: var(--primary);
+margin-bottom: 0.2rem;
+}
+
+.card-info p {
+font-size: 0.8rem;
+color: var(--text-light);
+}
+
+.card-content {
+display: flex;
+gap: 1rem;
+}
+
+.before-after {
+flex: 1;
+}
+
+.before-after h4 {
+font-size: 0.9rem;
+font-weight: 600;
+color: var(--primary);
+margin-bottom: 0.5rem;
+}
+
+.before-after p {
+font-size: 0.8rem;
+color: var(--text-light);
+line-height: 1.5;
+}
+
+/* Features Section */
+.features {
+padding: 8rem 0;
+background: var(--bg);
+position: relative;
+}
+
+.features-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+
+.features-header {
+text-align: center;
+margin-bottom: 4rem;
+}
+
+.features-header h2 {
+font-size: 2.5rem;
+font-weight: 800;
+color: var(--primary);
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+}
+
+.features-header .icon {
+font-size: 2rem;
+}
+
+.features-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+gap: 2rem;
+}
+
+.feature-card {
+background: white;
+border: 1px solid rgba(226, 232, 240, 0.6);
+border-radius: 24px;
+padding: 3rem 2.5rem;
+transition: all 0.4s ease;
+position: relative;
+overflow: hidden;
+box-shadow: var(--shadow-sm);
+}
+
+.feature-card:hover {
+transform: translateY(-8px);
+box-shadow: var(--shadow-xl);
+border-color: rgba(59, 130, 246, 0.3);
+background: rgba(255, 255, 255, 0.98);
+}
+
+.feature-header {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.feature-icon {
+width: 64px;
+height: 64px;
+border-radius: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: white;
+transition: all 0.3s ease;
+box-shadow: var(--shadow-sm);
+}
+
+.feature-card:hover .feature-icon {
+transform: scale(1.1);
+box-shadow: var(--shadow-md);
+}
+
+.feature-icon.letters {
+background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+.feature-icon.transcribe {
+background: linear-gradient(135deg, var(--success), var(--warning));
+}
+
+.feature-title {
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--primary);
+letter-spacing: -0.01em;
+margin-bottom: 1rem;
+}
+
+.feature-description {
+font-size: 1.1rem;
+color: var(--text-light);
+margin-bottom: 2rem;
+line-height: 1.6;
+font-weight: 400;
+}
+
+.feature-inputs {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.input-group {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+
+.upload-btn {
+padding: 1rem;
+border: 2px dashed var(--border);
+border-radius: 8px;
+background: var(--bg-light);
+color: var(--text-light);
+text-align: center;
+cursor: pointer;
+transition: all 0.3s ease;
+font-size: 0.9rem;
+}
+
+.upload-btn:hover {
+border-color: var(--secondary);
+color: var(--secondary);
+background: rgba(79, 70, 229, 0.05);
+}
+
+.text-input {
+padding: 1rem;
+border: 1px solid var(--border);
+border-radius: 8px;
+font-size: 0.9rem;
+resize: vertical;
+min-height: 80px;
+}
+
+.feature-cta {
+color: var(--secondary);
+text-decoration: none;
+font-weight: 600;
+font-size: 0.9rem;
+}
+
+.feature-cta:hover {
+text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+.header-nav {
+  display: none;
+}
+
+.hero-container {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+}
+
+.features-grid {
+  grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 768px) {
+.header-container {
+  padding: 0 1rem;
+}
+
+.hero {
+  padding-top: 100px;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+}
+
+.hero-actions {
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn-hero-primary,
+.btn-hero-secondary {
+  width: 100%;
+text-align: center;
+}
+
+.features-container {
+  padding: 0 1rem;
+}
+
+.features-header h2 {
+  font-size: 2rem;
+}
+
+/* Additional Modern Responsive Styles */
+@media (max-width: 1200px) {
+.hero-content h1 {
+font-size: 3.5rem;
+}
+}
+
+@media (max-width: 480px) {
+.hero-content h1 {
+font-size: 2.2rem;
+}
+
+.hero-subtitle {
+font-size: 1rem;
+}
+
+.feature-card {
+padding: 1.5rem;
+}
+
+.header-actions {
+flex-direction: column;
+gap: 0.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+padding: 0.75rem 1.5rem;
+font-size: 0.9rem;
+}
+
+.hero-badge {
+padding: 0.5rem 1rem;
+font-size: 0.8rem;
+}
+}
+
+}
+
+/* Animations */
+@keyframes fadeInUp {
+from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+.fade-in-up {
+animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Smooth scrolling */
+html {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+<div class="header-container">
+<div class="logo">
+<div class="logo-icon">
+<img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+</div>
+<span class="logo-text">CrossCheck</span>
+</div>
+<nav class="header-nav">
+<a href="index.html" class="nav-link active">Accueil</a>
+<a href="archeologie.html" class="nav-link">Archéologie</a>
+<a href="science.html" class="nav-link">Science</a>
+<a href="histoire.html" class="nav-link">Histoire</a>
+<a href="apologetique.html" class="nav-link">Apologétique</a>
+<a href="togo.html" class="nav-link">Togo</a>
+</nav>
+<div class="header-actions">
+<button class="btn-secondary">Connexion</button>
+<button class="btn-primary">S'inscrire</button>
+</div>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-container">
+<div class="hero-content fade-in-up">
+<div class="hero-badge">
+<span class="badge-icon">✨</span>
+<span class="badge-text">Découvrez la vérité</span>
+</div>
+<h1>Foi, Faits et Histoire</h1>
+<p class="hero-subtitle">Explorez les preuves qui confirment la vérité biblique. Découvrez les découvertes archéologiques, scientifiques et historiques qui soutiennent la foi chrétienne.</p>
+<div class="hero-actions">
+<a href="#features" class="btn-hero-primary">S'inscrire gratuitement</a>
+<a href="#features" class="btn-hero-secondary">Voir une démo</a>
+</div>
+</div>
+<div class="hero-visual fade-in-up">
+<div class="hero-card">
+<div class="card-header">
+<div class="card-avatar">
+<img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+</div>
+<div class="card-info">
+<h3>CrossCheck</h3>
+<p>Archéologie & Apologétique</p>
+</div>
+</div>
+<div class="card-content">
+<div class="before-after">
+<h4>Avant</h4>
+<p>Questions sans réponses sur l'historicité de la Bible. Doutes sur la fiabilité des Écritures.</p>
+</div>
+<div class="before-after">
+<h4>Après</h4>
+<p>Preuves archéologiques solides. Découvertes scientifiques qui confirment la foi. Arguments rationnels défendables.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+<div class="features-container">
+<div class="features-header">
+<h2>Économisez des heures par semaine avec CrossCheck <span class="icon">⏰</span></h2>
+</div>
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-header">
+<div class="feature-icon letters">📚</div>
+<h3 class="feature-title">Archéologie</h3>
+</div>
+<p class="feature-description">Générez instantanément des articles personnalisés basés sur les dernières découvertes archéologiques.</p>
+<div class="feature-inputs">
+<div class="input-group">
+<div class="upload-btn">📄 Télécharger des documents archéologiques</div>
+</div>
+<div class="input-group">
+<div class="upload-btn">🎥 Télécharger des enregistrements de conférences</div>
+</div>
+<div class="input-group">
+<textarea class="text-input" placeholder="Tapez vos idées ici..."></textarea>
+</div>
+</div>
+<a href="archeologie.html" class="feature-cta">En savoir plus sur l'Archéologie →</a>
+</div>
+
+<div class="feature-card">
+<div class="feature-header">
+<div class="feature-icon transcribe">🔬</div>
+<h3 class="feature-title">Science & Foi</h3>
+</div>
+<p class="feature-description">Transcrivez des débats, conférences et consultations sur la relation entre science et foi.</p>
+<div class="feature-visual">
+<div class="transcription-bubble">
+<p>"La complexité irréductible de l'ADN suggère un design intelligent plutôt qu'une évolution aléatoire."</p>
+<div class="waveform">〰️〰️〰️〰️〰️〰️〰️</div>
+</div>
+</div>
+<a href="science.html" class="feature-cta">En savoir plus sur Science & Foi →</a>
+</div>
+</div>
+</div>
+</section>
+
+<script>
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+const header = document.querySelector('.header');
+if (window.scrollY > 50) {
+header.style.background = 'rgba(255, 255, 255, 0.98)';
+header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+} else {
+header.style.background = 'rgba(255, 255, 255, 0.95)';
+header.style.boxShadow = 'none';
+}
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('fade-in-up');
+}
+});
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.feature-card, .hero-content, .hero-visual').forEach(el => {
+observer.observe(el);
+});
+
+// Add waveform animation
+const waveform = document.querySelector('.waveform');
+if (waveform) {
+setInterval(() => {
+const chars = ['〰️', '〰️', '〰️', '〰️', '〰️', '〰️', '〰️'];
+waveform.textContent = chars.map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
+}, 200);
+}
+</script>
+</body>
+</html>

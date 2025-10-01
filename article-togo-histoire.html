@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histoire du Togo - CrossCheck</title>
+    <meta name="description" content="Découvrez l'histoire riche et complexe du Togo, de ses origines à nos jours.">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-dark: #f1f5f9;
+            --border: #e2e8f0;
+            --success: #059669;
+            --warning: #d97706;
+            --error: #dc2626;
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            padding: 1rem 2rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav .nav-link {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Article Header */
+        .article-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1200&h=600&fit=crop') center/cover;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .article-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-category {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .article-body {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .article-body h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body h3 {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body blockquote {
+            background: var(--bg-dark);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .article-body a:hover {
+            text-decoration: underline;
+        }
+
+        .article-body strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Image Gallery */
+        .article-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .article-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .article-image:hover {
+            transform: translateY(-4px);
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 1rem;
+            background: var(--bg-light);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Related Articles */
+        .related-articles {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .related-card-content {
+            padding: 1rem;
+        }
+
+        .related-card-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .related-card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .article-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.25rem;
+            }
+
+            .article-body h3 {
+                font-size: 1.25rem;
+            }
+
+            .article-images {
+                grid-template-columns: 1fr;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-header {
+                padding: 2rem 0;
+            }
+
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-body {
+                padding: 1.5rem 1rem;
+            }
+
+            .article-content {
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="Logo.png" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+                </div>
+                <span class="logo-text">CrossCheck</span>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link active">Histoire</a>
+                <a href="apologetique.html" class="nav-link">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="archeologie.html" class="nav-link">Archéologie</a>
+            <a href="science.html" class="nav-link">Science</a>
+            <a href="histoire.html" class="nav-link active">Histoire</a>
+            <a href="apologetique.html" class="nav-link">Apologétique</a>
+            <a href="togo.html" class="nav-link">Togo</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Article Header -->
+        <section class="article-header">
+            <div class="article-header-content">
+                <div class="article-category">Histoire du Togo</div>
+                <h1 class="article-title">Histoire du Togo</h1>
+                <div class="article-meta">
+                    <span>📅 30 Décembre 2024</span>
+                    <span>⏱️ 20 min de lecture</span>
+                    <span>📚 Histoire nationale</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="article-content">
+            <article class="article-body">
+                <p>L'histoire du Togo est riche et complexe, marquée par de nombreuses civilisations, la colonisation européenne, et la construction d'une nation indépendante. Cette histoire témoigne de la résilience et de la diversité culturelle du peuple togolais.</p>
+
+                <!-- Images d'illustration -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Histoire du Togo">
+                        <div class="image-caption">Monuments historiques du Togo</div>
+                    </div>
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&h=300&fit=crop" alt="Culture togolaise">
+                        <div class="image-caption">Traditions et culture togolaise</div>
+                    </div>
+                </div>
+
+                <h2>Préhistoire et origines</h2>
+                <p>Le territoire actuel du Togo a été habité depuis la préhistoire. Les premières traces d'occupation humaine remontent à plusieurs millénaires, avec des populations qui se sont installées dans cette région stratégique de l'Afrique de l'Ouest.</p>
+
+                <h3>Premières civilisations</h3>
+                <p>Les premières civilisations identifiées au Togo comprennent :</p>
+
+                <ul>
+                    <li><strong>Peuples Éwé</strong> : Originaires de Notsé, ils ont fondé plusieurs royaumes</li>
+                    <li><strong>Peuples Kabyé</strong> : Installés dans le nord du pays</li>
+                    <li><strong>Peuples Tem</strong> : Établis dans la région centrale</li>
+                    <li><strong>Peuples Bassar</strong> : Connus pour leur travail du fer</li>
+                </ul>
+
+                <!-- Image illustrative -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&h=300&fit=crop" alt="Peuples du Togo">
+                        <div class="image-caption">Diversité des peuples togolais</div>
+                    </div>
+                </div>
+
+                <h2>Période précoloniale</h2>
+                <p>Avant l'arrivée des Européens, le Togo était organisé en plusieurs royaumes et chefferies indépendants. Ces entités politiques maintenaient des relations commerciales et culturelles avec les régions voisines.</p>
+
+                <h3>Royaumes importants</h3>
+                <p>Parmi les royaumes les plus significatifs :</p>
+
+                <ul>
+                    <li><strong>Royaume d'Aného</strong> : Centre commercial sur la côte</li>
+                    <li><strong>Royaume de Tado</strong> : Berceau de la civilisation Éwé</li>
+                    <li><strong>Chefferies Kabyé</strong> : Organisation politique traditionnelle</li>
+                </ul>
+
+                <h2>Colonisation européenne</h2>
+                <p>Le Togo a été l'objet de rivalités entre les puissances européennes, notamment l'Allemagne, la France et la Grande-Bretagne. Cette période a profondément marqué l'histoire du pays.</p>
+
+                <h3>Protectorat allemand (1884-1914)</h3>
+                <p>En 1884, Gustav Nachtigal signe des traités avec les chefs locaux, établissant le protectorat allemand du Togoland. Cette période voit le développement d'infrastructures et l'exploitation des ressources naturelles.</p>
+
+                <blockquote>"L'histoire du Togo colonial témoigne de la complexité des relations entre l'Afrique et l'Europe au 19ème siècle."</blockquote>
+
+                <h3>Mandat français (1922-1960)</h3>
+                <p>Après la Première Guerre mondiale, le Togo passe sous mandat français. Cette période prépare progressivement le pays à l'indépendance.</p>
+
+                <h2>Indépendance et construction nationale</h2>
+                <p>Le Togo accède à l'indépendance le 27 avril 1960, sous la direction de Sylvanus Olympio. Cette période marque le début de la construction de l'État-nation togolais.</p>
+
+                <h3>Premières décennies</h3>
+                <p>Les premières décennies de l'indépendance sont marquées par :</p>
+
+                <ul>
+                    <li><strong>Instabilité politique</strong> : Coups d'État et changements de régime</li>
+                    <li><strong>Développement économique</strong> : Efforts de modernisation</li>
+                    <li><strong>Construction identitaire</strong> : Formation de l'identité nationale</li>
+                </ul>
+
+                <!-- Image illustrative -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Indépendance du Togo">
+                        <div class="image-caption">Célébration de l'indépendance togolaise</div>
+                    </div>
+                </div>
+
+                <h2>Période contemporaine</h2>
+                <p>Depuis les années 1990, le Togo s'engage dans un processus de démocratisation et de développement. Le pays fait face à de nombreux défis mais montre une résilience remarquable.</p>
+
+                <h2>Conclusion</h2>
+                <p>L'histoire du Togo témoigne de la richesse culturelle et de la résilience du peuple togolais. De ses origines préhistoriques à l'indépendance et au développement contemporain, le Togo continue de construire son avenir en s'appuyant sur son patrimoine historique.</p>
+            </article>
+
+            <!-- Related Articles -->
+            <section class="related-articles">
+                <h2 class="related-title">Articles connexes</h2>
+                <div class="related-grid">
+                    <a href="article-apologetique-togo.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Apologétique togolaise</h3>
+                            <p class="related-card-excerpt">Répondre aux défis de la foi en Afrique de l'Ouest</p>
+                        </div>
+                    </a>
+                    <a href="article-sites-togo.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Sites du Togo</h3>
+                            <p class="related-card-excerpt">Patrimoine archéologique togolais</p>
+                        </div>
+                    </a>
+                    <a href="article-african-apologetics.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Apologétique Africaine</h3>
+                            <p class="related-card-excerpt">Introduction à l'apologétique en Afrique</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 CrossCheck - Centre de Recherche en Apologétique Chrétienne</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggleButton = document.querySelector('.mobile-menu-toggle');
+            if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

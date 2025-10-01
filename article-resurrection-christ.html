@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Résurrection du Christ : Fait Historique ? - CrossCheck</title>
+    <meta name="description" content="Examen des preuves historiques de la résurrection de Jésus-Christ et de ses implications apologétiques.">
+    
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-dark: #1e293b;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 0.9;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--primary);
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Article Header */
+        .article-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .article-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .article-body {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .article-body h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body h3 {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body blockquote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .article-body strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .article-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-body h3 {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-body {
+                padding: 1.5rem 1rem;
+            }
+
+            .article-content {
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://i.postimg.cc/vZVr1TXm/6f6159a363a500b74a0fee49e59b3d12.jpg" alt="CrossCheck Logo">
+                </div>
+                <span class="logo-text">CrossCheck</span>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link">Histoire</a>
+                <a href="apologetique.html" class="nav-link active">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link">Histoire</a>
+                <a href="apologetique.html" class="nav-link active">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Back Button -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
+        <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">
+            ← Retour aux articles
+        </a>
+    </div>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="article-header-content">
+            <div class="article-category">Apologétique</div>
+            <h1 class="article-title">La Résurrection du Christ : Fait Historique ?</h1>
+            <div class="article-meta">
+                <span>📅 09 Novembre 2024</span>
+                <span>⏱️ 11 min de lecture</span>
+                <span>📝 CrossCheck</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <article class="article-body">
+            <p>La résurrection de Jésus-Christ constitue le pilier central de la foi chrétienne. Mais au-delà de son importance théologique, cette affirmation peut-elle être étayée par des preuves historiques ?</p>
+
+            <h2>Les faits historiques établis</h2>
+            <p>Plusieurs faits historiques sont largement acceptés par les spécialistes, chrétiens et non-chrétiens :</p>
+
+            <h3>1. Jésus a été crucifié</h3>
+            <p>La crucifixion de Jésus est attestée par des sources chrétiennes et non-chrétiennes, notamment l'historien romain Tacite.</p>
+
+            <h3>2. Le tombeau a été trouvé vide</h3>
+            <p>Les Évangiles rapportent unanimement la découverte du tombeau vide par des femmes, ce qui est remarquable car le témoignage des femmes n'était pas considéré comme fiable à l'époque.</p>
+
+            <h3>3. Les disciples ont affirmé avoir vu Jésus ressuscité</h3>
+            <p>Les apôtres ont proclamé la résurrection malgré les persécutions, ce qui suggère qu'ils croyaient sincèrement à ce qu'ils affirmaient.</p>
+
+            <h2>Arguments en faveur de la résurrection</h2>
+            <p>Plusieurs arguments historiques soutiennent l'affirmation de la résurrection :</p>
+
+            <h3>L'argument du témoin oculaire</h3>
+            <p>Paul cite une liste de témoins de la résurrection dans 1 Corinthiens 15, incluant plus de 500 personnes à la fois.</p>
+
+            <h3>L'argument du changement des disciples</h3>
+            <p>La transformation radicale des disciples, passant de la fuite à la proclamation courageuse, s'explique mieux par une expérience réelle de résurrection.</p>
+
+            <h3>L'argument du tombeau vide</h3>
+            <p>Si le corps avait été volé ou déplacé, les autorités juives auraient pu facilement réfuter la résurrection en produisant le cadavre.</p>
+
+            <h2>Objections et réponses</h2>
+            <p>Les sceptiques proposent plusieurs explications alternatives :</p>
+
+            <h3>L'hypothèse de l'évanouissement</h3>
+            <p>Certains suggèrent que Jésus n'était pas vraiment mort mais avait perdu connaissance. Cette théorie ne résiste pas à l'examen médical et historique.</p>
+
+            <h3>L'hypothèse du vol du corps</h3>
+            <p>Si les disciples avaient volé le corps, il est peu probable qu'ils auraient accepté le martyre pour un mensonge.</p>
+
+            <h3>L'hypothèse des hallucinations</h3>
+            <p>Les hallucinations collectives ne peuvent expliquer les multiples apparitions à différentes personnes dans différents contextes.</p>
+
+            <h2>Conclusion</h2>
+            <p>Bien que la résurrection ne puisse être "prouvée" au sens scientifique strict, les preuves historiques disponibles la rendent plus plausible que toute explication alternative.</p>
+
+            <blockquote>"Si Christ n'est pas ressuscité, votre foi est vaine" - 1 Corinthiens 15:17</blockquote>
+
+            <p>L'historicité de la résurrection reste un sujet de débat académique, mais elle constitue le fondement le plus cohérent pour expliquer l'émergence et la persistance du christianisme.</p>
+        </article>
+
+        <!-- Related Articles -->
+        <section class="related-articles">
+            <h2 class="related-title">Articles connexes</h2>
+            <div class="related-grid">
+                <a href="article-gospel-reliability.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop" alt="Fiabilité des Évangiles">
+                    <div class="related-content">
+                        <div class="related-category">Apologétique</div>
+                        <h3 class="related-title">Fiabilité des Évangiles : preuves historiques</h3>
+                    </div>
+                </a>
+                <a href="article-thomas-aquinas.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop" alt="Thomas d'Aquin">
+                    <div class="related-content">
+                        <div class="related-category">Philosophie</div>
+                        <h3 class="related-title">L'existence de Dieu : arguments rationnels</h3>
+                    </div>
+                </a>
+                <a href="article-problem-evil.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop" alt="Problème du mal">
+                    <div class="related-content">
+                        <div class="related-category">Apologétique</div>
+                        <h3 class="related-title">Répondre au problème du mal</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

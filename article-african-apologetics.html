@@ -33,10 +33,15 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background: var(--bg-light);
+            background: var(--bg);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Header */
@@ -292,8 +297,10 @@
 
         .image-caption {
             padding: 1rem;
-            background: var(--bg-light);
-            font-size: 0.9rem;
+            background: var(--bg);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;            font-size: 0.9rem;
             color: var(--text-light);
             text-align: center;
         }

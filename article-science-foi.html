@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science et foi : complémentaires ou contradictoires ? - CrossCheck</title>
-    <meta name="description" content="Analyse des relations entre la science moderne et la foi chrétienne, de Galilée à nos jours.">
+    <title>Science et Foi : Harmonie et Dialogue - CrossCheck</title>
+    <meta name="description" content="Exploration de l'harmonie entre science et foi chrétienne, des découvertes modernes aux perspectives historiques.">
     <style>
         :root {
             --primary: #1e3a8a;
@@ -12,14 +12,16 @@
             --accent: #3b82f6;
             --text: #1f2937;
             --text-light: #6b7280;
-            --bg: #ffffff;            --bg-light: #f8fafc;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
             --bg-dark: #f1f5f9;
             --border: #e2e8f0;
             --success: #059669;
             --warning: #d97706;
             --error: #dc2626;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
             --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
@@ -68,7 +70,7 @@
             align-items: center;
             gap: 0.75rem;
             font-weight: 700;
-            letter-spacing: -0.025em;            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--primary);
             text-decoration: none;
         }
@@ -124,7 +126,7 @@
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
             font-weight: 600;
-            letter-spacing: -0.025em;            cursor: pointer;
+            cursor: pointer;
             transition: transform 0.2s ease;
             text-decoration: none;
             display: inline-flex;
@@ -177,15 +179,16 @@
             border-radius: 20px;
             font-size: 0.875rem;
             font-weight: 600;
-            letter-spacing: -0.025em;            margin-bottom: 1rem;
+            margin-bottom: 1rem;
             display: inline-block;
         }
 
         .article-title {
             font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -0.025em;            line-height: 1.2;
+            line-height: 1.2;
             margin-bottom: 1rem;
+            letter-spacing: -0.025em;
         }
 
         .article-meta {
@@ -214,15 +217,17 @@
             color: var(--primary);
             font-size: 1.75rem;
             margin: 2rem 0 1rem 0;
-            font-weight: 700;
-            letter-spacing: -0.025em;        }
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
 
         .article-body h3 {
             color: var(--secondary);
             font-size: 1.25rem;
             margin: 1.5rem 0 1rem 0;
             font-weight: 600;
-            letter-spacing: -0.025em;        }
+            letter-spacing: -0.025em;
+        }
 
         .article-body p {
             margin-bottom: 1.5rem;
@@ -255,7 +260,7 @@
             color: var(--accent);
             text-decoration: none;
             font-weight: 600;
-            letter-spacing: -0.025em;        }
+        }
 
         .article-body a:hover {
             text-decoration: underline;
@@ -264,7 +269,7 @@
         .article-body strong {
             color: var(--primary);
             font-weight: 700;
-            letter-spacing: -0.025em;        }
+        }
 
         /* Image Gallery */
         .article-images {
@@ -293,10 +298,8 @@
 
         .image-caption {
             padding: 1rem;
-            background: var(--bg);
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;            font-size: 0.9rem;
+            background: var(--bg-light);
+            font-size: 0.9rem;
             color: var(--text-light);
             text-align: center;
         }
@@ -313,7 +316,7 @@
             color: var(--primary);
             font-size: 1.25rem;
             font-weight: 700;
-            letter-spacing: -0.025em;            margin-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
 
@@ -349,7 +352,7 @@
 
         .related-card-title {
             font-weight: 600;
-            letter-spacing: -0.025em;            margin-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
@@ -436,12 +439,12 @@
             <nav class="header-nav">
                 <a href="index.html" class="nav-link">Accueil</a>
                 <a href="archeologie.html" class="nav-link">Archéologie</a>
-                <a href="science.html" class="nav-link">Science</a>
+                <a href="science.html" class="nav-link active">Science</a>
                 <a href="histoire.html" class="nav-link">Histoire</a>
-                <a href="apologetique.html" class="nav-link active">Apologétique</a>
+                <a href="apologetique.html" class="nav-link">Apologétique</a>
                 <a href="togo.html" class="nav-link">Togo</a>
             </nav>
-            <a href="apologetique.html" class="back-btn">
+            <a href="science.html" class="back-btn">
                 ← Retour aux articles
             </a>
         </div>
@@ -452,12 +455,12 @@
         <!-- Article Header -->
         <section class="article-header">
             <div class="article-header-content">
-                <div class="article-category">Apologétique</div>
-                <h1 class="article-title">Science et foi : complémentaires ou contradictoires ?</h1>
+                <div class="article-category">Science & Foi</div>
+                <h1 class="article-title">Science et Foi : Harmonie et Dialogue</h1>
                 <div class="article-meta">
-                    <span>📅 23 Novembre 2024</span>
-                    <span>⏱️ 10 min de lecture</span>
-                    <span>🔬 Science & Théologie</span>
+                    <span>📅 20 Décembre 2024</span>
+                    <span>⏱️ 15 min de lecture</span>
+                    <span>🔬 Dialogue interdisciplinaire</span>
                 </div>
             </div>
         </section>
@@ -465,26 +468,29 @@
         <!-- Article Content -->
         <section class="article-content">
             <article class="article-body">
-                <p>La relation entre science et foi chrétienne a souvent été présentée comme conflictuelle, mais cette vision simpliste ne résiste pas à l'analyse historique et philosophique.</p>
+                <p>Le dialogue entre science et foi chrétienne révèle une harmonie profonde qui enrichit notre compréhension de la réalité. Contrairement aux idées reçues, ces deux domaines se complètent plutôt qu'ils ne s'opposent.</p>
 
                 <!-- Images d'illustration -->
                 <div class="article-images">
                     <div class="article-image">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop" alt="Laboratoire scientifique">
-                        <div class="image-caption">La science moderne et la recherche de la vérité</div>
+                        <div class="image-caption">La science moderne révèle l'ordre de l'univers</div>
                     </div>
                     <div class="article-image">
-                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Cosmos et étoiles">
-                        <div class="image-caption">L'univers révèle l'œuvre du Créateur</div>
+                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Univers et cosmos">
+                        <div class="image-caption">Le cosmos témoigne d'un créateur intelligent</div>
                     </div>
                 </div>
 
-                <h2>Histoire de la relation science-foi</h2>
-                <p>Contrairement aux idées reçues, le christianisme a souvent été un moteur du développement scientifique :</p>
+                <h2>Perspective historique</h2>
+                <p>L'histoire montre que le christianisme a souvent été un moteur du développement scientifique. De nombreux scientifiques chrétiens ont contribué de manière significative à notre compréhension du monde.</p>
+
+                <h3>Scientifiques chrétiens notables</h3>
                 <ul>
-                    <li><strong>Moyen Âge</strong> : Les universités chrétiennes ont favorisé l'étude de la nature</li>
-                    <li><strong>Renaissance</strong> : Copernic, Kepler et Newton étaient des chrétiens convaincus</li>
-                    <li><strong>Époque moderne</strong> : Pasteur, Mendel, et d'autres scientifiques chrétiens</li>
+                    <li><strong>Isaac Newton</strong> : Physicien et mathématicien, auteur des "Principia Mathematica"</li>
+                    <li><strong>Johannes Kepler</strong> : Astronome, découvreur des lois du mouvement planétaire</li>
+                    <li><strong>Louis Pasteur</strong> : Chimiste et microbiologiste, père de la pasteurisation</li>
+                    <li><strong>Gregor Mendel</strong> : Moine et botaniste, père de la génétique</li>
                 </ul>
 
                 <!-- Image illustrative -->
@@ -495,26 +501,19 @@
                     </div>
                 </div>
 
-                <h2>Perspectives contemporaines</h2>
+                <h2>Domaines de convergence</h2>
+                <p>Plusieurs domaines scientifiques révèlent des convergences fascinantes avec la perspective chrétienne.</p>
 
-                <h3>1. Science et foi : domaines complémentaires</h3>
-                <p>La science répond au "comment", la théologie au "pourquoi". Elles explorent des aspects différents de la réalité. La science étudie les mécanismes de la nature, tandis que la foi révèle le sens et la finalité de l'existence.</p>
+                <h3>1. Cosmologie</h3>
+                <p>Le modèle du Big Bang corrobore l'affirmation biblique "Au commencement, Dieu créa les cieux et la terre" (Genèse 1:1). L'univers a eu un début, ce qui suggère une cause première.</p>
 
-                <h3>2. La complexité irréductible</h3>
-                <p>Les découvertes en biologie moléculaire révèlent des systèmes d'une complexité telle qu'ils suggèrent un design intelligent. Le flagelle bactérien, par exemple, nécessite toutes ses parties pour fonctionner, ce qui suggère une conception plutôt qu'une évolution graduelle.</p>
+                <h3>2. Biologie moléculaire</h3>
+                <p>La complexité irréductible de systèmes comme le flagelle bactérien suggère un design intelligent plutôt qu'une évolution purement aléatoire.</p>
 
-                <h3>3. Le réglage fin de l'univers</h3>
-                <p>Les constantes physiques sont réglées avec une précision extraordinaire pour permettre l'existence de la vie. Une légère modification de ces constantes rendrait la vie impossible.</p>
+                <h3>3. Anthropologie</h3>
+                <p>La recherche de sens et de transcendance chez l'être humain trouve une explication cohérente dans la perspective chrétienne de l'homme créé à l'image de Dieu.</p>
 
                 <blockquote>"Les cieux racontent la gloire de Dieu, et l'étendue manifeste l'œuvre de ses mains." – Psaume 19:1</blockquote>
-
-                <h2>Exemples d'harmonie</h2>
-                <p>De nombreux domaines montrent l'harmonie entre science et foi :</p>
-                <ul>
-                    <li><strong>Cosmologie</strong> : Le Big Bang corrobore "Au commencement, Dieu créa..."</li>
-                    <li><strong>Biologie</strong> : L'information génétique suggère un concepteur intelligent</li>
-                    <li><strong>Physique</strong> : Les lois de la nature témoignent d'un ordre divin</li>
-                </ul>
 
                 <!-- Image illustrative -->
                 <div class="article-images">
@@ -524,16 +523,20 @@
                     </div>
                 </div>
 
-                <h2>Limites respectives</h2>
-                <p>Il est important de reconnaître les limites de chaque domaine :</p>
+                <h2>Limites et complémentarité</h2>
+                <p>Science et foi explorent des aspects différents mais complémentaires de la réalité :</p>
+
                 <ul>
-                    <li><strong>Science</strong> : Ne peut pas prouver ou réfuter l'existence de Dieu</li>
-                    <li><strong>Théologie</strong> : Ne doit pas s'immiscer dans les méthodes scientifiques</li>
-                    <li><strong>Harmonie</strong> : Les deux domaines peuvent coexister et se compléter</li>
+                    <li><strong>Science</strong> : Répond au "comment" et au "quoi"</li>
+                    <li><strong>Théologie</strong> : Répond au "pourquoi" et au "qui"</li>
+                    <li><strong>Complémentarité</strong> : Les deux domaines enrichissent notre compréhension globale</li>
                 </ul>
 
+                <h2>Défis contemporains</h2>
+                <p>Le dialogue science-foi doit relever des défis contemporains comme l'évolution, l'intelligence artificielle, et les questions éthiques liées aux nouvelles technologies.</p>
+
                 <h2>Conclusion</h2>
-                <p>Science et foi chrétienne sont complémentaires, non contradictoires. Elles offrent ensemble une vision plus complète de la réalité. La science révèle la complexité et l'ordre de l'univers, tandis que la foi chrétienne en révèle l'origine et la finalité. Cette complémentarité enrichit notre compréhension du monde et de notre place dans l'univers.</p>
+                <p>Le dialogue entre science et foi chrétienne révèle une harmonie profonde qui enrichit notre compréhension de la réalité. Cette complémentarité nous invite à une approche intégrée de la connaissance, où la rigueur scientifique et la sagesse théologique se renforcent mutuellement.</p>
             </article>
 
             <!-- Related Articles -->
@@ -547,18 +550,18 @@
                             <p class="related-card-excerpt">Arguments rationnels selon Thomas d'Aquin</p>
                         </div>
                     </a>
-                    <a href="article-problem-evil.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop');"></div>
+                    <a href="article-archeologie-biblique.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop');"></div>
                         <div class="related-card-content">
-                            <h3 class="related-card-title">Répondre au problème du mal</h3>
-                            <p class="related-card-excerpt">La théodicée chrétienne face au mal</p>
+                            <h3 class="related-card-title">Archéologie Biblique</h3>
+                            <p class="related-card-excerpt">Découvertes et preuves archéologiques</p>
                         </div>
                     </a>
-                    <a href="article-gospel-reliability.html" class="related-card">
-                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop');"></div>
+                    <a href="article-african-apologetics.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop');"></div>
                         <div class="related-card-content">
-                            <h3 class="related-card-title">Fiabilité des Évangiles</h3>
-                            <p class="related-card-excerpt">Preuves historiques et archéologiques</p>
+                            <h3 class="related-card-title">Apologétique Africaine</h3>
+                            <p class="related-card-excerpt">Introduction à l'apologétique en Afrique</p>
                         </div>
                     </a>
                 </div>

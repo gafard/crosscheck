@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Catacombes Chrétiennes - CrossCheck</title>
+    <meta name="description" content="Découvrez l'histoire des catacombes chrétiennes et leur importance pour comprendre les premiers siècles du christianisme.">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-dark: #f1f5f9;
+            --border: #e2e8f0;
+            --success: #059669;
+            --warning: #d97706;
+            --error: #dc2626;
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            padding: 1rem 2rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav .nav-link {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Article Header */
+        .article-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1200&h=600&fit=crop') center/cover;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .article-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-category {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .article-body {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .article-body h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body h3 {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body blockquote {
+            background: var(--bg-dark);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-body a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .article-body a:hover {
+            text-decoration: underline;
+        }
+
+        .article-body strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Image Gallery */
+        .article-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .article-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .article-image:hover {
+            transform: translateY(-4px);
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 1rem;
+            background: var(--bg-light);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Related Articles */
+        .related-articles {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .related-card-content {
+            padding: 1rem;
+        }
+
+        .related-card-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .related-card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .article-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.25rem;
+            }
+
+            .article-body h3 {
+                font-size: 1.25rem;
+            }
+
+            .article-images {
+                grid-template-columns: 1fr;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-header {
+                padding: 2rem 0;
+            }
+
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-body {
+                padding: 1.5rem 1rem;
+            }
+
+            .article-content {
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="Logo.png" alt="CrossCheck Logo" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+                </div>
+                <span class="logo-text">CrossCheck</span>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="archeologie.html" class="nav-link">Archéologie</a>
+                <a href="science.html" class="nav-link">Science</a>
+                <a href="histoire.html" class="nav-link active">Histoire</a>
+                <a href="apologetique.html" class="nav-link">Apologétique</a>
+                <a href="togo.html" class="nav-link">Togo</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="archeologie.html" class="nav-link">Archéologie</a>
+            <a href="science.html" class="nav-link">Science</a>
+            <a href="histoire.html" class="nav-link active">Histoire</a>
+            <a href="apologetique.html" class="nav-link">Apologétique</a>
+            <a href="togo.html" class="nav-link">Togo</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Article Header -->
+        <section class="article-header">
+            <div class="article-header-content">
+                <div class="article-category">Histoire Chrétienne</div>
+                <h1 class="article-title">Les Catacombes Chrétiennes</h1>
+                <div class="article-meta">
+                    <span>📅 28 Décembre 2024</span>
+                    <span>⏱️ 14 min de lecture</span>
+                    <span>⛪ Premiers chrétiens</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="article-content">
+            <article class="article-body">
+                <p>Les catacombes chrétiennes représentent l'un des témoignages les plus émouvants des premiers siècles du christianisme. Ces cimetières souterrains révèlent la foi, l'espérance et la persévérance des premiers chrétiens face à la persécution.</p>
+
+                <!-- Images d'illustration -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Catacombes chrétiennes">
+                        <div class="image-caption">Galeries des catacombes de Rome</div>
+                    </div>
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=600&h=300&fit=crop" alt="Art paléochrétien">
+                        <div class="image-caption">Fresques et symboles chrétiens</div>
+                    </div>
+                </div>
+
+                <h2>Origine et développement</h2>
+                <p>Les catacombes chrétiennes sont apparues au 2ème siècle après J.-C. à Rome et dans d'autres villes de l'Empire romain. Ces cimetières souterrains ont été creusés dans le tuf volcanique pour répondre aux besoins de la communauté chrétienne en pleine croissance.</p>
+
+                <h3>Raisons de leur création</h3>
+                <p>Plusieurs facteurs ont contribué au développement des catacombes :</p>
+
+                <ul>
+                    <li><strong>Croissance de la communauté chrétienne</strong> : Besoin d'espaces de sépulture</li>
+                    <li><strong>Coût des terres</strong> : Solution économique pour les sépultures</li>
+                    <li><strong>Tradition funéraire</strong> : Respect des coutumes romaines</li>
+                    <li><strong>Solidarité communautaire</strong> : Sépultures collectives</li>
+                </ul>
+
+                <!-- Image illustrative -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=600&h=300&fit=crop" alt="Sépultures chrétiennes">
+                        <div class="image-caption">Niches funéraires dans les catacombes</div>
+                    </div>
+                </div>
+
+                <h2>Architecture et organisation</h2>
+                <p>Les catacombes sont organisées selon un plan complexe de galeries, de chambres et de niches funéraires. Cette organisation témoigne d'une communauté bien structurée et organisée.</p>
+
+                <h3>Structure typique</h3>
+                <p>Une catacombe comprend généralement :</p>
+
+                <ul>
+                    <li><strong>Galeries principales</strong> : Couloirs de circulation</li>
+                    <li><strong>Loculi</strong> : Petites niches pour les corps</li>
+                    <li><strong>Cubicula</strong> : Chambres funéraires familiales</li>
+                    <li><strong>Cryptes</strong> : Chambres de martyrs</li>
+                </ul>
+
+                <h2>Art et symboles chrétiens</h2>
+                <p>Les catacombes abritent les premiers exemples d'art chrétien. Ces fresques et symboles révèlent la théologie et la spiritualité des premiers chrétiens.</p>
+
+                <h3>Symboles principaux</h3>
+                <p>Parmi les symboles les plus fréquents :</p>
+
+                <ul>
+                    <li><strong>Le poisson (Ichthus)</strong> : Symbole du Christ</li>
+                    <li><strong>L'ancre</strong> : Symbole d'espérance</li>
+                    <li><strong>La colombe</strong> : Symbole du Saint-Esprit</li>
+                    <li><strong>Le Bon Pasteur</strong> : Représentation du Christ</li>
+                </ul>
+
+                <blockquote>"Je suis le Bon Pasteur. Le Bon Pasteur donne sa vie pour ses brebis." - Jean 10:11</blockquote>
+
+                <h2>Importance historique et théologique</h2>
+                <p>Les catacombes fournissent des informations précieuses sur :</p>
+
+                <h3>Témoignage de la foi</h3>
+                <p>Les inscriptions et l'art des catacombes témoignent de :</p>
+
+                <ul>
+                    <li><strong>La croyance en la résurrection</strong> : Espérance chrétienne</li>
+                    <li><strong>La communion des saints</strong> : Solidarité dans la foi</li>
+                    <li><strong>La persévérance</strong> : Foi malgré les persécutions</li>
+                    <li><strong>L'unité</strong> : Communauté soudée</li>
+                </ul>
+
+                <!-- Image illustrative -->
+                <div class="article-images">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=300&fit=crop" alt="Fresques chrétiennes">
+                        <div class="image-caption">Fresques représentant des scènes bibliques</div>
+                    </div>
+                </div>
+
+                <h2>Persécutions et martyrs</h2>
+                <p>Les catacombes témoignent aussi des persécutions subies par les premiers chrétiens. De nombreux martyrs y ont été enterrés, devenant des lieux de pèlerinage.</p>
+
+                <h2>Conclusion</h2>
+                <p>Les catacombes chrétiennes constituent un témoignage unique et précieux des premiers siècles du christianisme. Elles révèlent la foi profonde, l'espérance inébranlable et la solidarité de la communauté chrétienne primitive, même face aux persécutions les plus violentes.</p>
+            </article>
+
+            <!-- Related Articles -->
+            <section class="related-articles">
+                <h2 class="related-title">Articles connexes</h2>
+                <div class="related-grid">
+                    <a href="article-croisades.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Les Croisades</h3>
+                            <p class="related-card-excerpt">Histoire et impact des croisades</p>
+                        </div>
+                    </a>
+                    <a href="article-gospel-reliability.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1590402494682-0a47c9e9a1e2?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Fiabilité des Évangiles</h3>
+                            <p class="related-card-excerpt">Preuves historiques et archéologiques</p>
+                        </div>
+                    </a>
+                    <a href="article-archeologie-biblique.html" class="related-card">
+                        <div class="related-card-image" style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd6c?w=400&h=200&fit=crop');"></div>
+                        <div class="related-card-content">
+                            <h3 class="related-card-title">Archéologie Biblique</h3>
+                            <p class="related-card-excerpt">Découvertes et preuves archéologiques</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 CrossCheck - Centre de Recherche en Apologétique Chrétienne</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggleButton = document.querySelector('.mobile-menu-toggle');
+            if (!mobileMenu.contains(e.target) && !toggleButton.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

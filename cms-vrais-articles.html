@@ -743,40 +743,75 @@
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
 
-                const titleElement = tempDiv.querySelector('title');
+                // Extraire le titre depuis la balise h1.article-title
+                const titleElement = tempDiv.querySelector('h1.article-title');
                 let title = 'Titre non trouvé';
                 if (titleElement) {
-                    title = titleElement.textContent.replace(' - CrossCheck', '').trim();
+                    title = titleElement.textContent.trim();
+                } else {
+                    // Fallback: extraire depuis la balise title
+                    const titleTag = tempDiv.querySelector('title');
+                    if (titleTag) {
+                        title = titleTag.textContent.replace(' - CrossCheck', '').trim();
+                    }
                 }
 
+                // Détecter la catégorie depuis le fichier ou le contenu
                 let category = 'apologetique';
-                if (fileName.includes('science') || fileName.includes('big-bang') || fileName.includes('dna') || fileName.includes('evolution') || fileName.includes('fine-tuning')) {
-                    category = 'science';
-                } else if (fileName.includes('archeologie') || fileName.includes('jericho') || fileName.includes('mesha') || fileName.includes('catacombes')) {
-                    category = 'archeologie';
-                } else if (fileName.includes('histoire') || fileName.includes('togo') || fileName.includes('missions') || fileName.includes('croisades')) {
-                    category = 'histoire';
+                const categoryElement = tempDiv.querySelector('.article-category');
+                if (categoryElement) {
+                    const categoryText = categoryElement.textContent.toLowerCase();
+                    if (categoryText.includes('science') || categoryText.includes('foi')) {
+                        category = 'science';
+                    } else if (categoryText.includes('histoire')) {
+                        category = 'histoire';
+                    } else if (categoryText.includes('archéologie') || categoryText.includes('archeologie')) {
+                        category = 'archeologie';
+                    }
+                } else {
+                    // Fallback: détection par nom de fichier
+                    if (fileName.includes('science') || fileName.includes('big-bang') || fileName.includes('dna') || fileName.includes('evolution') || fileName.includes('fine-tuning')) {
+                        category = 'science';
+                    } else if (fileName.includes('archeologie') || fileName.includes('jericho') || fileName.includes('mesha') || fileName.includes('catacombes')) {
+                        category = 'archeologie';
+                    } else if (fileName.includes('histoire') || fileName.includes('togo') || fileName.includes('missions') || fileName.includes('croisades')) {
+                        category = 'histoire';
+                    }
                 }
 
+                // Extraire le contenu depuis .article-content
                 const contentElement = tempDiv.querySelector('.article-content');
                 let content = 'Contenu non trouvé';
                 let description = 'Description non trouvée';
                 
                 if (contentElement) {
+                    // Extraire le texte brut
                     content = contentElement.textContent.trim();
-                    description = content.substring(0, 200) + '...';
+                    // Prendre les premiers 200 caractères comme description
+                    description = content.substring(0, 200).replace(/\s+/g, ' ').trim() + '...';
                 }
 
-                const imageElement = tempDiv.querySelector('.article-image img');
+                // Extraire l'image depuis .article-hero-image ou .hero-image
+                const imageElement = tempDiv.querySelector('.article-hero-image img, .hero-image img, .article-image img');
                 let image = 'https://via.placeholder.com/800x400?text=Article+CrossCheck';
                 if (imageElement) {
                     image = imageElement.src;
                 }
 
+                // Extraire la date depuis .article-meta
                 const dateElement = tempDiv.querySelector('.article-meta span');
                 let date = new Date().toLocaleDateString('fr-FR');
                 if (dateElement) {
-                    date = dateElement.textContent.trim();
+                    const dateText = dateElement.textContent.trim();
+                    // Si c'est "Par Rédaction", prendre la date suivante
+                    if (dateText.includes('Rédaction')) {
+                        const nextSpan = dateElement.nextElementSibling;
+                        if (nextSpan) {
+                            date = nextSpan.textContent.trim();
+                        }
+                    } else {
+                        date = dateText;
+                    }
                 }
 
                 const icons = {

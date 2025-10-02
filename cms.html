@@ -1976,13 +1976,19 @@
 
         // Gestion des champs vidéo
         function updateVideoFields() {
-            const category = document.getElementById('category').value;
-            const platform = document.getElementById('video-platform').value;
-            const videoFields = document.getElementById('video-fields');
-            const videoUrlGroup = document.getElementById('video-url-group');
-            const videoEmbedGroup = document.getElementById('video-embed-group');
-            const contentLabel = document.getElementById('content-label');
-            const contentTextarea = document.getElementById('content');
+            try {
+                const category = document.getElementById('category').value;
+                const platform = document.getElementById('video-platform').value;
+                const videoFields = document.getElementById('video-fields');
+                const videoUrlGroup = document.getElementById('video-url-group');
+                const videoEmbedGroup = document.getElementById('video-embed-group');
+                const contentLabel = document.getElementById('content-label');
+                const contentTextarea = document.getElementById('content');
+
+                if (!videoFields) {
+                    console.error('Élément video-fields non trouvé');
+                    return;
+                }
 
             // Afficher/masquer les champs vidéo selon la catégorie
             if (category === 'videos') {

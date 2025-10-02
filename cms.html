@@ -1352,10 +1352,14 @@
 
         // Gestion des onglets
         function showTab(tabName) {
+            console.log('Changement vers onglet:', tabName);
+            
             // Masquer tous les onglets
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
+            
+            // Désactiver tous les liens de navigation
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
@@ -1364,31 +1368,50 @@
             const targetTab = document.getElementById(tabName + '-tab');
             if (targetTab) {
                 targetTab.classList.add('active');
+                console.log('Onglet activé:', tabName + '-tab');
+            } else {
+                console.error('Onglet non trouvé:', tabName + '-tab');
+                return;
             }
             
             // Activer le bon lien de navigation
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
-                if (link.onclick && link.onclick.toString().includes(tabName)) {
+                const onclickStr = link.getAttribute('onclick');
+                if (onclickStr && onclickStr.includes(`'${tabName}'`)) {
                     link.classList.add('active');
+                    console.log('Lien de navigation activé pour:', tabName);
                 }
             });
             
             // Charger le contenu spécifique à l'onglet
-            switch(tabName) {
-                case 'dashboard':
-                    updateStats();
-                    loadRecentActivity();
-                    break;
-                case 'browse':
-                    loadAvailableArticles();
-                    break;
-                case 'manage':
-                    loadCMSArticles();
-                    break;
-                case 'export':
-                    // Rien à charger spécifiquement
-                    break;
+            try {
+                switch(tabName) {
+                    case 'dashboard':
+                        updateStats();
+                        loadRecentActivity();
+                        break;
+                    case 'browse':
+                        loadAvailableArticles();
+                        break;
+                    case 'manage':
+                        loadCMSArticles();
+                        break;
+                    case 'create':
+                        // Réinitialiser le formulaire si nécessaire
+                        if (currentEditId === null) {
+                            document.getElementById('article-form').reset();
+                            updatePreview();
+                        }
+                        break;
+                    case 'export':
+                        // Rien à charger spécifiquement
+                        break;
+                    default:
+                        console.warn('Onglet non reconnu:', tabName);
+                }
+            } catch (error) {
+                console.error('Erreur lors du chargement de l\'onglet:', error);
             }
         }
 

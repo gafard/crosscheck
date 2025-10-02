@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossCheck CMS - Version Moderne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --accent-hover: #b8941f;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-large: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Header moderne */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--light);
+            color: var(--accent);
+        }
+
+        /* Layout principal */
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Sidebar moderne */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid var(--border);
+            padding: 2rem 0;
+            position: fixed;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--accent);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Contenu principal */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+            background: var(--light);
+        }
+
+        /* En-tête de page */
+        .page-header {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            opacity: 0.05;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        /* Contenu des onglets */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cartes */
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Boutons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Formulaires */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Grille d'articles */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .article-category-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .article-description {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--secondary);
+        }
+
+        /* Statistiques */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 24px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        /* Alertes */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Prévisualisation */
+        .preview-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .preview-article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .preview-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .preview-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            color: var(--secondary);
+        }
+
+        .preview-content {
+            line-height: 1.8;
+            color: var(--primary);
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            color: var(--secondary);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mode sombre */
+        .dark-mode {
+            --primary: #ffffff;
+            --secondary: #a1a1aa;
+            --light: #18181b;
+            --white: #27272a;
+            --border: #3f3f46;
+        }
+
+        .dark-mode .header {
+            background: rgba(39, 39, 42, 0.95);
+        }
+
+        .dark-mode .sidebar {
+            background: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .page-header {
+                padding: 2rem 1rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">CC</div>
+                <div class="logo-text">CrossCheck CMS</div>
+            </a>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Gestion de contenu</h2>
+                <p class="sidebar-subtitle">CrossCheck CMS</p>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" onclick="showTab('dashboard')">
+                            <div class="nav-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Tableau de bord
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showTab('browse')">
+                            <div class="nav-icon"><i class="fas fa-search"></i></div>
+                            Parcourir articles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showTab('create')">
+                            <div class="nav-icon"><i class="fas fa-plus-circle"></i></div>
+                            Créer article
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showTab('manage')">
+                            <div class="nav-icon"><i class="fas fa-cog"></i></div>
+                            Gérer CMS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showTab('export')">
+                            <div class="nav-icon"><i class="fas fa-download"></i></div>
+                            Export/Import
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <!-- Tableau de bord -->
+            <div id="dashboard-tab" class="tab-content active">
+                <div class="page-header">
+                    <h1 class="page-title">Tableau de bord</h1>
+                    <p class="page-subtitle">Vue d'ensemble de votre contenu CrossCheck</p>
+                </div>
+
+                <!-- Statistiques -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-newspaper"></i></div>
+                        <div class="stat-number" id="total-articles">0</div>
+                        <div class="stat-label">Articles disponibles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-edit"></i></div>
+                        <div class="stat-number" id="cms-articles">0</div>
+                        <div class="stat-label">Articles CMS</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-tags"></i></div>
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Catégories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-number" id="recent-activity">0</div>
+                        <div class="stat-label">Activité récente</div>
+                    </div>
+                </div>
+
+                <!-- Actions rapides -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt"></i>
+                            Actions rapides
+                        </h3>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="showTab('create')">
+                            <i class="fas fa-plus"></i> Créer un article
+                        </button>
+                        <button class="btn btn-outline" onclick="showTab('browse')">
+                            <i class="fas fa-search"></i> Parcourir articles
+                        </button>
+                        <button class="btn btn-secondary" onclick="showTab('export')">
+                            <i class="fas fa-download"></i> Exporter données
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Activité récente -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history"></i>
+                            Activité récente
+                        </h3>
+                    </div>
+                    <div id="recent-activity-list">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            Chargement de l'activité récente...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parcourir articles -->
+            <div id="browse-tab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Parcourir les articles</h1>
+                    <p class="page-subtitle">Explorez tous les articles disponibles sur CrossCheck</p>
+                </div>
+
+                <!-- Filtres -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-filter"></i>
+                            Filtres
+                        </h3>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <select id="category-filter" class="form-select" style="width: auto;" onchange="filterArticles()">
+                            <option value="">Toutes les catégories</option>
+                            <option value="apologetique">Apologétique</option>
+                            <option value="science">Science & Foi</option>
+                            <option value="histoire">Histoire</option>
+                            <option value="archeologie">Archéologie</option>
+                        </select>
+                        <input type="text" id="search-filter" class="form-input" placeholder="Rechercher..." style="width: 300px;" oninput="filterArticles()">
+                        <button class="btn btn-outline" onclick="clearFilters()">
+                            <i class="fas fa-times"></i> Effacer filtres
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Articles disponibles -->
+                <div class="articles-grid" id="available-articles">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        Chargement des articles...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Créer article -->
+            <div id="create-tab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Créer un article</h1>
+                    <p class="page-subtitle">Rédigez un nouvel article pour CrossCheck</p>
+                </div>
+
+                <div class="form-grid">
+                    <!-- Formulaire -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-edit"></i>
+                                Informations de l'article
+                            </h3>
+                        </div>
+                        
+                        <form id="article-form" onsubmit="createArticle(event)">
+                            <div class="form-group">
+                                <label class="form-label" for="title">
+                                    <i class="fas fa-heading"></i> Titre de l'article *
+                                </label>
+                                <input type="text" class="form-input" id="title" name="title" required 
+                                       placeholder="Entrez le titre de votre article" 
+                                       oninput="updatePreview()">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="category">
+                                    <i class="fas fa-tag"></i> Catégorie *
+                                </label>
+                                <select class="form-select" id="category" name="category" required onchange="updatePreview()">
+                                    <option value="">Sélectionnez une catégorie</option>
+                                    <option value="apologetique">Apologétique</option>
+                                    <option value="science">Science & Foi</option>
+                                    <option value="histoire">Histoire</option>
+                                    <option value="archeologie">Archéologie</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="description">
+                                    <i class="fas fa-align-left"></i> Description courte *
+                                </label>
+                                <textarea class="form-textarea" id="description" name="description" required 
+                                          placeholder="Résumé de l'article en 2-3 phrases" 
+                                          oninput="updatePreview()"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="content">
+                                    <i class="fas fa-file-alt"></i> Contenu de l'article *
+                                </label>
+                                <textarea class="form-textarea" id="content" name="content" required 
+                                          style="min-height: 300px;" 
+                                          placeholder="Rédigez le contenu complet de votre article..." 
+                                          oninput="updatePreview()"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="image">
+                                    <i class="fas fa-image"></i> URL de l'image (optionnel)
+                                </label>
+                                <input type="url" class="form-input" id="image" name="image" 
+                                       placeholder="https://example.com/image.jpg" 
+                                       oninput="updatePreview()">
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Sauvegarder l'article
+                                </button>
+                                <button type="button" class="btn btn-outline" onclick="clearForm()">
+                                    <i class="fas fa-eraser"></i> Effacer le formulaire
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="importFromSite()">
+                                    <i class="fas fa-download"></i> Importer du site
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Prévisualisation -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-eye"></i>
+                                Prévisualisation
+                            </h3>
+                        </div>
+                        
+                        <div class="preview-container">
+                            <div class="preview-article" id="preview-article">
+                                <div class="preview-title" id="preview-title">Titre de l'article</div>
+                                <div class="preview-meta">
+                                    <span id="preview-category">Catégorie</span>
+                                    <span id="preview-date">Date</span>
+                                </div>
+                                <div class="preview-content" id="preview-content">
+                                    Commencez à rédiger pour voir la prévisualisation...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gérer CMS -->
+            <div id="manage-tab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Gérer le CMS</h1>
+                    <p class="page-subtitle">Modifiez et organisez vos articles</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-cogs"></i>
+                            Articles du CMS
+                        </h3>
+                        <button class="btn btn-primary" onclick="loadCMSArticles()">
+                            <i class="fas fa-sync"></i> Actualiser
+                        </button>
+                    </div>
+                </div>
+
+                <div class="articles-grid" id="cms-articles-grid">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        Chargement des articles du CMS...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export/Import -->
+            <div id="export-tab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Export & Import</h1>
+                    <p class="page-subtitle">Sauvegardez et restaurez vos données</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-download"></i>
+                                Exporter les données
+                            </h3>
+                        </div>
+                        <p style="margin-bottom: 1.5rem; color: var(--secondary);">
+                            Téléchargez une sauvegarde de tous vos articles et paramètres.
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="exportAllData()">
+                                <i class="fas fa-file-export"></i> Exporter tout
+                            </button>
+                            <button class="btn btn-outline" onclick="exportArticlesOnly()">
+                                <i class="fas fa-file-alt"></i> Articles uniquement
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-upload"></i>
+                                Importer les données
+                            </h3>
+                        </div>
+                        <p style="margin-bottom: 1.5rem; color: var(--secondary);">
+                            Restaurez une sauvegarde précédente ou importez de nouveaux articles.
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importData(event)">
+                            <button class="btn btn-success" onclick="document.getElementById('import-file').click()">
+                                <i class="fas fa-file-import"></i> Importer fichier
+                            </button>
+                            <button class="btn btn-outline" onclick="loadRealArticles()">
+                                <i class="fas fa-sync"></i> Charger articles du site
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Variables globales
+        let currentEditId = null;
+        let availableArticles = [];
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRealArticles();
+            loadCMSArticles();
+            updatePreview();
+            updateStats();
+            loadRecentActivity();
+            
+            // Charger le thème sauvegardé
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+            }
+        });
+
+        // Gestion des onglets
+        function showTab(tabName) {
+            // Masquer tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Afficher l'onglet sélectionné
+            const targetTab = document.getElementById(tabName + '-tab');
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            // Activer le bon lien de navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const onclickStr = link.getAttribute('onclick');
+                if (onclickStr && onclickStr.includes(`showTab('${tabName}')`)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Charger le contenu spécifique à l'onglet
+            switch(tabName) {
+                case 'dashboard':
+                    updateStats();
+                    loadRecentActivity();
+                    break;
+                case 'browse':
+                    loadAvailableArticles();
+                    break;
+                case 'manage':
+                    loadCMSArticles();
+                    break;
+                case 'create':
+                    if (currentEditId === null) {
+                        document.getElementById('article-form').reset();
+                        updatePreview();
+                    }
+                    break;
+                case 'export':
+                    // Rien à charger spécifiquement
+                    break;
+            }
+        }
+
+        // Charger les articles réels du site
+        async function loadRealArticles() {
+            try {
+                const response = await fetch('articles-reels-extraits.json');
+                if (!response.ok) {
+                    throw new Error('Fichier non trouvé');
+                }
+                
+                const data = await response.json();
+                availableArticles = data.articles || [];
+                
+                // Enrichir les articles avec des images par catégorie
+                const categoryImages = {
+                    'apologetique': 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop',
+                    'science': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop',
+                    'histoire': 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=800&h=400&fit=crop',
+                    'archeologie': 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=400&fit=crop'
+                };
+                
+                availableArticles.forEach(article => {
+                    if (!article.image || article.image.includes('placeholder')) {
+                        article.image = categoryImages[article.category] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop';
+                    }
+                });
+                
+                showAlert('success', `${availableArticles.length} articles réels chargés avec succès !`);
+                return availableArticles;
+            } catch (error) {
+                console.error('Erreur lors du chargement des articles:', error);
+                showAlert('error', 'Impossible de charger les articles. Utilisation des articles de démonstration.');
+                
+                // Articles de fallback en cas d'erreur
+                availableArticles = [
+                    {
+                        id: 1,
+                        title: "Apologétique Africaine : Introduction",
+                        category: "apologetique",
+                        description: "Introduction à l'apologétique chrétienne dans le contexte africain, explorant les défis et opportunités uniques de défendre la foi sur ce continent.",
+                        content: "L'apologétique chrétienne en Afrique présente des défis et opportunités uniques...",
+                        image: "https://via.placeholder.com/800x400?text=Apologétique+Africaine",
+                        date: "15/01/2025",
+                        author: "Rédaction CrossCheck"
+                    }
+                ];
+                return availableArticles;
+            }
+        }
+
+        // Charger les articles disponibles
+        async function loadAvailableArticles() {
+            if (availableArticles.length === 0) {
+                await loadRealArticles();
+            }
+            
+            displayAvailableArticles(availableArticles);
+        }
+
+        // Afficher les articles disponibles
+        function displayAvailableArticles(articles) {
+            const container = document.getElementById('available-articles');
+            
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Aucun article trouvé</h3>
+                        <p style="color: var(--secondary); margin-bottom: 2rem;">Aucun article ne correspond à vos critères de recherche.</p>
+                        <button class="btn btn-outline" onclick="clearFilters()">
+                            <i class="fas fa-times"></i> Effacer les filtres
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = articles.map(article => `
+                <div class="article-card" onclick="importArticle(${article.id || article.title.replace(/[^a-zA-Z0-9]/g, '')})">
+                    <div class="article-image" style="background-image: url('${article.image}')">
+                        <div class="article-category-badge">${getCategoryName(article.category)}</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-description">${article.description}</p>
+                        <div class="article-meta">
+                            <span><i class="fas fa-calendar"></i> ${article.date}</span>
+                            <span><i class="fas fa-user"></i> ${article.author || 'Rédaction'}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filtrer les articles
+        function filterArticles() {
+            const categoryFilter = document.getElementById('category-filter').value;
+            const searchFilter = document.getElementById('search-filter').value.toLowerCase();
+            
+            let filteredArticles = [...availableArticles];
+            
+            if (categoryFilter) {
+                filteredArticles = filteredArticles.filter(article => article.category === categoryFilter);
+            }
+            
+            if (searchFilter) {
+                filteredArticles = filteredArticles.filter(article => 
+                    article.title.toLowerCase().includes(searchFilter) ||
+                    article.description.toLowerCase().includes(searchFilter)
+                );
+            }
+            
+            displayAvailableArticles(filteredArticles);
+        }
+
+        // Effacer les filtres
+        function clearFilters() {
+            document.getElementById('category-filter').value = '';
+            document.getElementById('search-filter').value = '';
+            displayAvailableArticles(availableArticles);
+        }
+
+        // Créer un article
+        function createArticle(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const article = {
+                id: currentEditId || Date.now().toString(),
+                title: formData.get('title'),
+                category: formData.get('category'),
+                description: formData.get('description'),
+                content: formData.get('content'),
+                image: formData.get('image') || 'https://via.placeholder.com/800x400?text=Article+CrossCheck',
+                date: new Date().toLocaleDateString('fr-FR'),
+                author: 'CMS CrossCheck',
+                createdDate: new Date().toISOString()
+            };
+            
+            // Validation
+            if (!article.title || !article.category || !article.description || !article.content) {
+                showAlert('error', 'Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            // Sauvegarder dans localStorage
+            let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            
+            if (currentEditId) {
+                // Modification
+                const index = articles.findIndex(a => a.id === currentEditId);
+                if (index !== -1) {
+                    articles[index] = article;
+                    showAlert('success', `Article "${article.title}" modifié avec succès !`);
+                }
+                currentEditId = null;
+            } else {
+                // Création
+                articles.push(article);
+                showAlert('success', `Article "${article.title}" créé avec succès !`);
+            }
+            
+            localStorage.setItem('cms-articles', JSON.stringify(articles));
+            
+            // Réinitialiser le formulaire
+            clearForm();
+            updateStats();
+            loadRecentActivity();
+        }
+
+        // Charger les articles CMS
+        function loadCMSArticles() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const container = document.getElementById('cms-articles-grid');
+            
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Aucun article CMS</h3>
+                        <p style="color: var(--secondary); margin-bottom: 2rem;">Commencez par créer ou importer des articles.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center;">
+                            <button class="btn btn-primary" onclick="showTab('create')">
+                                <i class="fas fa-plus"></i> Créer un article
+                            </button>
+                            <button class="btn btn-outline" onclick="showTab('browse')">
+                                <i class="fas fa-download"></i> Importer des articles
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = articles.map(article => `
+                <div class="article-card">
+                    <div class="article-image" style="background-image: url('${article.image}')">
+                        <div class="article-category-badge">${getCategoryName(article.category)}</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-description">${article.description}</p>
+                        <div class="article-meta">
+                            <span><i class="fas fa-calendar"></i> ${article.date}</span>
+                            <span><i class="fas fa-user"></i> ${article.author}</span>
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                            <button class="btn btn-primary" onclick="editArticle('${article.id}')">
+                                <i class="fas fa-edit"></i> Modifier
+                            </button>
+                            <button class="btn btn-outline" onclick="deleteArticle('${article.id}')">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Modifier un article
+        function editArticle(id) {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const article = articles.find(a => a.id === id);
+            
+            if (!article) {
+                showAlert('error', 'Article non trouvé');
+                return;
+            }
+            
+            // Remplir le formulaire
+            document.getElementById('title').value = article.title;
+            document.getElementById('category').value = article.category;
+            document.getElementById('description').value = article.description;
+            document.getElementById('content').value = article.content;
+            document.getElementById('image').value = article.image || '';
+            
+            currentEditId = id;
+            updatePreview();
+            
+            // Aller à l'onglet créer
+            showTab('create');
+            
+            // Modifier le bouton pour indiquer qu'on modifie
+            const submitBtn = document.querySelector('#article-form button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> Modifier l\'article';
+            
+            showAlert('info', `Modification de l'article "${article.title}"`);
+        }
+
+        // Supprimer un article
+        function deleteArticle(id) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+                let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+                const article = articles.find(a => a.id === id);
+                
+                articles = articles.filter(a => a.id !== id);
+                localStorage.setItem('cms-articles', JSON.stringify(articles));
+                
+                if (article) {
+                    showAlert('success', `Article "${article.title}" supprimé`);
+                }
+                
+                loadCMSArticles();
+                updateStats();
+                loadRecentActivity();
+                
+                // Retourner à l'onglet gérer
+                showTab('manage');
+            } else {
+                showAlert('error', 'Erreur lors de la modification !');
+            }
+        }
+
+        // Importer un article depuis le site
+        function importArticle(id) {
+            const article = availableArticles.find(a => (a.id && a.id == id) || a.title.replace(/[^a-zA-Z0-9]/g, '') == id);
+            
+            if (!article) {
+                showAlert('error', 'Article non trouvé');
+                return;
+            }
+            
+            // Remplir le formulaire avec les données de l'article
+            document.getElementById('title').value = article.title;
+            document.getElementById('category').value = article.category;
+            document.getElementById('description').value = article.description || '';
+            document.getElementById('content').value = article.content || '';
+            document.getElementById('image').value = article.image || '';
+            
+            updatePreview();
+            showTab('create');
+            
+            showAlert('success', `Article "${article.title}" importé dans le formulaire`);
+        }
+
+        // Mettre à jour la prévisualisation
+        function updatePreview() {
+            const title = document.getElementById('title').value || 'Titre de l\'article';
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+            const content = document.getElementById('content').value || 'Commencez à rédiger pour voir la prévisualisation...';
+            
+            document.getElementById('preview-title').textContent = title;
+            document.getElementById('preview-category').textContent = getCategoryName(category) || 'Catégorie';
+            document.getElementById('preview-date').textContent = new Date().toLocaleDateString('fr-FR');
+            document.getElementById('preview-content').innerHTML = content.replace(/\n/g, '<br>');
+        }
+
+        // Effacer le formulaire
+        function clearForm() {
+            document.getElementById('article-form').reset();
+            currentEditId = null;
+            updatePreview();
+            
+            // Remettre le bouton par défaut
+            const submitBtn = document.querySelector('#article-form button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> Sauvegarder l\'article';
+        }
+
+        // Exporter toutes les données
+        function exportAllData() {
+            const data = {
+                articles: JSON.parse(localStorage.getItem('cms-articles') || '[]'),
+                settings: {
+                    theme: localStorage.getItem('theme') || 'light'
+                },
+                exportDate: new Date().toISOString(),
+                version: '1.0'
+            };
+            
+            downloadJSON(data, 'crosscheck-cms-export.json');
+            showAlert('success', 'Données exportées avec succès !');
+        }
+
+        // Exporter seulement les articles
+        function exportArticlesOnly() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            downloadJSON(articles, 'crosscheck-articles.json');
+            showAlert('success', 'Articles exportés avec succès !');
+        }
+
+        // Importer des données
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    if (Array.isArray(data)) {
+                        // Import d'articles uniquement
+                        localStorage.setItem('cms-articles', JSON.stringify(data));
+                        showAlert('success', `${data.length} articles importés !`);
+                    } else if (data.articles) {
+                        // Import complet
+                        localStorage.setItem('cms-articles', JSON.stringify(data.articles));
+                        if (data.settings && data.settings.theme) {
+                            localStorage.setItem('theme', data.settings.theme);
+                        }
+                        showAlert('success', `Import réussi ! ${data.articles.length} articles importés.`);
+                    } else {
+                        showAlert('error', 'Format de fichier non reconnu');
+                    }
+                    
+                    loadCMSArticles();
+                    updateStats();
+                    loadRecentActivity();
+                } catch (error) {
+                    showAlert('error', 'Erreur lors de l\'import : fichier invalide');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Télécharger un fichier JSON
+        function downloadJSON(data, filename) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Mettre à jour les statistiques
+        function updateStats() {
+            const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            
+            document.getElementById('total-articles').textContent = availableArticles.length;
+            document.getElementById('cms-articles').textContent = cmsArticles.length;
+            document.getElementById('recent-activity').textContent = cmsArticles.length;
+        }
+
+        // Charger l'activité récente
+        function loadRecentActivity() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const container = document.getElementById('recent-activity-list');
+            
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <p style="text-align: center; color: var(--secondary); padding: 2rem;">
+                        Aucune activité récente. Créez votre premier article !
+                    </p>
+                `;
+                return;
+            }
+            
+            // Trier par date de création (les plus récents en premier)
+            const recentArticles = articles
+                .sort((a, b) => new Date(b.createdDate || b.date) - new Date(a.createdDate || a.date))
+                .slice(0, 5);
+            
+            container.innerHTML = recentArticles.map(article => `
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border);">
+                    <div style="width: 60px; height: 60px; background-image: url('${article.image}'); background-size: cover; background-position: center; border-radius: var(--border-radius);"></div>
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0 0 0.5rem 0; font-size: 16px;">${article.title}</h4>
+                        <p style="margin: 0; font-size: 14px; color: var(--secondary);">
+                            ${getCategoryName(article.category)} • ${article.date}
+                        </p>
+                    </div>
+                    <button class="btn btn-outline" onclick="editArticle('${article.id}')">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Afficher une alerte
+        function showAlert(type, message) {
+            const alertsContainer = document.getElementById('alerts-container') || createAlertsContainer();
+            
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${getAlertIcon(type)}"></i>
+                ${message}
+            `;
+            
+            alertsContainer.appendChild(alert);
+            
+            // Supprimer l'alerte après 5 secondes
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Créer le conteneur d'alertes s'il n'existe pas
+        function createAlertsContainer() {
+            let container = document.getElementById('alerts-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'alerts-container';
+                container.style.cssText = 'position: fixed; top: 100px; right: 20px; z-index: 10000; max-width: 400px;';
+                document.body.appendChild(container);
+            }
+            return container;
+        }
+
+        // Obtenir l'icône d'alerte
+        function getAlertIcon(type) {
+            const icons = {
+                success: 'check-circle',
+                error: 'exclamation-circle',
+                warning: 'exclamation-triangle',
+                info: 'info-circle'
+            };
+            return icons[type] || 'info-circle';
+        }
+
+        // Basculer le thème
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-toggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Fonctions utilitaires
+        function getCategoryName(category) {
+            const categories = {
+                'apologetique': 'Apologétique',
+                'science': 'Science & Foi',
+                'histoire': 'Histoire',
+                'archeologie': 'Archéologie',
+            };
+            return categories[category] || category;
+        }
+
+        // Charger le thème sauvegardé
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+    </script>
+</body>
+</html>

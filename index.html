@@ -393,7 +393,25 @@
         @media (min-width: 769px) {
             .nav {
                 display: flex !important;
+                position: static;
+                background: none;
+                backdrop-filter: none;
+                flex-direction: row;
+                padding: 0;
+                gap: 1.5rem;
+                border-top: none;
+                transform: none;
+                transition: none;
             }
+
+            .mobile-menu-toggle {
+                display: none;
+            }
+        }
+
+        /* Styles pour le bouton hamburger */
+        .mobile-menu-toggle {
+            display: none;
         }
 
         /* Hero Section Premium */

@@ -1413,6 +1413,38 @@
         // document.querySelectorAll('.tab-button').forEach(button => {
         //     button.addEventListener('click', createRipple);
         // });
+
+        // Gestion de la navigation par ancres (hash)
+        function handleHashNavigation() {
+            const hash = window.location.hash.substring(1); // Enlever le #
+            
+            if (hash && ['apologetique', 'science', 'histoire', 'archeologie'].includes(hash)) {
+                // Activer l'onglet correspondant
+                showTab(hash);
+                
+                // Faire défiler vers la section après un court délai pour laisser le temps à l'onglet de s'afficher
+                setTimeout(() => {
+                    const targetElement = document.getElementById(hash);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 100);
+            }
+        }
+
+        // Gérer la navigation par hash au chargement de la page
+        window.addEventListener('load', handleHashNavigation);
+        
+        // Gérer les changements de hash (bouton retour/avant du navigateur)
+        window.addEventListener('hashchange', handleHashNavigation);
+
+        // Appeler immédiatement au cas où la page est déjà chargée
+        if (document.readyState === 'complete') {
+            handleHashNavigation();
+        }
     </script>
 </body>
 </html>

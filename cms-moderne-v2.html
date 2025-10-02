@@ -1284,64 +1284,57 @@
         let currentFilter = '';
         let editingArticleId = null;
 
-        // Articles disponibles (basés sur vos vrais fichiers)
-        const availableArticles = [
-            {
-                id: 1,
-                title: "Apologétique Africaine : Introduction",
-                category: "apologetique",
-                description: "Introduction à l'apologétique chrétienne dans le contexte africain, explorant les défis et opportunités uniques de défendre la foi sur ce continent.",
-                content: "L'apologétique chrétienne en Afrique présente des défis et opportunités uniques...",
-                image: "https://via.placeholder.com/800x400?text=Apologétique+Africaine",
-                date: "15/01/2025",
-                originalFile: "article-african-apologetics.html",
-                icon: "🛡️"
-            },
-            {
-                id: 2,
-                title: "Le Big Bang et l'Existence de Dieu",
-                category: "science",
-                description: "Comment la théorie du Big Bang et la cosmologie moderne pointent vers l'existence d'un Créateur intelligent.",
-                content: "La théorie du Big Bang, acceptée par la communauté scientifique...",
-                image: "https://via.placeholder.com/800x400?text=Big+Bang",
-                date: "10/01/2025",
-                originalFile: "article-big-bang.html",
-                icon: "🌌"
-            },
-            {
-                id: 3,
-                title: "L'ADN et le Design Intelligent",
-                category: "science",
-                description: "Comment la complexité de l'ADN et l'information génétique pointent vers un design intelligent.",
-                content: "L'ADN contient une quantité d'informations stupéfiante...",
-                image: "https://via.placeholder.com/800x400?text=ADN",
-                date: "05/01/2025",
-                originalFile: "article-dna.html",
-                icon: "🧬"
-            },
-            {
-                id: 4,
-                title: "Les Murs de Jéricho",
-                category: "archeologie",
-                description: "Découvertes archéologiques confirmant l'historicité de la chute des murs de Jéricho.",
-                content: "L'histoire de la chute des murs de Jéricho...",
-                image: "https://via.placeholder.com/800x400?text=Jéricho",
-                date: "31/12/2024",
-                originalFile: "article-jericho.html",
-                icon: "🏛️"
-            },
-            {
-                id: 5,
-                title: "Les Missions Chrétiennes en Afrique",
-                category: "histoire",
-                description: "Histoire de l'évangélisation et des missions chrétiennes sur le continent africain.",
-                content: "L'histoire des missions chrétiennes en Afrique...",
-                image: "https://via.placeholder.com/800x400?text=Missions+Afrique",
-                date: "29/12/2024",
-                originalFile: "article-missions-afrique.html",
-                icon: "⛪"
+        // Articles disponibles - chargés depuis le fichier JSON
+        let availableArticles = [];
+
+        // Charger les vrais articles depuis le fichier JSON
+        async function loadRealArticles() {
+            try {
+                showAlert('info', 'Chargement des articles...');
+                const response = await fetch('articles-reels-extraits.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                const articles = await response.json();
+                
+                // Filtrer les articles avec du contenu réel (pas de placeholder)
+                availableArticles = articles.filter(article => 
+                    article.content && 
+                    article.content !== '{{ARTICLE_CONTENT}}' &&
+                    article.description && 
+                    article.description !== '{{ARTICLE_CONTENT}}...'
+                );
+                
+                // Nettoyer les dates
+                availableArticles.forEach(article => {
+                    if (article.date === 'Par Rédaction') {
+                        article.date = new Date().toLocaleDateString('fr-FR');
+                    }
+                });
+                
+                showAlert('success', `${availableArticles.length} articles réels chargés avec succès !`);
+                return availableArticles;
+            } catch (error) {
+                console.error('Erreur lors du chargement des articles:', error);
+                showAlert('error', 'Impossible de charger les articles. Utilisation des articles de démonstration.');
+                
+                // Articles de fallback en cas d'erreur
+                availableArticles = [
+                    {
+                        id: 1,
+                        title: "Apologétique Africaine : Introduction",
+                        category: "apologetique",
+                        description: "Introduction à l'apologétique chrétienne dans le contexte africain, explorant les défis et opportunités uniques de défendre la foi sur ce continent.",
+                        content: "L'apologétique chrétienne en Afrique présente des défis et opportunités uniques...",
+                        image: "https://via.placeholder.com/800x400?text=Apologétique+Africaine",
+                        date: "15/01/2025",
+                        originalFile: "article-african-apologetics.html",
+                        icon: "🛡️"
+                    }
+                ];
+                return availableArticles;
             }
-        ];
+        }
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {

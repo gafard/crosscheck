@@ -2214,6 +2214,87 @@
             showAlert('success', 'Articles exportés avec succès !');
         }
 
+        // Exporter les vidéos vers la page videos.html
+        function exportVideosToPage() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const videos = articles.filter(article => article.category === 'videos');
+            
+            if (videos.length === 0) {
+                showAlert('warning', 'Aucune vidéo trouvée à exporter');
+                return;
+            }
+
+            // Générer le HTML pour chaque vidéo
+            const videoCardsHTML = videos.map(video => {
+                const embedCode = generateVideoEmbed(video.videoPlatform, video.videoUrl, video.videoEmbed);
+                const platformBadge = video.videoPlatform ? `platform-badge ${video.videoPlatform}` : '';
+                
+                return `
+                <!-- Vidéo ${video.videoPlatform?.toUpperCase() || 'Custom'} - ${video.title} -->
+                <div class="video-card fade-in-up">
+                    <div class="video-embed">
+                        ${embedCode || `
+                            <div class="tiktok-placeholder">
+                                <div class="tiktok-icon">🎥</div>
+                                <h3>${video.videoPlatform?.toUpperCase() || 'Vidéo'}</h3>
+                                <p>${video.description}</p>
+                                <a href="${video.videoUrl || '#'}" class="tiktok-link" target="_blank">
+                                    Voir la vidéo
+                                </a>
+                            </div>
+                        `}
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">${video.title}</h3>
+                        <p class="video-description">${video.description}</p>
+                        <div class="video-meta">
+                            <span class="video-category ${platformBadge}">${video.videoPlatform?.toUpperCase() || 'Vidéo'}</span>
+                            ${video.videoDuration ? `<span>${video.videoDuration}</span>` : ''}
+                        </div>
+                        ${video.videoTags ? `<div class="video-tags" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--secondary);">${video.videoTags}</div>` : ''}
+                    </div>
+                </div>`;
+            }).join('\n');
+
+            // Créer le contenu complet à insérer dans videos.html
+            const exportContent = `
+<!-- Vidéos générées par le CMS CrossCheck - ${new Date().toLocaleDateString('fr-FR')} -->
+${videoCardsHTML}
+<!-- Fin des vidéos générées -->`;
+
+            // Créer un fichier téléchargeable avec les instructions
+            const instructions = `
+=== INSTRUCTIONS D'INTÉGRATION ===
+
+1. Copiez le contenu ci-dessous
+2. Ouvrez le fichier videos.html
+3. Trouvez la section <div class="videos-grid">
+4. Remplacez le contenu existant par le code généré
+5. Sauvegardez le fichier
+
+=== CODE À INTÉGRER ===
+
+${exportContent}
+
+=== STATISTIQUES ===
+- ${videos.length} vidéo(s) exportée(s)
+- Plateformes: ${[...new Set(videos.map(v => v.videoPlatform).filter(Boolean))].join(', ')}
+- Date d'export: ${new Date().toLocaleString('fr-FR')}
+`;
+
+            const blob = new Blob([instructions], { type: 'text/plain; charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `crosscheck-videos-export-${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showAlert('success', `${videos.length} vidéo(s) exportée(s) ! Consultez le fichier téléchargé pour les instructions d'intégration.`);
+        }
+
         // Importer des données
         function importData(event) {
             const file = event.target.files[0];

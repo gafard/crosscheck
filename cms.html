@@ -1264,22 +1264,25 @@
             loadRecentActivity();
         }
 
-        // Charger les articles CMS
+        // Charger les articles CMS (vrais articles + articles créés)
         function loadCMSArticles() {
-            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            // Combiner les vrais articles du site avec les articles créés dans le CMS
+            const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const allArticles = [...availableArticles, ...cmsArticles];
+            
             const container = document.getElementById('cms-articles-grid');
             
-            if (articles.length === 0) {
+            if (allArticles.length === 0) {
                 container.innerHTML = `
                     <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Aucun article CMS</h3>
-                        <p style="color: var(--secondary); margin-bottom: 2rem;">Commencez par créer ou importer des articles.</p>
+                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Aucun article trouvé</h3>
+                        <p style="color: var(--secondary); margin-bottom: 2rem;">Chargement des articles du site en cours...</p>
                         <div style="display: flex; gap: 1rem; justify-content: center;">
-                            <button class="btn btn-primary" onclick="showTab('create')">
-                                <i class="fas fa-plus"></i> Créer un article
+                            <button class="btn btn-primary" onclick="loadRealArticles().then(() => loadCMSArticles())">
+                                <i class="fas fa-sync"></i> Recharger les articles
                             </button>
-                            <button class="btn btn-outline" onclick="showTab('browse')">
-                                <i class="fas fa-download"></i> Importer des articles
+                            <button class="btn btn-outline" onclick="showTab('create')">
+                                <i class="fas fa-plus"></i> Créer un article
                             </button>
                         </div>
                     </div>
@@ -1287,29 +1290,42 @@
                 return;
             }
 
-            container.innerHTML = articles.map(article => `
-                <div class="article-card">
-                    <div class="article-image" style="background-image: url('${article.image}')">
-                        <div class="article-category-badge">${getCategoryName(article.category)}</div>
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">${article.title}</h3>
-                        <p class="article-description">${article.description}</p>
-                        <div class="article-meta">
-                            <span><i class="fas fa-calendar"></i> ${article.date}</span>
-                            <span><i class="fas fa-user"></i> ${article.author}</span>
+            container.innerHTML = allArticles.map(article => {
+                const isFromSite = availableArticles.some(a => a.title === article.title);
+                const isCMSArticle = cmsArticles.some(a => a.id === article.id);
+                
+                return `
+                    <div class="article-card">
+                        <div class="article-image" style="background-image: url('${article.image}')">
+                            <div class="article-category-badge">${getCategoryName(article.category)}</div>
+                            ${isFromSite ? '<div style="position: absolute; top: 1rem; right: 1rem; background: var(--info); color: white; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 10px;">SITE</div>' : ''}
+                            ${isCMSArticle ? '<div style="position: absolute; top: 1rem; right: 1rem; background: var(--success); color: white; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 10px;">CMS</div>' : ''}
                         </div>
-                        <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-                            <button class="btn btn-primary" onclick="editArticle('${article.id}')">
-                                <i class="fas fa-edit"></i> Modifier
-                            </button>
-                            <button class="btn btn-outline" onclick="deleteArticle('${article.id}')">
-                                <i class="fas fa-trash"></i> Supprimer
-                            </button>
+                        <div class="article-content">
+                            <h3 class="article-title">${article.title}</h3>
+                            <p class="article-description">${article.description || 'Description non disponible'}</p>
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> ${article.date}</span>
+                                <span><i class="fas fa-user"></i> ${article.author || 'Rédaction'}</span>
+                            </div>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-primary" onclick="editArticle('${article.id || article.title.replace(/[^a-zA-Z0-9]/g, '')}', ${isFromSite})">
+                                    <i class="fas fa-edit"></i> Modifier
+                                </button>
+                                ${isCMSArticle ? `
+                                    <button class="btn btn-outline" onclick="deleteArticle('${article.id}')">
+                                        <i class="fas fa-trash"></i> Supprimer
+                                    </button>
+                                ` : `
+                                    <button class="btn btn-success" onclick="saveToLocalStorage('${article.id || article.title.replace(/[^a-zA-Z0-9]/g, '')}')">
+                                        <i class="fas fa-save"></i> Sauvegarder
+                                    </button>
+                                `}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // Modifier un article

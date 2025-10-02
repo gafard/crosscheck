@@ -2028,11 +2028,12 @@
 
         // Génération du code d'intégration selon la plateforme
         function generateVideoEmbed(platform, url, embedCode) {
-            if (platform === 'custom' && embedCode) {
-                return embedCode;
-            }
+            try {
+                if (platform === 'custom' && embedCode) {
+                    return embedCode;
+                }
 
-            if (!url) return '';
+                if (!url) return '';
 
             switch(platform) {
                 case 'tiktok':

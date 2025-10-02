@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS CrossCheck - Sans Serveur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-tab {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: transparent;
+            color: var(--secondary);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-tab.active {
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-tab:hover {
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .main-layout {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .article-description {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .article-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .article-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-cms {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--secondary);
+        }
+
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideInFromTop 0.5s ease;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .file-label:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">CrossCheck CMS</div>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" onclick="showTab('create')">✨ Créer</button>
+                <button class="nav-tab" onclick="showTab('import')">📚 Importer</button>
+                <button class="nav-tab" onclick="showTab('manage')">📝 Gérer</button>
+                <button class="nav-tab" onclick="showTab('stats')">📊 Stats</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-layout">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Gestion des Articles</h1>
+                <p class="page-subtitle">Créez et gérez vos articles CrossCheck - Version Sans Serveur</p>
+            </div>
+
+            <!-- Alerts -->
+            <div class="alert alert-info" id="loading-alert">
+                🔄 Chargement en cours...
+            </div>
+
+            <div class="alert alert-success" id="success-alert">
+                ✅ Opération réussie !
+            </div>
+
+            <div class="alert alert-error" id="error-alert">
+                ❌ Erreur lors de l'opération
+            </div>
+
+            <!-- Tab: Créer un article -->
+            <div id="create-tab" class="tab-content active">
+                <div class="card">
+                    <h3>✨ Créer un Nouvel Article</h3>
+                    <form id="article-form">
+                        <div class="form-group">
+                            <label class="form-label" for="title">Titre de l'article</label>
+                            <input type="text" id="title" name="title" class="form-input" placeholder="Entrez le titre de l'article" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="category">Catégorie</label>
+                            <select id="category" name="category" class="form-select" required>
+                                <option value="">Sélectionnez une catégorie</option>
+                                <option value="apologetique">Apologétique</option>
+                                <option value="science">Science & Foi</option>
+                                <option value="histoire">Histoire</option>
+                                <option value="archeologie">Archéologie</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="description">Description</label>
+                            <textarea id="description" name="description" class="form-textarea" placeholder="Description courte de l'article" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="content">Contenu</label>
+                            <textarea id="content" name="content" class="form-textarea" placeholder="Contenu complet de l'article" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="image">URL de l'image</label>
+                            <input type="url" id="image" name="image" class="form-input" placeholder="https://exemple.com/image.jpg">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            ✨ Créer l'article
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab: Importer des articles -->
+            <div id="import-tab" class="tab-content">
+                <div class="card">
+                    <h3>📚 Importer des Articles</h3>
+                    <p>Cette version fonctionne sans serveur web. Vous pouvez :</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Créer de nouveaux articles</li>
+                        <li>Gérer vos articles existants</li>
+                        <li>Exporter vos articles</li>
+                    </ul>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4>Articles prédéfinis disponibles :</h4>
+                        <button class="btn btn-primary" onclick="loadPredefinedArticles()">
+                            📚 Charger les articles prédéfinis
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-grid" id="import-grid">
+                    <div class="loading">
+                        <p>Cliquez sur "Charger les articles prédéfinis" pour voir les articles disponibles</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Gérer les articles -->
+            <div id="manage-tab" class="tab-content">
+                <div class="card">
+                    <h3>📝 Gérer les Articles du CMS</h3>
+                    <p>Modifiez, supprimez ou exportez vos articles créés dans le CMS.</p>
+                </div>
+
+                <div class="article-grid" id="manage-grid">
+                    <div class="loading">
+                        <p>Chargement des articles du CMS...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Statistiques -->
+            <div id="stats-tab" class="tab-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-articles">0</div>
+                        <div class="stat-label">Articles CMS</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-categories">4</div>
+                        <div class="stat-label">Catégories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-words">0</div>
+                        <div class="stat-label">Mots Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="last-created">-</div>
+                        <div class="stat-label">Dernier Article</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Détails des Statistiques</h3>
+                    <div id="stats-details">
+                        <p>Chargement des statistiques...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let editingArticleId = null;
+
+        // Articles prédéfinis (basés sur vos vrais articles)
+        const predefinedArticles = [
+            {
+                id: 1,
+                title: "Le Big Bang et l'Existence de Dieu",
+                category: "science",
+                description: "La théorie du Big Bang, l'une des découvertes scientifiques les plus importantes du XXe siècle, a profondément transformé notre compréhension de l'univers et de ses origines...",
+                content: "La théorie du Big Bang, l'une des découvertes scientifiques les plus importantes du XXe siècle, a profondément transformé notre compréhension de l'univers et de ses origines. Contrairement à ce que certains pensent, cette théorie ne réfute pas l'existence de Dieu, mais au contraire, elle fournit des preuves solides en faveur d'un Créateur.\n\nL'évidence du Big Bang\n\nLa théorie du Big Bang est soutenue par plusieurs preuves observationnelles solides :\n\n1. L'expansion de l'univers (loi de Hubble)\n2. Le rayonnement cosmique de fond\n3. L'abondance des éléments légers\n4. La formation des structures cosmiques\n\nCes preuves convergent toutes vers un point : l'univers a eu un commencement. Cette conclusion a des implications profondes pour notre compréhension de la réalité et de l'existence de Dieu.",
+                image: "https://via.placeholder.com/800x400?text=Big+Bang",
+                date: "15/01/2025",
+                icon: "🔬"
+            },
+            {
+                id: 2,
+                title: "L'ADN et le Design Intelligent",
+                category: "science",
+                description: "L'ADN, cette molécule fascinante qui contient toutes les instructions nécessaires à la vie, présente des caractéristiques qui suggèrent fortement un design intelligent...",
+                content: "L'ADN, cette molécule fascinante qui contient toutes les instructions nécessaires à la vie, présente des caractéristiques qui suggèrent fortement un design intelligent. La complexité irréductible de cette molécule et son organisation remarquable défient les explications purement matérialistes.\n\nLa Complexité de l'ADN\n\nL'ADN humain contient environ 3,2 milliards de paires de bases, organisées en 23 paires de chromosomes. Cette information est codée de manière si efficace qu'elle pourrait remplir environ 200 livres de 1000 pages chacun.\n\nL'Argument du Design Intelligent\n\nLes défenseurs du design intelligent soulignent plusieurs aspects de l'ADN qui suggèrent une conception intentionnelle :\n\n1. La complexité irréductible\n2. L'information spécifiée\n3. L'organisation fonctionnelle\n4. La capacité de réplication\n\nCes caractéristiques, prises ensemble, suggèrent qu'il y a derrière l'ADN une intelligence qui dépasse notre compréhension.",
+                image: "https://via.placeholder.com/800x400?text=ADN",
+                date: "14/01/2025",
+                icon: "🔬"
+            },
+            {
+                id: 3,
+                title: "Apologétique Africaine : Introduction",
+                category: "apologetique",
+                description: "L'apologétique chrétienne en Afrique présente des défis et opportunités uniques. Dans un contexte où la foi chrétienne coexiste avec des traditions ancestrales...",
+                content: "L'apologétique chrétienne en Afrique présente des défis et opportunités uniques. Dans un contexte où la foi chrétienne coexiste avec des traditions ancestrales et des religions traditionnelles, l'apologète africain doit développer des approches culturellement sensibles et théologiquement solides.\n\nLes Défis Spécifiques\n\nL'apologétique africaine doit faire face à plusieurs défis particuliers :\n\n1. La coexistence avec les religions traditionnelles\n2. Les questions d'identité culturelle\n3. Les défis du syncrétisme\n4. L'héritage colonial\n\nCes défis nécessitent une approche nuancée qui respecte la culture locale tout en maintenant l'intégrité de l'Évangile.",
+                image: "https://via.placeholder.com/800x400?text=Apologétique+Africaine",
+                date: "13/01/2025",
+                icon: "🛡️"
+            },
+            {
+                id: 4,
+                title: "Découvertes Archéologiques Bibliques",
+                category: "archeologie",
+                description: "L'archéologie biblique a fourni de nombreuses découvertes qui confirment l'historicité des récits bibliques. Ces découvertes renforcent la crédibilité des Écritures...",
+                content: "L'archéologie biblique a fourni de nombreuses découvertes qui confirment l'historicité des récits bibliques. Ces découvertes renforcent la crédibilité des Écritures et offrent un éclairage précieux sur le contexte historique des événements bibliques.\n\nDécouvertes Majeures\n\nParmi les découvertes les plus significatives :\n\n1. La stèle de Tel Dan (mention de la maison de David)\n2. L'inscription de Pilate\n3. L'ossuaire de Caïphe\n4. Les manuscrits de la mer Morte\n\nCes découvertes archéologiques fournissent des preuves tangibles de l'historicité des personnages et événements bibliques.",
+                image: "https://via.placeholder.com/800x400?text=Archéologie+Biblique",
+                date: "12/01/2025",
+                icon: "🏛️"
+            },
+            {
+                id: 5,
+                title: "L'Histoire du Christianisme au Togo",
+                category: "histoire",
+                description: "L'histoire du christianisme au Togo est riche et complexe, marquée par l'arrivée des missionnaires européens et l'adaptation de la foi chrétienne au contexte local...",
+                content: "L'histoire du christianisme au Togo est riche et complexe, marquée par l'arrivée des missionnaires européens et l'adaptation de la foi chrétienne au contexte local. Cette histoire témoigne de la capacité de l'Évangile à transcender les barrières culturelles.\n\nLes Premiers Missionnaires\n\nL'évangélisation du Togo a commencé au XIXe siècle avec l'arrivée des missionnaires catholiques et protestants. Ces pionniers ont dû s'adapter aux réalités locales tout en préservant l'intégrité de leur message.\n\nL'Adaptation Culturelle\n\nL'une des caractéristiques remarquables de l'évangélisation au Togo a été la capacité des missionnaires à adapter leur approche tout en maintenant la pureté de l'Évangile.",
+                image: "https://via.placeholder.com/800x400?text=Christianisme+Togo",
+                date: "11/01/2025",
+                icon: "📚"
+            }
+        ];
+
+        // Gestion des onglets
+        function showTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+
+            switch(tabName) {
+                case 'manage':
+                    loadCMSArticles();
+                    break;
+                case 'stats':
+                    updateStats();
+                    break;
+            }
+        }
+
+        // Créer un nouvel article
+        document.getElementById('article-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const article = {
+                id: Date.now(),
+                title: formData.get('title'),
+                category: formData.get('category'),
+                description: formData.get('description'),
+                content: formData.get('content'),
+                image: formData.get('image') || 'https://via.placeholder.com/800x400?text=Article+CrossCheck',
+                date: new Date().toLocaleDateString('fr-FR'),
+                isCMS: true,
+                createdDate: new Date().toISOString()
+            };
+
+            let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            articles.push(article);
+            localStorage.setItem('cms-articles', JSON.stringify(articles));
+
+            showAlert('success', `Article "${article.title}" créé avec succès !`);
+            this.reset();
+            
+            if (editingArticleId) {
+                editingArticleId = null;
+                showTab('manage');
+            }
+        });
+
+        // Charger les articles prédéfinis
+        function loadPredefinedArticles() {
+            const grid = document.getElementById('import-grid');
+            
+            grid.innerHTML = predefinedArticles.map(article => {
+                const isImported = isArticleImported(article.id);
+                return `
+                    <div class="article-card" onclick="importPredefinedArticle(${article.id})">
+                        <div class="article-image">
+                            ${article.icon}
+                            <div class="article-category">${article.category}</div>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">${article.title}</h3>
+                            <p class="article-description">${article.description}</p>
+                            <div class="article-meta">
+                                <span>${article.date}</span>
+                                <div class="article-status ${isImported ? 'status-cms' : 'status-available'}">
+                                    ${isImported ? 'Importé' : 'Disponible'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            showAlert('success', `${predefinedArticles.length} articles prédéfinis chargés !`);
+        }
+
+        // Importer un article prédéfini
+        function importPredefinedArticle(articleId) {
+            const article = predefinedArticles.find(a => a.id === articleId);
+            if (!article) return;
+            
+            if (isArticleImported(article.id)) {
+                showAlert('error', 'Cet article est déjà importé !');
+                return;
+            }
+            
+            const cmsArticle = {
+                ...article,
+                id: Date.now(),
+                isImported: true,
+                importDate: new Date().toLocaleDateString('fr-FR')
+            };
+            
+            let cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            cmsArticles.push(cmsArticle);
+            localStorage.setItem('cms-articles', JSON.stringify(cmsArticles));
+            
+            showAlert('success', `Article "${article.title}" importé avec succès !`);
+            loadPredefinedArticles();
+        }
+
+        // Vérifier si un article est déjà importé
+        function isArticleImported(originalId) {
+            const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            return cmsArticles.some(article => article.originalId === originalId);
+        }
+
+        // Charger les articles du CMS
+        function loadCMSArticles() {
+            const grid = document.getElementById('manage-grid');
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            
+            if (articles.length === 0) {
+                grid.innerHTML = '<div class="loading"><p>Aucun article créé dans le CMS pour le moment.</p></div>';
+                return;
+            }
+            
+            grid.innerHTML = articles.map(article => {
+                const icons = {
+                    'apologetique': '🛡️',
+                    'science': '🔬',
+                    'histoire': '📚',
+                    'archeologie': '🏛️'
+                };
+                
+                return `
+                    <div class="article-card">
+                        <div class="article-image">
+                            ${icons[article.category] || '📄'}
+                            <div class="article-category">${article.category}</div>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">${article.title}</h3>
+                            <p class="article-description">${article.description}</p>
+                            <div class="article-meta">
+                                <span>${article.date}</span>
+                                <div class="article-status status-cms">CMS</div>
+                            </div>
+                            <div class="article-actions">
+                                <button class="btn btn-primary" onclick="editCMSArticle('${article.id}')">
+                                    ✏️ Modifier
+                                </button>
+                                <button class="btn btn-danger" onclick="deleteCMSArticle('${article.id}')">
+                                    🗑️ Supprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Modifier un article du CMS
+        function editCMSArticle(articleId) {
+            const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const article = cmsArticles.find(a => a.id == articleId);
+            
+            if (!article) {
+                showAlert('error', 'Article non trouvé !');
+                return;
+            }
+            
+            document.getElementById('title').value = article.title;
+            document.getElementById('category').value = article.category;
+            document.getElementById('description').value = article.description;
+            document.getElementById('content').value = article.content;
+            document.getElementById('image').value = article.image || '';
+            
+            showTab('create');
+            editingArticleId = articleId;
+            
+            const submitBtn = document.querySelector('#article-form button[type="submit"]');
+            submitBtn.textContent = '✨ Modifier l\'article';
+            submitBtn.onclick = function(e) {
+                e.preventDefault();
+                updateArticle(articleId);
+            };
+            
+            showAlert('success', 'Article chargé pour modification !');
+        }
+
+        // Mettre à jour un article
+        function updateArticle(articleId) {
+            const formData = new FormData(document.getElementById('article-form'));
+            const updatedArticle = {
+                title: formData.get('title'),
+                category: formData.get('category'),
+                description: formData.get('description'),
+                content: formData.get('content'),
+                image: formData.get('image')
+            };
+            
+            let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            const index = articles.findIndex(a => a.id == articleId);
+            if (index !== -1) {
+                articles[index] = {
+                    ...articles[index],
+                    ...updatedArticle
+                };
+                localStorage.setItem('cms-articles', JSON.stringify(articles));
+                
+                showAlert('success', 'Article modifié avec succès !');
+                
+                const submitBtn = document.querySelector('#article-form button[type="submit"]');
+                submitBtn.textContent = '✨ Créer l\'article';
+                submitBtn.onclick = null;
+                
+                document.getElementById('article-form').reset();
+                editingArticleId = null;
+                
+                showTab('manage');
+            } else {
+                showAlert('error', 'Erreur lors de la modification !');
+            }
+        }
+
+        // Supprimer un article du CMS
+        function deleteCMSArticle(articleId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet article du CMS ?')) {
+                let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+                articles = articles.filter(article => article.id != articleId);
+                localStorage.setItem('cms-articles', JSON.stringify(articles));
+                
+                showAlert('success', 'Article supprimé du CMS !');
+                loadCMSArticles();
+                updateStats();
+            }
+        }
+
+        // Mettre à jour les statistiques
+        function updateStats() {
+            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            
+            document.getElementById('total-articles').textContent = articles.length;
+            
+            let totalWords = 0;
+            articles.forEach(article => {
+                totalWords += article.content.split(' ').length;
+            });
+            document.getElementById('total-words').textContent = totalWords;
+            
+            if (articles.length > 0) {
+                const lastArticle = articles[articles.length - 1];
+                document.getElementById('last-created').textContent = lastArticle.date;
+            } else {
+                document.getElementById('last-created').textContent = '-';
+            }
+            
+            const statsDetails = document.getElementById('stats-details');
+            const categoryStats = {};
+            
+            articles.forEach(article => {
+                categoryStats[article.category] = (categoryStats[article.category] || 0) + 1;
+            });
+            
+            let statsHTML = '<h4>Articles par catégorie :</h4><ul>';
+            Object.entries(categoryStats).forEach(([category, count]) => {
+                statsHTML += `<li><strong>${category}:</strong> ${count} articles</li>`;
+            });
+            statsHTML += '</ul>';
+            
+            statsDetails.innerHTML = statsHTML;
+        }
+
+        // Affichage des alertes
+        function showAlert(type, message) {
+            const alert = document.getElementById(type === 'success' ? 'success-alert' : 'error-alert');
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('CMS CrossCheck Sans Serveur chargé');
+            updateStats();
+        });
+    </script>
+</body>
+</html>

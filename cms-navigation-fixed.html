@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS CrossCheck - Navigation Corrigée</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f5f5f5; }
+        
+        .container { display: flex; min-height: 100vh; }
+        
+        /* Sidebar */
+        .sidebar { width: 250px; background: #2c3e50; color: white; padding: 2rem 0; }
+        .sidebar h1 { text-align: center; margin-bottom: 2rem; font-size: 1.5rem; }
+        
+        .nav-menu { list-style: none; }
+        .nav-item { margin: 0; }
+        .nav-link { 
+            display: block; 
+            padding: 1rem 2rem; 
+            color: white; 
+            text-decoration: none; 
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        .nav-link:hover { background: #34495e; }
+        .nav-link.active { background: #3498db; }
+        
+        /* Main content */
+        .main-content { flex: 1; padding: 2rem; }
+        
+        /* Tabs */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Cards */
+        .card { background: white; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .card h2 { margin-bottom: 1rem; color: #2c3e50; }
+        
+        /* Buttons */
+        .btn { padding: 0.75rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; margin: 0.5rem; }
+        .btn-primary { background: #3498db; color: white; }
+        .btn-success { background: #27ae60; color: white; }
+        .btn:hover { opacity: 0.9; }
+        
+        /* Form */
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        .form-input, .form-textarea, .form-select { 
+            width: 100%; 
+            padding: 0.75rem; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+        }
+        .form-textarea { min-height: 120px; resize: vertical; }
+        
+        /* Status */
+        .status { padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+        .status-success { background: #d4edda; color: #155724; }
+        .status-error { background: #f8d7da; color: #721c24; }
+        .status-info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h1>🎛️ CMS CrossCheck</h1>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link active" onclick="showTab('dashboard')">
+                        📊 Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showTab('browse')">
+                        🔍 Parcourir articles
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showTab('create')">
+                        ➕ Créer article
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showTab('manage')">
+                        ⚙️ Gérer CMS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showTab('export')">
+                        📤 Export/Import
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div id="status-container"></div>
+
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="tab-content active">
+                <div class="card">
+                    <h2>📊 Tableau de bord</h2>
+                    <p>Bienvenue dans le CMS CrossCheck !</p>
+                    <div class="status status-success">
+                        ✅ Navigation fonctionnelle !
+                    </div>
+                    <button class="btn btn-primary" onclick="showTab('create')">Créer un article</button>
+                    <button class="btn btn-success" onclick="testNavigation()">Tester la navigation</button>
+                </div>
+            </div>
+
+            <!-- Browse Tab -->
+            <div id="browse-tab" class="tab-content">
+                <div class="card">
+                    <h2>🔍 Parcourir les articles</h2>
+                    <p>Ici vous pouvez parcourir tous les articles disponibles.</p>
+                    <div id="articles-list">
+                        <p>Chargement des articles...</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="loadArticles()">Charger les articles</button>
+                </div>
+            </div>
+
+            <!-- Create Tab -->
+            <div id="create-tab" class="tab-content">
+                <div class="card">
+                    <h2>➕ Créer un article</h2>
+                    <form id="article-form">
+                        <div class="form-group">
+                            <label class="form-label">Titre de l'article</label>
+                            <input type="text" class="form-input" id="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Catégorie</label>
+                            <select class="form-select" id="category" required>
+                                <option value="">Sélectionnez une catégorie</option>
+                                <option value="apologetique">Apologétique</option>
+                                <option value="science">Science & Foi</option>
+                                <option value="histoire">Histoire</option>
+                                <option value="archeologie">Archéologie</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-textarea" id="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Contenu</label>
+                            <textarea class="form-textarea" id="content" style="min-height: 200px;" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">💾 Sauvegarder l'article</button>
+                        <button type="button" class="btn btn-primary" onclick="clearForm()">🗑️ Effacer</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Manage Tab -->
+            <div id="manage-tab" class="tab-content">
+                <div class="card">
+                    <h2>⚙️ Gérer le CMS</h2>
+                    <p>Gérez vos articles existants ici.</p>
+                    <div id="cms-articles">
+                        <p>Aucun article trouvé.</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="loadCMSArticles()">Charger les articles CMS</button>
+                </div>
+            </div>
+
+            <!-- Export Tab -->
+            <div id="export-tab" class="tab-content">
+                <div class="card">
+                    <h2>📤 Export/Import</h2>
+                    <p>Exportez ou importez vos données.</p>
+                    <button class="btn btn-success" onclick="exportData()">📤 Exporter les données</button>
+                    <button class="btn btn-primary" onclick="importData()">📥 Importer les données</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let articles = [];
+
+        // Fonction de navigation - VERSION SIMPLIFIÉE ET GARANTIE
+        function showTab(tabName) {
+            console.log('🔄 Navigation vers:', tabName);
+            
+            // Supprimer la classe active de tous les onglets
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+                console.log('❌ Désactivé:', tab.id);
+            });
+            
+            // Supprimer la classe active de tous les liens
+            const allLinks = document.querySelectorAll('.nav-link');
+            allLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Activer l'onglet cible
+            const targetTab = document.getElementById(tabName + '-tab');
+            if (targetTab) {
+                targetTab.classList.add('active');
+                console.log('✅ Activé:', targetTab.id);
+                showStatus(`Onglet "${tabName}" activé avec succès`, 'success');
+            } else {
+                console.error('❌ Onglet non trouvé:', tabName + '-tab');
+                showStatus(`Erreur: Onglet "${tabName}" non trouvé`, 'error');
+                return;
+            }
+            
+            // Activer le lien correspondant
+            allLinks.forEach(link => {
+                const onclick = link.getAttribute('onclick');
+                if (onclick && onclick.includes(`'${tabName}'`)) {
+                    link.classList.add('active');
+                    console.log('✅ Lien activé pour:', tabName);
+                }
+            });
+        }
+
+        // Afficher un message de statut
+        function showStatus(message, type = 'info') {
+            const container = document.getElementById('status-container');
+            const status = document.createElement('div');
+            status.className = `status status-${type}`;
+            status.textContent = message;
+            container.appendChild(status);
+            
+            setTimeout(() => {
+                status.remove();
+            }, 3000);
+        }
+
+        // Test de navigation
+        function testNavigation() {
+            const tabs = ['dashboard', 'browse', 'create', 'manage', 'export'];
+            let index = 0;
+            
+            function testNext() {
+                if (index < tabs.length) {
+                    showTab(tabs[index]);
+                    index++;
+                    setTimeout(testNext, 1000);
+                } else {
+                    showStatus('Test de navigation terminé !', 'success');
+                    showTab('dashboard');
+                }
+            }
+            
+            showStatus('Début du test de navigation...', 'info');
+            testNext();
+        }
+
+        // Charger les articles
+        function loadArticles() {
+            fetch('articles-reels-extraits.json')
+                .then(response => response.json())
+                .then(data => {
+                    const articlesList = document.getElementById('articles-list');
+                    if (data.articles && data.articles.length > 0) {
+                        articlesList.innerHTML = `
+                            <h3>📚 ${data.articles.length} articles trouvés</h3>
+                            ${data.articles.slice(0, 5).map(article => `
+                                <div style="border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+                                    <h4>${article.title}</h4>
+                                    <p><strong>Catégorie:</strong> ${article.category}</p>
+                                    <p>${article.description ? article.description.substring(0, 100) + '...' : 'Pas de description'}</p>
+                                </div>
+                            `).join('')}
+                        `;
+                        showStatus(`${data.articles.length} articles chargés`, 'success');
+                    } else {
+                        articlesList.innerHTML = '<p>Aucun article trouvé.</p>';
+                        showStatus('Aucun article trouvé', 'error');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('articles-list').innerHTML = '<p>Erreur lors du chargement des articles.</p>';
+                    showStatus(`Erreur: ${error.message}`, 'error');
+                });
+        }
+
+        // Charger les articles CMS
+        function loadCMSArticles() {
+            const saved = localStorage.getItem('cms-articles');
+            const container = document.getElementById('cms-articles');
+            
+            if (saved) {
+                try {
+                    const cmsArticles = JSON.parse(saved);
+                    container.innerHTML = `
+                        <h3>📝 ${cmsArticles.length} articles CMS</h3>
+                        ${cmsArticles.map(article => `
+                            <div style="border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+                                <h4>${article.title}</h4>
+                                <p><strong>Catégorie:</strong> ${article.category}</p>
+                                <p>${article.description}</p>
+                                <button class="btn btn-primary" onclick="editArticle('${article.id}')">✏️ Modifier</button>
+                            </div>
+                        `).join('')}
+                    `;
+                    showStatus(`${cmsArticles.length} articles CMS chargés`, 'success');
+                } catch (error) {
+                    container.innerHTML = '<p>Erreur lors du parsing des articles CMS.</p>';
+                    showStatus('Erreur de parsing', 'error');
+                }
+            } else {
+                container.innerHTML = '<p>Aucun article CMS trouvé.</p>';
+                showStatus('Aucun article CMS', 'info');
+            }
+        }
+
+        // Sauvegarder un article
+        document.getElementById('article-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const article = {
+                id: Date.now().toString(),
+                title: document.getElementById('title').value,
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value,
+                content: document.getElementById('content').value,
+                date: new Date().toLocaleDateString('fr-FR'),
+                createdDate: new Date().toISOString()
+            };
+            
+            // Sauvegarder dans localStorage
+            const saved = localStorage.getItem('cms-articles');
+            const articles = saved ? JSON.parse(saved) : [];
+            articles.push(article);
+            localStorage.setItem('cms-articles', JSON.stringify(articles));
+            
+            showStatus(`Article "${article.title}" sauvegardé !`, 'success');
+            clearForm();
+        });
+
+        // Effacer le formulaire
+        function clearForm() {
+            document.getElementById('article-form').reset();
+        }
+
+        // Export/Import
+        function exportData() {
+            const data = {
+                articles: JSON.parse(localStorage.getItem('cms-articles') || '[]'),
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cms-export.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showStatus('Données exportées !', 'success');
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            if (data.articles) {
+                                localStorage.setItem('cms-articles', JSON.stringify(data.articles));
+                                showStatus(`${data.articles.length} articles importés !`, 'success');
+                            }
+                        } catch (error) {
+                            showStatus('Erreur lors de l\'import', 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 CMS Navigation Corrigée initialisé');
+            showStatus('CMS chargé avec succès !', 'success');
+            
+            // Test automatique de navigation
+            setTimeout(() => {
+                console.log('🧪 Test automatique des onglets...');
+                const tabs = ['dashboard', 'browse', 'create', 'manage', 'export'];
+                tabs.forEach(tab => {
+                    const element = document.getElementById(tab + '-tab');
+                    console.log(`${tab}:`, element ? '✅ OK' : '❌ MANQUANT');
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

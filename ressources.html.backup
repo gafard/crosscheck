@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources - CrossCheck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header Premium */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05);
+            
+            
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .search-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .search-box {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 50px;
+            background: white;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .search-container:hover .search-box {
+            width: 300px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 20px;
+            font-size: 14px;
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .search-input::placeholder {
+            color: var(--secondary);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            min-height: 100vh;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.postimg.cc/YqtbZqhz/manuscrits-biblique.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+            animation: subtleFloat 20s ease-in-out infinite;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.3) 100%);
+            z-index: 1;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+
+
+        /* Research Areas */
+        .research-areas {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .research-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            
+            animation: heartbeat 0.6s ease-in-out;
+        }
+
+        .research-card:active {
+            transform: translateY(-4px) scale(0.98);
+            animation: ripple 0.4s ease-out;
+        }
+
+        .research-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 32px;
+            color: white;
+        }
+
+        .research-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .research-description {
+            color: var(--secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .research-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .research-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Publications */
+        .publications-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .publication-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            
+        }
+
+        .publication-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .publication-authors {
+            color: var(--accent);
+            font-size: 14px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .publication-abstract {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .publication-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--secondary);
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Discoveries Section */
+        .discoveries-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .discoveries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .discovery-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .discovery-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .discovery-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .discovery-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .discovery-description {
+            color: var(--secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .discovery-source {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .discovery-source:hover {
+            color: #b8941f;
+        }
+
+        /* Books Section */
+        .books-section {
+            padding: 4rem 0;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .book-authors {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .book-description {
+            color: var(--secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .book-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .book-link:hover {
+            color: #b8941f;
+        }
+
+        /* Video Resources Section */
+        .video-resources-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .video-resource {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .video-description {
+            font-size: 18px;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .video-details, .video-content {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .video-link {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-link:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .research-grid,
+            .publications-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(1deg);
+            }
+            75% {
+                transform: rotate(-1deg);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+                height: 70px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .search-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .content-wrapper {
+                padding: 0 1rem;
+            }
+
+            .page-header {
+                padding: 4rem 0 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+
+            .research-areas,
+            .publications-section {
+                padding: 2rem 0;
+            }
+
+            .research-grid,
+            .publications-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .research-card,
+            .publication-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .research-card,
+            .publication-card {
+                padding: 1rem;
+            }
+
+            .research-title {
+                font-size: 20px;
+            }
+
+            .publication-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="articles.html" class="nav-link">Articles</a>
+                <a href="ressources.html" class="nav-link active">Ressources</a>
+                <a href="apropos.html" class="nav-link">À propos</a>
+            </nav>
+            <div class="search-container">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher..." class="search-input">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1 class="page-title">Ressources</h1>
+            <p class="page-subtitle">Explorez nos ressources en apologétique chrétienne et découvrez nos articles et analyses</p>
+        </section>
+
+        <!-- Search Section -->
+
+        <!-- Research Areas -->
+        <section class="research-areas">
+            <div class="content-wrapper">
+                <h2 class="section-title">Domaines d'Information</h2>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="research-icon">🏛️</div>
+                        <h3 class="research-title">Archéologie Biblique</h3>
+                        <p class="research-description">Informations sur les découvertes archéologiques qui confirment l'historicité des récits bibliques et éclairent le contexte historique.</p>
+                        <a href="archeologie.html" class="research-link">En savoir plus →</a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon">🔬</div>
+                        <h3 class="research-title">Science & Foi</h3>
+                        <p class="research-description">Études sur l'harmonie entre la science moderne et la foi chrétienne, incluant la cosmologie, la biologie et la physique.</p>
+                        <a href="science.html" class="research-link">En savoir plus →</a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon">📚</div>
+                        <h3 class="research-title">Histoire Chrétienne</h3>
+                        <p class="research-description">Recherches sur l'histoire du christianisme, particulièrement en Afrique, et son impact sur les civilisations.</p>
+                        <a href="histoire.html" class="research-link">En savoir plus →</a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon">⚖️</div>
+                        <h3 class="research-title">Apologétique</h3>
+                        <p class="research-description">Développement d'arguments rationnels et d'évidences pour défendre la foi chrétienne face aux objections contemporaines.</p>
+                        <a href="apologetique.html" class="research-link">En savoir plus →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Découvertes Historiques -->
+        <section class="discoveries-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Découvertes Historiques & Scientifiques</h2>
+                <p class="section-subtitle">Les découvertes suivantes confirment des aspects essentiels des récits bibliques</p>
+                
+                <div class="discoveries-grid">
+                    <!-- Archéologie & Inscriptions -->
+                    <div class="discovery-category">
+                        <h3 class="category-title">🧱 Archéologie & Inscriptions</h3>
+                        
+                        <div class="discovery-item">
+                            <h4 class="discovery-name">La stèle de Tel Dan (IXe siècle av. J.-C.)</h4>
+                            <p class="discovery-description">Découverte dans le nord d'Israël, elle mentionne la Maison de David (Byt DWD), confirmant l'existence d'un lignage royal davidique.</p>
+                            <a href="https://biblicalarchaeology.org" class="discovery-source" target="_blank">➤ Source : Biblical Archaeology Society</a>
+                        </div>
+
+                        <div class="discovery-item">
+                            <h4 class="discovery-name">La stèle de Mesha (Moab)</h4>
+                            <p class="discovery-description">Texte du roi moabite Mesha évoquant un conflit contre Israël, et mentionnant le dieu Yahvé.</p>
+                            <a href="https://www.louvre.fr" class="discovery-source" target="_blank">➤ Lire : Louvre ou The BAS Library</a>
+                        </div>
+
+                        <div class="discovery-item">
+                            <h4 class="discovery-name">Fouilles de Jéricho (Tell es-Sultan)</h4>
+                            <p class="discovery-description">Effondrement des murailles, couches de feu, jarres pleines : compatible avec Josué 6.</p>
+                            <a href="https://answersresearchjournal.org" class="discovery-source" target="_blank">➤ Lire : "The Walls of Jericho" – A. Bryant Wood</a>
+                        </div>
+                    </div>
+
+                    <!-- Manuscrits & Transmission -->
+                    <div class="discovery-category">
+                        <h3 class="category-title">🏺 Manuscrits & Transmission du Texte</h3>
+                        
+                        <div class="discovery-item">
+                            <h4 class="discovery-name">Le rouleau d'Ésaïe (Qumrân 1QIsa)</h4>
+                            <p class="discovery-description">Manuscrit complet daté de 125 av. J.-C., identique à 99,5 % au texte hébreu massorétique.</p>
+                            <a href="https://scielo.org.za" class="discovery-source" target="_blank">➤ Voir : The Meaning of the Dead Sea Scrolls – Flint & VanderKam</a>
+                        </div>
+
+                        <div class="discovery-item">
+                            <h4 class="discovery-name">Codex d'Alep / Codex de Leningrad</h4>
+                            <p class="discovery-description">Textes hébreux de référence (Xe–XIe siècle ap. J.-C.), identiques à ceux de Qumrân pour la majorité des prophètes.</p>
+                            <a href="https://www.zondervan.com" class="discovery-source" target="_blank">➤ NIV Study Bible – Zondervan</a>
+                        </div>
+                    </div>
+
+                    <!-- Témoignages Extérieurs -->
+                    <div class="discovery-category">
+                        <h3 class="category-title">📝 Témoignages Extérieurs à la Bible</h3>
+                        
+                        <div class="discovery-item">
+                            <h4 class="discovery-name">Flavius Josèphe – Antiquités juives</h4>
+                            <p class="discovery-description">Historien juif du Ier siècle qui mentionne Jean-Baptiste, Jésus, Jacques et la destruction du Temple.</p>
+                            <a href="https://www.sacred-texts.com" class="discovery-source" target="_blank">➤ Source : Les Antiquités judaïques, Livre XVIII</a>
+                        </div>
+
+                        <div class="discovery-item">
+                            <h4 class="discovery-name">Tacite – Annales (XV.44)</h4>
+                            <p class="discovery-description">Historien romain qui décrit la mort de "Christus" sous Ponce Pilate.</p>
+                            <a href="https://www.sacred-texts.com" class="discovery-source" target="_blank">➤ Tacitus: Annals Book 15.44 — Sacred‑Texts.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Livres Recommandés -->
+        <section class="books-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">📘 Livres Recommandés</h2>
+                
+                <div class="books-grid">
+                    <div class="book-card">
+                        <h3 class="book-title">The Meaning of the Dead Sea Scrolls</h3>
+                        <p class="book-authors">Peter Flint & James VanderKam</p>
+                        <p class="book-description">Guide clair, fiable et accessible sur la transmission des textes anciens.</p>
+                        <a href="https://scielo.org.za" class="book-link" target="_blank">➤ Présentation complète</a>
+                    </div>
+
+                    <div class="book-card">
+                        <h3 class="book-title">Digging for Evidence</h3>
+                        <p class="book-authors">Evidence-for-the-Bible.com</p>
+                        <p class="book-description">Brochure illustrée gratuite présentant les dernières découvertes liées au Nouveau Testament.</p>
+                        <a href="https://evidence-for-the-bible.com" class="book-link" target="_blank">➤ Télécharger le PDF</a>
+                    </div>
+
+                    <div class="book-card">
+                        <h3 class="book-title">The Case for Christ</h3>
+                        <p class="book-authors">Lee Strobel</p>
+                        <p class="book-description">Journaliste d'investigation qui examine les preuves de la résurrection de Jésus.</p>
+                        <a href="https://leestrobel.com" class="book-link" target="_blank">➤ En savoir plus</a>
+                    </div>
+
+                    <div class="book-card">
+                        <h3 class="book-title">Top Ten Discoveries in Biblical Archaeology</h3>
+                        <p class="book-authors">Bible Archaeology Report</p>
+                        <p class="book-description">Les dix découvertes archéologiques les plus importantes confirmant la Bible.</p>
+                        <a href="https://biblearchaeologyreport.com" class="book-link" target="_blank">➤ Lire l'article</a>
+                    </div>
+
+                    <div class="book-card">
+                        <h3 class="book-title">NIV Archaeological Study Bible</h3>
+                        <p class="book-authors">Zondervan</p>
+                        <p class="book-description">Bible d'étude avec centaines d'articles, cartes, photos et études de site.</p>
+                        <a href="https://www.zondervan.com" class="book-link" target="_blank">➤ Page officielle 2021</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ressources Vidéo -->
+        <section class="video-resources-section">
+            <div class="content-wrapper">
+                <h2 class="section-title">🎬 Ressources Vidéo</h2>
+                
+                <div class="video-resource">
+                    <h3 class="video-title">Expedition Bible</h3>
+                    <p class="video-description">Grande rigueur pédagogique : un archéologue vivant au Moyen-Orient commente les sites sur place.</p>
+                    <p class="video-details">✅ Chaîne YouTube : Expedition Bible (~30 000 abonnés) fondée par Joel Kramer</p>
+                    <p class="video-content">🎬 Contenu : visites guidées des fouilles, analyse des artefacts, liens directs avec les textes bibliques.</p>
+                    <a href="https://www.youtube.com/watch?v=CS_h8bmh_Pg&ab_channel=Pasder%26Lipkin" class="video-link" target="_blank">➤ Voir la chaîne YouTube</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchContainer = document.querySelector('.search-container');
+
+        // Handle search input
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                // Redirect to articles page with search query
+                window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Keep search box open when clicking inside
+        searchContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close search box when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                // Don't close the search box, just remove focus
+                searchInput.blur();
+            }
+        });
+
+        // Enhanced card interactions
+        document.querySelectorAll('.research-card, .publication-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                this.style.animation = 'ripple 0.4s ease-out';
+                
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.animation = '';
+                }, 400);
+            });
+        });
+
+        // Add ripple effect to cards
+        function createRipple(event) {
+            const card = event.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(212, 175, 55, 0.3)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            card.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add ripple effect to all cards
+        document.querySelectorAll('.research-card, .publication-card').forEach(card => {
+            card.addEventListener('click', createRipple);
+        });
+
+        // Enhanced Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Add staggered animation for cards
+                    if (entry.target.classList.contains('research-card') || entry.target.classList.contains('publication-card')) {
+                        const cards = document.querySelectorAll('.research-card, .publication-card');
+                        const index = Array.from(cards).indexOf(entry.target);
+                        entry.target.style.animationDelay = `${index * 0.1}s`;
+                        entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.research-card, .publication-card, .page-header').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

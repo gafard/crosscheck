@@ -1726,7 +1726,13 @@
                 date: new Date().toLocaleDateString('fr-FR'),
                 id: Date.now(),
                 isNew: true,
-                createdDate: new Date().toISOString()
+                createdDate: new Date().toISOString(),
+                // Champs vidéo
+                videoPlatform: formData.get('videoPlatform'),
+                videoUrl: formData.get('videoUrl'),
+                videoEmbed: formData.get('videoEmbed'),
+                videoDuration: formData.get('videoDuration'),
+                videoTags: formData.get('videoTags')
             };
             
             // Validation

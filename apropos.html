@@ -561,6 +561,21 @@
             color: var(--secondary);
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle svg {
+            transition: all 0.3s ease;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .mission-section {
@@ -651,6 +666,70 @@
 
             .nav {
                 display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 2rem;
+                border-top: 1px solid var(--border);
+                z-index: 999;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav.active {
+                display: flex;
+                transform: translateY(0);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .search-container {
+                position: relative;
+            }
+
+            .search-container.active .search-box {
+                width: calc(100vw - 4rem);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .search-box {
+                position: fixed;
+                top: 70px;
+                left: 1rem;
+                right: 1rem;
+                width: auto;
+                background: white;
+                border: 2px solid var(--accent);
+                border-radius: 25px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .search-icon {
+                width: 40px;
+                height: 40px;
+                background: var(--accent);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .search-icon:active {
+                transform: scale(0.95);
             }
 
             .content-wrapper {
@@ -701,6 +780,55 @@
             }
         }
 
+        @media (min-width: 769px) {
+            .nav {
+                display: flex !important;
+                position: static;
+                background: none;
+                backdrop-filter: none;
+                flex-direction: row;
+                padding: 0;
+                gap: 1.5rem;
+                border-top: none;
+                transform: none;
+                transition: none;
+            }
+
+            .mobile-menu-toggle {
+                display: none;
+            }
+
+            .search-container:hover .search-box {
+                width: 300px;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .search-box {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 0;
+                height: 50px;
+                background: white;
+                border-radius: 25px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .search-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .search-icon:hover {
+                transform: scale(1.1);
+                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            }
+        }
+
         @media (max-width: 480px) {
             .hero-title {
                 font-size: 2rem;
@@ -725,6 +853,13 @@
                 <div class="logo-icon"></div>
                 <div class="logo-text">CrossCheck</div>
             </a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
             <nav class="nav">
                 <a href="index.html" class="nav-link">Accueil</a>
                 <a href="articles.html" class="nav-link">Articles</a>
@@ -868,9 +1003,78 @@
     </main>
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            nav.classList.toggle('active');
+            
+            if (nav.classList.contains('active')) {
+                toggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                `;
+            } else {
+                toggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                `;
+            }
+        }
+
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.querySelector('.nav');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    toggle.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    `;
+                }
+            });
+        });
+
         // Search functionality
         const searchInput = document.querySelector('.search-input');
         const searchContainer = document.querySelector('.search-container');
+        const searchIcon = document.querySelector('.search-icon');
+        
+        // Mobile search toggle
+        searchIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchContainer.classList.toggle('active');
+            
+            if (searchContainer.classList.contains('active')) {
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 100);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                searchContainer.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                searchContainer.classList.remove('active');
+            }
+        });
 
         // Handle search input
         searchInput.addEventListener('keypress', (e) => {

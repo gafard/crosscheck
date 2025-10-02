@@ -543,6 +543,112 @@
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
+        /* Éditeur de texte riche */
+        .rich-editor-container {
+            border: 2px solid var(--border);
+            border-radius: var(--border-radius);
+            background: white;
+            transition: var(--transition);
+        }
+
+        .rich-editor-container:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .ql-toolbar {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid var(--border);
+            background: var(--light);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            padding: 1rem;
+        }
+
+        .ql-container {
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 300px;
+        }
+
+        .ql-editor {
+            padding: 1.5rem;
+            min-height: 300px;
+        }
+
+        .ql-editor h1, .ql-editor h2, .ql-editor h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .ql-editor h1 { font-size: 2rem; }
+        .ql-editor h2 { font-size: 1.5rem; }
+        .ql-editor h3 { font-size: 1.25rem; }
+
+        .ql-editor p {
+            margin-bottom: 1rem;
+        }
+
+        .ql-editor blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 1rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .ql-editor table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .ql-editor table td, .ql-editor table th {
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .ql-editor table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+
+        .ql-editor ul, .ql-editor ol {
+            padding-left: 2rem;
+            margin: 1rem 0;
+        }
+
+        .ql-editor li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Personnalisation de la toolbar */
+        .ql-toolbar .ql-formats {
+            margin-right: 1rem;
+        }
+
+        .ql-toolbar button {
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+
+        .ql-toolbar button:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .ql-toolbar button.ql-active {
+            background: var(--accent);
+            color: white;
+        }
+
         /* Prévisualisation */
         .preview-container {
             background: white;

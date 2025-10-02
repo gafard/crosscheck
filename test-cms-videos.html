@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Vidéos - Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        
+        .test-section {
+            background: white;
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            padding: 1rem;
+            border-radius: 4px;
+            color: #c00;
+            margin: 1rem 0;
+        }
+        
+        .success {
+            background: #efe;
+            border: 1px solid #cfc;
+            padding: 1rem;
+            border-radius: 4px;
+            color: #060;
+            margin: 1rem 0;
+        }
+        
+        .form-group {
+            margin: 1rem 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        select, input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .video-fields {
+            background: #f9f9f9;
+            border: 2px dashed #ddd;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        
+        .video-fields.active {
+            border-color: #007cba;
+            background: #f0f8ff;
+        }
+        
+        button {
+            background: #007cba;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background: #005a87;
+        }
+        
+        .preview {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Test CMS Vidéos - Debug</h1>
+    
+    <div class="test-section">
+        <h2>📋 Test du Formulaire Vidéos</h2>
+        <div id="error-log" class="error" style="display: none;"></div>
+        <div id="success-log" class="success" style="display: none;"></div>
+        
+        <form id="test-form">
+            <div class="form-group">
+                <label for="category">Catégorie :</label>
+                <select id="category" name="category" onchange="updateVideoFields()">
+                    <option value="">Sélectionner une catégorie</option>
+                    <option value="apologetique">Apologétique</option>
+                    <option value="science">Science & Foi</option>
+                    <option value="videos">Vidéos</option>
+                </select>
+            </div>
+            
+            <div id="video-fields" class="video-fields" style="display: none;">
+                <h3>🎥 Champs Vidéo</h3>
+                
+                <div class="form-group">
+                    <label for="video-platform">Plateforme :</label>
+                    <select id="video-platform" name="videoPlatform" onchange="updateVideoFields()">
+                        <option value="">Sélectionner une plateforme</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="vimeo">Vimeo</option>
+                        <option value="custom">Code personnalisé</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="video-url-group">
+                    <label for="video-url">URL de la vidéo :</label>
+                    <input type="url" id="video-url" name="videoUrl" placeholder="URL de votre vidéo">
+                </div>
+                
+                <div class="form-group" id="video-embed-group" style="display: none;">
+                    <label for="video-embed">Code d'intégration :</label>
+                    <textarea id="video-embed" name="videoEmbed" placeholder="Code HTML d'intégration"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="video-duration">Durée :</label>
+                    <input type="text" id="video-duration" name="videoDuration" placeholder="Ex: 2:30">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="title">Titre :</label>
+                <input type="text" id="title" name="title" placeholder="Titre de votre contenu">
+            </div>
+            
+            <button type="button" onclick="testVideoGeneration()">🧪 Tester Génération Vidéo</button>
+        </form>
+        
+        <div class="preview" id="preview">
+            <strong>Aperçu :</strong>
+            <div id="preview-content">Sélectionnez "Vidéos" pour voir les champs apparaître...</div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎯 Tests Spécifiques</h2>
+        <button onclick="testTikTokURL()">Test URL TikTok</button>
+        <button onclick="testYouTubeURL()">Test URL YouTube</button>
+        <button onclick="testFunctions()">Test Fonctions JS</button>
+    </div>
+
+    <script>
+        // Log des erreurs
+        function logError(message) {
+            const errorLog = document.getElementById('error-log');
+            errorLog.textContent = message;
+            errorLog.style.display = 'block';
+            console.error(message);
+        }
+        
+        function logSuccess(message) {
+            const successLog = document.getElementById('success-log');
+            successLog.textContent = message;
+            successLog.style.display = 'block';
+            console.log(message);
+        }
+        
+        // Fonction de gestion des champs vidéo
+        function updateVideoFields() {
+            try {
+                const category = document.getElementById('category').value;
+                const platform = document.getElementById('video-platform').value;
+                const videoFields = document.getElementById('video-fields');
+                const videoUrlGroup = document.getElementById('video-url-group');
+                const videoEmbedGroup = document.getElementById('video-embed-group');
+                
+                logSuccess(`Catégorie sélectionnée: ${category}, Plateforme: ${platform}`);
+                
+                // Afficher/masquer les champs vidéo
+                if (category === 'videos') {
+                    videoFields.style.display = 'block';
+                    videoFields.classList.add('active');
+                    logSuccess('Champs vidéo activés');
+                } else {
+                    videoFields.style.display = 'none';
+                    videoFields.classList.remove('active');
+                    logSuccess('Champs vidéo désactivés');
+                }
+                
+                // Gestion des champs selon la plateforme
+                if (platform === 'custom') {
+                    videoUrlGroup.style.display = 'none';
+                    videoEmbedGroup.style.display = 'block';
+                    logSuccess('Mode code personnalisé activé');
+                } else {
+                    videoUrlGroup.style.display = 'block';
+                    videoEmbedGroup.style.display = 'none';
+                    
+                    // Mettre à jour le placeholder
+                    const urlInput = document.getElementById('video-url');
+                    switch(platform) {
+                        case 'tiktok':
+                            urlInput.placeholder = 'Ex: https://www.tiktok.com/@thegodproof/video/123456789';
+                            break;
+                        case 'youtube':
+                            urlInput.placeholder = 'Ex: https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                            break;
+                        case 'vimeo':
+                            urlInput.placeholder = 'Ex: https://vimeo.com/123456789';
+                            break;
+                        default:
+                            urlInput.placeholder = 'URL de votre vidéo';
+                    }
+                }
+                
+            } catch (error) {
+                logError(`Erreur dans updateVideoFields: ${error.message}`);
+            }
+        }
+        
+        // Test de génération de code vidéo
+        function generateVideoEmbed(platform, url) {
+            try {
+                if (!url) return '';
+                
+                switch(platform) {
+                    case 'tiktok':
+                        const tiktokMatch = url.match(/\/video\/(\d+)/);
+                        if (tiktokMatch) {
+                            const videoId = tiktokMatch[1];
+                            return `<blockquote class="tiktok-embed" cite="${url}" data-video-id="${videoId}">
+                                <section>
+                                    <a target="_blank" href="${url.split('/video/')[0]}">@${url.split('@')[1]?.split('/')[0] || 'user'}</a>
+                                    <p>Vidéo TikTok</p>
+                                </section>
+                            </blockquote>
+                            <script async src="https://www.tiktok.com/embed.js"></script>`;
+                        }
+                        break;
+                        
+                    case 'youtube':
+                        const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+                        if (youtubeMatch) {
+                            const videoId = youtubeMatch[1];
+                            return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+                        }
+                        break;
+                }
+                
+                return `<p>Aperçu non disponible pour cette URL</p>`;
+            } catch (error) {
+                logError(`Erreur dans generateVideoEmbed: ${error.message}`);
+                return '';
+            }
+        }
+        
+        // Tests spécifiques
+        function testVideoGeneration() {
+            const platform = document.getElementById('video-platform').value;
+            const url = document.getElementById('video-url').value;
+            const embed = document.getElementById('video-embed').value;
+            
+            if (!platform) {
+                logError('Veuillez sélectionner une plateforme');
+                return;
+            }
+            
+            if (platform === 'custom') {
+                if (!embed) {
+                    logError('Veuillez fournir le code d\'intégration');
+                    return;
+                }
+                document.getElementById('preview-content').innerHTML = embed;
+                logSuccess('Code personnalisé appliqué');
+            } else {
+                if (!url) {
+                    logError('Veuillez fournir une URL');
+                    return;
+                }
+                const embedCode = generateVideoEmbed(platform, url);
+                document.getElementById('preview-content').innerHTML = embedCode;
+                logSuccess(`Code généré pour ${platform}`);
+            }
+        }
+        
+        function testTikTokURL() {
+            document.getElementById('category').value = 'videos';
+            document.getElementById('video-platform').value = 'tiktok';
+            document.getElementById('video-url').value = 'https://www.tiktok.com/@thegodproof/video/7545159501033377046';
+            updateVideoFields();
+            testVideoGeneration();
+        }
+        
+        function testYouTubeURL() {
+            document.getElementById('category').value = 'videos';
+            document.getElementById('video-platform').value = 'youtube';
+            document.getElementById('video-url').value = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+            updateVideoFields();
+            testVideoGeneration();
+        }
+        
+        function testFunctions() {
+            logSuccess('Test des fonctions JavaScript...');
+            
+            // Test 1: updateVideoFields existe
+            if (typeof updateVideoFields === 'function') {
+                logSuccess('✅ updateVideoFields existe');
+            } else {
+                logError('❌ updateVideoFields manquante');
+            }
+            
+            // Test 2: generateVideoEmbed existe
+            if (typeof generateVideoEmbed === 'function') {
+                logSuccess('✅ generateVideoEmbed existe');
+            } else {
+                logError('❌ generateVideoEmbed manquante');
+            }
+            
+            // Test 3: Éléments DOM
+            const elements = ['category', 'video-fields', 'video-platform', 'video-url'];
+            elements.forEach(id => {
+                if (document.getElementById(id)) {
+                    logSuccess(`✅ Élément ${id} trouvé`);
+                } else {
+                    logError(`❌ Élément ${id} manquant`);
+                }
+            });
+        }
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            logSuccess('Page de test chargée');
+            testFunctions();
+        });
+    </script>
+</body>
+</html>

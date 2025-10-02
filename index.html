@@ -1952,6 +1952,21 @@
             }
         }
 
+        // Toggle search on mobile/desktop
+        const searchIcon = document.querySelector('.search-icon');
+        
+        searchIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchContainer.classList.toggle('active');
+            
+            // Focus sur l'input quand on ouvre la recherche
+            if (searchContainer.classList.contains('active')) {
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 100);
+            }
+        });
+
         // Keep search box open when clicking inside
         searchContainer.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -1960,6 +1975,13 @@
         // Close search box when clicking outside
         document.addEventListener('click', (e) => {
             if (!searchContainer.contains(e.target)) {
+                searchContainer.classList.remove('active');
+            }
+        });
+
+        // Close search on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
                 searchContainer.classList.remove('active');
             }
         });

@@ -2099,11 +2099,31 @@
                 preview += `<h2 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem;">${title}</h2>`;
             }
             if (category) {
-                preview += `<div style="display: inline-block; background: var(--accent); color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; margin-bottom: 1rem;">${getCategoryName(category)}</div>`;
+                const categoryName = getCategoryName(category);
+                const badgeClass = category === 'videos' ? 'platform-badge ' + videoPlatform : '';
+                preview += `<div class="${badgeClass}" style="display: inline-block; background: var(--accent); color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; margin-bottom: 1rem;">
+                    ${category === 'videos' && videoPlatform ? `<i class="fas fa-video"></i> ${videoPlatform.toUpperCase()}` : categoryName}
+                </div>`;
             }
             if (description) {
                 preview += `<p style="font-style: italic; color: var(--secondary); margin-bottom: 1.5rem;">${description}</p>`;
             }
+            
+            // Aperçu vidéo
+            if (category === 'videos' && (videoUrl || videoEmbed)) {
+                const embedCode = generateVideoEmbed(videoPlatform, videoUrl, videoEmbed);
+                if (embedCode) {
+                    preview += `<div class="video-preview" style="margin: 1.5rem 0; padding: 1rem; background: var(--light); border-radius: var(--border-radius); border: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 1rem; color: var(--primary);">
+                            <i class="fas fa-play-circle"></i> Aperçu de la vidéo
+                            ${videoDuration ? `<span style="float: right; font-size: 0.8rem; color: var(--secondary);">${videoDuration}</span>` : ''}
+                        </h4>
+                        ${embedCode}
+                        ${videoTags ? `<div style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);">${videoTags}</div>` : ''}
+                    </div>`;
+                }
+            }
+            
             if (content) {
                 preview += `<div style="line-height: 1.6;">${formatContent(content)}</div>`;
             }

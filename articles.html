@@ -1181,6 +1181,15 @@
             const articles = document.querySelectorAll('.article-card');
             const searchTerm = query.toLowerCase();
             let visibleCount = 0;
+            let matchingArticles = [];
+
+            // Masquer tous les onglets d'abord
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
 
             articles.forEach(article => {
                 const title = article.querySelector('.article-title')?.textContent.toLowerCase() || '';
@@ -1194,12 +1203,31 @@
                 if (isMatch) {
                     article.style.display = 'block';
                     article.classList.add('search-highlight');
+                    matchingArticles.push(article);
                     visibleCount++;
+                    
+                    // Rendre visible l'onglet parent de cet article
+                    const parentTab = article.closest('.tab-content');
+                    if (parentTab) {
+                        parentTab.classList.add('active');
+                    }
                 } else {
                     article.style.display = 'none';
                     article.classList.remove('search-highlight');
                 }
             });
+
+            // Si on a des résultats, activer aussi l'onglet "Tous" pour montrer tous les résultats
+            if (visibleCount > 0) {
+                const allTab = document.getElementById('all');
+                if (allTab) {
+                    allTab.classList.add('active');
+                }
+                const allButton = document.querySelector('[data-tab="all"]');
+                if (allButton) {
+                    allButton.classList.add('active');
+                }
+            }
 
             // Show search results message
             showSearchResults(query, visibleCount);

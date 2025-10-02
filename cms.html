@@ -1123,6 +1123,7 @@
                     }
                 });
                 
+                console.log('Articles chargés:', availableArticles.length, availableArticles);
                 showAlert('success', `${availableArticles.length} articles réels chargés avec succès !`);
                 return availableArticles;
             } catch (error) {

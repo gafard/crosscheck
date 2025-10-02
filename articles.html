@@ -1632,6 +1632,25 @@
         // Gérer les changements de hash (bouton retour/avant du navigateur)
         window.addEventListener('hashchange', handleHashNavigation);
 
+        // Close search box when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                searchContainer.classList.remove('active');
+            }
+        });
+
+        // Close search on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                searchContainer.classList.remove('active');
+            }
+        });
+
+        // Keep search box open when clicking inside
+        searchContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
         // Appeler immédiatement au cas où la page est déjà chargée
         if (document.readyState === 'complete') {
             handleHashNavigation();

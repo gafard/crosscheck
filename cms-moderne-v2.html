@@ -1450,7 +1450,10 @@
         // Vérifier si un article est déjà importé
         function isArticleImported(articleId) {
             const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
-            return cmsArticles.some(article => article.originalId === articleId);
+            return cmsArticles.some(article => 
+                article.originalId === articleId || 
+                article.originalFile === availableArticles.find(a => a.id === articleId)?.originalFile
+            );
         }
 
         // Sélectionner un article

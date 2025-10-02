@@ -1033,6 +1033,11 @@
                 <div class="page-header">
                     <h1 class="page-title">Parcourir les articles</h1>
                     <p class="page-subtitle">Sélectionnez et importez vos articles existants</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-primary" onclick="loadRealArticles().then(() => loadAvailableArticles())">
+                            <i class="fas fa-sync"></i> Recharger les articles du site
+                        </button>
+                    </div>
                 </div>
 
                 <div class="search-section">

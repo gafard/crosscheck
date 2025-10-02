@@ -1143,8 +1143,71 @@
         let currentEditId = null;
         let availableArticles = [];
 
+        // Variables globales pour l'éditeur
+        let quill;
+
+        // Initialiser l'éditeur de texte riche
+        function initRichEditor() {
+            const toolbarOptions = [
+                // Formatage de base
+                [{ 'header': [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                
+                // Couleurs
+                [{ 'color': [] }, { 'background': [] }],
+                
+                // Alignement
+                [{ 'align': [] }],
+                
+                // Listes
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                
+                // Citations et liens
+                ['blockquote', 'code-block'],
+                ['link', 'image'],
+                
+                // Nettoyage
+                ['clean']
+            ];
+
+            quill = new Quill('#rich-editor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions
+                },
+                placeholder: 'Rédigez le contenu de votre article avec mise en forme...'
+            });
+
+            // Synchroniser avec le textarea caché
+            quill.on('text-change', function() {
+                const content = quill.root.innerHTML;
+                document.getElementById('content').value = content;
+                updatePreview();
+            });
+        }
+
+        // Mettre à jour l'éditeur avec du contenu
+        function setRichEditorContent(content) {
+            if (quill) {
+                if (content && content.trim()) {
+                    quill.root.innerHTML = content;
+                } else {
+                    quill.setText('');
+                }
+            }
+        }
+
+        // Obtenir le contenu de l'éditeur
+        function getRichEditorContent() {
+            return quill ? quill.root.innerHTML : '';
+        }
+
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser l'éditeur de texte riche
+            initRichEditor();
+            
             loadRealArticles();
             loadCMSArticles();
             updatePreview();

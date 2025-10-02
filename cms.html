@@ -1328,10 +1328,18 @@
             }).join('');
         }
 
-        // Modifier un article
-        function editArticle(id) {
-            const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
-            const article = articles.find(a => a.id === id);
+        // Modifier un article (du site ou du CMS)
+        function editArticle(id, isFromSite = false) {
+            let article = null;
+            
+            if (isFromSite) {
+                // Chercher dans les articles du site
+                article = availableArticles.find(a => (a.id && a.id == id) || a.title.replace(/[^a-zA-Z0-9]/g, '') == id);
+            } else {
+                // Chercher dans les articles CMS
+                const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+                article = cmsArticles.find(a => a.id === id);
+            }
             
             if (!article) {
                 showAlert('error', 'Article non trouvé');
@@ -1341,11 +1349,11 @@
             // Remplir le formulaire
             document.getElementById('title').value = article.title;
             document.getElementById('category').value = article.category;
-            document.getElementById('description').value = article.description;
-            document.getElementById('content').value = article.content;
+            document.getElementById('description').value = article.description || '';
+            document.getElementById('content').value = article.content || '';
             document.getElementById('image').value = article.image || '';
             
-            currentEditId = id;
+            currentEditId = isFromSite ? (article.id || article.title.replace(/[^a-zA-Z0-9]/g, '')) : id;
             updatePreview();
             
             // Aller à l'onglet créer
@@ -1355,7 +1363,7 @@
             const submitBtn = document.querySelector('#article-form button[type="submit"]');
             submitBtn.innerHTML = '<i class="fas fa-save"></i> Modifier l\'article';
             
-            showAlert('info', `Modification de l'article "${article.title}"`);
+            showAlert('info', `Modification de l'article "${article.title}" ${isFromSite ? '(du site)' : '(CMS)'}`);
         }
 
         // Supprimer un article

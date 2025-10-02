@@ -1582,6 +1582,27 @@
         if (document.readyState === 'complete') {
             handleHashNavigation();
         }
+
+        // Fermer le menu mobile quand on clique sur un lien
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const nav = document.querySelector('.nav');
+                    const toggle = document.querySelector('.mobile-menu-toggle');
+                    
+                    if (nav && toggle && nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        toggle.innerHTML = `
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>
+                        `;
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

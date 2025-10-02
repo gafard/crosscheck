@@ -2104,9 +2104,37 @@
             }
         }
 
-        // Fermer le menu mobile quand on clique sur un lien
+        // Gérer le menu mobile et le dropdown Articles
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                const nav = document.querySelector('.nav');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                const navItem = link.closest('.nav-item');
+                
+                // Si c'est le lien Articles avec dropdown, gérer l'expansion mobile
+                if (navItem && navItem.querySelector('.dropdown-menu')) {
+                    e.preventDefault();
+                    navItem.classList.toggle('mobile-expanded');
+                    return;
+                }
+                
+                // Sinon, fermer le menu mobile normalement
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    toggle.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    `;
+                }
+            });
+        });
+
+        // Fermer le menu mobile quand on clique sur une catégorie du dropdown
+        document.querySelectorAll('.dropdown-category').forEach(category => {
+            category.addEventListener('click', () => {
                 const nav = document.querySelector('.nav');
                 const toggle = document.querySelector('.mobile-menu-toggle');
                 

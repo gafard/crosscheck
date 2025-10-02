@@ -1949,6 +1949,126 @@
             `).join('');
         }
 
+        // Gestion des champs vidéo
+        function updateVideoFields() {
+            const category = document.getElementById('category').value;
+            const platform = document.getElementById('video-platform').value;
+            const videoFields = document.getElementById('video-fields');
+            const videoUrlGroup = document.getElementById('video-url-group');
+            const videoEmbedGroup = document.getElementById('video-embed-group');
+            const contentLabel = document.getElementById('content-label');
+            const contentTextarea = document.getElementById('content');
+
+            // Afficher/masquer les champs vidéo selon la catégorie
+            if (category === 'videos') {
+                videoFields.style.display = 'block';
+                videoFields.classList.add('active');
+                contentLabel.textContent = 'Description détaillée de la vidéo';
+                contentTextarea.placeholder = 'Décrivez le contenu de la vidéo, son message, les points clés abordés...';
+            } else {
+                videoFields.style.display = 'none';
+                videoFields.classList.remove('active');
+                contentLabel.textContent = 'Contenu de l\'article';
+                contentTextarea.placeholder = 'Contenu complet de l\'article...';
+            }
+
+            // Afficher/masquer les champs selon la plateforme
+            if (platform === 'custom') {
+                videoUrlGroup.style.display = 'none';
+                videoEmbedGroup.style.display = 'block';
+            } else {
+                videoUrlGroup.style.display = 'block';
+                videoEmbedGroup.style.display = 'none';
+                
+                // Mettre à jour le placeholder selon la plateforme
+                const urlInput = document.getElementById('video-url');
+                switch(platform) {
+                    case 'tiktok':
+                        urlInput.placeholder = 'Ex: https://www.tiktok.com/@thegodproof/video/123456789';
+                        break;
+                    case 'youtube':
+                        urlInput.placeholder = 'Ex: https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                        break;
+                    case 'vimeo':
+                        urlInput.placeholder = 'Ex: https://vimeo.com/123456789';
+                        break;
+                    case 'dailymotion':
+                        urlInput.placeholder = 'Ex: https://www.dailymotion.com/video/x123456';
+                        break;
+                    default:
+                        urlInput.placeholder = 'URL complète de votre vidéo';
+                }
+            }
+        }
+
+        // Génération du code d'intégration selon la plateforme
+        function generateVideoEmbed(platform, url, embedCode) {
+            if (platform === 'custom' && embedCode) {
+                return embedCode;
+            }
+
+            if (!url) return '';
+
+            switch(platform) {
+                case 'tiktok':
+                    // Extraire l'ID de la vidéo TikTok
+                    const tiktokMatch = url.match(/\/video\/(\d+)/);
+                    if (tiktokMatch) {
+                        const videoId = tiktokMatch[1];
+                        return `<blockquote class="tiktok-embed" cite="${url}" data-video-id="${videoId}" style="max-width: 605px;min-width: 325px;">
+                            <section>
+                                <a target="_blank" href="${url.split('/video/')[0]}">@${url.split('@')[1]?.split('/')[0] || 'user'}</a>
+                                <p>Vidéo TikTok</p>
+                            </section>
+                        </blockquote>
+                        <script async src="https://www.tiktok.com/embed.js"></script>`;
+                    }
+                    break;
+                    
+                case 'youtube':
+                    // Extraire l'ID de la vidéo YouTube
+                    const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+                    if (youtubeMatch) {
+                        const videoId = youtubeMatch[1];
+                        return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" 
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>`;
+                    }
+                    break;
+                    
+                case 'vimeo':
+                    // Extraire l'ID de la vidéo Vimeo
+                    const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+                    if (vimeoMatch) {
+                        const videoId = vimeoMatch[1];
+                        return `<iframe src="https://player.vimeo.com/video/${videoId}" 
+                                width="640" height="360" frameborder="0" 
+                                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                    }
+                    break;
+                    
+                case 'dailymotion':
+                    // Extraire l'ID de la vidéo Dailymotion
+                    const dailymotionMatch = url.match(/dailymotion\.com\/video\/([^_]+)/);
+                    if (dailymotionMatch) {
+                        const videoId = dailymotionMatch[1];
+                        return `<iframe frameborder="0" width="560" height="315" 
+                                src="https://www.dailymotion.com/embed/video/${videoId}" allowfullscreen></iframe>`;
+                    }
+                    break;
+            }
+            
+            return `<p>Aperçu non disponible pour cette URL</p>`;
+        }
+
+        // Écouter les changements de catégorie
+        document.addEventListener('DOMContentLoaded', function() {
+            const categorySelect = document.getElementById('category');
+            if (categorySelect) {
+                categorySelect.addEventListener('change', updateVideoFields);
+            }
+        });
+
         // Mise à jour de l'aperçu
         function updatePreview() {
             const title = document.getElementById('title').value;

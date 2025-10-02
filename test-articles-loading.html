@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chargement Articles</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+        .article-card { border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        .article-title { font-weight: bold; color: #333; margin-bottom: 0.5rem; }
+        .article-meta { font-size: 0.9em; color: #666; }
+        .stats { background: #f0f0f0; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; }
+        .error { background: #ffebee; color: #c62828; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
+        .success { background: #e8f5e8; color: #2e7d32; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Chargement des Articles</h1>
+    
+    <div id="stats" class="stats">
+        <strong>Chargement en cours...</strong>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        async function testArticleLoading() {
+            const statsDiv = document.getElementById('stats');
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                statsDiv.innerHTML = '<strong>📡 Chargement du fichier articles-reels-extraits.json...</strong>';
+                
+                const response = await fetch('articles-reels-extraits.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Données brutes:', data);
+                
+                // Déterminer si c'est un tableau ou un objet
+                const articles = Array.isArray(data) ? data : (data.articles || []);
+                console.log('Articles extraits:', articles);
+                
+                statsDiv.innerHTML = `
+                    <div class="success">
+                        <strong>✅ Chargement réussi !</strong><br>
+                        📊 Nombre d'articles: ${articles.length}<br>
+                        📁 Type de données: ${Array.isArray(data) ? 'Tableau direct' : 'Objet avec propriété articles'}<br>
+                        📏 Taille du fichier: ${JSON.stringify(data).length} caractères
+                    </div>
+                `;
+                
+                if (articles.length === 0) {
+                    resultsDiv.innerHTML = '<div class="error">❌ Aucun article trouvé dans le fichier</div>';
+                    return;
+                }
+                
+                // Afficher les articles
+                resultsDiv.innerHTML = `
+                    <h2>📚 Articles trouvés (${articles.length})</h2>
+                    ${articles.map((article, index) => `
+                        <div class="article-card">
+                            <div class="article-title">${index + 1}. ${article.title || 'Titre manquant'}</div>
+                            <div class="article-meta">
+                                <strong>Catégorie:</strong> ${article.category || 'Non définie'} | 
+                                <strong>Date:</strong> ${article.date || 'Non définie'} | 
+                                <strong>ID:</strong> ${article.id || 'Non défini'}
+                            </div>
+                            <div style="margin-top: 0.5rem;">
+                                <strong>Description:</strong> ${article.description ? 
+                                    (article.description.substring(0, 100) + (article.description.length > 100 ? '...' : '')) : 
+                                    'Pas de description'
+                                }
+                            </div>
+                            <div style="margin-top: 0.5rem;">
+                                <strong>Contenu:</strong> ${article.content ? 
+                                    (article.content === 'Contenu non trouvé' ? 
+                                        '<span style="color: orange;">⚠️ Contenu non trouvé</span>' : 
+                                        '✅ Contenu disponible (' + article.content.length + ' caractères)'
+                                    ) : 
+                                    '❌ Pas de contenu'
+                                }
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
+                
+                // Statistiques par catégorie
+                const categories = {};
+                articles.forEach(article => {
+                    const cat = article.category || 'Non définie';
+                    categories[cat] = (categories[cat] || 0) + 1;
+                });
+                
+                resultsDiv.innerHTML += `
+                    <h2>📊 Répartition par catégorie</h2>
+                    <div class="stats">
+                        ${Object.entries(categories).map(([cat, count]) => 
+                            `<strong>${cat}:</strong> ${count} articles`
+                        ).join('<br>')}
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Erreur:', error);
+                statsDiv.innerHTML = `
+                    <div class="error">
+                        <strong>❌ Erreur de chargement</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+                
+                resultsDiv.innerHTML = `
+                    <div class="error">
+                        <h3>Détails de l'erreur:</h3>
+                        <pre>${error.stack || error.message}</pre>
+                        
+                        <h3>Solutions possibles:</h3>
+                        <ul>
+                            <li>Vérifiez que le serveur HTTP est démarré</li>
+                            <li>Vérifiez que le fichier articles-reels-extraits.json existe</li>
+                            <li>Vérifiez la syntaxe JSON du fichier</li>
+                            <li>Vérifiez les permissions de lecture du fichier</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+        
+        // Lancer le test au chargement de la page
+        document.addEventListener('DOMContentLoaded', testArticleLoading);
+    </script>
+</body>
+</html>

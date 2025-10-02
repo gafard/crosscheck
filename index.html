@@ -1367,36 +1367,59 @@
                 transform: translateY(-2px) scale(1.01);
             }
 
-            /* Menu contextuel mobile */
+            /* Menu contextuel mobile - masqué par défaut */
             .nav-item {
                 position: relative;
             }
 
             .dropdown-menu {
+                display: none;
+            }
+
+            /* Afficher le menu contextuel comme une liste simple dans le menu mobile */
+            .nav-item.mobile-expanded .dropdown-menu {
+                display: block;
                 position: static;
-                background: rgba(255, 255, 255, 0.95);
+                background: rgba(255, 255, 255, 0.9);
                 backdrop-filter: blur(10px);
                 border-radius: 8px;
-                margin-top: 1rem;
-                padding: 1rem 0;
-                min-width: 200px;
+                margin-top: 0.5rem;
+                padding: 0.5rem 0;
+                min-width: 100%;
                 opacity: 1;
                 visibility: visible;
                 transform: none;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                border: 1px solid rgba(212, 175, 55, 0.2);
             }
 
             .dropdown-category {
-                padding: 12px 20px;
-                font-size: 14px;
-                border-left: 3px solid transparent;
+                padding: 10px 16px;
+                font-size: 13px;
+                border-left: 2px solid transparent;
                 transition: all 0.3s ease;
+                display: block;
+                color: var(--secondary);
             }
 
-            .dropdown-category:hover {
+            .dropdown-category:hover,
+            .dropdown-category:active {
                 background: rgba(212, 175, 55, 0.1);
                 border-left-color: var(--accent);
-                transform: translateX(5px);
+                color: var(--accent);
+                transform: translateX(3px);
+            }
+
+            /* Style pour le lien Articles avec indicateur */
+            .nav-item .nav-link::after {
+                content: ' ▼';
+                font-size: 10px;
+                opacity: 0.7;
+                margin-left: 5px;
+            }
+
+            .nav-item.mobile-expanded .nav-link::after {
+                content: ' ▲';
             }
         }
 

@@ -1176,10 +1176,20 @@
             quill = new Quill('#rich-editor', {
                 theme: 'snow',
                 modules: {
-                    toolbar: toolbarOptions
+                    toolbar: {
+                        container: toolbarOptions,
+                        handlers: {
+                            'table': function() {
+                                insertTable();
+                            }
+                        }
+                    }
                 },
                 placeholder: 'Rédigez le contenu de votre article avec mise en forme...'
             });
+
+            // Ajouter le bouton tableau personnalisé
+            addTableButton();
 
             // Synchroniser avec le textarea caché
             quill.on('text-change', function() {
@@ -1187,6 +1197,67 @@
                 document.getElementById('content').value = content;
                 updatePreview();
             });
+        }
+
+        // Ajouter le bouton tableau à la toolbar
+        function addTableButton() {
+            const toolbar = quill.getModule('toolbar');
+            const toolbarContainer = document.querySelector('.ql-toolbar');
+            
+            // Créer le bouton tableau
+            const tableButton = document.createElement('button');
+            tableButton.className = 'ql-table';
+            tableButton.innerHTML = '<i class="fas fa-table"></i>';
+            tableButton.title = 'Insérer un tableau';
+            tableButton.type = 'button';
+            
+            // Ajouter le bouton à la toolbar
+            toolbarContainer.appendChild(tableButton);
+            
+            // Ajouter l'événement
+            tableButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                insertTable();
+            });
+        }
+
+        // Insérer un tableau
+        function insertTable() {
+            const rows = prompt('Nombre de lignes:', '3');
+            const cols = prompt('Nombre de colonnes:', '3');
+            
+            if (rows && cols && !isNaN(rows) && !isNaN(cols)) {
+                const tableHTML = createTableHTML(parseInt(rows), parseInt(cols));
+                const range = quill.getSelection();
+                if (range) {
+                    quill.clipboard.dangerouslyPasteHTML(range.index, tableHTML);
+                }
+            }
+        }
+
+        // Créer le HTML d'un tableau
+        function createTableHTML(rows, cols) {
+            let html = '<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">';
+            
+            // En-tête
+            html += '<thead><tr>';
+            for (let j = 0; j < cols; j++) {
+                html += '<th style="border: 1px solid #ddd; padding: 8px; background: #f5f5f5;">En-tête ' + (j + 1) + '</th>';
+            }
+            html += '</tr></thead>';
+            
+            // Corps du tableau
+            html += '<tbody>';
+            for (let i = 1; i < rows; i++) {
+                html += '<tr>';
+                for (let j = 0; j < cols; j++) {
+                    html += '<td style="border: 1px solid #ddd; padding: 8px;">Cellule ' + i + ',' + (j + 1) + '</td>';
+                }
+                html += '</tr>';
+            }
+            html += '</tbody></table><p><br></p>';
+            
+            return html;
         }
 
         // Mettre à jour l'éditeur avec du contenu

@@ -1239,6 +1239,25 @@
                 article.style.display = 'block';
                 article.classList.remove('search-highlight');
             });
+            
+            // Restaurer l'état normal des onglets - activer "Tous les Articles"
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Activer l'onglet "Tous"
+            const allTab = document.getElementById('all');
+            if (allTab) {
+                allTab.classList.add('active');
+            }
+            const allButton = document.querySelector('[data-tab="all"]');
+            if (allButton) {
+                allButton.classList.add('active');
+            }
+            
             hideSearchResults();
         }
 

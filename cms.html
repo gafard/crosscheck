@@ -1654,10 +1654,14 @@
         function clearForm() {
             document.getElementById('article-form').reset();
             currentEditId = null;
+            
+            // Vider l'éditeur de texte riche
+            setRichEditorContent('');
+            
             updatePreview();
             
             // Remettre le bouton par défaut
-                const submitBtn = document.querySelector('#article-form button[type="submit"]');
+            const submitBtn = document.querySelector('#article-form button[type="submit"]');
             submitBtn.innerHTML = '<i class="fas fa-save"></i> Sauvegarder l\'article';
         }
 

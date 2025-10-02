@@ -1274,6 +1274,20 @@
         // Search functionality
         const searchInput = document.querySelector('.search-input');
         const searchContainer = document.querySelector('.search-container');
+        const searchIcon = document.querySelector('.search-icon');
+        
+        // Toggle search on mobile/desktop
+        searchIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchContainer.classList.toggle('active');
+            
+            // Focus sur l'input quand on ouvre la recherche
+            if (searchContainer.classList.contains('active')) {
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 100);
+            }
+        });
 
         // Handle search input
         searchInput.addEventListener('keypress', (e) => {

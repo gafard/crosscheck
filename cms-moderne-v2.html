@@ -1310,10 +1310,33 @@
                     article.description !== '{{ARTICLE_CONTENT}}...'
                 );
                 
-                // Nettoyer les dates
+                // Nettoyer et enrichir les données
                 availableArticles.forEach(article => {
+                    // Nettoyer les dates
                     if (article.date === 'Par Rédaction') {
                         article.date = new Date().toLocaleDateString('fr-FR');
+                    }
+                    
+                    // Ajouter des icônes par catégorie si manquantes
+                    if (!article.icon) {
+                        const categoryIcons = {
+                            'apologetique': '🛡️',
+                            'science': '🔬',
+                            'histoire': '📚',
+                            'archeologie': '🏛️'
+                        };
+                        article.icon = categoryIcons[article.category] || '📄';
+                    }
+                    
+                    // Améliorer les images
+                    if (!article.image || article.image.includes('placeholder')) {
+                        const categoryImages = {
+                            'apologetique': 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop',
+                            'science': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop',
+                            'histoire': 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop',
+                            'archeologie': 'https://images.unsplash.com/photo-1539650116574-75c0c6d73c6e?w=800&h=400&fit=crop'
+                        };
+                        article.image = categoryImages[article.category] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop';
                     }
                 });
                 

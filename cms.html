@@ -1533,6 +1533,9 @@
             document.getElementById('content').value = article.content || '';
             document.getElementById('image').value = article.image || '';
             
+            // Mettre à jour l'éditeur de texte riche
+            setRichEditorContent(article.content || '');
+            
             currentEditId = isFromSite ? (article.id || article.title.replace(/[^a-zA-Z0-9]/g, '')) : id;
             updatePreview();
             

@@ -2030,6 +2030,10 @@
                         urlInput.placeholder = 'URL complète de votre vidéo';
                 }
             }
+            
+            } catch (error) {
+                console.error('Erreur dans updateVideoFields:', error);
+            }
         }
 
         // Génération du code d'intégration selon la plateforme

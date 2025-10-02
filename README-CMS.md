@@ -60,7 +60,12 @@ Le **CrossCheck CMS** est un système de gestion de contenu moderne et intuitif 
    ```
 
 2. **Accéder au CMS** :
-   Ouvrir `http://localhost:8080/cms-moderne-v2.html` dans votre navigateur
+   Ouvrir `http://localhost:8080/cms.html` dans votre navigateur
+   
+   **Ou utiliser le script de lancement** :
+   ```bash
+   ./lancer-cms.sh
+   ```
 
 3. **Première utilisation** :
    - Le CMS charge automatiquement vos 27 articles existants

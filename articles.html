@@ -1419,19 +1419,23 @@
             const hash = window.location.hash.substring(1); // Enlever le #
             
             if (hash && ['apologetique', 'science', 'histoire', 'archeologie'].includes(hash)) {
-                // Activer l'onglet correspondant
-                showTab(hash);
-                
-                // Faire défiler vers la section après un court délai pour laisser le temps à l'onglet de s'afficher
-                setTimeout(() => {
-                    const targetElement = document.getElementById(hash);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }, 100);
+                // Trouver et cliquer sur le bouton d'onglet correspondant
+                const targetButton = document.querySelector(`[data-tab="${hash}"]`);
+                if (targetButton) {
+                    // Simuler un clic sur le bouton pour activer l'onglet
+                    targetButton.click();
+                    
+                    // Faire défiler vers la section des onglets après un court délai
+                    setTimeout(() => {
+                        const tabsSection = document.querySelector('.tabs-section');
+                        if (tabsSection) {
+                            tabsSection.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }, 200);
+                }
             }
         }
 

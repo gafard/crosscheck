@@ -77,7 +77,8 @@ Le **CrossCheck CMS** est un système de gestion de contenu moderne et intuitif 
 
 ```
 crosscheck-site/
-├── cms-moderne-v2.html          # CMS principal (NOUVEAU)
+├── cms.html                     # CMS principal ⭐
+├── lancer-cms.sh               # Script de lancement rapide
 ├── articles-reels-extraits.json # Base de données des articles
 ├── extraire-contenu-complet.py  # Script d'extraction
 ├── article-*.html               # Articles du site (27 fichiers)

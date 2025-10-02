@@ -739,6 +739,31 @@
             font-weight: 600;
         }
 
+        /* Styles pour le bouton hamburger */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Ensure navigation is visible on larger screens */
+        @media (min-width: 769px) {
+            .nav {
+                display: flex !important;
+                position: static;
+                background: none;
+                backdrop-filter: none;
+                flex-direction: row;
+                padding: 0;
+                gap: 2rem;
+                border-top: none;
+                transform: none;
+                transition: none;
+            }
+
+            .mobile-menu-toggle {
+                display: none;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {

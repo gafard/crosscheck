@@ -320,60 +320,6 @@
             min-height: 200px;
         }
 
-        /* Styles pour les champs vidéo */
-        .video-fields {
-            background: rgba(212, 175, 55, 0.05);
-            border: 2px dashed var(--accent);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            transition: var(--transition);
-        }
-
-        .video-fields.active {
-            background: rgba(212, 175, 55, 0.1);
-            border-style: solid;
-        }
-
-        .form-help {
-            display: block;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--secondary);
-            font-style: italic;
-        }
-
-        .video-preview {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: var(--light);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border);
-        }
-
-        .video-preview iframe,
-        .video-preview blockquote {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .platform-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            background: var(--accent);
-            color: white;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .platform-badge.tiktok { background: linear-gradient(135deg, #ff0050, #00f2ea); }
-        .platform-badge.youtube { background: #ff0000; }
-        .platform-badge.vimeo { background: #1ab7ea; }
-        .platform-badge.dailymotion { background: #0066cc; }
 
         /* Boutons modernes */
         .btn {
@@ -1174,13 +1120,12 @@
                                 <label class="form-label" for="category">
                                     <i class="fas fa-tags"></i> Catégorie *
                                 </label>
-                                <select class="form-select" id="category" name="category" required onchange="updateVideoFields(); updatePreview();">
+                                <select class="form-select" id="category" name="category" required onchange="updatePreview();">
                                     <option value="">Sélectionner une catégorie</option>
                                     <option value="apologetique">Apologétique</option>
                                     <option value="science">Science & Foi</option>
                                     <option value="histoire">Histoire</option>
                                     <option value="archeologie">Archéologie</option>
-                                    <option value="videos">Vidéos</option>
                                 </select>
                             </div>
                             
@@ -1193,61 +1138,6 @@
                                           oninput="updatePreview()"></textarea>
                             </div>
 
-                            <!-- Champs spécifiques aux vidéos -->
-                            <div id="video-fields" class="video-fields" style="display: none;">
-                                <div class="form-group">
-                                    <label class="form-label" for="video-platform">
-                                        <i class="fas fa-video"></i> Plateforme vidéo *
-                                    </label>
-                                    <select class="form-select" id="video-platform" name="videoPlatform" onchange="updateVideoFields(); updatePreview();">
-                                        <option value="">Sélectionner une plateforme</option>
-                                        <option value="tiktok">TikTok</option>
-                                        <option value="youtube">YouTube</option>
-                                        <option value="vimeo">Vimeo</option>
-                                        <option value="dailymotion">Dailymotion</option>
-                                        <option value="custom">Code d'intégration personnalisé</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group" id="video-url-group">
-                                    <label class="form-label" for="video-url">
-                                        <i class="fas fa-link"></i> URL de la vidéo *
-                                    </label>
-                                    <input type="url" class="form-input" id="video-url" name="videoUrl" 
-                                           placeholder="Ex: https://www.tiktok.com/@thegodproof/video/123456789" 
-                                           oninput="updatePreview()">
-                                    <small class="form-help">Collez l'URL complète de votre vidéo</small>
-                                </div>
-
-                                <div class="form-group" id="video-embed-group" style="display: none;">
-                                    <label class="form-label" for="video-embed">
-                                        <i class="fas fa-code"></i> Code d'intégration *
-                                    </label>
-                                    <textarea class="form-textarea" id="video-embed" name="videoEmbed" 
-                                              placeholder="Collez ici le code d'intégration fourni par la plateforme..." 
-                                              oninput="updatePreview()"></textarea>
-                                    <small class="form-help">Code HTML fourni par la plateforme (iframe, blockquote, etc.)</small>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label" for="video-duration">
-                                        <i class="fas fa-clock"></i> Durée de la vidéo
-                                    </label>
-                                    <input type="text" class="form-input" id="video-duration" name="videoDuration" 
-                                           placeholder="Ex: 2:30 ou 2 min 30s" 
-                                           oninput="updatePreview()">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label" for="video-tags">
-                                        <i class="fas fa-hashtag"></i> Tags/Hashtags
-                                    </label>
-                                    <input type="text" class="form-input" id="video-tags" name="videoTags" 
-                                           placeholder="Ex: #apologetique #science #foi #bigbang" 
-                                           oninput="updatePreview()">
-                                    <small class="form-help">Séparez les tags par des espaces</small>
-                                </div>
-                            </div>
                             
                             <div class="form-group" id="content-group">
                                 <label class="form-label" for="content">
@@ -1349,9 +1239,6 @@
                             <button class="btn btn-outline" onclick="exportArticlesOnly()">
                                 <i class="fas fa-file-alt"></i> Articles uniquement
                             </button>
-                            <button class="btn btn-accent" onclick="exportVideosToPage()">
-                                <i class="fas fa-video"></i> Exporter vidéos vers videos.html
-                            </button>
                         </div>
                     </div>
 
@@ -1404,10 +1291,8 @@
         let currentFilter = '';
         let editingArticleId = null;
 
-        // Articles disponibles - chargés depuis le fichier JSON
         let availableArticles = [];
 
-        // Charger les vrais articles depuis le fichier JSON
         async function loadRealArticles() {
             try {
                 showAlert('info', 'Chargement des articles...');
@@ -1417,7 +1302,6 @@
                 }
                 const articles = await response.json();
                 
-                // Filtrer les articles avec du contenu réel (pas de placeholder)
                 availableArticles = articles.filter(article => 
                     article.content && 
                     article.content !== '{{ARTICLE_CONTENT}}' &&
@@ -1425,14 +1309,11 @@
                     article.description !== '{{ARTICLE_CONTENT}}...'
                 );
                 
-                // Nettoyer et enrichir les données
                 availableArticles.forEach(article => {
-                    // Nettoyer les dates
                     if (article.date === 'Par Rédaction') {
                         article.date = new Date().toLocaleDateString('fr-FR');
                     }
                     
-                    // Ajouter des icônes par catégorie si manquantes
                     if (!article.icon) {
                         const categoryIcons = {
                             'apologetique': '🛡️',
@@ -1443,7 +1324,6 @@
                         article.icon = categoryIcons[article.category] || '📄';
                     }
                     
-                    // Améliorer les images
                     if (!article.image || article.image.includes('placeholder')) {
                         const categoryImages = {
                             'apologetique': 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop',
@@ -1461,7 +1341,6 @@
                 console.error('Erreur lors du chargement des articles:', error);
                 showAlert('error', 'Impossible de charger les articles. Utilisation des articles de démonstration.');
                 
-                // Articles de fallback en cas d'erreur
                 availableArticles = [
                     {
                         id: 1,
@@ -1489,7 +1368,6 @@
 
         // Gestion des onglets
         function showTab(tabName) {
-            // Masquer tous les onglets
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -1497,13 +1375,11 @@
                 link.classList.remove('active');
             });
 
-            // Afficher l'onglet sélectionné
             const targetTab = document.getElementById(tabName + '-tab');
             if (targetTab) {
                 targetTab.classList.add('active');
             }
             
-            // Activer le bon lien de navigation
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 if (link.onclick && link.onclick.toString().includes(tabName)) {
@@ -1511,7 +1387,6 @@
                 }
             });
             
-            // Charger le contenu spécifique à l'onglet
             switch(tabName) {
                 case 'dashboard':
                     updateStats();
@@ -1524,12 +1399,10 @@
                     loadCMSArticles();
                     break;
                 case 'export':
-                    // Rien à charger spécifiquement
                     break;
             }
         }
 
-        // Charger les articles disponibles
         async function loadAvailableArticles() {
             if (availableArticles.length === 0) {
                 await loadRealArticles();
@@ -1538,7 +1411,6 @@
             displayArticles(availableArticles);
         }
 
-        // Afficher les articles
         function displayArticles(articles) {
             const grid = document.getElementById('articles-grid');
             
@@ -1585,7 +1457,6 @@
             }).join('');
         }
 
-        // Vérifier si un article est déjà importé
         function isArticleImported(articleId) {
             const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             return cmsArticles.some(article => 
@@ -1594,20 +1465,16 @@
             );
         }
 
-        // Sélectionner un article
         function selectArticle(id) {
-            // Désélectionner tous les articles
             document.querySelectorAll('.article-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // Sélectionner l'article cliqué
             const articleElement = document.querySelector(`[data-id="${id}"]`);
             if (articleElement) {
                 articleElement.classList.add('selected');
                 selectedArticle = allArticles.find(a => a.id === id);
                 
-                // Afficher les détails de l'article sélectionné
                 const selectedInfo = document.getElementById('selected-info');
                 const selectedDetails = document.getElementById('selected-details');
                 
@@ -1640,17 +1507,14 @@
             }
         }
 
-        // Importer l'article sélectionné
         function importSelectedArticle() {
             if (!selectedArticle) return;
             
-            // Vérifier si déjà importé
             if (isArticleImported(selectedArticle.id)) {
                 showAlert('error', 'Cet article est déjà importé dans le CMS !');
                 return;
             }
             
-            // Ajouter l'article au CMS
             const cmsArticle = {
                 ...selectedArticle,
                 originalId: selectedArticle.id,
@@ -1665,13 +1529,11 @@
             
             showAlert('success', `Article "${selectedArticle.title}" importé avec succès !`);
             
-            // Mettre à jour l'affichage
             loadAvailableArticles();
             updateStats();
             clearSelection();
         }
 
-        // Effacer la sélection
         function clearSelection() {
             selectedArticle = null;
             document.getElementById('selected-info').style.display = 'none';
@@ -1680,7 +1542,6 @@
             });
         }
 
-        // Filtrer les articles
         function filterArticles() {
             const searchTerm = document.getElementById('search-articles').value.toLowerCase();
             
@@ -1702,11 +1563,9 @@
             displayArticles(filteredArticles);
         }
 
-        // Filtrer par catégorie
         function filterByCategory(category) {
             currentFilter = category;
             
-            // Mettre à jour les onglets de filtre
             document.querySelectorAll('.filter-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -1715,7 +1574,6 @@
             filterArticles();
         }
 
-        // Création d'un article
         function createArticle(e) {
             e.preventDefault();
             
@@ -1730,7 +1588,6 @@
                 id: Date.now(),
                 isNew: true,
                 createdDate: new Date().toISOString(),
-                // Champs vidéo
                 videoPlatform: formData.get('videoPlatform'),
                 videoUrl: formData.get('videoUrl'),
                 videoEmbed: formData.get('videoEmbed'),
@@ -1738,13 +1595,11 @@
                 videoTags: formData.get('videoTags')
             };
             
-            // Validation
             if (!article.title || !article.category || !article.description || !article.content) {
                 showAlert('error', 'Veuillez remplir tous les champs obligatoires');
                 return;
             }
 
-            // Validation spécifique aux vidéos
             if (article.category === 'videos') {
                 if (!article.videoPlatform) {
                     showAlert('error', 'Veuillez sélectionner une plateforme vidéo');
@@ -1760,23 +1615,18 @@
                 }
             }
             
-            // Sauvegarder localement
             let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             articles.push(article);
             localStorage.setItem('cms-articles', JSON.stringify(articles));
             
-            // Afficher le succès
             showAlert('success', `Article "${article.title}" créé avec succès !`);
             
-            // Réinitialiser le formulaire
             e.target.reset();
             updatePreview();
             
-            // Mettre à jour les statistiques
             updateStats();
         }
 
-        // Charger les articles du CMS
         function loadCMSArticles() {
             const grid = document.getElementById('cms-articles-grid');
             const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
@@ -1839,7 +1689,6 @@
             }).join('');
         }
 
-        // Modifier un article du CMS
         function editCMSArticle(articleId) {
             const cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             const article = cmsArticles.find(a => a.id == articleId);
@@ -1849,17 +1698,14 @@
                 return;
             }
             
-            // Remplir le formulaire avec les données de l'article
             document.getElementById('title').value = article.title;
             document.getElementById('category').value = article.category;
             document.getElementById('description').value = article.description;
             document.getElementById('content').value = article.content;
             document.getElementById('image').value = article.image || '';
             
-            // Aller à l'onglet créer
             showTab('create');
             
-            // Modifier le bouton pour indiquer qu'on modifie
             const submitBtn = document.querySelector('#article-form button[type="submit"]');
             submitBtn.innerHTML = '<i class="fas fa-save"></i> Modifier l\'article';
             submitBtn.onclick = function(e) {
@@ -1873,7 +1719,6 @@
             showAlert('success', 'Article chargé pour modification !');
         }
 
-        // Mettre à jour un article
         function updateArticle(articleId) {
             const formData = new FormData(document.getElementById('article-form'));
             const updatedArticle = {
@@ -1884,11 +1729,9 @@
                 image: formData.get('image')
             };
             
-            // Mettre à jour dans le localStorage
             let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             const index = articles.findIndex(a => a.id == articleId);
             if (index !== -1) {
-                // Préserver les propriétés existantes
                 articles[index] = {
                     ...articles[index],
                     ...updatedArticle
@@ -1897,24 +1740,20 @@
                 
                 showAlert('success', 'Article modifié avec succès !');
                 
-                // Remettre le bouton normal
                 const submitBtn = document.querySelector('#article-form button[type="submit"]');
                 submitBtn.innerHTML = '<i class="fas fa-save"></i> Créer l\'article';
                 submitBtn.onclick = null;
                 
-                // Vider le formulaire
                 document.getElementById('article-form').reset();
                 updatePreview();
                 editingArticleId = null;
                 
-                // Retourner à l'onglet gérer
                 showTab('manage');
             } else {
                 showAlert('error', 'Erreur lors de la modification !');
             }
         }
 
-        // Supprimer un article du CMS
         function deleteCMSArticle(articleId) {
             if (confirm('Êtes-vous sûr de vouloir supprimer cet article du CMS ?')) {
                 let articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
@@ -1927,7 +1766,6 @@
             }
         }
 
-        // Mise à jour des statistiques
         function updateStats() {
             const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             const importedArticles = articles.filter(a => a.isImported);
@@ -1937,7 +1775,6 @@
             document.getElementById('total-available').textContent = availableArticles.length;
         }
 
-        // Charger l'activité récente
         function loadRecentActivity() {
             const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             const recentActivity = document.getElementById('recent-activity');
@@ -1990,7 +1827,6 @@
                     return;
                 }
 
-            // Afficher/masquer les champs vidéo selon la catégorie
             if (category === 'videos') {
                 videoFields.style.display = 'block';
                 videoFields.classList.add('active');
@@ -2003,7 +1839,6 @@
                 contentTextarea.placeholder = 'Contenu complet de l\'article...';
             }
 
-            // Afficher/masquer les champs selon la plateforme
             if (platform === 'custom') {
                 videoUrlGroup.style.display = 'none';
                 videoEmbedGroup.style.display = 'block';
@@ -2011,7 +1846,6 @@
                 videoUrlGroup.style.display = 'block';
                 videoEmbedGroup.style.display = 'none';
                 
-                // Mettre à jour le placeholder selon la plateforme
                 const urlInput = document.getElementById('video-url');
                 switch(platform) {
                     case 'tiktok':
@@ -2036,7 +1870,6 @@
             }
         }
 
-        // Génération du code d'intégration selon la plateforme
         function generateVideoEmbed(platform, url, embedCode) {
             try {
                 if (platform === 'custom' && embedCode) {
@@ -2047,7 +1880,6 @@
 
             switch(platform) {
                 case 'tiktok':
-                    // Extraire l'ID de la vidéo TikTok
                     const tiktokMatch = url.match(/\/video\/(\d+)/);
                     if (tiktokMatch) {
                         const videoId = tiktokMatch[1];
@@ -2062,7 +1894,6 @@
                     break;
                     
                 case 'youtube':
-                    // Extraire l'ID de la vidéo YouTube
                     const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
                     if (youtubeMatch) {
                         const videoId = youtubeMatch[1];
@@ -2073,7 +1904,6 @@
                     break;
                     
                 case 'vimeo':
-                    // Extraire l'ID de la vidéo Vimeo
                     const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
                     if (vimeoMatch) {
                         const videoId = vimeoMatch[1];
@@ -2084,7 +1914,6 @@
                     break;
                     
                 case 'dailymotion':
-                    // Extraire l'ID de la vidéo Dailymotion
                     const dailymotionMatch = url.match(/dailymotion\.com\/video\/([^_]+)/);
                     if (dailymotionMatch) {
                         const videoId = dailymotionMatch[1];
@@ -2102,7 +1931,6 @@
             }
         }
 
-        // Écouter les changements de catégorie
         document.addEventListener('DOMContentLoaded', function() {
             const categorySelect = document.getElementById('category');
             if (categorySelect) {
@@ -2110,14 +1938,12 @@
             }
         });
 
-        // Mise à jour de l'aperçu
         function updatePreview() {
             const title = document.getElementById('title').value;
             const description = document.getElementById('description').value;
             const content = document.getElementById('content').value;
             const category = document.getElementById('category').value;
             
-            // Champs vidéo
             const videoPlatform = document.getElementById('video-platform').value;
             const videoUrl = document.getElementById('video-url').value;
             const videoEmbed = document.getElementById('video-embed').value;
@@ -2150,7 +1976,6 @@
                 preview += `<p style="font-style: italic; color: var(--secondary); margin-bottom: 1.5rem;">${description}</p>`;
             }
             
-            // Aperçu vidéo
             if (category === 'videos' && (videoUrl || videoEmbed)) {
                 const embedCode = generateVideoEmbed(videoPlatform, videoUrl, videoEmbed);
                 if (embedCode) {
@@ -2172,12 +1997,10 @@
             previewContent.innerHTML = preview;
         }
 
-        // Réinitialiser le formulaire
         function resetForm() {
             document.getElementById('article-form').reset();
             updatePreview();
             
-            // Remettre le bouton normal si on était en mode édition
             if (editingArticleId) {
                 const submitBtn = document.querySelector('#article-form button[type="submit"]');
                 submitBtn.innerHTML = '<i class="fas fa-save"></i> Créer l\'article';
@@ -2186,13 +2009,11 @@
             }
         }
 
-        // Basculer le mode plein écran pour l'aperçu
         function togglePreview() {
             const previewSection = document.querySelector('.preview-section');
             previewSection.classList.toggle('fullscreen');
         }
 
-        // Exporter toutes les données
         function exportAllData() {
             const data = {
                 articles: JSON.parse(localStorage.getItem('cms-articles') || '[]'),
@@ -2213,7 +2034,6 @@
             showAlert('success', 'Sauvegarde exportée avec succès !');
         }
 
-        // Exporter uniquement les articles
         function exportArticlesOnly() {
             const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             
@@ -2230,7 +2050,6 @@
             showAlert('success', 'Articles exportés avec succès !');
         }
 
-        // Exporter les vidéos vers la page videos.html
         function exportVideosToPage() {
             const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             const videos = articles.filter(article => article.category === 'videos');
@@ -2240,7 +2059,6 @@
                 return;
             }
 
-            // Générer le HTML pour chaque vidéo
             const videoCardsHTML = videos.map(video => {
                 const embedCode = generateVideoEmbed(video.videoPlatform, video.videoUrl, video.videoEmbed);
                 const platformBadge = video.videoPlatform ? `platform-badge ${video.videoPlatform}` : '';
@@ -2272,13 +2090,11 @@
                 </div>`;
             }).join('\n');
 
-            // Créer le contenu complet à insérer dans videos.html
             const exportContent = `
 <!-- Vidéos générées par le CMS CrossCheck - ${new Date().toLocaleDateString('fr-FR')} -->
 ${videoCardsHTML}
 <!-- Fin des vidéos générées -->`;
 
-            // Créer un fichier téléchargeable avec les instructions
             const instructions = `
 === INSTRUCTIONS D'INTÉGRATION ===
 
@@ -2311,7 +2127,6 @@ ${exportContent}
             showAlert('success', `${videos.length} vidéo(s) exportée(s) ! Consultez le fichier téléchargé pour les instructions d'intégration.`);
         }
 
-        // Importer des données
         function importData(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -2321,13 +2136,10 @@ ${exportContent}
                 try {
                     const data = JSON.parse(e.target.result);
                     
-                    // Vérifier le format
                     if (Array.isArray(data)) {
-                        // Format articles uniquement
                         localStorage.setItem('cms-articles', JSON.stringify(data));
                         showAlert('success', `${data.length} articles importés avec succès !`);
                     } else if (data.articles) {
-                        // Format complet avec métadonnées
                         localStorage.setItem('cms-articles', JSON.stringify(data.articles));
                         showAlert('success', `${data.articles.length} articles importés avec succès !`);
                     } else {
@@ -2344,7 +2156,6 @@ ${exportContent}
             reader.readAsText(file);
         }
 
-        // Générer le HTML des articles
         function generateArticlesHTML() {
             const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             
@@ -2384,7 +2195,6 @@ ${exportContent}
             showAlert('success', 'Code HTML généré et téléchargé !');
         }
 
-        // Générer le sitemap
         function generateSitemap() {
             const articles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
             
@@ -2416,7 +2226,6 @@ ${exportContent}
             showAlert('success', 'Sitemap généré et téléchargé !');
         }
 
-        // Basculer le thème
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const icon = document.querySelector('.theme-toggle i');
@@ -2435,8 +2244,7 @@ ${exportContent}
                 'apologetique': 'Apologétique',
                 'science': 'Science & Foi',
                 'histoire': 'Histoire',
-                'archeologie': 'Archéologie',
-                'videos': 'Vidéos'
+                'archeologie': 'Archéologie'
             };
             return categories[category] || category;
         }
@@ -2459,7 +2267,6 @@ ${exportContent}
             }, 5000);
         }
 
-        // Charger le thème sauvegardé
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';

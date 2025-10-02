@@ -1387,7 +1387,10 @@
         }
 
         // Charger les articles disponibles
-        function loadAvailableArticles() {
+        async function loadAvailableArticles() {
+            if (availableArticles.length === 0) {
+                await loadRealArticles();
+            }
             allArticles = availableArticles;
             displayArticles(availableArticles);
         }

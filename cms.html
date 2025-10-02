@@ -1279,8 +1279,33 @@
         let currentEditId = null;
         let availableArticles = [];
 
+        // Test de la navigation
+        function testNavigation() {
+            console.log('=== TEST DE NAVIGATION CMS ===');
+            
+            const tabs = ['dashboard', 'browse', 'create', 'manage', 'export'];
+            tabs.forEach(tabName => {
+                const tabElement = document.getElementById(tabName + '-tab');
+                const navLink = document.querySelector(`[onclick*="'${tabName}'"]`);
+                
+                console.log(`${tabName}:`, {
+                    tabExists: !!tabElement,
+                    navLinkExists: !!navLink,
+                    tabId: tabName + '-tab'
+                });
+            });
+            
+            console.log('=== FIN TEST NAVIGATION ===');
+        }
+
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initialisation du CMS...');
+            
+            // Test de navigation
+            testNavigation();
+            
+            // Chargement des données
             loadRealArticles();
             loadCMSArticles();
             updatePreview();
@@ -1291,6 +1316,8 @@
                 document.body.classList.add('dark-mode');
                 document.querySelector('.theme-toggle i').className = 'fas fa-sun';
             }
+            
+            console.log('✅ CMS initialisé avec succès');
         });
 
         // Charger les articles réels du site

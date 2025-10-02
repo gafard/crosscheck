@@ -1192,61 +1192,6 @@
                                           oninput="updatePreview()"></textarea>
                             </div>
 
-                            <!-- Champs spécifiques aux vidéos -->
-                            <div id="video-fields" class="video-fields" style="display: none;">
-                                <div class="form-group">
-                                    <label class="form-label" for="video-platform">
-                                        <i class="fas fa-video"></i> Plateforme vidéo *
-                                    </label>
-                                    <select class="form-select" id="video-platform" name="videoPlatform" onchange="updateVideoFields(); updatePreview();">
-                                        <option value="">Sélectionner une plateforme</option>
-                                        <option value="tiktok">TikTok</option>
-                                        <option value="youtube">YouTube</option>
-                                        <option value="vimeo">Vimeo</option>
-                                        <option value="dailymotion">Dailymotion</option>
-                                        <option value="custom">Code d'intégration personnalisé</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group" id="video-url-group">
-                                    <label class="form-label" for="video-url">
-                                        <i class="fas fa-link"></i> URL de la vidéo *
-                                    </label>
-                                    <input type="url" class="form-input" id="video-url" name="videoUrl" 
-                                           placeholder="Ex: https://www.tiktok.com/@thegodproof/video/123456789" 
-                                           oninput="updatePreview()">
-                                    <small class="form-help">Collez l'URL complète de votre vidéo</small>
-                                </div>
-
-                                <div class="form-group" id="video-embed-group" style="display: none;">
-                                    <label class="form-label" for="video-embed">
-                                        <i class="fas fa-code"></i> Code d'intégration *
-                                    </label>
-                                    <textarea class="form-textarea" id="video-embed" name="videoEmbed" 
-                                              placeholder="Collez ici le code d'intégration fourni par la plateforme..." 
-                                              oninput="updatePreview()"></textarea>
-                                    <small class="form-help">Code HTML fourni par la plateforme (iframe, blockquote, etc.)</small>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label" for="video-duration">
-                                        <i class="fas fa-clock"></i> Durée de la vidéo
-                                    </label>
-                                    <input type="text" class="form-input" id="video-duration" name="videoDuration" 
-                                           placeholder="Ex: 2:30 ou 2 min 30s" 
-                                           oninput="updatePreview()">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label" for="video-tags">
-                                        <i class="fas fa-hashtag"></i> Tags/Hashtags
-                                    </label>
-                                    <input type="text" class="form-input" id="video-tags" name="videoTags" 
-                                           placeholder="Ex: #apologetique #science #foi #bigbang" 
-                                           oninput="updatePreview()">
-                                    <small class="form-help">Séparez les tags par des espaces</small>
-                                </div>
-                            </div>
                             
                             <div class="form-group" id="content-group">
                                 <label class="form-label" for="content">

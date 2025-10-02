@@ -1412,6 +1412,48 @@
             showAlert('success', `Article "${article.title}" importé dans le formulaire`);
         }
 
+        // Sauvegarder un article du site dans le localStorage
+        function saveToLocalStorage(id) {
+            const article = availableArticles.find(a => (a.id && a.id == id) || a.title.replace(/[^a-zA-Z0-9]/g, '') == id);
+            
+            if (!article) {
+                showAlert('error', 'Article non trouvé');
+                return;
+            }
+            
+            // Créer une copie de l'article avec un nouvel ID pour le CMS
+            const cmsArticle = {
+                id: Date.now().toString(),
+                title: article.title,
+                category: article.category,
+                description: article.description || '',
+                content: article.content || '',
+                image: article.image || '',
+                date: new Date().toLocaleDateString('fr-FR'),
+                author: 'CMS CrossCheck',
+                createdDate: new Date().toISOString(),
+                originalFromSite: true
+            };
+            
+            // Sauvegarder dans localStorage
+            let cmsArticles = JSON.parse(localStorage.getItem('cms-articles') || '[]');
+            
+            // Vérifier si l'article n'existe pas déjà
+            const exists = cmsArticles.some(a => a.title === article.title);
+            if (exists) {
+                showAlert('warning', `L'article "${article.title}" existe déjà dans le CMS`);
+                return;
+            }
+            
+            cmsArticles.push(cmsArticle);
+            localStorage.setItem('cms-articles', JSON.stringify(cmsArticles));
+            
+            showAlert('success', `Article "${article.title}" sauvegardé dans le CMS !`);
+            loadCMSArticles();
+            updateStats();
+            loadRecentActivity();
+        }
+
         // Mettre à jour la prévisualisation
         function updatePreview() {
             const title = document.getElementById('title').value || 'Titre de l\'article';

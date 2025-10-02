@@ -1106,7 +1106,8 @@
                 }
                 
                 const data = await response.json();
-                availableArticles = data.articles || [];
+                // Le fichier peut être un tableau direct ou un objet avec propriété articles
+                availableArticles = Array.isArray(data) ? data : (data.articles || []);
                 
                 // Enrichir les articles avec des images par catégorie
                 const categoryImages = {

@@ -1750,8 +1750,6 @@
         }
 
         // Gestion des champs vidéo
-                        const videoId = vimeoMatch[1];
-                        return `<iframe src="https://player.vimeo.com/video/${videoId}" 
                                 width="640" height="360" frameborder="0" 
                                 allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
                     }
@@ -1759,11 +1757,7 @@
                     
                 case 'dailymotion':
                     // Extraire l'ID de la vidéo Dailymotion
-                    const dailymotionMatch = url.match(/dailymotion\.com\/video\/([^_]+)/);
-                    if (dailymotionMatch) {
-                        const videoId = dailymotionMatch[1];
                         return `<iframe frameborder="0" width="560" height="315" 
-                                src="https://www.dailymotion.com/embed/video/${videoId}" allowfullscreen></iframe>`;
                     }
                     break;
             }
@@ -1794,7 +1788,6 @@
             showAlert('success', 'Articles exportés avec succès !');
         }
 
-        // Exporter les vidéos vers la page videos.html
                     }
                     
                     updateStats();

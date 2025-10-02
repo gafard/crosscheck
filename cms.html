@@ -2085,6 +2085,11 @@
             }
             
             return `<p>Aperçu non disponible pour cette URL</p>`;
+            
+            } catch (error) {
+                console.error('Erreur dans generateVideoEmbed:', error);
+                return `<p>Erreur lors de la génération de l'aperçu</p>`;
+            }
         }
 
         // Écouter les changements de catégorie

@@ -1277,11 +1277,13 @@
         }
 
         // Initialisation
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             // Initialiser l'éditeur de texte riche
             initRichEditor();
             
-            loadRealArticles();
+            // Attendre le chargement des articles avant de continuer
+            await loadRealArticles();
+            
             loadCMSArticles();
             updatePreview();
             updateStats();

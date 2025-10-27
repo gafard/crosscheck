@@ -1278,22 +1278,36 @@
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', async function() {
-            // Initialiser l'éditeur de texte riche
-            initRichEditor();
+            console.log('🚀 CMS initialisation démarrée');
             
-            // Attendre le chargement des articles avant de continuer
-            await loadRealArticles();
-            
-            loadCMSArticles();
-            updatePreview();
-            updateStats();
-            loadRecentActivity();
-            
-            // Charger le thème sauvegardé
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-                document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+            try {
+                // Initialiser l'éditeur de texte riche
+                initRichEditor();
+                console.log('✅ Éditeur riche initialisé');
+                
+                // Attendre le chargement des articles avant de continuer
+                console.log('⏳ Chargement des articles...');
+                await loadRealArticles();
+                console.log('✅ Articles chargés:', availableArticles.length);
+                
+                loadCMSArticles();
+                updatePreview();
+                updateStats();
+                loadRecentActivity();
+                
+                // Charger le thème sauvegardé
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    const themeIcon = document.querySelector('.theme-toggle i');
+                    if (themeIcon) {
+                        themeIcon.className = 'fas fa-sun';
+                    }
+                }
+                
+                console.log('✅ CMS initialisé avec succès!');
+            } catch (error) {
+                console.error('❌ Erreur lors de l\'initialisation:', error);
             }
         });
 

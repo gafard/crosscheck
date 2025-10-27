@@ -1329,10 +1329,16 @@
                     loadRecentActivity();
                     break;
                 case 'browse':
+                    // Attendre que les articles soient chargés
                     loadAvailableArticles();
                     break;
                 case 'manage':
-                    loadCMSArticles();
+                    // S'assurer que les articles sont chargés
+                    if (availableArticles.length === 0) {
+                        loadRealArticles().then(() => loadCMSArticles());
+                    } else {
+                        loadCMSArticles();
+                    }
                     break;
                 case 'create':
                     if (currentEditId === null) {
@@ -1398,6 +1404,7 @@
 
         // Charger les articles disponibles
         async function loadAvailableArticles() {
+            // Toujours s'assurer que les articles sont chargés
             if (availableArticles.length === 0) {
                 await loadRealArticles();
             }

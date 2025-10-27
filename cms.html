@@ -1355,14 +1355,17 @@
         // Charger les articles réels du site
         async function loadRealArticles() {
             try {
+                console.log('🔄 Chargement des articles depuis articles-reels-extraits.json...');
                 const response = await fetch('articles-reels-extraits.json');
                 if (!response.ok) {
                     throw new Error('Fichier non trouvé');
                 }
                 
                 const data = await response.json();
+                console.log('✅ Fichier JSON chargé:', data);
                 // Le fichier peut être un tableau direct ou un objet avec propriété articles
                 availableArticles = Array.isArray(data) ? data : (data.articles || []);
+                console.log('✅ Articles disponibles:', availableArticles.length);
                 
                 // Enrichir les articles avec des images par catégorie
                 const categoryImages = {
@@ -1378,11 +1381,13 @@
                     }
                 });
                 
-                console.log('Articles chargés:', availableArticles.length, availableArticles);
+                console.log('📊 Articles chargés:', availableArticles.length);
+                console.log('📊 Détails:', availableArticles);
                 showAlert('success', `${availableArticles.length} articles réels chargés avec succès !`);
                 return availableArticles;
             } catch (error) {
-                console.error('Erreur lors du chargement des articles:', error);
+                console.error('❌ Erreur lors du chargement des articles:', error);
+                console.error('❌ Détails:', error.message);
                 showAlert('error', 'Impossible de charger les articles. Utilisation des articles de démonstration.');
                 
                 // Articles de fallback en cas d'erreur

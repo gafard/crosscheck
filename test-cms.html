@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS - CrossCheck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test CMS CrossCheck</h1>
+    
+    <div class="test-section">
+        <h2>Tests de Connectivité</h2>
+        <button onclick="testJSONFile()">Test Fichier JSON</button>
+        <button onclick="testCMSFile()">Test Fichier CMS</button>
+        <button onclick="testServer()">Test Serveur</button>
+        <button onclick="runAllTests()">🏃 Tout Tester</button>
+    </div>
+    
+    <div id="results"></div>
+    
+    <script>
+        function addResult(title, message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<strong>${title}</strong><br>${message}`;
+            results.appendChild(div);
+        }
+        
+        async function testJSONFile() {
+            addResult('Test JSON', 'Chargement de articles-reels-extraits.json...', 'info');
+            try {
+                const response = await fetch('articles-reels-extraits.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const data = await response.json();
+                const count = Array.isArray(data) ? data.length : Object.keys(data).length;
+                addResult('✅ Test JSON', `Fichier trouvé! ${count} articles chargés.`, 'success');
+            } catch (error) {
+                addResult('❌ Test JSON', `Erreur: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testCMSFile() {
+            addResult('Test CMS', 'Chargement de cms.html...', 'info');
+            try {
+                const response = await fetch('cms.html');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const text = await response.text();
+                if (text.includes('id="dashboard-tab"')) {
+                    addResult('✅ Test CMS', 'Fichier CMS trouvé! Structure OK.', 'success');
+                } else {
+                    addResult('⚠️ Test CMS', 'Fichier trouvé mais structure suspecte.', 'error');
+                }
+            } catch (error) {
+                addResult('❌ Test CMS', `Erreur: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testServer() {
+            addResult('Test Serveur', 'Vérification du serveur...', 'info');
+            try {
+                const response = await fetch('/');
+                if (response.ok) {
+                    addResult('✅ Test Serveur', 'Serveur actif sur le port 8080', 'success');
+                } else {
+                    addResult('⚠️ Test Serveur', `Réponse HTTP: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult('❌ Test Serveur', `Erreur: ${error.message}. Assurez-vous que le serveur est lancé!`, 'error');
+            }
+        }
+        
+        async function runAllTests() {
+            document.getElementById('results').innerHTML = '';
+            addResult('🧪 Démarrage', 'Tous les tests en cours...', 'info');
+            
+            await testServer();
+            await testJSONFile();
+            await testCMSFile();
+            
+            addResult('✅ Terminé', 'Tous les tests sont terminés. Vérifiez les résultats ci-dessus.', 'success');
+        }
+        
+        // Auto-test au chargement
+        window.addEventListener('load', runAllTests);
+    </script>
+</body>
+</html>
+

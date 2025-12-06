@@ -144,7 +144,7 @@ class CMS {
     `;
     
     return `
-      <article class="article-item" data-category="${article.category || type}">
+      <article class="article-item" data-category="${article.genre || article.category || type}">
         ${imageHtml}
         ${imageCreditsHtml}
         <h3>${article.title}</h3>
@@ -158,14 +158,17 @@ class CMS {
   }
 
   // Rendre un article en HTML (format card pour page d'accueil)
-  renderArticleCard(article, type = 'apologetique') {
+  renderArticleCard(article, type = 'editorial') {
     const linkUrls = {
-      'apologetique': 'apologetique.html',
-      'science': 'science.html',
-      'histoire': 'histoire.html',
-      'archeologie': 'archeologie.html'
+      'editorial': 'editorial.html',
+      'reportage': 'reportage.html',
+      'interview': 'interview.html',
+      'enquete': 'enquete.html',
+      'analyse': 'analyse.html',
+      'billet': 'billet.html'
     };
-    const linkUrl = linkUrls[type] || 'articles.html';
+    const genre = article.genre || article.category || type;
+    const linkUrl = linkUrls[genre] || 'articles.html';
     
     // Normaliser le chemin de l'image
     let imagePath = article.image || '';
@@ -184,12 +187,15 @@ class CMS {
     const imageHtml = imagePath ? `<div class="article-image" style="background-image: url('${imagePath}');"></div>` : '';
     
     const categoryMap = {
-      'apologetique': 'Apologétique',
-      'science': 'Science & Foi',
-      'histoire': 'Histoire',
-      'archeologie': 'Archéologie'
+      'editorial': 'Éditorial',
+      'reportage': 'Reportage',
+      'interview': 'Interview',
+      'enquete': 'Enquête',
+      'analyse': 'Analyse',
+      'billet': 'Billet'
     };
-    const categoryLabel = categoryMap[article.category] || article.category || categoryMap[type] || type;
+    const genre = article.genre || article.category || type;
+    const categoryLabel = categoryMap[genre] || genre;
     
     const authorHtml = article.author ? `<span class="article-author">${escapeHtml(article.author)}</span>` : '';
     
@@ -210,7 +216,7 @@ class CMS {
   }
 
   // Afficher les articles sur une page
-  async displayArticles(containerSelector, type = 'apologetique', limit = null) {
+  async displayArticles(containerSelector, type = 'editorial', limit = null) {
     const data = await this.loadArticles();
     if (!data) {
       console.error('Impossible de charger les articles');
@@ -255,7 +261,7 @@ class CMS {
   }
 
   // Afficher les articles en format card (pour page d'accueil)
-  async displayArticleCards(containerSelector, type = 'apologetique', limit = 3) {
+  async displayArticleCards(containerSelector, type = 'editorial', limit = 3) {
     const data = await this.loadArticles();
     if (!data) {
       console.error('Impossible de charger les articles');

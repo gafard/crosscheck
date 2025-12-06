@@ -119,7 +119,33 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            background: rgba(255, 255, 255, 0.95);
+            <a href="index.html" class="logo">
+                <div class="logo-icon" style="width: 60px; height: 60px; background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat; border-radius: 12px;"></div>
+                <span class="logo-text">CrossCheck</span>
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu mobile">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="index.html">Accueil</a>
+                <div class="nav-item">
+                    <a href="articles.html">Articles</a>
+                    <div class="dropdown-menu">
+                        <a href="articles.html#editorial">Éditorial</a>
+                        <a href="articles.html#reportage">Reportage</a>
+                        <a href="articles.html#interview">Interview</a>
+                        <a href="articles.html#enquete">Enquête</a>
+                        <a href="articles.html#analyse">Analyse</a>
+                        <a href="articles.html#billet">Billet</a>
+                    </div>
+                </div>
+                <a href="ressources.html">Ressources</a>
+                <a href="apropos.html" class="active">À propos</a>
+            </nav>
+        </div>
+    </header>
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             z-index: 1000;

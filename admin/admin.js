@@ -561,16 +561,16 @@ function setTags(tags) {
 }
 
 // Éditer un article
-function editArticle(id, genre) {
-  const articles = articlesData[genre];
+function editArticle(id, category) {
+  const articles = articlesData[category];
   const article = articles.find(a => a.id === id);
   if (!article) return;
 
-  editingId = { id, genre };
+  editingId = { id, category };
   document.getElementById('form-title').textContent = 'Modifier l\'article';
   document.getElementById('article-id').value = id;
-  document.getElementById('article-type-select').value = genre;
-  document.getElementById('article-type').value = genre;
+  document.getElementById('article-type-select').value = category;
+  document.getElementById('article-type').value = category;
   document.getElementById('article-title').value = article.title;
   document.getElementById('article-excerpt').value = article.excerpt;
   document.getElementById('article-image').value = article.image || '';
@@ -634,10 +634,10 @@ function editArticle(id, genre) {
 }
 
 // Supprimer un article
-function deleteArticle(id, genre) {
+function deleteArticle(id, category) {
   if (!confirm('Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.')) return;
 
-  const articles = articlesData[genre];
+  const articles = articlesData[category];
   const index = articles.findIndex(a => a.id === id);
   if (index > -1) {
     articles.splice(index, 1);
@@ -651,8 +651,8 @@ function resetForm() {
   editingId = null;
   document.getElementById('form-title').textContent = 'Ajouter un nouvel article';
   document.getElementById('article-form').reset();
-  document.getElementById('article-type-select').value = 'editorial';
-  document.getElementById('article-type').value = 'editorial';
+  document.getElementById('article-type-select').value = 'apologetique';
+  document.getElementById('article-type').value = 'apologetique';
   document.getElementById('article-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('article-author').value = '';
   document.getElementById('content-paragraphs').innerHTML = `

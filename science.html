@@ -512,6 +512,16 @@ color: var(--primary);
             </div>
 </section>
 
+        <!-- Articles Section -->
+        <section class="content-section" style="padding: 4rem 0; background: var(--light);">
+            <div class="content-wrapper">
+                <h2 class="section-title">Articles Science & Foi</h2>
+                <div class="article-list" id="science-articles">
+                    <!-- Les articles seront chargés ici par le CMS -->
+                </div>
+            </div>
+        </section>
+
         <!-- Topics Section -->
         <section class="topics-section">
             <div class="content-wrapper">
@@ -669,5 +679,14 @@ const header = document.querySelector('.header');
             });
         });
 </script>
+    <!-- CMS Script -->
+    <script src="js/articles-data.js"></script>
+    <script src="js/cms.js"></script>
+    <script>
+        // Charger les articles de science & foi
+        document.addEventListener('DOMContentLoaded', function() {
+            cms.displayArticles('#science-articles', 'science');
+        });
+    </script>
 </body>
 </html>

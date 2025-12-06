@@ -803,17 +803,19 @@
       <div id="alert-container"></div>
       <form id="article-form">
         <input type="hidden" id="article-id" />
-        <input type="hidden" id="article-type" value="apologetique" />
+        <input type="hidden" id="article-type" value="editorial" />
 
         <div class="form-group">
-          <label for="article-type-select">Catégorie *</label>
+          <label for="article-type-select">Genre journalistique *</label>
           <select id="article-type-select" required>
-            <option value="apologetique">Apologétique</option>
-            <option value="science">Science & Foi</option>
-            <option value="histoire">Histoire</option>
-            <option value="archeologie">Archéologie</option>
+            <option value="editorial">Éditorial</option>
+            <option value="reportage">Reportage</option>
+            <option value="interview">Interview</option>
+            <option value="enquete">Enquête</option>
+            <option value="analyse">Analyse</option>
+            <option value="billet">Billet</option>
           </select>
-          <small>Sélectionnez la catégorie de l'article</small>
+          <small>Sélectionnez le genre journalistique de l'article</small>
         </div>
 
         <div class="form-group">
@@ -922,11 +924,13 @@
         <div class="search-filter">
           <input type="text" id="search-input" placeholder="Rechercher..." />
           <select id="filter-type">
-            <option value="">Toutes les catégories</option>
-            <option value="apologetique">Apologétique</option>
-            <option value="science">Science & Foi</option>
-            <option value="histoire">Histoire</option>
-            <option value="archeologie">Archéologie</option>
+            <option value="">Tous les genres</option>
+            <option value="editorial">Éditorial</option>
+            <option value="reportage">Reportage</option>
+            <option value="interview">Interview</option>
+            <option value="enquete">Enquête</option>
+            <option value="analyse">Analyse</option>
+            <option value="billet">Billet</option>
           </select>
         </div>
       </div>

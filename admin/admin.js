@@ -1212,7 +1212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     resetForm();
   });
 
-  // Changer la catégorie d'article
+  // Changer le genre d'article
   const typeSelect = document.getElementById('article-type-select');
   if (typeSelect) {
     typeSelect.addEventListener('change', function() {

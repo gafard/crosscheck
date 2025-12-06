@@ -1,17 +1,17 @@
 /* ============================================
-   ECHOS DES MOEURS - Design inspiré de The Africa Watch
-   Design sobre et professionnel pour l'information
+   CROSSCHECK - Design moderne et professionnel
+   Site d'information en apologétique chrétienne
    ============================================ */
 
 :root {
-  /* Palette de couleurs sobre et professionnelle */
-  --color-primary: #1a1a2e;           /* Bleu foncé profond */
-  --color-primary-light: #2d3561;
-  --color-primary-bright: #16213e;
-  --color-accent: #e94560;             /* Rouge accent */
-  --color-accent-dark: #c73650;
-  --color-secondary: #0f3460;          /* Bleu marine */
-  --color-bg-dark: #0a0e27;            /* Noir bleuté */
+  /* Palette de couleurs CrossCheck */
+  --color-primary: #0a0a0a;           /* Noir profond */
+  --color-primary-light: #1a1a1a;
+  --color-primary-bright: #2a2a2a;
+  --color-accent: #d4af37;             /* Or/doré accent */
+  --color-accent-dark: #b8941f;
+  --color-secondary: #666666;          /* Gris secondaire */
+  --color-bg-dark: #0a0a0a;            /* Noir */
   --color-bg-card: #ffffff;
   --color-bg-section: #f8f9fa;
   --color-text-primary: #1a1a2e;
@@ -199,19 +199,19 @@ nav a.active {
    HERO SECTION
    ============================================ */
 .hero-section {
-  background: linear-gradient(135deg, rgba(26, 26, 46, 0.4) 0%, rgba(15, 52, 96, 0.4) 100%),
-              url('images/image-gen (3).jpg');
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.7) 0%, rgba(26, 26, 26, 0.5) 100%),
+              url('https://i.postimg.cc/nrt8MD0H/Images-Principale.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   color: var(--color-text-light);
   padding: var(--space-20) var(--space-6);
-  text-align: right;
+  text-align: left;
   position: relative;
   min-height: 70vh;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .hero-content {

@@ -3,9 +3,11 @@
 // Généré automatiquement depuis data/articles.json
 
 const ARTICLES_DATA = {
-  "apologetique": [],
-  "science": [],
-  "histoire": [],
-  "archeologie": []
+  "editorial": [],
+  "reportage": [],
+  "interview": [],
+  "enquete": [],
+  "analyse": [],
+  "billet": []
 };
 

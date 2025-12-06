@@ -1,7 +1,9 @@
 {
-  "apologetique": [],
-  "science": [],
-  "histoire": [],
-  "archeologie": []
+  "editorial": [],
+  "reportage": [],
+  "interview": [],
+  "enquete": [],
+  "analyse": [],
+  "billet": []
 }
 

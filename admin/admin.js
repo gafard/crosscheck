@@ -1039,15 +1039,8 @@ function clearImagePreview() {
 
 // Sauvegarder les articles
 async function saveArticles() {
-  // Convertir les nouveaux genres vers les anciens types pour compatibilité
-  const compatibleData = {
-    analyses: [...articlesData.analyse, ...articlesData.editorial, ...articlesData.billet],
-    temoignages: articlesData.interview,
-    actualites: [...articlesData.reportage, ...articlesData.chronique],
-    ressources: articlesData.enquete
-  };
-
-  const json = JSON.stringify(compatibleData, null, 2);
+  // Utiliser directement les nouvelles catégories
+  const json = JSON.stringify(articlesData, null, 2);
   
   // Générer le contenu JavaScript
   const jsContent = `// Données des articles intégrées directement dans le JavaScript

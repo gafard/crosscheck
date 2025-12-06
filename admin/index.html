@@ -8,10 +8,10 @@
   <style>
     /* Variables CSS pour le CMS */
     :root {
-      --admin-primary: #1a1a2e;
-      --admin-primary-light: #2d3561;
-      --admin-accent: #e94560;
-      --admin-accent-hover: #c73650;
+      --admin-primary: #0a0a0a;
+      --admin-primary-light: #1a1a1a;
+      --admin-accent: #d4af37;
+      --admin-accent-hover: #b8941f;
       --admin-success: #10b981;
       --admin-success-hover: #059669;
       --admin-danger: #ef4444;
@@ -767,9 +767,9 @@
 </head>
 <body>
   <header>
-    <a href="../index.html" class="logo">
-      <img src="../images/A_logo_for_&quot;Echos_des_moeurs&quot;_is_displayed_on_a_wh.png" alt="Echos des moeurs" />
-      <span class="logo-text">Echos des moeurs</span>
+      <a href="../index.html" class="logo">
+      <div class="logo-icon">CC</div>
+      <span class="logo-text">CrossCheck</span>
     </a>
     <nav>
       <a href="../index.html">Retour au site</a>
@@ -780,7 +780,7 @@
     <div class="admin-header">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <div>
-          <h1>Administration - Echos des moeurs</h1>
+          <h1>Administration - CrossCheck</h1>
           <p>Gestion de contenu professionnel</p>
         </div>
         <div id="folder-selection-status" style="display: none;">
@@ -803,20 +803,17 @@
       <div id="alert-container"></div>
       <form id="article-form">
         <input type="hidden" id="article-id" />
-        <input type="hidden" id="article-type" value="editorial" />
+        <input type="hidden" id="article-type" value="apologetique" />
 
         <div class="form-group">
-          <label for="article-type-select">Genre journalistique *</label>
+          <label for="article-type-select">Catégorie *</label>
           <select id="article-type-select" required>
-            <option value="editorial">Éditorial</option>
-            <option value="reportage">Reportage</option>
-            <option value="interview">Interview</option>
-            <option value="enquete">Enquête</option>
-            <option value="analyse">Analyse</option>
-            <option value="billet">Billet</option>
-            <option value="chronique">Chronique</option>
+            <option value="apologetique">Apologétique</option>
+            <option value="science">Science & Foi</option>
+            <option value="histoire">Histoire</option>
+            <option value="archeologie">Archéologie</option>
           </select>
-          <small>Sélectionnez le genre journalistique de l'article</small>
+          <small>Sélectionnez la catégorie de l'article</small>
         </div>
 
         <div class="form-group">

@@ -367,6 +367,68 @@
             });
         });
 
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchContainer = document.querySelector('.search-container');
+        const searchIcon = document.querySelector('.search-icon');
+        
+        if (searchInput && searchContainer && searchIcon) {
+            // Mobile search toggle
+            searchIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                searchContainer.classList.toggle('active');
+                
+                if (searchContainer.classList.contains('active')) {
+                    setTimeout(() => {
+                        searchInput.focus();
+                    }, 100);
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!searchContainer.contains(e.target)) {
+                    searchContainer.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchContainer.classList.remove('active');
+                }
+            });
+
+            // Handle search input
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    // Redirect to articles page with search query
+                    window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
+                }
+            }
+
+            searchContainer.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        });
+
         // Contact form functionality
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {

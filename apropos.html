@@ -7,111 +7,680 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Styles spécifiques pour la page À propos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #666666;
+            --accent: #d4af37;
+            --light: #fafafa;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header Premium */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05) rotate(5deg);
+            animation: heartbeat 0.6s ease-in-out;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0a0a0a !important;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 1rem;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-category {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-category:hover {
+            background: var(--light);
+            color: var(--accent);
+            padding-left: 2rem;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .search-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .search-box {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 50px;
+            background: white;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .search-container:hover .search-box {
+            width: 300px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 20px;
+            font-size: 14px;
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .search-input::placeholder {
+            color: var(--secondary);
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            padding-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            text-align: center;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.postimg.cc/YqtbZqhz/manuscrits-biblique.png') center/cover;
+            opacity: 0.08;
+            z-index: 0;
+            animation: subtleFloat 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.3) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        /* Content Sections */
         .content-section {
-            padding: var(--space-16) 0;
+            padding: 6rem 0;
+            position: relative;
         }
 
         .content-section.alt-section {
-            background: var(--color-bg-section);
+            background: var(--light);
         }
 
-        .content-section h2 {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: var(--space-6);
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
             text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
 
         .content-text {
             max-width: 800px;
             margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--secondary);
         }
 
         .content-text p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-4);
+            margin-bottom: 1.5rem;
         }
 
         .content-text p strong {
-            color: var(--color-primary);
+            color: var(--primary);
             font-weight: 600;
         }
 
-        .cards {
+        /* Cards Grid */
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-6);
-            margin-top: var(--space-8);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .card {
-            background: var(--color-bg-card);
-            border-radius: 0.75rem;
-            padding: var(--space-6);
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-base);
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .card-image {
-            width: 100%;
-            height: 200px;
-            border-radius: 0.5rem;
-            margin-bottom: var(--space-4);
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent) 0%, #b8941f 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .card h3 {
-            font-size: 1.25rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: var(--space-3);
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
 
         .card p {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
+            color: var(--secondary);
+            line-height: 1.7;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
         }
 
         .form-group {
-            margin-bottom: var(--space-5);
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
             font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: var(--space-2);
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 14px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: var(--space-3) var(--space-4);
-            border: 2px solid var(--color-border);
-            border-radius: 0.5rem;
-            font-size: 1rem;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
             font-family: inherit;
-            transition: var(--transition-base);
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--color-accent);
+            border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
 
         .form-group textarea {
             min-height: 150px;
             resize: vertical;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat;
+        }
+
+        .footer-logo .logo-text {
+            color: var(--white);
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        .footer-bottom-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-mission {
+            margin-top: 0.5rem;
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .search-container:hover .search-box {
+                width: calc(100vw - 4rem);
+            }
+
+            .hero {
+                padding: 6rem 0 4rem;
+            }
+
+            .content-section {
+                padding: 4rem 0;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
@@ -120,10 +689,10 @@
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
-                <div class="logo-icon" style="width: 60px; height: 60px; background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat; border-radius: 12px;"></div>
-                <span class="logo-text">CrossCheck</span>
+                <div class="logo-icon"></div>
+                <div class="logo-text">CrossCheck</div>
             </a>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu mobile">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -161,11 +730,12 @@
     </header>
 
     <!-- Main Content -->
-    <main id="main-content" role="main">
+    <main class="main-content">
         <!-- Hero Section -->
-        <section class="hero-section">
+        <section class="hero">
             <div class="hero-content">
-                <h1>À propos de <span style="color: var(--color-accent);">CrossCheck</span></h1>
+                <div class="hero-badge">À propos</div>
+                <h1 class="hero-title">CrossCheck</h1>
                 <p class="hero-subtitle">
                     Plateforme dédiée à la conciliation entre foi chrétienne et rigueur scientifique/académique pour les étudiants, le corps académique et les communautés chrétiennes de jeunes
                 </p>
@@ -174,8 +744,12 @@
 
         <!-- Mission Section -->
         <section class="content-section">
-            <div class="container">
-                <h2>Ce que nous faisons</h2>
+            <div class="content-container">
+                <div class="section-header">
+                    <div class="section-badge">Notre mission</div>
+                    <h2 class="section-title">Ce que nous faisons</h2>
+                    <p class="section-subtitle">Créer un espace de dialogue constructif entre foi et science</p>
+                </div>
                 <div class="content-text">
                     <p>
                         <strong>CrossCheck</strong> est une plateforme dédiée aux défis et opportunités de concilier foi chrétienne et rigueur scientifique/académique chez les jeunes.
@@ -192,8 +766,12 @@
 
         <!-- Vision Section -->
         <section class="content-section alt-section">
-            <div class="container">
-                <h2>Pourquoi nous le faisons</h2>
+            <div class="content-container">
+                <div class="section-header">
+                    <div class="section-badge">Notre vision</div>
+                    <h2 class="section-title">Pourquoi nous le faisons</h2>
+                    <p class="section-subtitle">Agir comme un agent de changement dans le dialogue foi-science</p>
+                </div>
                 <div class="content-text">
                     <p>
                         Malgré les avancées dans le dialogue entre foi et science, la perception d'une incompatibilité fondamentale entre foi chrétienne et rigueur scientifique/académique continue de se propager, particulièrement chez les jeunes.
@@ -210,29 +788,30 @@
 
         <!-- Values Section -->
         <section class="content-section">
-            <div class="container">
-                <h2>Ce que vous trouverez ici</h2>
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📚</div>
+            <div class="content-container">
+                <div class="section-header">
+                    <div class="section-badge">Nos valeurs</div>
+                    <h2 class="section-title">Ce que vous trouverez ici</h2>
+                    <p class="section-subtitle">Des contenus rigoureux et accessibles sur la foi et la science</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card fade-in-up">
+                        <div class="card-icon">📚</div>
                         <h3>Éditoriaux & Analyses</h3>
                         <p>Des articles documentés sur la conciliation entre foi chrétienne et rigueur académique</p>
                     </div>
-
-                    <div class="card">
-                        <div class="card-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🎓</div>
+                    <div class="card fade-in-up">
+                        <div class="card-icon">🎓</div>
                         <h3>Reportages Universitaires</h3>
                         <p>Des reportages sur les défis et opportunités vécus par les étudiants</p>
                     </div>
-
-                    <div class="card">
-                        <div class="card-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🔬</div>
+                    <div class="card fade-in-up">
+                        <div class="card-icon">🔬</div>
                         <h3>Interviews d'Experts</h3>
                         <p>Des interviews avec des professeurs d'université, chercheurs et pasteurs</p>
                     </div>
-
-                    <div class="card">
-                        <div class="card-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">💬</div>
+                    <div class="card fade-in-up">
+                        <div class="card-icon">💬</div>
                         <h3>Enquêtes & Billets</h3>
                         <p>Des enquêtes approfondies et des billets sur le débat Foi-Science</p>
                     </div>
@@ -242,22 +821,23 @@
 
         <!-- Mission Finale Section -->
         <section class="content-section alt-section">
-            <div class="container">
-                <h2>Notre mission</h2>
+            <div class="content-container">
+                <div class="section-header">
+                    <div class="section-badge">Notre engagement</div>
+                    <h2 class="section-title">Dialoguer. Comprendre. Concilier.</h2>
+                    <p class="section-subtitle">Un espace de dialogue pour tous</p>
+                </div>
                 <div class="content-text">
-                    <p style="font-size: 1.5rem; font-weight: 600; color: var(--color-primary); margin-bottom: 2rem;">
-                        Dialoguer. Comprendre. Concilier.
-                    </p>
                     <p>
                         Nous voulons créer un espace de dialogue constructif pour les étudiants, le corps académique, les communautés chrétiennes de jeunes, et le grand public intéressé par le débat Foi-Science.
                     </p>
                     <p>
                         Notre approche privilégie les interviews avec des experts combinant les rôles de professeur d'université, chercheur et pasteur, offrant ainsi une perspective unique sur la conciliation entre foi et rigueur académique.
                     </p>
-                    <div style="margin-top: 3rem; padding: 2rem; background: var(--color-bg-section); border-radius: 0.5rem; border-left: 4px solid var(--color-accent);">
-                        <p style="font-size: 1.25rem; font-weight: 600; color: var(--color-primary); margin-bottom: 1rem;">La foi et la science ne sont pas incompatibles.</p>
-                        <p style="font-size: 1.25rem; font-weight: 600; color: var(--color-primary); margin-bottom: 1rem;">Elles peuvent s'enrichir mutuellement.</p>
-                        <p style="font-size: 1.25rem; font-weight: 600; color: var(--color-accent);">CrossCheck est là pour le démontrer.</p>
+                    <div style="margin-top: 3rem; padding: 2.5rem; background: var(--white); border-radius: 16px; border-left: 4px solid var(--accent); box-shadow: var(--shadow);">
+                        <p style="font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">La foi et la science ne sont pas incompatibles.</p>
+                        <p style="font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Elles peuvent s'enrichir mutuellement.</p>
+                        <p style="font-size: 1.25rem; font-weight: 600; color: var(--accent);">CrossCheck est là pour le démontrer.</p>
                     </div>
                 </div>
             </div>
@@ -265,35 +845,30 @@
 
         <!-- Contact Section -->
         <section class="content-section">
-            <div class="container">
-                <h2>Contactez-nous</h2>
-                <div class="content-text">
-                    <p>Vous avez une question, une suggestion ou souhaitez contribuer ? N'hésitez pas à nous contacter.</p>
+            <div class="content-container">
+                <div class="section-header">
+                    <div class="section-badge">Contact</div>
+                    <h2 class="section-title">Contactez-nous</h2>
+                    <p class="section-subtitle">Vous avez une question, une suggestion ou souhaitez contribuer ?</p>
                 </div>
-                <form id="contactForm" style="max-width: 600px; margin: 2rem auto 0;">
+                <form id="contactForm" class="contact-form">
                     <div class="form-group">
                         <label for="name">Nom complet *</label>
                         <input type="text" id="name" name="name" required>
                     </div>
-
                     <div class="form-group">
                         <label for="email">Email *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-
                     <div class="form-group">
                         <label for="subject">Sujet *</label>
                         <input type="text" id="subject" name="subject" required>
                     </div>
-
                     <div class="form-group">
                         <label for="message">Message *</label>
                         <textarea id="message" name="message" placeholder="Décrivez votre question ou commentaire..." required></textarea>
                     </div>
-
-                    <button type="submit" class="btn-primary">
-                        Envoyer le message
-                    </button>
+                    <button type="submit" class="btn-primary">Envoyer le message</button>
                 </form>
             </div>
         </section>
@@ -304,12 +879,11 @@
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-logo">
-                    <div class="logo-icon" style="width: 60px; height: 60px; background: url('https://i.postimg.cc/mr71LmCP/Logo-copie.png') center/contain no-repeat; border-radius: 12px;"></div>
+                    <div class="logo-icon"></div>
                     <div class="logo-text">CrossCheck</div>
                 </div>
                 <p class="footer-description">Plateforme dédiée à la conciliation entre foi chrétienne et rigueur scientifique/académique pour les étudiants, le corps académique et les communautés chrétiennes de jeunes.</p>
             </div>
-            
             <div class="footer-section">
                 <h3 class="footer-title">Navigation</h3>
                 <ul class="footer-links">
@@ -319,7 +893,6 @@
                     <li><a href="apropos.html">À propos</a></li>
                 </ul>
             </div>
-            
             <div class="footer-section">
                 <h3 class="footer-title">Catégories</h3>
                 <ul class="footer-links">
@@ -331,14 +904,12 @@
                     <li><a href="articles.html#billet">Billet</a></li>
                 </ul>
             </div>
-            
             <div class="footer-section">
                 <h3 class="footer-title">Contact</h3>
-                <p class="footer-contact">Pour toute question ou suggestion</p>
+                <p class="footer-description">Pour toute question ou suggestion</p>
                 <a href="apropos.html" class="footer-contact-link">Nous contacter</a>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <div class="footer-bottom-content">
                 <p>&copy; 2025 CrossCheck. Tous droits réservés.</p>
@@ -362,7 +933,6 @@
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
                 `;
-                toggle.setAttribute('aria-expanded', 'true');
             } else {
                 toggle.innerHTML = `
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -371,7 +941,6 @@
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 `;
-                toggle.setAttribute('aria-expanded', 'false');
             }
         }
 
@@ -382,14 +951,12 @@
                 const toggle = document.querySelector('.mobile-menu-toggle');
                 const navItem = link.closest('.nav-item');
                 
-                // Si c'est le lien Articles avec dropdown, gérer l'expansion mobile
                 if (navItem && navItem.querySelector('.dropdown-menu')) {
                     e.preventDefault();
                     navItem.classList.toggle('mobile-expanded');
                     return;
                 }
                 
-                // Sinon, fermer le menu mobile normalement
                 if (nav.classList.contains('active')) {
                     nav.classList.remove('active');
                     toggle.innerHTML = `
@@ -399,7 +966,6 @@
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                     `;
-                    toggle.setAttribute('aria-expanded', 'false');
                 }
             });
         });
@@ -419,7 +985,6 @@
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                     `;
-                    toggle.setAttribute('aria-expanded', 'false');
                 }
             });
         });
@@ -430,7 +995,6 @@
         const searchIcon = document.querySelector('.search-icon');
         
         if (searchInput && searchContainer && searchIcon) {
-            // Mobile search toggle
             searchIcon.addEventListener('click', (e) => {
                 e.stopPropagation();
                 searchContainer.classList.toggle('active');
@@ -448,29 +1012,13 @@
                 }
             });
 
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    searchContainer.classList.remove('active');
-                }
-            });
-
-            // Handle search input
             searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    performSearch();
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
+                    }
                 }
-            });
-
-            function performSearch() {
-                const query = searchInput.value.trim();
-                if (query) {
-                    // Redirect to articles page with search query
-                    window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
-                }
-            }
-
-            searchContainer.addEventListener('click', (e) => {
-                e.stopPropagation();
             });
         }
 

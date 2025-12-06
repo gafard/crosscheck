@@ -311,24 +311,34 @@ const cms = new CMS();
 document.addEventListener('DOMContentLoaded', function() {
   const pathname = window.location.pathname;
   
-  // Page apologetique.html
-  if (pathname.includes('apologetique') && document.querySelector('.article-list, .articles-grid')) {
-    cms.displayArticles('.article-list, .articles-grid', 'apologetique');
+  // Page editorial.html
+  if (pathname.includes('editorial') && document.querySelector('.article-list, .articles-grid')) {
+    cms.displayArticles('.article-list, .articles-grid', 'editorial');
   }
 
-  // Page science.html
-  if (pathname.includes('science') && document.querySelector('.article-list, .articles-grid')) {
-    cms.displayArticles('.article-list, .articles-grid', 'science');
+  // Page reportage.html
+  if (pathname.includes('reportage') && document.querySelector('.article-list, .articles-grid')) {
+    cms.displayArticles('.article-list, .articles-grid', 'reportage');
   }
 
-  // Page histoire.html
-  if (pathname.includes('histoire') && document.querySelector('.article-list, .articles-grid')) {
-    cms.displayArticles('.article-list, .articles-grid', 'histoire');
+  // Page interview.html
+  if (pathname.includes('interview') && document.querySelector('.article-list, .articles-grid')) {
+    cms.displayArticles('.article-list, .articles-grid', 'interview');
   }
 
-  // Page archeologie.html
-  if (pathname.includes('archeologie') && document.querySelector('.article-list, .articles-grid')) {
-    cms.displayArticles('.article-list, .articles-grid', 'archeologie');
+  // Page enquete.html
+  if (pathname.includes('enquete') && document.querySelector('.article-list, .articles-grid')) {
+    cms.displayArticles('.article-list, .articles-grid', 'enquete');
+  }
+
+  // Page analyse.html
+  if (pathname.includes('analyse') && document.querySelector('.article-list, .articles-grid')) {
+    cms.displayArticles('.article-list, .articles-grid', 'analyse');
+  }
+
+  // Page billet.html
+  if (pathname.includes('billet') && document.querySelector('.article-list, .articles-grid')) {
+    cms.displayArticles('.article-list, .articles-grid', 'billet');
   }
 
   // Page articles.html - afficher tous les articles
@@ -340,10 +350,12 @@ document.addEventListener('DOMContentLoaded', function() {
       ]).then(([data]) => {
         if (data) {
           const allArticles = [
-            ...(data.apologetique || []).map(a => ({...a, category: 'apologetique'})),
-            ...(data.science || []).map(a => ({...a, category: 'science'})),
-            ...(data.histoire || []).map(a => ({...a, category: 'histoire'})),
-            ...(data.archeologie || []).map(a => ({...a, category: 'archeologie'}))
+            ...(data.editorial || []).map(a => ({...a, genre: 'editorial'})),
+            ...(data.reportage || []).map(a => ({...a, genre: 'reportage'})),
+            ...(data.interview || []).map(a => ({...a, genre: 'interview'})),
+            ...(data.enquete || []).map(a => ({...a, genre: 'enquete'})),
+            ...(data.analyse || []).map(a => ({...a, genre: 'analyse'})),
+            ...(data.billet || []).map(a => ({...a, genre: 'billet'}))
           ];
           
           // Trier par date
@@ -359,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
           });
           
           container.innerHTML = allArticles
-            .map(article => cms.renderArticleCard(article, article.category))
+            .map(article => cms.renderArticleCard(article, article.genre || article.category))
             .join('');
         }
       });
@@ -371,16 +383,18 @@ document.addEventListener('DOMContentLoaded', function() {
     cms.loadArticles().then(data => {
       if (data) {
         const featuredArticles = [
-          ...(data.apologetique || []).filter(a => a.featured).slice(0, 1),
-          ...(data.science || []).filter(a => a.featured).slice(0, 1),
-          ...(data.histoire || []).filter(a => a.featured).slice(0, 1),
-          ...(data.archeologie || []).filter(a => a.featured).slice(0, 1)
+          ...(data.editorial || []).filter(a => a.featured).slice(0, 1),
+          ...(data.reportage || []).filter(a => a.featured).slice(0, 1),
+          ...(data.interview || []).filter(a => a.featured).slice(0, 1),
+          ...(data.enquete || []).filter(a => a.featured).slice(0, 1),
+          ...(data.analyse || []).filter(a => a.featured).slice(0, 1),
+          ...(data.billet || []).filter(a => a.featured).slice(0, 1)
         ];
         
         const container = document.querySelector('.articles-grid');
         if (container && featuredArticles.length > 0) {
           container.innerHTML = featuredArticles
-            .map(article => cms.renderArticleCard(article, article.category || 'apologetique'))
+            .map(article => cms.renderArticleCard(article, article.genre || article.category || 'editorial'))
             .join('');
         }
       }

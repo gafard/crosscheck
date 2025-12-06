@@ -2,10 +2,12 @@
 // Gestion complète des articles avec support des catégories
 
 let articlesData = {
-  apologetique: [],
-  science: [],
-  histoire: [],
-  archeologie: []
+  editorial: [],
+  reportage: [],
+  interview: [],
+  enquete: [],
+  analyse: [],
+  billet: []
 };
 
 let editingId = null;
@@ -16,12 +18,14 @@ let dataFolderHandle = null;
 let jsFolderHandle = null;
 let imagesFolderHandle = null;
 
-// Labels des catégories
-const categoryLabels = {
-  'apologetique': 'Apologétique',
-  'science': 'Science & Foi',
-  'histoire': 'Histoire',
-  'archeologie': 'Archéologie'
+// Labels des genres
+const genreLabels = {
+  'editorial': 'Éditorial',
+  'reportage': 'Reportage',
+  'interview': 'Interview',
+  'enquete': 'Enquête',
+  'analyse': 'Analyse',
+  'billet': 'Billet'
 };
 
 // Formater une date au format français

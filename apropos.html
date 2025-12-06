@@ -7,30 +7,111 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Styles spécifiques pour la page À propos */
+        .content-section {
+            padding: var(--space-16) 0;
         }
 
-        :root {
-            --primary: #0a0a0a;
-            --secondary: #666666;
-            --accent: #d4af37;
-            --light: #fafafa;
-            --white: #ffffff;
-            --border: #e8e8e8;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+        .content-section.alt-section {
+            background: var(--color-bg-section);
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
+        .content-section h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-6);
+            text-align: center;
+        }
+
+        .content-text {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-text p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .content-text p strong {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .card {
+            background: var(--color-bg-card);
+            border-radius: 0.75rem;
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-base);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 0.5rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--space-3);
+        }
+
+        .card p {
+            color: var(--color-text-secondary);
             line-height: 1.6;
-            color: var(--primary);
-            background: var(--white);
-            overflow-x: hidden;
+        }
+
+        .form-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--color-border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition-base);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
         }
 
         /* Header Premium */

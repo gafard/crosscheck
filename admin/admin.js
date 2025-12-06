@@ -136,32 +136,20 @@ function updateStats() {
       <p class="number">${featured}</p>
     </div>
     <div class="stat-card">
-      <h3>Éditorial</h3>
-      <p class="number">${articlesData.editorial.length}</p>
+      <h3>Apologétique</h3>
+      <p class="number">${articlesData.apologetique.length}</p>
     </div>
     <div class="stat-card">
-      <h3>Reportage</h3>
-      <p class="number">${articlesData.reportage.length}</p>
+      <h3>Science & Foi</h3>
+      <p class="number">${articlesData.science.length}</p>
     </div>
     <div class="stat-card">
-      <h3>Interview</h3>
-      <p class="number">${articlesData.interview.length}</p>
+      <h3>Histoire</h3>
+      <p class="number">${articlesData.histoire.length}</p>
     </div>
     <div class="stat-card">
-      <h3>Enquête</h3>
-      <p class="number">${articlesData.enquete.length}</p>
-    </div>
-    <div class="stat-card">
-      <h3>Analyse</h3>
-      <p class="number">${articlesData.analyse.length}</p>
-    </div>
-    <div class="stat-card">
-      <h3>Billet</h3>
-      <p class="number">${articlesData.billet.length}</p>
-    </div>
-    <div class="stat-card">
-      <h3>Chronique</h3>
-      <p class="number">${articlesData.chronique.length}</p>
+      <h3>Archéologie</h3>
+      <p class="number">${articlesData.archeologie.length}</p>
     </div>
   `;
 }
@@ -187,7 +175,7 @@ function displayArticles(filteredArticles = null) {
   }
 
   container.innerHTML = articles.map(article => {
-    const genreLabel = genreLabels[article.genre] || article.genre;
+    const categoryLabel = categoryLabels[article.category] || article.category || 'Non catégorisé';
 
     const authorInfo = article.author ? `<span>✍️ ${escapeHtml(article.author)}</span>` : '';
     
@@ -196,17 +184,17 @@ function displayArticles(filteredArticles = null) {
         <div class="article-info">
           <h4>${escapeHtml(article.title)}</h4>
           <div class="meta">
-            <span>📝 ${genreLabel}</span>
+            <span>📝 ${categoryLabel}</span>
             <span>📅 ${article.date}</span>
             ${authorInfo}
             ${article.featured ? '<span>⭐ En vedette</span>' : ''}
           </div>
         </div>
         <div class="article-actions">
-          <button class="btn-edit" onclick="editArticle(${article.id}, '${article.genre}')">
+          <button class="btn-edit" onclick="editArticle(${article.id}, '${article.category}')">
             Modifier
           </button>
-          <button class="btn-delete" onclick="deleteArticle(${article.id}, '${article.genre}')">
+          <button class="btn-delete" onclick="deleteArticle(${article.id}, '${article.category}')">
             Supprimer
           </button>
         </div>
@@ -220,9 +208,9 @@ function displayArticles(filteredArticles = null) {
 // Obtenir tous les articles
 function getAllArticles() {
   const all = [];
-  Object.keys(articlesData).forEach(genre => {
-    articlesData[genre].forEach(article => {
-      all.push({ ...article, genre });
+  Object.keys(articlesData).forEach(category => {
+    articlesData[category].forEach(article => {
+      all.push({ ...article, category });
     });
   });
   return all.sort((a, b) => {
@@ -250,7 +238,7 @@ function setupSearchAndFilter() {
     let filtered = getAllArticles();
 
     if (filterType) {
-      filtered = filtered.filter(a => a.genre === filterType);
+      filtered = filtered.filter(a => a.category === filterType);
     }
 
     if (searchTerm) {

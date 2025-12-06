@@ -1453,5 +1453,89 @@
             });
         });
     </script>
+    <!-- CMS Script -->
+    <script src="js/articles-data.js"></script>
+    <script src="js/cms.js"></script>
+    <script>
+        // Charger les articles par catégorie quand on change d'onglet
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-tab');
+                    if (category === 'all') {
+                        // Charger tous les articles
+                        cms.loadArticles().then(data => {
+                            if (data) {
+                                const allArticles = [
+                                    ...(data.apologetique || []).map(a => ({...a, category: 'apologetique'})),
+                                    ...(data.science || []).map(a => ({...a, category: 'science'})),
+                                    ...(data.histoire || []).map(a => ({...a, category: 'histoire'})),
+                                    ...(data.archeologie || []).map(a => ({...a, category: 'archeologie'}))
+                                ];
+                                
+                                allArticles.sort((a, b) => {
+                                    try {
+                                        const dateA = new Date(a.date);
+                                        const dateB = new Date(b.date);
+                                        if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
+                                            return dateB - dateA;
+                                        }
+                                    } catch (e) {}
+                                    return (b.date || '').localeCompare(a.date || '');
+                                });
+                                
+                                const container = document.getElementById('articles-all');
+                                if (container) {
+                                    container.innerHTML = allArticles
+                                        .map(article => cms.renderArticleCard(article, article.category))
+                                        .join('');
+                                }
+                            }
+                        });
+                    } else {
+                        // Charger les articles de la catégorie spécifique
+                        cms.displayArticleCards(`#articles-${category}`, category);
+                    }
+                });
+            });
+            
+            // Charger tous les articles au chargement
+            cms.loadArticles().then(data => {
+                if (data) {
+                    const allArticles = [
+                        ...(data.apologetique || []).map(a => ({...a, category: 'apologetique'})),
+                        ...(data.science || []).map(a => ({...a, category: 'science'})),
+                        ...(data.histoire || []).map(a => ({...a, category: 'histoire'})),
+                        ...(data.archeologie || []).map(a => ({...a, category: 'archeologie'}))
+                    ];
+                    
+                    allArticles.sort((a, b) => {
+                        try {
+                            const dateA = new Date(a.date);
+                            const dateB = new Date(b.date);
+                            if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
+                                return dateB - dateA;
+                            }
+                        } catch (e) {}
+                        return (b.date || '').localeCompare(a.date || '');
+                    });
+                    
+                    const container = document.getElementById('articles-all');
+                    if (container) {
+                        container.innerHTML = allArticles
+                            .map(article => cms.renderArticleCard(article, article.category))
+                            .join('');
+                    }
+                    
+                    // Charger aussi les catégories individuelles
+                    cms.displayArticleCards('#articles-apologetique', 'apologetique');
+                    cms.displayArticleCards('#articles-science', 'science');
+                    cms.displayArticleCards('#articles-histoire', 'histoire');
+                    cms.displayArticleCards('#articles-archeologie', 'archeologie');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

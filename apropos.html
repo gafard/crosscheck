@@ -986,40 +986,37 @@
         </section>
 
         <!-- Contact Section -->
-        <section class="contact-section">
-            <div class="content-wrapper">
-                
-                <div class="contact-form-container">
-                    <div class="contact-form">
-                        <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 2rem; color: var(--primary);">Envoyez-nous un message</h3>
-                        
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name" class="form-label">Nom complet *</label>
-                                <input type="text" id="name" name="name" class="form-input" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email *</label>
-                                <input type="email" id="email" name="email" class="form-input" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="subject" class="form-label">Sujet *</label>
-                                <input type="text" id="subject" name="subject" class="form-input" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message" class="form-label">Message *</label>
-                                <textarea id="message" name="message" class="form-textarea" placeholder="Décrivez votre question ou commentaire..." required></textarea>
-                            </div>
-
-                            <button type="submit" class="form-button">
-                                Envoyer le message
-                            </button>
-                        </form>
-                    </div>
+        <section class="content-section">
+            <div class="container">
+                <h2>Contactez-nous</h2>
+                <div class="content-text">
+                    <p>Vous avez une question, une suggestion ou souhaitez contribuer ? N'hésitez pas à nous contacter.</p>
                 </div>
+                <form id="contactForm" style="max-width: 600px; margin: 2rem auto 0;">
+                    <div class="form-group">
+                        <label for="name">Nom complet *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Sujet *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Décrivez votre question ou commentaire..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Envoyer le message
+                    </button>
+                </form>
             </div>
         </section>
     </main>

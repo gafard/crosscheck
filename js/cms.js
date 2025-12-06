@@ -33,10 +33,12 @@ function escapeHtml(text) {
 class CMS {
   constructor() {
     this.articles = {
-      apologetique: [],
-      science: [],
-      histoire: [],
-      archeologie: []
+      editorial: [],
+      reportage: [],
+      interview: [],
+      enquete: [],
+      analyse: [],
+      billet: []
     };
   }
 
@@ -90,15 +92,17 @@ class CMS {
   }
 
   // Rendre un article en HTML (format liste complète)
-  renderArticleFull(article, type = 'apologetique') {
+  renderArticleFull(article, type = 'editorial') {
     const categoryMap = {
-      'apologetique': 'Apologétique',
-      'science': 'Science & Foi',
-      'histoire': 'Histoire',
-      'archeologie': 'Archéologie'
+      'editorial': 'Éditorial',
+      'reportage': 'Reportage',
+      'interview': 'Interview',
+      'enquete': 'Enquête',
+      'analyse': 'Analyse',
+      'billet': 'Billet'
     };
 
-    const categoryLabel = categoryMap[article.category] || article.category || categoryMap[type] || type;
+    const categoryLabel = categoryMap[article.genre] || categoryMap[article.category] || article.genre || article.category || categoryMap[type] || type;
     // Convertir le Markdown en HTML pour chaque paragraphe
     const paragraphs = article.content.map(p => `<p>${markdownToHtml(p)}</p>`).join('');
     

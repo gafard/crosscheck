@@ -1656,25 +1656,15 @@
     </footer>
 
     <script>
-        // Hero automatic cycle system
+        // Hero automatic image rotation system
         let currentBackgroundIndex = 0;
         const backgrounds = document.querySelectorAll('.hero-background');
         const totalBackgrounds = backgrounds.length;
-        const heroVideoContainer = document.querySelector('.hero-video-container');
-        const heroVideo = document.querySelector('.hero-video');
         
         // Timing configuration
         const IMAGE_DURATION = 10000; // 10 seconds per image
-        const VIDEO_DURATION = 240000; // 4 minutes for video
-        const TOTAL_IMAGES_DURATION = totalBackgrounds * IMAGE_DURATION; // Total time for all images
         
-        let currentCycle = 'images'; // 'images' or 'video'
-        let cycleStartTime = Date.now();
         let backgroundInterval;
-        let videoTimeout;
-        
-        // Video starts at 241 seconds and continues automatically
-        const VIDEO_START_TIME = 241; // 4 minutes 1 second
         
         function rotateHeroBackground() {
             // Remove active class from current background
@@ -1687,78 +1677,10 @@
             backgrounds[currentBackgroundIndex].classList.add('active');
         }
         
-        function showImages() {
-            currentCycle = 'images';
-            cycleStartTime = Date.now();
-            
-            // Show images, hide video
-            backgrounds.forEach(bg => bg.style.display = 'block');
-            if (heroVideoContainer) {
-                heroVideoContainer.style.display = 'none';
-                heroVideoContainer.classList.remove('active');
-            }
-            
-            // Start image rotation
-            if (backgroundInterval) clearInterval(backgroundInterval);
-            if (totalBackgrounds > 1) {
-                backgroundInterval = setInterval(rotateHeroBackground, IMAGE_DURATION);
-            }
-            
-            // Schedule video after all images
-            if (videoTimeout) clearTimeout(videoTimeout);
-            videoTimeout = setTimeout(showVideo, TOTAL_IMAGES_DURATION);
+        // Start image rotation
+        if (totalBackgrounds > 1) {
+            backgroundInterval = setInterval(rotateHeroBackground, IMAGE_DURATION);
         }
-        
-        function showVideo() {
-            currentCycle = 'video';
-            cycleStartTime = Date.now();
-            
-            // Hide images, show video
-            backgrounds.forEach(bg => bg.style.display = 'none');
-            if (heroVideoContainer) {
-                heroVideoContainer.style.display = 'block';
-                heroVideoContainer.classList.add('active');
-            }
-            
-            // Stop image rotation
-            if (backgroundInterval) clearInterval(backgroundInterval);
-            
-            // Video continues from where it left off (YouTube handles this automatically)
-            // The video starts at 241 seconds and continues playing
-            console.log('Video started at position 241 seconds and continues...');
-            
-            // Schedule return to images after video duration
-            if (videoTimeout) clearTimeout(videoTimeout);
-            videoTimeout = setTimeout(showImages, VIDEO_DURATION);
-        }
-        
-        // Start the cycle
-        showImages();
-        
-        // Handle page visibility change to pause/resume
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Page is hidden, video continues in background
-                console.log('Page hidden, video continues...');
-            } else {
-                // Page is visible again, continue from where we left off
-                const timeSinceStart = Date.now() - cycleStartTime;
-                
-                if (currentCycle === 'images') {
-                    const timeInImages = timeSinceStart % TOTAL_IMAGES_DURATION;
-                    const imageIndex = Math.floor(timeInImages / IMAGE_DURATION);
-                    
-                    // Set correct image
-                    backgrounds.forEach((bg, index) => {
-                        bg.classList.toggle('active', index === imageIndex);
-                    });
-                    currentBackgroundIndex = imageIndex;
-                } else if (currentCycle === 'video') {
-                    // Video continues from where it was (YouTube handles this)
-                    console.log('Page visible again, video continues from current position...');
-                }
-            }
-        });
 
         // Header scroll effect
         window.addEventListener('scroll', () => {

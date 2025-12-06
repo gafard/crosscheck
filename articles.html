@@ -1399,7 +1399,7 @@
         function handleHashNavigation() {
             const hash = window.location.hash.substring(1); // Enlever le #
             
-            if (hash && ['apologetique', 'science', 'histoire', 'archeologie'].includes(hash)) {
+            if (hash && ['editorial', 'reportage', 'interview', 'enquete', 'analyse', 'billet'].includes(hash)) {
                 // Trouver et cliquer sur le bouton d'onglet correspondant
                 const targetButton = document.querySelector(`[data-tab="${hash}"]`);
                 if (targetButton) {
@@ -1475,21 +1475,23 @@
     <script src="js/articles-data.js"></script>
     <script src="js/cms.js"></script>
     <script>
-        // Charger les articles par catégorie quand on change d'onglet
+        // Charger les articles par genre quand on change d'onglet
         document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.tab-btn');
+            const tabs = document.querySelectorAll('.tab-button, .tab-btn');
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    const category = this.getAttribute('data-tab');
-                    if (category === 'all') {
+                    const genre = this.getAttribute('data-tab');
+                    if (genre === 'all') {
                         // Charger tous les articles
                         cms.loadArticles().then(data => {
                             if (data) {
                                 const allArticles = [
-                                    ...(data.apologetique || []).map(a => ({...a, category: 'apologetique'})),
-                                    ...(data.science || []).map(a => ({...a, category: 'science'})),
-                                    ...(data.histoire || []).map(a => ({...a, category: 'histoire'})),
-                                    ...(data.archeologie || []).map(a => ({...a, category: 'archeologie'}))
+                                    ...(data.editorial || []).map(a => ({...a, genre: 'editorial'})),
+                                    ...(data.reportage || []).map(a => ({...a, genre: 'reportage'})),
+                                    ...(data.interview || []).map(a => ({...a, genre: 'interview'})),
+                                    ...(data.enquete || []).map(a => ({...a, genre: 'enquete'})),
+                                    ...(data.analyse || []).map(a => ({...a, genre: 'analyse'})),
+                                    ...(data.billet || []).map(a => ({...a, genre: 'billet'}))
                                 ];
                                 
                                 allArticles.sort((a, b) => {
@@ -1506,14 +1508,14 @@
                                 const container = document.getElementById('articles-all');
                                 if (container) {
                                     container.innerHTML = allArticles
-                                        .map(article => cms.renderArticleCard(article, article.category))
+                                        .map(article => cms.renderArticleCard(article, article.genre || article.category))
                                         .join('');
                                 }
                             }
                         });
                     } else {
-                        // Charger les articles de la catégorie spécifique
-                        cms.displayArticleCards(`#articles-${category}`, category);
+                        // Charger les articles du genre spécifique
+                        cms.displayArticleCards(`#articles-${genre}`, genre);
                     }
                 });
             });
@@ -1522,10 +1524,12 @@
             cms.loadArticles().then(data => {
                 if (data) {
                     const allArticles = [
-                        ...(data.apologetique || []).map(a => ({...a, category: 'apologetique'})),
-                        ...(data.science || []).map(a => ({...a, category: 'science'})),
-                        ...(data.histoire || []).map(a => ({...a, category: 'histoire'})),
-                        ...(data.archeologie || []).map(a => ({...a, category: 'archeologie'}))
+                        ...(data.editorial || []).map(a => ({...a, genre: 'editorial'})),
+                        ...(data.reportage || []).map(a => ({...a, genre: 'reportage'})),
+                        ...(data.interview || []).map(a => ({...a, genre: 'interview'})),
+                        ...(data.enquete || []).map(a => ({...a, genre: 'enquete'})),
+                        ...(data.analyse || []).map(a => ({...a, genre: 'analyse'})),
+                        ...(data.billet || []).map(a => ({...a, genre: 'billet'}))
                     ];
                     
                     allArticles.sort((a, b) => {
@@ -1542,15 +1546,17 @@
                     const container = document.getElementById('articles-all');
                     if (container) {
                         container.innerHTML = allArticles
-                            .map(article => cms.renderArticleCard(article, article.category))
+                            .map(article => cms.renderArticleCard(article, article.genre || article.category))
                             .join('');
                     }
                     
-                    // Charger aussi les catégories individuelles
-                    cms.displayArticleCards('#articles-apologetique', 'apologetique');
-                    cms.displayArticleCards('#articles-science', 'science');
-                    cms.displayArticleCards('#articles-histoire', 'histoire');
-                    cms.displayArticleCards('#articles-archeologie', 'archeologie');
+                    // Charger aussi les genres individuels
+                    cms.displayArticleCards('#articles-editorial', 'editorial');
+                    cms.displayArticleCards('#articles-reportage', 'reportage');
+                    cms.displayArticleCards('#articles-interview', 'interview');
+                    cms.displayArticleCards('#articles-enquete', 'enquete');
+                    cms.displayArticleCards('#articles-analyse', 'analyse');
+                    cms.displayArticleCards('#articles-billet', 'billet');
                 }
             });
         });

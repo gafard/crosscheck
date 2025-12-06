@@ -668,10 +668,10 @@ function editArticle(id, genre) {
 }
 
 // Supprimer un article
-function deleteArticle(id, category) {
+function deleteArticle(id, genre) {
   if (!confirm('Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.')) return;
 
-  const articles = articlesData[category];
+  const articles = articlesData[genre];
   const index = articles.findIndex(a => a.id === id);
   if (index > -1) {
     articles.splice(index, 1);
@@ -685,8 +685,8 @@ function resetForm() {
   editingId = null;
   document.getElementById('form-title').textContent = 'Ajouter un nouvel article';
   document.getElementById('article-form').reset();
-  document.getElementById('article-type-select').value = 'apologetique';
-  document.getElementById('article-type').value = 'apologetique';
+  document.getElementById('article-type-select').value = 'editorial';
+  document.getElementById('article-type').value = 'editorial';
   document.getElementById('article-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('article-author').value = '';
   document.getElementById('content-paragraphs').innerHTML = `
@@ -1149,7 +1149,7 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const category = document.getElementById('article-type-select').value;
+    const genre = document.getElementById('article-type-select').value;
     const title = document.getElementById('article-title').value.trim();
     const excerpt = document.getElementById('article-excerpt').value.trim();
     const dateInput = document.getElementById('article-date').value;
@@ -1190,13 +1190,13 @@ document.addEventListener('DOMContentLoaded', function() {
       imageCredits: imageCredits || undefined,
       author: author || undefined,
       featured,
-      category,
+      genre,
       tags: tags.length > 0 ? tags : undefined
     };
 
     if (editingId) {
       // Modifier un article existant
-      const articles = articlesData[editingId.category];
+      const articles = articlesData[editingId.genre];
       const index = articles.findIndex(a => a.id === editingId.id);
       if (index > -1) {
         articles[index] = article;
@@ -1204,7 +1204,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     } else {
       // Ajouter un nouvel article
-      articlesData[category].push(article);
+      articlesData[genre].push(article);
       showSuccess('Article ajouté avec succès.');
     }
 

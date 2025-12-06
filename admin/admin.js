@@ -1122,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const genre = document.getElementById('article-type-select').value;
+    const category = document.getElementById('article-type-select').value;
     const title = document.getElementById('article-title').value.trim();
     const excerpt = document.getElementById('article-excerpt').value.trim();
     const dateInput = document.getElementById('article-date').value;
@@ -1163,13 +1163,13 @@ document.addEventListener('DOMContentLoaded', function() {
       imageCredits: imageCredits || undefined,
       author: author || undefined,
       featured,
-      genre,
+      category,
       tags: tags.length > 0 ? tags : undefined
     };
 
     if (editingId) {
       // Modifier un article existant
-      const articles = articlesData[editingId.genre];
+      const articles = articlesData[editingId.category];
       const index = articles.findIndex(a => a.id === editingId.id);
       if (index > -1) {
         articles[index] = article;
@@ -1177,7 +1177,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     } else {
       // Ajouter un nouvel article
-      articlesData[genre].push(article);
+      articlesData[category].push(article);
       showSuccess('Article ajouté avec succès.');
     }
 
@@ -1185,7 +1185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     resetForm();
   });
 
-  // Changer le genre d'article
+  // Changer la catégorie d'article
   const typeSelect = document.getElementById('article-type-select');
   if (typeSelect) {
     typeSelect.addEventListener('change', function() {

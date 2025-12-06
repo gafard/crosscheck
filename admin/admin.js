@@ -88,35 +88,56 @@ async function loadArticles() {
   }
 }
 
-// Migrer les anciennes données vers les nouvelles catégories
+// Migrer les anciennes données vers les nouveaux genres
 function migrateData(data) {
   const newData = {
-    apologetique: [],
-    science: [],
-    histoire: [],
-    archeologie: []
+    editorial: [],
+    reportage: [],
+    interview: [],
+    enquete: [],
+    analyse: [],
+    billet: []
   };
 
   // Si les données sont déjà dans le nouveau format, les utiliser directement
-  if (data.apologetique || data.science || data.histoire || data.archeologie) {
+  if (data.editorial || data.reportage || data.interview || data.enquete || data.analyse || data.billet) {
     return {
-      apologetique: data.apologetique || [],
-      science: data.science || [],
-      histoire: data.histoire || [],
-      archeologie: data.archeologie || []
+      editorial: data.editorial || [],
+      reportage: data.reportage || [],
+      interview: data.interview || [],
+      enquete: data.enquete || [],
+      analyse: data.analyse || [],
+      billet: data.billet || []
     };
   }
 
   // Migration depuis l'ancien format (si nécessaire)
-  // Les anciens types peuvent être mappés vers les nouvelles catégories
+  // Migrer les anciennes catégories vers les nouveaux genres
+  if (data.apologetique) {
+    newData.editorial = data.apologetique.map(a => ({ ...a, genre: 'editorial' }));
+  }
+  if (data.science) {
+    newData.analyse = data.science.map(a => ({ ...a, genre: 'analyse' }));
+  }
+  if (data.histoire) {
+    newData.reportage = data.histoire.map(a => ({ ...a, genre: 'reportage' }));
+  }
+  if (data.archeologie) {
+    newData.enquete = data.archeologie.map(a => ({ ...a, genre: 'enquete' }));
+  }
+
+  // Migration depuis le format très ancien (analyses, temoignages, etc.)
   if (data.analyses) {
-    newData.apologetique = data.analyses.map(a => ({ ...a, category: 'apologetique' }));
+    newData.analyse = data.analyses.map(a => ({ ...a, genre: 'analyse' }));
+  }
+  if (data.temoignages) {
+    newData.interview = data.temoignages.map(a => ({ ...a, genre: 'interview' }));
   }
   if (data.actualites) {
-    newData.histoire = data.actualites.map(a => ({ ...a, category: 'histoire' }));
+    newData.reportage = data.actualites.map(a => ({ ...a, genre: 'reportage' }));
   }
   if (data.ressources) {
-    newData.science = data.ressources.map(a => ({ ...a, category: 'science' }));
+    newData.enquete = data.ressources.map(a => ({ ...a, genre: 'enquete' }));
   }
 
   return newData;
@@ -140,20 +161,28 @@ function updateStats() {
       <p class="number">${featured}</p>
     </div>
     <div class="stat-card">
-      <h3>Apologétique</h3>
-      <p class="number">${articlesData.apologetique.length}</p>
+      <h3>Éditorial</h3>
+      <p class="number">${articlesData.editorial.length}</p>
     </div>
     <div class="stat-card">
-      <h3>Science & Foi</h3>
-      <p class="number">${articlesData.science.length}</p>
+      <h3>Reportage</h3>
+      <p class="number">${articlesData.reportage.length}</p>
     </div>
     <div class="stat-card">
-      <h3>Histoire</h3>
-      <p class="number">${articlesData.histoire.length}</p>
+      <h3>Interview</h3>
+      <p class="number">${articlesData.interview.length}</p>
     </div>
     <div class="stat-card">
-      <h3>Archéologie</h3>
-      <p class="number">${articlesData.archeologie.length}</p>
+      <h3>Enquête</h3>
+      <p class="number">${articlesData.enquete.length}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Analyse</h3>
+      <p class="number">${articlesData.analyse.length}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Billet</h3>
+      <p class="number">${articlesData.billet.length}</p>
     </div>
   `;
 }

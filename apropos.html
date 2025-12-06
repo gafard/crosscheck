@@ -1021,47 +1021,25 @@
         </section>
     </main>
 
+    <script src="script.js"></script>
     <script>
         // Mobile Menu Toggle
         function toggleMobileMenu() {
-            const nav = document.querySelector('.nav');
+            const nav = document.querySelector('nav');
             const toggle = document.querySelector('.mobile-menu-toggle');
             
             nav.classList.toggle('active');
-            
-            if (nav.classList.contains('active')) {
-                toggle.innerHTML = `
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                `;
-            } else {
-                toggle.innerHTML = `
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                `;
-            }
+            const isActive = nav.classList.contains('active');
+            toggle.setAttribute('aria-expanded', isActive);
         }
 
         // Close mobile menu when clicking on nav links
-        document.querySelectorAll('.nav-link').forEach(link => {
+        document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
-                const nav = document.querySelector('.nav');
-                const toggle = document.querySelector('.mobile-menu-toggle');
-                
+                const nav = document.querySelector('nav');
                 if (nav.classList.contains('active')) {
                     nav.classList.remove('active');
-                    toggle.innerHTML = `
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg>
-                    `;
+                    document.querySelector('.mobile-menu-toggle').setAttribute('aria-expanded', 'false');
                 }
             });
         });

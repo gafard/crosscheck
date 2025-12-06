@@ -1,14 +1,11 @@
-// Script d'administration professionnel pour Echos des moeurs
-// Gestion complète des articles avec support des genres journalistiques
+// Script d'administration professionnel pour CrossCheck
+// Gestion complète des articles avec support des catégories
 
 let articlesData = {
-  editorial: [],
-  reportage: [],
-  interview: [],
-  enquete: [],
-  analyse: [],
-  billet: [],
-  chronique: []
+  apologetique: [],
+  science: [],
+  histoire: [],
+  archeologie: []
 };
 
 let editingId = null;
@@ -19,15 +16,12 @@ let dataFolderHandle = null;
 let jsFolderHandle = null;
 let imagesFolderHandle = null;
 
-// Labels des genres
-const genreLabels = {
-  'editorial': 'Éditorial',
-  'reportage': 'Reportage',
-  'interview': 'Interview',
-  'enquete': 'Enquête',
-  'analyse': 'Analyse',
-  'billet': 'Billet',
-  'chronique': 'Chronique'
+// Labels des catégories
+const categoryLabels = {
+  'apologetique': 'Apologétique',
+  'science': 'Science & Foi',
+  'histoire': 'Histoire',
+  'archeologie': 'Archéologie'
 };
 
 // Formater une date au format français
@@ -90,36 +84,35 @@ async function loadArticles() {
   }
 }
 
-// Migrer les anciennes données vers les nouveaux genres
+// Migrer les anciennes données vers les nouvelles catégories
 function migrateData(data) {
   const newData = {
-    editorial: [],
-    reportage: [],
-    interview: [],
-    enquete: [],
-    analyse: [],
-    billet: [],
-    chronique: []
+    apologetique: [],
+    science: [],
+    histoire: [],
+    archeologie: []
   };
 
-  // Migrer analyses vers analyse
+  // Si les données sont déjà dans le nouveau format, les utiliser directement
+  if (data.apologetique || data.science || data.histoire || data.archeologie) {
+    return {
+      apologetique: data.apologetique || [],
+      science: data.science || [],
+      histoire: data.histoire || [],
+      archeologie: data.archeologie || []
+    };
+  }
+
+  // Migration depuis l'ancien format (si nécessaire)
+  // Les anciens types peuvent être mappés vers les nouvelles catégories
   if (data.analyses) {
-    newData.analyse = data.analyses.map(a => ({ ...a, genre: 'analyse' }));
+    newData.apologetique = data.analyses.map(a => ({ ...a, category: 'apologetique' }));
   }
-
-  // Migrer temoignages vers interview
-  if (data.temoignages) {
-    newData.interview = data.temoignages.map(a => ({ ...a, genre: 'interview' }));
-  }
-
-  // Migrer actualites vers reportage
   if (data.actualites) {
-    newData.reportage = data.actualites.map(a => ({ ...a, genre: 'reportage' }));
+    newData.histoire = data.actualites.map(a => ({ ...a, category: 'histoire' }));
   }
-
-  // Migrer ressources vers enquete
   if (data.ressources) {
-    newData.enquete = data.ressources.map(a => ({ ...a, genre: 'enquete' }));
+    newData.science = data.ressources.map(a => ({ ...a, category: 'science' }));
   }
 
   return newData;

@@ -703,5 +703,14 @@ const header = document.querySelector('.header');
             });
         });
 </script>
+    <!-- CMS Script -->
+    <script src="js/articles-data.js"></script>
+    <script src="js/cms.js"></script>
+    <script>
+        // Charger les articles d'histoire
+        document.addEventListener('DOMContentLoaded', function() {
+            cms.displayArticles('#histoire-articles', 'histoire');
+        });
+    </script>
 </body>
 </html>

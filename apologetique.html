@@ -529,6 +529,16 @@ color: var(--primary);
 </div>
         </section>
 
+        <!-- Articles Section -->
+        <section class="content-section" style="padding: 4rem 0; background: var(--light);">
+            <div class="content-wrapper">
+                <h2 class="section-title">Articles d'Apologétique</h2>
+                <div class="article-list" id="apologetique-articles">
+                    <!-- Les articles seront chargés ici par le CMS -->
+                </div>
+            </div>
+        </section>
+
         <!-- Topics Section -->
         <section class="topics-section">
             <div class="content-wrapper">
@@ -692,5 +702,14 @@ const header = document.querySelector('.header');
             });
         });
 </script>
+    <!-- CMS Script -->
+    <script src="js/articles-data.js"></script>
+    <script src="js/cms.js"></script>
+    <script>
+        // Charger les articles d'apologétique
+        document.addEventListener('DOMContentLoaded', function() {
+            cms.displayArticles('#apologetique-articles', 'apologetique');
+        });
+    </script>
 </body>
 </html>

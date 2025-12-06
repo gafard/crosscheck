@@ -208,7 +208,8 @@ function displayArticles(filteredArticles = null) {
   }
 
   container.innerHTML = articles.map(article => {
-    const categoryLabel = categoryLabels[article.category] || article.category || 'Non catégorisé';
+    const genre = article.genre || article.category;
+    const genreLabel = genreLabels[genre] || genre || 'Non catégorisé';
 
     const authorInfo = article.author ? `<span>✍️ ${escapeHtml(article.author)}</span>` : '';
     
@@ -217,17 +218,17 @@ function displayArticles(filteredArticles = null) {
         <div class="article-info">
           <h4>${escapeHtml(article.title)}</h4>
           <div class="meta">
-            <span>📝 ${categoryLabel}</span>
+            <span>📝 ${genreLabel}</span>
             <span>📅 ${article.date}</span>
             ${authorInfo}
             ${article.featured ? '<span>⭐ En vedette</span>' : ''}
           </div>
         </div>
         <div class="article-actions">
-          <button class="btn-edit" onclick="editArticle(${article.id}, '${article.category}')">
+          <button class="btn-edit" onclick="editArticle(${article.id}, '${genre}')">
             Modifier
           </button>
-          <button class="btn-delete" onclick="deleteArticle(${article.id}, '${article.category}')">
+          <button class="btn-delete" onclick="deleteArticle(${article.id}, '${genre}')">
             Supprimer
           </button>
         </div>
@@ -241,9 +242,9 @@ function displayArticles(filteredArticles = null) {
 // Obtenir tous les articles
 function getAllArticles() {
   const all = [];
-  Object.keys(articlesData).forEach(category => {
-    articlesData[category].forEach(article => {
-      all.push({ ...article, category });
+  Object.keys(articlesData).forEach(genre => {
+    articlesData[genre].forEach(article => {
+      all.push({ ...article, genre });
     });
   });
   return all.sort((a, b) => {
@@ -271,7 +272,7 @@ function setupSearchAndFilter() {
     let filtered = getAllArticles();
 
     if (filterType) {
-      filtered = filtered.filter(a => a.category === filterType);
+      filtered = filtered.filter(a => (a.genre || a.category) === filterType);
     }
 
     if (searchTerm) {
@@ -594,16 +595,16 @@ function setTags(tags) {
 }
 
 // Éditer un article
-function editArticle(id, category) {
-  const articles = articlesData[category];
+function editArticle(id, genre) {
+  const articles = articlesData[genre];
   const article = articles.find(a => a.id === id);
   if (!article) return;
 
-  editingId = { id, category };
+  editingId = { id, genre };
   document.getElementById('form-title').textContent = 'Modifier l\'article';
   document.getElementById('article-id').value = id;
-  document.getElementById('article-type-select').value = category;
-  document.getElementById('article-type').value = category;
+  document.getElementById('article-type-select').value = genre;
+  document.getElementById('article-type').value = genre;
   document.getElementById('article-title').value = article.title;
   document.getElementById('article-excerpt').value = article.excerpt;
   document.getElementById('article-image').value = article.image || '';

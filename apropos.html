@@ -702,7 +702,7 @@
             <nav class="nav">
                 <a href="index.html" class="nav-link">Accueil</a>
                 <div class="nav-item">
-                    <a href="articles.html" class="nav-link">Articles</a>
+                <a href="articles.html" class="nav-link">Articles</a>
                     <div class="dropdown-menu">
                         <a href="articles.html#editorial" class="dropdown-category">Éditorial</a>
                         <a href="articles.html#reportage" class="dropdown-category">Reportage</a>
@@ -771,7 +771,7 @@
                     <div class="section-badge">Notre vision</div>
                     <h2 class="section-title">Pourquoi nous le faisons</h2>
                     <p class="section-subtitle">Agir comme un agent de changement dans le dialogue foi-science</p>
-                </div>
+                    </div>
                 <div class="content-text">
                     <p>
                         Malgré les avancées dans le dialogue entre foi et science, la perception d'une incompatibilité fondamentale entre foi chrétienne et rigueur scientifique/académique continue de se propager, particulièrement chez les jeunes.
@@ -782,8 +782,8 @@
                     <p>
                         Notre approche privilégie les interviews avec des experts combinant les rôles de professeur d'université, chercheur et pasteur, offrant ainsi une perspective unique sur la conciliation entre foi et rigueur académique.
                     </p>
-                </div>
-            </div>
+                    </div>
+                    </div>
         </section>
 
         <!-- Values Section -->
@@ -793,13 +793,13 @@
                     <div class="section-badge">Nos valeurs</div>
                     <h2 class="section-title">Ce que vous trouverez ici</h2>
                     <p class="section-subtitle">Des contenus rigoureux et accessibles sur la foi et la science</p>
-                </div>
+                    </div>
                 <div class="cards-grid">
                     <div class="card fade-in-up">
                         <div class="card-icon">📚</div>
                         <h3>Éditoriaux & Analyses</h3>
                         <p>Des articles documentés sur la conciliation entre foi chrétienne et rigueur académique</p>
-                    </div>
+                </div>
                     <div class="card fade-in-up">
                         <div class="card-icon">🎓</div>
                         <h3>Reportages Universitaires</h3>
@@ -826,7 +826,7 @@
                     <div class="section-badge">Notre engagement</div>
                     <h2 class="section-title">Dialoguer. Comprendre. Concilier.</h2>
                     <p class="section-subtitle">Un espace de dialogue pour tous</p>
-                </div>
+                    </div>
                 <div class="content-text">
                     <p>
                         Nous voulons créer un espace de dialogue constructif pour les étudiants, le corps académique, les communautés chrétiennes de jeunes, et le grand public intéressé par le débat Foi-Science.
@@ -852,24 +852,24 @@
                     <p class="section-subtitle">Vous avez une question, une suggestion ou souhaitez contribuer ?</p>
                 </div>
                 <form id="contactForm" class="contact-form">
-                    <div class="form-group">
+                            <div class="form-group">
                         <label for="name">Nom complet *</label>
                         <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
+                            </div>
+                            <div class="form-group">
                         <label for="email">Email *</label>
                         <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
+                            </div>
+                            <div class="form-group">
                         <label for="subject">Sujet *</label>
                         <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
+                            </div>
+                            <div class="form-group">
                         <label for="message">Message *</label>
                         <textarea id="message" name="message" placeholder="Décrivez votre question ou commentaire..." required></textarea>
-                    </div>
+                            </div>
                     <button type="submit" class="btn-primary">Envoyer le message</button>
-                </form>
+                        </form>
             </div>
         </section>
     </main>
@@ -995,41 +995,41 @@
         const searchIcon = document.querySelector('.search-icon');
         
         if (searchInput && searchContainer && searchIcon) {
-            searchIcon.addEventListener('click', (e) => {
-                e.stopPropagation();
-                searchContainer.classList.toggle('active');
-                
-                if (searchContainer.classList.contains('active')) {
-                    setTimeout(() => {
-                        searchInput.focus();
-                    }, 100);
-                }
-            });
+        searchIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchContainer.classList.toggle('active');
+            
+            if (searchContainer.classList.contains('active')) {
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 100);
+            }
+        });
 
-            document.addEventListener('click', (e) => {
-                if (!searchContainer.contains(e.target)) {
-                    searchContainer.classList.remove('active');
-                }
-            });
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                searchContainer.classList.remove('active');
+            }
+        });
 
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const query = searchInput.value.trim();
-                    if (query) {
-                        window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
-                    }
-                }
-            });
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
+            }
         }
+        });
+            }
 
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (header) {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
                 }
             }
         });
@@ -1038,32 +1038,32 @@
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(this);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const subject = formData.get('subject');
-                const message = formData.get('message');
-                
-                if (!name || !email || !subject || !message) {
-                    alert('Veuillez remplir tous les champs obligatoires.');
-                    return;
-                }
-                
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            if (!name || !email || !subject || !message) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+            
                 const submitButton = this.querySelector('.btn-primary');
-                const originalText = submitButton.textContent;
-                
-                submitButton.textContent = 'Envoi en cours...';
-                submitButton.disabled = true;
-                
-                setTimeout(() => {
-                    alert('Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.');
-                    this.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }, 2000);
-            });
+            const originalText = submitButton.textContent;
+            
+            submitButton.textContent = 'Envoi en cours...';
+            submitButton.disabled = true;
+            
+            setTimeout(() => {
+                alert('Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.');
+                this.reset();
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, 2000);
+        });
         }
     </script>
 </body>

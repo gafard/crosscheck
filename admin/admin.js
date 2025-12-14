@@ -1228,9 +1228,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const author = document.getElementById('article-author').value.trim();
     const featured = document.getElementById('article-featured').checked;
 
-    const paragraphs = Array.from(document.querySelectorAll('.paragraph-input'))
-      .map(t => t.value.trim())
-      .filter(t => t.length > 0);
+    // Récupérer le contenu depuis Quill
+    let content = [];
+    if (quillEditor) {
+      const quillHtml = quillEditor.root.innerHTML;
+      content = quillHtmlToContent(quillHtml);
+    } else {
+      // Fallback vers les paragraphes si Quill n'est pas disponible
+      const paragraphs = Array.from(document.querySelectorAll('.paragraph-input'))
+        .map(t => t.value.trim())
+        .filter(t => t.length > 0);
+      content = paragraphs;
+    }
 
     // Récupérer les tags
     const tags = getTags();

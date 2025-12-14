@@ -901,22 +901,10 @@
         </div>
 
         <div class="form-group">
-          <label>Contenu (paragraphes) *</label>
-          <div class="content-paragraphs" id="content-paragraphs">
-            <div class="paragraph-item">
-              <div style="display: flex; flex-direction: column; flex: 1; gap: 0.5rem;">
-                <textarea class="paragraph-input" required></textarea>
-                <button type="button" class="btn-link" onclick="insertLink(this)" title="Insérer un lien dans ce paragraphe" style="align-self: flex-start; padding: 0.4rem 0.8rem; font-size: 0.85rem;">
-                  🔗 Insérer un lien
-                </button>
-              </div>
-              <button type="button" class="btn-remove" onclick="removeParagraph(this)">×</button>
-            </div>
-          </div>
-          <button type="button" class="btn-add" onclick="addParagraph()">+ Ajouter un paragraphe</button>
+          <label for="article-content-editor">Contenu de l'article *</label>
+          <div id="article-content-editor" style="min-height: 300px; background: white; border: 2px solid var(--admin-border); border-radius: 0.75rem;"></div>
           <small>
-            <strong>💡 Astuce :</strong> Cliquez sur "🔗 Insérer un lien" pour ajouter facilement des liens, ou utilisez la syntaxe Markdown : 
-            <code>[texte du lien](https://url.com)</code>
+            <strong>💡 Astuce :</strong> Utilisez la barre d'outils pour formater votre texte, ajouter des images, des liens, etc.
           </small>
         </div>
 

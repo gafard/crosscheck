@@ -691,28 +691,11 @@ function editArticle(id, genre) {
   } catch (e) {}
   document.getElementById('article-date').value = dateValue || new Date().toISOString().split('T')[0];
 
-  // Remplir les paragraphes
-  const paragraphsContainer = document.getElementById('content-paragraphs');
-  paragraphsContainer.innerHTML = '';
-  (article.content || []).forEach((para, index) => {
-    if (index === 0) {
-      paragraphsContainer.innerHTML = `
-        <div class="paragraph-item">
-          <div style="display: flex; flex-direction: column; flex: 1; gap: 0.5rem;">
-            <textarea class="paragraph-input" required>${escapeHtml(para)}</textarea>
-            <button type="button" class="btn-link" onclick="insertLink(this)" title="Insérer un lien dans ce paragraphe" style="align-self: flex-start; padding: 0.4rem 0.8rem; font-size: 0.85rem;">
-              🔗 Insérer un lien
-            </button>
-          </div>
-          <button type="button" class="btn-remove" onclick="removeParagraph(this)">×</button>
-        </div>
-      `;
-    } else {
-      addParagraph();
-      const lastTextarea = paragraphsContainer.lastElementChild.querySelector('textarea');
-      lastTextarea.value = para;
-    }
-  });
+  // Remplir Quill avec le contenu
+  if (quillEditor && article.content) {
+    const contentHtml = Array.isArray(article.content) ? article.content.join('') : article.content;
+    quillEditor.root.innerHTML = contentHtml;
+  }
 
   // Remplir les tags
   setTags(article.tags || []);

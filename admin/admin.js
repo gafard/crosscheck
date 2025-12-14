@@ -1244,6 +1244,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Récupérer les tags
     const tags = getTags();
 
+    // Validation du contenu
+    if (content.length === 0 || (content.length === 1 && content[0].trim() === '')) {
+      showError('Le contenu de l\'article est requis.');
+      return;
+    }
+    
     // Validation
     if (!title) {
       showError('Le titre est requis.');

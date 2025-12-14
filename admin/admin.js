@@ -741,17 +741,10 @@ function resetForm() {
   document.getElementById('article-type').value = 'editorial';
   document.getElementById('article-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('article-author').value = '';
-  document.getElementById('content-paragraphs').innerHTML = `
-    <div class="paragraph-item">
-      <div style="display: flex; flex-direction: column; flex: 1; gap: 0.5rem;">
-        <textarea class="paragraph-input" required></textarea>
-        <button type="button" class="btn-link" onclick="insertLink(this)" title="Insérer un lien dans ce paragraphe" style="align-self: flex-start; padding: 0.4rem 0.8rem; font-size: 0.85rem;">
-          🔗 Insérer un lien
-        </button>
-      </div>
-      <button type="button" class="btn-remove" onclick="removeParagraph(this)">×</button>
-    </div>
-  `;
+  // Réinitialiser Quill
+  if (quillEditor) {
+    quillEditor.root.innerHTML = '';
+  }
   setTags([]);
   clearImagePreview();
   updateCharCounts();
@@ -1189,6 +1182,9 @@ function downloadFiles(json, jsContent) {
 
 // Gestion du formulaire
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialiser Quill
+  initQuillEditor();
+  
   const form = document.getElementById('article-form');
   if (!form) return;
 

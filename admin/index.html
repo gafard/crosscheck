@@ -31,6 +31,49 @@
       background: var(--admin-bg);
     }
 
+    /* Style du header de l'admin */
+    header {
+      background: var(--admin-primary);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--admin-shadow);
+      margin-bottom: 0;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: white;
+    }
+
+    header .logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    header .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    header nav a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
     .admin-container {
       max-width: 1400px;
       margin: 2rem auto;

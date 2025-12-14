@@ -12,11 +12,80 @@ let articlesData = {
 
 let editingId = null;
 let allArticles = [];
+let quillEditor = null;
 
 // Variables pour stocker les handles de dossiers (File System Access API)
 let dataFolderHandle = null;
 let jsFolderHandle = null;
 let imagesFolderHandle = null;
+
+// Initialiser l'éditeur Quill
+function initQuillEditor() {
+  // Si déjà initialisé, on ne recommence pas
+  if (quillEditor) return;
+  
+  const editorContainer = document.getElementById('article-content-editor');
+  if (!editorContainer) {
+    console.warn('Conteneur Quill (#article-content-editor) non trouvé');
+    return;
+  }
+  
+  if (typeof Quill === 'undefined') {
+    console.error("Quill.js n'est pas chargé (script CDN manquant ou ordre incorrect).");
+    return;
+  }
+  
+  try {
+    quillEditor = new Quill(editorContainer, {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          [{ 'header': [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'align': [] }],
+          ['link', 'image'],
+          ['blockquote', 'code-block'],
+          ['clean']
+        ]
+      },
+      placeholder: 'Rédigez votre article ici...'
+    });
+    console.log('✅ Quill initialisé');
+  } catch (error) {
+    console.error('Erreur lors de l\'initialisation de Quill:', error);
+  }
+}
+
+// Convertir le HTML de Quill en tableau de paragraphes
+function quillHtmlToContent(html) {
+  if (!html || html === '<p><br></p>' || html.trim() === '') return [];
+
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+
+  const elements = [];
+  const nodes = tempDiv.childNodes;
+
+  nodes.forEach(node => {
+    if (node.nodeType === 1) { // Element node
+      // Inclure les images/iframes/videos directement
+      if (node.tagName === 'IMG' || node.tagName === 'IFRAME' || node.tagName === 'VIDEO') {
+        elements.push(node.outerHTML);
+      }
+      // Ou si l'élément contient une image/iframe/video (ex: <p><img...></p>)
+      else if (node.querySelector && (node.querySelector('img') || node.querySelector('iframe') || node.querySelector('video'))) {
+        elements.push(node.outerHTML);
+      }
+      // Ou si l'élément a du texte
+      else if (node.textContent && node.textContent.trim()) {
+        elements.push(node.outerHTML);
+      }
+    }
+  });
+
+  return elements.length > 0 ? elements : [html];
+}
 
 // Labels des genres
 const genreLabels = {

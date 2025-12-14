@@ -1259,17 +1259,12 @@ document.addEventListener('DOMContentLoaded', function() {
       showError('Le résumé est requis.');
       return;
     }
-    if (paragraphs.length === 0) {
-      showError('Veuillez ajouter au moins un paragraphe.');
-      return;
-    }
-
     const article = {
       id: editingId ? editingId.id : Date.now(),
       title,
       date,
       excerpt,
-      content: paragraphs,
+      content: content,
       image: image || undefined,
       imageCredits: imageCredits || undefined,
       author: author || undefined,

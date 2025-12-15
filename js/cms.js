@@ -197,7 +197,7 @@ class CMS {
     const genre = article.genre || article.category || type;
     const categoryLabel = categoryMap[genre] || genre;
     
-    const authorHtml = article.author ? `<span class="article-author">${escapeHtml(article.author)}</span>` : '';
+    const authorHtml = article.author ? `<span class="article-author"><strong>${escapeHtml(article.author)}</strong></span>` : '';
     
     return `
       <a href="${linkUrl}" class="article-card">

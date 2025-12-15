@@ -548,6 +548,18 @@ section h2 {
   text-decoration: underline;
 }
 
+.author strong {
+  font-weight: 700;
+}
+
+.article-author strong {
+  font-weight: 700;
+}
+
+.article-meta .article-author strong {
+  font-weight: 700;
+}
+
 /* ============================================
    SHARE BUTTONS
    ============================================ */

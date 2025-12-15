@@ -127,7 +127,7 @@ class CMS {
     // Seulement pour les ressources avec URL externe
     const linkHtml = article.url ? `<a href="${article.url}" target="_blank" class="external-link">Accéder à la ressource →</a>` : '';
 
-    const authorHtml = article.author ? `<div class="author">Par ${escapeHtml(article.author)}</div>` : '';
+    const authorHtml = article.author ? `<div class="author">Par <strong>${escapeHtml(article.author)}</strong></div>` : '';
     
     // Boutons de partage social
     const currentUrl = encodeURIComponent(window.location.href);

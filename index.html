@@ -9,124 +9,111 @@
 <body>
     <!-- Header style Le Monde -->
     <header class="site-header">
-        <div class="header-top">
-            <div class="header-container">
-                <div class="header-left">
-                    <a href="index.html" class="site-logo">
-                        <img src="Images/Logo.png" alt="CrossCheck" class="logo-img" />
+        <div class="header-top-bar">
+            <div class="header-top-container">
+                <div class="header-top-left">
+                    <a href="index.html" class="consult-journal">Consulter le journal</a>
+                </div>
+                <div class="header-top-center">
+                    <a href="index.html" class="main-logo">
                         <span class="logo-text">CrossCheck</span>
                     </a>
                 </div>
-                <div class="header-right">
-                    <button class="mobile-menu-toggle" aria-label="Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-            </button>
-                    <nav class="main-nav" id="main-nav">
-                <a href="index.html" class="nav-link active">Accueil</a>
-                <div class="nav-item">
-                    <a href="articles.html" class="nav-link">Articles</a>
-                    <div class="dropdown-menu">
-                                <a href="articles.html#editorial" class="dropdown-link">Éditorial</a>
-                                <a href="articles.html#reportage" class="dropdown-link">Reportage</a>
-                                <a href="articles.html#interview" class="dropdown-link">Interview</a>
-                                <a href="articles.html#enquete" class="dropdown-link">Enquête</a>
-                                <a href="articles.html#analyse" class="dropdown-link">Analyse</a>
-                                <a href="articles.html#billet" class="dropdown-link">Billet</a>
-                    </div>
+                <div class="header-top-right">
+                    <a href="#" class="login-link">Se connecter</a>
+                    <button class="subscribe-btn">S'abonner</button>
                 </div>
-                <a href="ressources.html" class="nav-link">Ressources</a>
+            </div>
+        </div>
+        <nav class="main-navigation">
+            <div class="nav-container">
+                <a href="index.html" class="nav-home-icon" aria-label="Accueil">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </a>
+                <a href="articles.html" class="nav-link">Articles <span class="arrow">▼</span></a>
+                <a href="ressources.html" class="nav-link">Ressources <span class="arrow">▼</span></a>
                 <a href="apropos.html" class="nav-link">À propos</a>
-            </nav>
-                    <div class="search-wrapper">
-                        <button class="search-btn" aria-label="Rechercher">
+                <button class="search-icon-btn" aria-label="Rechercher">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
-                        </button>
-                <div class="search-box">
-                            <input type="text" placeholder="Rechercher..." class="search-input" />
-                </div>
+                </button>
             </div>
-        </div>
-        </div>
-                </div>
+        </nav>
     </header>
 
     <main class="main-content">
-        <!-- Section "À la une" style Le Monde -->
-    <section class="featured-section">
+        <!-- Section titre style Le Monde -->
+        <section class="page-header-section">
             <div class="container">
-                <div class="featured-label">À la une</div>
-                <div class="featured-article" id="featured-article-container">
-                    <div class="featured-image-wrapper">
-                        <img src="Images/947dc882ed15c601098e96accc86f5d0.jpg" alt="Article à la une" class="featured-image" id="featured-image" />
-        </div>
-                    <div class="featured-content">
-                        <div class="article-category" id="featured-category">Enquête</div>
-                        <h1 class="featured-title" id="featured-title">Chargement...</h1>
-                        <p class="featured-excerpt" id="featured-excerpt">Chargement de l'article à la une...</p>
-                        <div class="featured-meta">
-                            <span class="featured-author" id="featured-author"></span>
-                            <span class="featured-date" id="featured-date"></span>
-                    </div>
-                        <a href="#" class="btn-read-more" id="featured-link">Lire l'article</a>
-                    </div>
-        </div>
-        </div>
-    </section>
+                <div class="page-category">DÉBATS</div>
+                <h1 class="page-title">ENQUÊTES IDÉES</h1>
+            </div>
+        </section>
 
-        <!-- Section Articles récents -->
-        <section class="articles-section">
+        <!-- Section "À la une" style Le Monde -->
+        <section class="featured-article-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Actualités</h2>
-                    <a href="articles.html" class="view-all-link">Tous les articles →</a>
+                <article class="featured-article-lemonde">
+                    <div class="featured-article-content">
+                        <div class="article-badge">ENQUÊTE</div>
+                        <h2 class="article-title-large" id="featured-title">Chargement...</h2>
+                        <p class="article-excerpt-large" id="featured-excerpt">Chargement de l'article à la une...</p>
+                        <div class="article-meta-large">
+                            <span id="featured-meta">Publié le <span id="featured-date"></span> • <span id="featured-author"></span></span>
+                        </div>
+                    </div>
+                    <div class="featured-article-image">
+                        <img src="Images/947dc882ed15c601098e96accc86f5d0.jpg" alt="Article à la une" id="featured-image" />
+                    </div>
+                </article>
             </div>
-                <div class="articles-grid" id="articles-grid">
+        </section>
+
+        <!-- Section Articles récents style Le Monde -->
+        <section class="articles-list-section">
+            <div class="container">
+                <div class="articles-list" id="articles-list">
                     <!-- Les articles seront chargés ici -->
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
 
     <!-- Footer style Le Monde -->
     <footer class="site-footer">
         <div class="footer-container">
-        <div class="footer-content">
-            <div class="footer-section">
+            <div class="footer-content">
+                <div class="footer-section">
                     <h3 class="footer-title">CrossCheck</h3>
-                    <p class="footer-description">Plateforme dédiée à la conciliation entre foi chrétienne et rigueur scientifique/académique pour les étudiants, le corps académique et les communautés chrétiennes de jeunes.</p>
-            </div>
-            <div class="footer-section">
+                    <p class="footer-description">Plateforme dédiée à la conciliation entre foi chrétienne et rigueur scientifique/académique.</p>
+                </div>
+                <div class="footer-section">
                     <h4 class="footer-heading">Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="articles.html">Articles</a></li>
-                    <li><a href="ressources.html">Ressources</a></li>
-                    <li><a href="apropos.html">À propos</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="ressources.html">Ressources</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
                     <h4 class="footer-heading">Catégories</h4>
-                <ul class="footer-links">
+                    <ul class="footer-links">
                         <li><a href="articles.html#editorial">Éditorial</a></li>
                         <li><a href="articles.html#reportage">Reportage</a></li>
                         <li><a href="articles.html#interview">Interview</a></li>
                         <li><a href="articles.html#enquete">Enquête</a></li>
                         <li><a href="articles.html#analyse">Analyse</a></li>
                         <li><a href="articles.html#billet">Billet</a></li>
-                </ul>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                    <h4 class="footer-heading">Contact</h4>
-                    <p class="footer-text">Pour toute question ou suggestion</p>
-                    <a href="apropos.html" class="footer-link">Nous contacter</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
+            <div class="footer-bottom">
                 <p>&copy; <span id="year"></span> CrossCheck. Tous droits réservés.</p>
             </div>
         </div>
@@ -159,32 +146,19 @@
                     }
                     
                     if (featuredArticle) {
-                        const linkUrls = {
-                            'editorial': 'articles.html#editorial',
-                            'reportage': 'articles.html#reportage',
-                            'interview': 'articles.html#interview',
-                            'enquete': 'articles.html#enquete',
-                            'analyse': 'articles.html#analyse',
-                            'billet': 'articles.html#billet'
-                        };
-                        
-                        const articleGenre = featuredArticle.genre || 'analyse';
-                        const linkUrl = linkUrls[articleGenre] || 'articles.html';
-                        const articleId = featuredArticle.id || 'featured-' + Date.now();
-                        const finalUrl = linkUrl + '#article-' + articleId;
+                        const articleGenre = featuredArticle.genre || 'enquete';
+                        const genreLabel = articleGenre.toUpperCase();
                         
                         document.getElementById('featured-title').textContent = featuredArticle.title;
                         document.getElementById('featured-excerpt').textContent = featuredArticle.excerpt || '';
-                        document.getElementById('featured-category').textContent = articleGenre.charAt(0).toUpperCase() + articleGenre.slice(1);
+                        document.querySelector('.article-badge').textContent = genreLabel;
                         
+                        if (featuredArticle.date) {
+                            document.getElementById('featured-date').textContent = featuredArticle.date;
+                        }
                         if (featuredArticle.author) {
                             document.getElementById('featured-author').textContent = featuredArticle.author;
-                        } else {
-                            document.getElementById('featured-author').style.display = 'none';
                         }
-                        
-                        document.getElementById('featured-date').textContent = featuredArticle.date || '';
-                        document.getElementById('featured-link').href = finalUrl;
                         
                         // Image
                         const featuredImageEl = document.getElementById('featured-image');
@@ -199,22 +173,21 @@
                             featuredImageEl.onerror = function() {
                                 this.src = 'Images/947dc882ed15c601098e96accc86f5d0.jpg';
                             };
-            } else {
+                        } else {
                             featuredImageEl.src = 'Images/947dc882ed15c601098e96accc86f5d0.jpg';
                         }
-            } else {
+                    } else {
                         document.getElementById('featured-title').textContent = 'Aucun article disponible';
                         document.getElementById('featured-excerpt').textContent = 'Les articles apparaîtront ici une fois publiés.';
-                        document.getElementById('featured-link').style.display = 'none';
                     }
                 }).catch(error => {
                     console.error('Erreur lors du chargement des articles:', error);
                 });
             }
 
-            // Charger les articles dans la grille
-            const articlesGrid = document.getElementById('articles-grid');
-            if (articlesGrid && typeof cms !== 'undefined') {
+            // Charger les articles dans la liste
+            const articlesList = document.getElementById('articles-list');
+            if (articlesList && typeof cms !== 'undefined') {
                 cms.loadArticles().then(() => {
                     const allArticles = [];
                     Object.keys(cms.articles).forEach(genre => {
@@ -238,10 +211,10 @@
                                 return 0;
                             }
                         })
-                        .slice(0, 6);
+                        .slice(0, 10);
                     
                     if (latestArticles.length > 0) {
-                        articlesGrid.innerHTML = latestArticles.map(article => {
+                        articlesList.innerHTML = latestArticles.map(article => {
                             const linkUrls = {
                                 'editorial': 'articles.html#editorial',
                                 'reportage': 'articles.html#reportage',
@@ -251,24 +224,29 @@
                                 'billet': 'articles.html#billet'
                             };
                             const linkUrl = linkUrls[article.genre] || 'articles.html';
-                            const imageHtml = article.image ? 
-                                `<img src="${article.image}" alt="${article.title}" class="article-card-image" loading="lazy" />` : 
-                                '';
+                            const genreLabel = article.genre ? article.genre.toUpperCase() : 'ARTICLE';
+                            const articleId = article.id || Date.now();
+                            
                             return `
-                                <a href="${linkUrl}#article-${article.id}" class="article-card">
-                                    ${imageHtml}
-                                    <div class="article-card-category">${article.genre ? article.genre.charAt(0).toUpperCase() + article.genre.slice(1) : 'Actualité'}</div>
-                                    <h3 class="article-card-title">${article.title}</h3>
-                                    ${article.excerpt ? `<p class="article-card-excerpt">${article.excerpt}</p>` : ''}
-                                    <div class="article-card-meta">
-                                        ${article.author ? `<span class="article-author"><strong>${article.author}</strong></span>` : ''}
-                                        <span class="article-date">${article.date || ''}</span>
+                                <article class="article-item-lemonde">
+                                    <div class="article-content-wrapper">
+                                        <div class="article-badge-small">${genreLabel}</div>
+                                        <h3 class="article-title-medium">
+                                            <a href="${linkUrl}#article-${articleId}">${article.title}</a>
+                                        </h3>
+                                        <p class="article-excerpt-medium">${article.excerpt || ''}</p>
+                                        <div class="article-meta-medium">
+                                            Publié le ${article.date || ''} • ${article.author ? article.author : ''}
+                                        </div>
                                     </div>
-                                </a>
+                                    <div class="article-image-wrapper">
+                                        ${article.image ? `<img src="${article.image}" alt="${article.title}" class="article-image-medium" loading="lazy" />` : ''}
+                                    </div>
+                                </article>
                             `;
                         }).join('');
                     } else {
-                        articlesGrid.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1 / -1;">Aucun article pour le moment.</p>';
+                        articlesList.innerHTML = '<p style="text-align: center; padding: 2rem;">Aucun article pour le moment.</p>';
                     }
                 });
             }
@@ -277,53 +255,6 @@
             const yearEl = document.getElementById('year');
             if (yearEl) {
                 yearEl.textContent = new Date().getFullYear();
-            }
-
-            // Menu mobile
-            const mobileToggle = document.querySelector('.mobile-menu-toggle');
-            const mainNav = document.getElementById('main-nav');
-            
-            if (mobileToggle && mainNav) {
-                mobileToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('active');
-                    mobileToggle.classList.toggle('active');
-                });
-            }
-
-            // Recherche
-            const searchBtn = document.querySelector('.search-btn');
-            const searchBox = document.querySelector('.search-box');
-        const searchInput = document.querySelector('.search-input');
-            
-            if (searchBtn && searchBox) {
-                searchBtn.addEventListener('click', () => {
-                    searchBox.classList.toggle('active');
-                    if (searchBox.classList.contains('active')) {
-                        setTimeout(() => searchInput?.focus(), 100);
-                    }
-                });
-            }
-
-            if (searchInput) {
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query) {
-                window.location.href = `articles.html?search=${encodeURIComponent(query)}`;
-            }
-                    }
-                });
-            }
-
-            // Dropdown menu
-        const navItem = document.querySelector('.nav-item');
-            if (navItem) {
-            navItem.addEventListener('mouseenter', () => {
-                    navItem.classList.add('hover');
-            });
-            navItem.addEventListener('mouseleave', () => {
-                    navItem.classList.remove('hover');
-                });
             }
         });
     </script>

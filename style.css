@@ -1,19 +1,20 @@
 /* ============================================
-   CROSSCHECK - Design inspiré de Le Monde
-   Style sobre et professionnel
+   CROSSCHECK - Design exactement comme Le Monde
+   Style "Enquêtes Idées" du Monde
    ============================================ */
 
 :root {
-  /* Palette de couleurs sobre */
+  /* Palette de couleurs Le Monde */
   --color-primary: #000000;
   --color-secondary: #666666;
-  --color-accent: #d4af37;
+  --color-accent: #FFD700; /* Jaune Le Monde */
   --color-bg: #ffffff;
-  --color-bg-alt: #f8f9fa;
+  --color-bg-alt: #f5f5f5;
   --color-text: #000000;
   --color-text-light: #666666;
   --color-text-muted: #999999;
   --color-border: #e5e5e5;
+  --color-blue: #0066cc;
   
   /* Typographie */
   --font-serif: Georgia, 'Times New Roman', serif;
@@ -62,67 +63,110 @@ body {
 }
 
 /* ============================================
-   HEADER - Style Le Monde
+   HEADER - Style exact Le Monde
    ============================================ */
 .site-header {
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
 }
 
-.header-top {
+.header-top-bar {
   border-bottom: 1px solid var(--color-border);
+  padding: var(--space-sm) 0;
 }
 
-.header-container {
+.header-top-container {
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--space-lg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
+.header-top-left {
+  font-size: 0.875rem;
 }
 
-.site-logo {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
+.consult-journal {
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.consult-journal:hover {
+  color: var(--color-text);
+}
+
+.header-top-center {
+  flex: 1;
+  text-align: center;
+}
+
+.main-logo {
   text-decoration: none;
   color: var(--color-text);
 }
 
-.logo-img {
-  height: 40px;
-  width: auto;
-}
-
 .logo-text {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
-.header-right {
+.header-top-right {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
-.main-nav {
+.login-link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.875rem;
   display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.subscribe-btn {
+  background: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.2s ease;
+}
+
+.subscribe-btn:hover {
+  background: #ffcc00;
+}
+
+.main-navigation {
+  border-bottom: 2px solid var(--color-blue);
+  background: var(--color-bg);
+}
+
+.nav-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
   gap: var(--space-xl);
+  height: 50px;
+}
+
+.nav-home-icon {
+  color: var(--color-text);
+  display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .nav-link {
@@ -131,351 +175,224 @@ body {
   font-size: 0.9375rem;
   font-weight: 500;
   transition: color 0.2s ease;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: var(--color-accent);
+.nav-link:hover {
+  color: var(--color-blue);
 }
 
-.nav-item {
-  position: relative;
+.nav-link .arrow {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: var(--space-sm) 0;
-  min-width: 180px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(-50%) translateY(-10px);
-  transition: all 0.3s ease;
-  margin-top: var(--space-sm);
-}
-
-.nav-item:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-.dropdown-link {
-  display: block;
-  padding: var(--space-sm) var(--space-lg);
-  color: var(--color-text);
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: background 0.2s ease;
-}
-
-.dropdown-link:hover {
-  background: var(--color-bg-alt);
-  color: var(--color-accent);
-}
-
-.search-wrapper {
-  position: relative;
-}
-
-.search-btn {
+.search-icon-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-sm);
   color: var(--color-text);
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.search-box {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 0;
-  overflow: hidden;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s ease;
-  margin-top: var(--space-sm);
-}
-
-.search-box.active {
-  width: 300px;
-}
-
-.search-input {
-  width: 100%;
-  padding: var(--space-sm) var(--space-md);
-  border: none;
-  outline: none;
-  font-size: 0.875rem;
-}
-
-.mobile-menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: var(--space-sm);
-}
-
-.mobile-menu-toggle span {
-  width: 24px;
-  height: 2px;
-  background: var(--color-text);
-  transition: all 0.3s ease;
+  margin-left: auto;
 }
 
 /* ============================================
-   SECTION "À LA UNE" - Style Le Monde
+   SECTION TITRE PAGE - Style Le Monde
    ============================================ */
-.featured-section {
-  padding: var(--space-3xl) 0;
-  background: var(--color-bg-alt);
-  border-bottom: 4px solid var(--color-primary);
+.page-header-section {
+  padding: var(--space-2xl) 0 var(--space-lg);
+  background: var(--color-bg);
 }
 
-.featured-label {
+.page-category {
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-bg);
-  background: var(--color-primary);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: var(--space-xs) var(--space-md);
-  display: inline-block;
-  margin-bottom: var(--space-lg);
+  color: var(--color-text-light);
+  margin-bottom: var(--space-xs);
 }
 
-.featured-article {
+.page-title {
+  font-family: var(--font-sans);
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0;
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--color-text);
+}
+
+/* ============================================
+   ARTICLE FEATURED - Style Le Monde
+   ============================================ */
+.featured-article-section {
+  padding: var(--space-2xl) 0;
+  background: var(--color-bg);
+}
+
+.featured-article-lemonde {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2xl);
   align-items: start;
+  margin-bottom: var(--space-3xl);
 }
 
-.featured-image-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-.featured-image {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  display: block;
-}
-
-.featured-content {
+.featured-article-content {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
 }
 
-.article-category {
+.article-badge {
+  background: var(--color-accent);
+  color: var(--color-text);
+  padding: var(--space-xs) var(--space-md);
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-bg);
-  background: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: var(--space-xs) var(--space-md);
   display: inline-block;
   width: fit-content;
 }
 
-.featured-title {
+.article-title-large {
   font-family: var(--font-serif);
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  line-height: 1.2;
   color: var(--color-text);
   margin: 0;
-  line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
-.featured-excerpt {
+.article-excerpt-large {
+  font-family: var(--font-sans);
   font-size: 1.125rem;
-  line-height: 1.8;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.article-meta-large {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
   color: var(--color-text-light);
   margin: 0;
 }
 
-.featured-meta {
-  display: flex;
-  gap: var(--space-md);
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-}
-
-.featured-author strong {
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.btn-read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  background: var(--color-primary);
-  color: var(--color-bg);
-  padding: var(--space-md) var(--space-2xl);
-  border-radius: 0;
-  text-decoration: none;
+.article-meta-large strong {
   font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  width: fit-content;
-}
-
-.btn-read-more:hover {
-  background: var(--color-secondary);
-}
-
-.btn-read-more::after {
-  content: '→';
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.btn-read-more:hover::after {
-  transform: translateX(4px);
-}
-
-/* ============================================
-   SECTION ARTICLES
-   ============================================ */
-.articles-section {
-  padding: var(--space-3xl) 0;
-  background: var(--color-bg);
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: var(--space-2xl);
-  padding-bottom: var(--space-md);
-  border-bottom: 3px solid var(--color-primary);
-}
-
-.section-title {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  font-weight: 700;
   color: var(--color-text);
-  margin: 0;
-  letter-spacing: -0.01em;
 }
 
-.view-all-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: color 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.view-all-link:hover {
-  color: var(--color-accent);
-}
-
-.articles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--space-xl);
-}
-
-.article-card {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-top: 4px solid var(--color-primary);
-  text-decoration: none;
-  color: var(--color-text);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.article-card:hover {
-  border-top-color: var(--color-accent);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.article-card-image {
+.featured-article-image {
   width: 100%;
-  height: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.featured-article-image img {
+  width: 100%;
+  height: 400px;
   object-fit: cover;
   display: block;
 }
 
-.article-card-category {
+/* ============================================
+   LISTE ARTICLES - Style Le Monde
+   ============================================ */
+.articles-list-section {
+  padding: var(--space-2xl) 0 var(--space-3xl);
+  background: var(--color-bg);
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+}
+
+.article-item-lemonde {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-2xl);
+  align-items: start;
+  padding-bottom: var(--space-3xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-item-lemonde:last-child {
+  border-bottom: none;
+}
+
+.article-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.article-badge-small {
+  background: var(--color-accent);
+  color: var(--color-text);
+  padding: var(--space-xs) var(--space-md);
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-bg);
-  background: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: var(--space-xs) var(--space-md);
-  margin: var(--space-md);
-  margin-bottom: var(--space-xs);
   display: inline-block;
   width: fit-content;
 }
 
-.article-card-title {
+.article-title-medium {
   font-family: var(--font-serif);
-  font-size: 1.375rem;
+  font-size: 1.75rem;
   font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.article-title-medium a {
   color: var(--color-text);
-  margin: 0 var(--space-md) var(--space-sm);
-  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.article-card:hover .article-card-title {
-  color: var(--color-accent);
+.article-title-medium a:hover {
+  color: var(--color-blue);
 }
 
-.article-card-excerpt {
-  font-size: 0.9375rem;
+.article-excerpt-medium {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.article-meta-medium {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
   color: var(--color-text-light);
-  line-height: 1.6;
-  margin: 0 var(--space-md) var(--space-md);
-  flex: 1;
+  margin: 0;
 }
 
-.article-card-meta {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  margin: 0 var(--space-md) var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--color-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.article-image-wrapper {
+  width: 100%;
 }
 
-.article-author strong {
-  font-weight: 700;
-  color: var(--color-text);
+.article-image-medium {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
 }
 
 /* ============================================
@@ -519,6 +436,7 @@ body {
 .footer-description {
   line-height: 1.6;
   margin-bottom: var(--space-md);
+  font-size: 0.875rem;
 }
 
 .footer-links {
@@ -541,22 +459,6 @@ body {
   color: var(--color-accent);
 }
 
-.footer-text {
-  margin-bottom: var(--space-sm);
-  font-size: 0.875rem;
-}
-
-.footer-link {
-  color: var(--color-accent);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-  color: #b8941f;
-}
-
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: var(--space-lg);
@@ -571,93 +473,68 @@ body {
 /* ============================================
    RESPONSIVE
    ============================================ */
-@media (max-width: 768px) {
-  .header-container {
-    padding: 0 var(--space-md);
+@media (max-width: 992px) {
+  .page-title {
+    font-size: 2.5rem;
   }
 
-  .main-nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--color-bg);
-    flex-direction: column;
-    align-items: stretch;
-    padding: var(--space-lg);
-    gap: var(--space-md);
-    border-top: 1px solid var(--color-border);
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    z-index: 999;
-  }
-
-  .main-nav.active {
-    transform: translateY(0);
-  }
-
-  .mobile-menu-toggle {
-    display: flex;
-  }
-
-  .mobile-menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .mobile-menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
-  }
-
-  .search-box {
-    position: fixed;
-    top: 70px;
-    left: var(--space-md);
-    right: var(--space-md);
-    width: auto !important;
-  }
-
-  .featured-article {
+  .featured-article-lemonde {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
   }
 
-  .featured-title {
-    font-size: 2.25rem;
+  .article-item-lemonde {
+    grid-template-columns: 1fr;
   }
 
-  .section-title {
+  .article-image-wrapper {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-top-container {
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .header-top-left,
+  .header-top-center,
+  .header-top-right {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+    padding: var(--space-md);
+    height: auto;
+    gap: var(--space-md);
+  }
+
+  .page-title {
     font-size: 2rem;
   }
 
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-md);
+  .article-title-large {
+    font-size: 2rem;
   }
 
-  .articles-grid {
-    grid-template-columns: 1fr;
+  .article-title-medium {
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .featured-section {
-    padding: var(--space-2xl) 0;
-  }
-
-  .featured-title {
+  .page-title {
     font-size: 1.75rem;
   }
 
-  .section-title {
-    font-size: 1.5rem;
+  .article-title-large {
+    font-size: 1.75rem;
   }
 
-  .articles-section {
-    padding: var(--space-2xl) 0;
+  .article-title-medium {
+    font-size: 1.25rem;
   }
 }

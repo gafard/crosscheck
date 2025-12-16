@@ -1,69 +1,37 @@
 /* ============================================
-   CROSSCHECK - Design exactement comme Le Monde
-   Style "Enquêtes Idées" du Monde
+   CROSSCHECK - Design moderne et professionnel
+   Style identique aux autres pages
    ============================================ */
 
 :root {
-  /* Palette de couleurs Le Monde */
-  --color-primary: #000000;
-  --color-secondary: #666666;
-  --color-accent: #FFD700; /* Jaune Le Monde */
-  --color-bg: #ffffff;
-  --color-bg-alt: #f5f5f5;
-  --color-text: #000000;
-  --color-text-light: #666666;
-  --color-text-muted: #999999;
-  --color-border: #e5e5e5;
-  --color-blue: #0066cc;
-  
-  /* Typographie */
-  --font-serif: Georgia, 'Times New Roman', serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  
-  /* Espacements */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  
-  /* Container */
-  --container-max-width: 1200px;
+  --primary: #0a0a0a;
+  --secondary: #666666;
+  --accent: #d4af37;
+  --light: #fafafa;
+  --white: #ffffff;
+  --border: #e8e8e8;
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
 }
 
-/* Reset */
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
 body {
-  font-family: var(--font-sans);
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.container {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+  color: var(--primary);
+  background: var(--white);
+  overflow-x: hidden;
+  padding-top: 80px;
 }
 
 /* ============================================
-   HEADER - Style original CrossCheck
+   HEADER
    ============================================ */
 .header {
   position: fixed;
@@ -72,14 +40,14 @@ body {
   right: 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--border);
   z-index: 1000;
   transition: all 0.3s ease;
 }
 
 .header.scrolled {
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .header-content {
@@ -97,7 +65,7 @@ body {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--primary);
 }
 
 .logo-icon {
@@ -113,10 +81,9 @@ body {
 }
 
 .logo-text {
-  font-family: var(--font-serif);
+  font-family: 'Playfair Display', serif;
   font-size: 24px;
   font-weight: 700;
-  color: var(--color-text);
 }
 
 .nav {
@@ -127,7 +94,7 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: var(--color-text-light);
+  color: var(--secondary);
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
@@ -141,7 +108,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--color-accent);
+  background: var(--accent);
   transition: width 0.3s ease;
 }
 
@@ -152,7 +119,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--color-accent);
+  color: var(--accent);
 }
 
 .nav-item {
@@ -188,7 +155,7 @@ body {
   display: block;
   padding: 12px 20px;
   text-decoration: none;
-  color: var(--color-text-light);
+  color: var(--secondary);
   font-weight: 500;
   font-size: 14px;
   transition: all 0.3s ease;
@@ -198,8 +165,8 @@ body {
 
 .dropdown-category:hover {
   background: rgba(212, 175, 55, 0.05);
-  color: var(--color-accent);
-  border-left-color: var(--color-accent);
+  color: var(--accent);
+  border-left-color: var(--accent);
   transform: translateX(8px);
 }
 
@@ -213,7 +180,7 @@ body {
 .search-icon {
   width: 50px;
   height: 50px;
-  background: var(--color-accent);
+  background: var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -259,12 +226,12 @@ body {
   outline: none;
   padding: 0 20px;
   font-size: 14px;
-  color: var(--color-text);
+  color: var(--primary);
   background: transparent;
 }
 
 .search-input::placeholder {
-  color: var(--color-text-light);
+  color: var(--secondary);
 }
 
 .mobile-menu-toggle {
@@ -275,12 +242,442 @@ body {
   padding: 0.5rem;
 }
 
-body {
-  padding-top: 80px;
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+  overflow: hidden;
 }
 
-/* Menu mobile */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.05) 70%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  margin-left: 0;
+  padding-left: 5rem;
+}
+
+.hero-text {
+  padding: 2rem 0 2rem 0;
+  max-width: 600px;
+  flex: 1;
+  margin-left: 0;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: white;
+  letter-spacing: -2px;
+}
+
+.hero-subtitle {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  max-width: 500px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: black;
+  color: white;
+  padding: 18px 36px;
+  border-radius: 0;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #333;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.btn-secondary {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 18px 0;
+  border-bottom: 2px solid var(--accent);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover {
+  color: var(--accent);
+}
+
+/* ============================================
+   FEATURED SECTION
+   ============================================ */
+.featured-section {
+  padding: 8rem 0;
+  background: var(--white);
+}
+
+.featured-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.article-card {
+  background: white;
+  border-radius: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  cursor: pointer;
+  transform-origin: center bottom;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+  z-index: 1;
+}
+
+.article-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.article-card:hover::before {
+  transform: scaleX(1);
+}
+
+.article-card:hover::after {
+  opacity: 1;
+}
+
+.article-card:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+  border-color: var(--accent);
+}
+
+.article-image {
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.article-content {
+  padding: 2rem;
+}
+
+.article-category {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--accent);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  transition: color 0.3s ease;
+}
+
+.article-card:hover .article-title {
+  color: var(--accent);
+}
+
+.article-excerpt {
+  color: var(--secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.article-author {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.article-author strong {
+  font-weight: 700;
+}
+
+.article-date {
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--primary);
+  color: white;
+  padding: 3rem 0 0;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo .logo-icon {
+  width: 40px;
+  height: 40px;
+  background: url('Images/Logo.png') center/contain no-repeat;
+}
+
+.footer-logo .logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.footer-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-contact {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.footer-contact-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-contact-link:hover {
+  color: #b8941f;
+}
+
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 3rem;
+  padding: 2rem 0;
+}
+
+.footer-bottom-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0.5rem 0;
+}
+
+.footer-mission {
+  font-family: 'Playfair Display', serif;
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+
   .header-content {
     padding: 0 1rem;
     height: 70px;
@@ -297,7 +694,7 @@ body {
     flex-direction: column;
     padding: 2rem;
     gap: 2rem;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--border);
     z-index: 999;
     transform: translateY(-100%);
     transition: transform 0.3s ease;
@@ -312,6 +709,31 @@ body {
     display: block;
   }
 
+  .hero {
+    min-height: 80vh;
+  }
+
+  .hero-content {
+    padding-left: 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .featured-section {
+    padding: 4rem 0;
+  }
+
+  .articles-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
   .search-container:hover .search-box {
     position: fixed;
     top: 70px;
@@ -319,348 +741,18 @@ body {
     right: 1rem;
     width: auto !important;
   }
-
-  body {
-    padding-top: 70px;
-  }
-}
-
-/* ============================================
-   SECTION TITRE PAGE - Style Le Monde
-   ============================================ */
-.page-header-section {
-  padding: var(--space-2xl) 0 var(--space-lg);
-  background: var(--color-bg);
-}
-
-.page-category {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text-light);
-  margin-bottom: var(--space-xs);
-}
-
-.page-title {
-  font-family: var(--font-sans);
-  font-size: 3.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-  margin: 0;
-  padding-bottom: var(--space-md);
-  border-bottom: 2px solid var(--color-text);
-}
-
-/* ============================================
-   ARTICLE FEATURED - Style Le Monde
-   ============================================ */
-.featured-article-section {
-  padding: var(--space-2xl) 0;
-  background: var(--color-bg);
-}
-
-.featured-article-lemonde {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-2xl);
-  align-items: start;
-  margin-bottom: var(--space-3xl);
-}
-
-.featured-article-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.article-badge {
-  background: var(--color-accent);
-  color: var(--color-text);
-  padding: var(--space-xs) var(--space-md);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: inline-block;
-  width: fit-content;
-}
-
-.article-title-large {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--color-text);
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.article-excerpt-large {
-  font-family: var(--font-sans);
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--color-text);
-  margin: 0;
-}
-
-.article-meta-large {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--color-text-light);
-  margin: 0;
-}
-
-.article-meta-large strong {
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-.featured-article-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.featured-article-image img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  display: block;
-}
-
-/* ============================================
-   LISTE ARTICLES - Style Le Monde
-   ============================================ */
-.articles-list-section {
-  padding: var(--space-2xl) 0 var(--space-3xl);
-  background: var(--color-bg);
-}
-
-.articles-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3xl);
-}
-
-.article-item-lemonde {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--space-2xl);
-  align-items: start;
-  padding-bottom: var(--space-3xl);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.article-item-lemonde:last-child {
-  border-bottom: none;
-}
-
-.article-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.article-badge-small {
-  background: var(--color-accent);
-  color: var(--color-text);
-  padding: var(--space-xs) var(--space-md);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: inline-block;
-  width: fit-content;
-}
-
-.article-title-medium {
-  font-family: var(--font-serif);
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.article-title-medium a {
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.article-title-medium a:hover {
-  color: var(--color-blue);
-}
-
-.article-excerpt-medium {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--color-text);
-  margin: 0;
-}
-
-.article-meta-medium {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--color-text-light);
-  margin: 0;
-}
-
-.article-image-wrapper {
-  width: 100%;
-}
-
-.article-image-medium {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  display: block;
-}
-
-/* ============================================
-   FOOTER - Style Le Monde
-   ============================================ */
-.site-footer {
-  background: var(--color-primary);
-  color: rgba(255, 255, 255, 0.8);
-  padding: var(--space-2xl) 0 var(--space-lg);
-  margin-top: var(--space-3xl);
-}
-
-.footer-container {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--space-2xl);
-  margin-bottom: var(--space-xl);
-}
-
-.footer-title {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  color: var(--color-bg);
-  margin-bottom: var(--space-md);
-  font-weight: 700;
-}
-
-.footer-heading {
-  font-size: 1rem;
-  color: var(--color-bg);
-  margin-bottom: var(--space-md);
-  font-weight: 600;
-}
-
-.footer-description {
-  line-height: 1.6;
-  margin-bottom: var(--space-md);
-  font-size: 0.875rem;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: var(--space-sm);
-}
-
-.footer-links a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: var(--color-accent);
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: var(--space-lg);
-  text-align: center;
-}
-
-.footer-bottom p {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media (max-width: 992px) {
-  .page-title {
-    font-size: 2.5rem;
-  }
-
-  .featured-article-lemonde {
-    grid-template-columns: 1fr;
-  }
-
-  .article-item-lemonde {
-    grid-template-columns: 1fr;
-  }
-
-  .article-image-wrapper {
-    order: -1;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-top-container {
-    flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-md);
-  }
-
-  .header-top-left,
-  .header-top-center,
-  .header-top-right {
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-container {
-    flex-wrap: wrap;
-    padding: var(--space-md);
-    height: auto;
-    gap: var(--space-md);
-  }
-
-  .page-title {
-    font-size: 2rem;
-  }
-
-  .article-title-large {
-    font-size: 2rem;
-  }
-
-  .article-title-medium {
-    font-size: 1.5rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .page-title {
-    font-size: 1.75rem;
+  .hero-title {
+    font-size: 2rem;
   }
 
-  .article-title-large {
-    font-size: 1.75rem;
+  .section-title {
+    font-size: 2rem;
   }
 
-  .article-title-medium {
-    font-size: 1.25rem;
+  .articles-grid {
+    grid-template-columns: 1fr;
   }
 }

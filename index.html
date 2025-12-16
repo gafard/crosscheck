@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrossCheck - Foi, Science & Société</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -52,74 +53,93 @@
     </header>
 
     <main class="main-content">
-        <!-- Section titre style Le Monde -->
-        <section class="page-header-section">
-            <div class="container">
-                <div class="page-category">DÉBATS</div>
-                <h1 class="page-title">ENQUÊTES IDÉES</h1>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-background" style="background-image: url('Images/947dc882ed15c601098e96accc86f5d0.jpg');"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">Foi • Science • Société</div>
+                    <h1 class="hero-title">
+                        Concilier foi<br>
+                        et rigueur<br>
+                        scientifique
+                    </h1>
+                    <p class="hero-subtitle">
+                        Découvrez les défis et opportunités de concilier foi chrétienne et rigueur scientifique/académique chez les jeunes. Un espace de dialogue pour étudiants, chercheurs et communautés chrétiennes.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="articles.html" class="btn-primary">
+                            Explorer les articles
+                            <span>→</span>
+                        </a>
+                        <a href="apropos.html" class="btn-secondary">
+                            À propos
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Section "À la une" style Le Monde -->
-        <section class="featured-article-section">
-            <div class="container">
-                <article class="featured-article-lemonde">
-                    <div class="featured-article-content">
-                        <div class="article-badge">ENQUÊTE</div>
-                        <h2 class="article-title-large" id="featured-title">Chargement...</h2>
-                        <p class="article-excerpt-large" id="featured-excerpt">Chargement de l'article à la une...</p>
-                        <div class="article-meta-large">
-                            <span id="featured-meta">Publié le <span id="featured-date"></span> • <span id="featured-author"></span></span>
-                        </div>
-                    </div>
-                    <div class="featured-article-image">
-                        <img src="Images/947dc882ed15c601098e96accc86f5d0.jpg" alt="Article à la une" id="featured-image" />
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Section Articles récents style Le Monde -->
-        <section class="articles-list-section">
-            <div class="container">
-                <div class="articles-list" id="articles-list">
-                    <!-- Les articles seront chargés ici -->
+        <!-- Featured Articles Section -->
+        <section class="featured-section">
+            <div class="featured-container">
+                <div class="section-header">
+                    <div class="section-badge">Articles en vedette</div>
+                    <h2 class="section-title">Nos dernières publications</h2>
+                    <p class="section-subtitle">Découvrez nos articles sur la conciliation entre foi chrétienne et rigueur scientifique</p>
+                </div>
+                <div class="articles-grid" id="featured-articles">
+                    <!-- Les articles en vedette seront chargés ici par le CMS -->
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer style Le Monde -->
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="footer-title">CrossCheck</h3>
-                    <p class="footer-description">Plateforme dédiée à la conciliation entre foi chrétienne et rigueur scientifique/académique.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">CrossCheck</div>
                 </div>
-                <div class="footer-section">
-                    <h4 class="footer-heading">Navigation</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="articles.html">Articles</a></li>
-                        <li><a href="ressources.html">Ressources</a></li>
-                        <li><a href="apropos.html">À propos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4 class="footer-heading">Catégories</h4>
-                    <ul class="footer-links">
-                        <li><a href="articles.html#editorial">Éditorial</a></li>
-                        <li><a href="articles.html#reportage">Reportage</a></li>
-                        <li><a href="articles.html#interview">Interview</a></li>
-                        <li><a href="articles.html#enquete">Enquête</a></li>
-                        <li><a href="articles.html#analyse">Analyse</a></li>
-                        <li><a href="articles.html#billet">Billet</a></li>
-                    </ul>
-                </div>
+                <p class="footer-description">Plateforme dédiée à la conciliation entre foi chrétienne et rigueur scientifique/académique pour les étudiants, le corps académique et les communautés chrétiennes de jeunes.</p>
             </div>
-            <div class="footer-bottom">
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="ressources.html">Ressources</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Catégories</h3>
+                <ul class="footer-links">
+                    <li><a href="articles.html#editorial">Éditorial</a></li>
+                    <li><a href="articles.html#reportage">Reportage</a></li>
+                    <li><a href="articles.html#interview">Interview</a></li>
+                    <li><a href="articles.html#enquete">Enquête</a></li>
+                    <li><a href="articles.html#analyse">Analyse</a></li>
+                    <li><a href="articles.html#billet">Billet</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Contact</h3>
+                <p class="footer-contact">Pour toute question ou suggestion</p>
+                <a href="apropos.html" class="footer-contact-link">Nous contacter</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
                 <p>&copy; <span id="year"></span> CrossCheck. Tous droits réservés.</p>
+                <p class="footer-mission">Foi • Science • Société | Jeunesse en Christ</p>
             </div>
         </div>
     </footer>
@@ -128,8 +148,9 @@
     <script src="js/cms.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Charger l'article à la une
-            if (typeof cms !== 'undefined') {
+            // Charger les articles en vedette
+            const featuredArticles = document.getElementById('featured-articles');
+            if (featuredArticles && typeof cms !== 'undefined') {
                 cms.loadArticles().then(() => {
                     const allArticles = [];
                     Object.keys(cms.articles).forEach(genre => {
@@ -138,77 +159,8 @@
                         });
                     });
                     
-                    // Chercher d'abord un article featured, sinon prendre le plus récent
-                    let featuredArticle = allArticles.find(a => a.featured);
-                    if (!featuredArticle && allArticles.length > 0) {
-                        featuredArticle = allArticles.sort((a, b) => {
-                            try {
-                                return new Date(b.date) - new Date(a.date);
-                            } catch (e) {
-                                return 0;
-                            }
-                        })[0];
-                    }
-                    
-                    if (featuredArticle) {
-                        const articleGenre = featuredArticle.genre || 'enquete';
-                        const genreLabel = articleGenre.toUpperCase();
-                        
-                        document.getElementById('featured-title').textContent = featuredArticle.title;
-                        document.getElementById('featured-excerpt').textContent = featuredArticle.excerpt || '';
-                        document.querySelector('.article-badge').textContent = genreLabel;
-                        
-                        if (featuredArticle.date) {
-                            document.getElementById('featured-date').textContent = featuredArticle.date;
-                        }
-                        if (featuredArticle.author) {
-                            document.getElementById('featured-author').textContent = featuredArticle.author;
-                        }
-                        
-                        // Image
-                        const featuredImageEl = document.getElementById('featured-image');
-                        if (featuredArticle.image && featuredArticle.image.trim() !== '') {
-                            let imagePath = featuredArticle.image.trim();
-                            if (!imagePath.startsWith('http://') && !imagePath.startsWith('https://') && !imagePath.startsWith('data:')) {
-                                const pathParts = imagePath.split('/');
-                                imagePath = pathParts.map(part => encodeURIComponent(part)).join('/');
-                            }
-                            featuredImageEl.src = imagePath;
-                            featuredImageEl.alt = featuredArticle.title;
-                            featuredImageEl.onerror = function() {
-                                this.src = 'Images/947dc882ed15c601098e96accc86f5d0.jpg';
-                            };
-                        } else {
-                            featuredImageEl.src = 'Images/947dc882ed15c601098e96accc86f5d0.jpg';
-                        }
-                    } else {
-                        document.getElementById('featured-title').textContent = 'Aucun article disponible';
-                        document.getElementById('featured-excerpt').textContent = 'Les articles apparaîtront ici une fois publiés.';
-                    }
-                }).catch(error => {
-                    console.error('Erreur lors du chargement des articles:', error);
-                });
-            }
-
-            // Charger les articles dans la liste
-            const articlesList = document.getElementById('articles-list');
-            if (articlesList && typeof cms !== 'undefined') {
-                cms.loadArticles().then(() => {
-                    const allArticles = [];
-                    Object.keys(cms.articles).forEach(genre => {
-                        cms.articles[genre].forEach(article => {
-                            allArticles.push({ ...article, genre });
-                        });
-                    });
-                    
-                    let featuredId = null;
-                    const featured = allArticles.find(a => a.featured);
-                    if (featured) {
-                        featuredId = featured.id;
-                    }
-                    
+                    // Prendre les 6 articles les plus récents
                     const latestArticles = allArticles
-                        .filter(a => a.id !== featuredId)
                         .sort((a, b) => {
                             try {
                                 return new Date(b.date) - new Date(a.date);
@@ -216,10 +168,10 @@
                                 return 0;
                             }
                         })
-                        .slice(0, 10);
+                        .slice(0, 6);
                     
                     if (latestArticles.length > 0) {
-                        articlesList.innerHTML = latestArticles.map(article => {
+                        featuredArticles.innerHTML = latestArticles.map(article => {
                             const linkUrls = {
                                 'editorial': 'articles.html#editorial',
                                 'reportage': 'articles.html#reportage',
@@ -229,29 +181,28 @@
                                 'billet': 'articles.html#billet'
                             };
                             const linkUrl = linkUrls[article.genre] || 'articles.html';
-                            const genreLabel = article.genre ? article.genre.toUpperCase() : 'ARTICLE';
                             const articleId = article.id || Date.now();
+                            const imageHtml = article.image ? 
+                                `<div class="article-image" style="background-image: url('${article.image}');"></div>` : 
+                                '';
                             
                             return `
-                                <article class="article-item-lemonde">
-                                    <div class="article-content-wrapper">
-                                        <div class="article-badge-small">${genreLabel}</div>
-                                        <h3 class="article-title-medium">
-                                            <a href="${linkUrl}#article-${articleId}">${article.title}</a>
-                                        </h3>
-                                        <p class="article-excerpt-medium">${article.excerpt || ''}</p>
-                                        <div class="article-meta-medium">
-                                            Publié le ${article.date || ''} • ${article.author ? article.author : ''}
+                                <a href="${linkUrl}#article-${articleId}" class="article-card">
+                                    ${imageHtml}
+                                    <div class="article-content">
+                                        <div class="article-category">${article.genre ? article.genre.charAt(0).toUpperCase() + article.genre.slice(1) : 'Actualité'}</div>
+                                        <h3 class="article-title">${article.title}</h3>
+                                        <p class="article-excerpt">${article.excerpt || ''}</p>
+                                        <div class="article-meta">
+                                            <span class="article-author">${article.author ? '<strong>' + article.author + '</strong>' : ''}</span>
+                                            <span class="article-date">${article.date || ''}</span>
                                         </div>
                                     </div>
-                                    <div class="article-image-wrapper">
-                                        ${article.image ? `<img src="${article.image}" alt="${article.title}" class="article-image-medium" loading="lazy" />` : ''}
-                                    </div>
-                                </article>
+                                </a>
                             `;
                         }).join('');
                     } else {
-                        articlesList.innerHTML = '<p style="text-align: center; padding: 2rem;">Aucun article pour le moment.</p>';
+                        featuredArticles.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1 / -1;">Aucun article pour le moment.</p>';
                     }
                 });
             }
@@ -296,6 +247,7 @@
                     `;
                 }
             }
+            window.toggleMobileMenu = toggleMobileMenu;
 
             // Recherche
             const searchInput = document.querySelector('.search-input');

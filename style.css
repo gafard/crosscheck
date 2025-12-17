@@ -499,7 +499,7 @@ body {
 /* Images dans le contenu des articles (Quill) */
 .article-item img,
 .article-content img {
-  max-width: 100% !important;
+  max-width: min(100%, 800px) !important;
   width: auto !important;
   height: auto !important;
   margin: 1rem auto;
@@ -511,24 +511,27 @@ body {
 .article-content p img,
 .article-item figure img,
 .article-content figure img {
-  max-width: 100% !important;
+  max-width: min(100%, 800px) !important;
   width: auto !important;
   height: auto !important;
   margin: 1rem auto;
+  display: block;
 }
 
 .article-item figure,
 .article-content figure {
-  max-width: 100%;
+  max-width: min(100%, 800px);
   margin: 1rem auto;
   text-align: center;
 }
 
 .article-item figure img,
 .article-content figure img {
-  max-width: 100% !important;
+  max-width: min(100%, 800px) !important;
   width: auto !important;
   height: auto !important;
+  display: block;
+  margin: 0 auto;
 }
 
 .article-category {

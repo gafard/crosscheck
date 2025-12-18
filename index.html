@@ -53,57 +53,57 @@
     </header>
 
     <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero">
             <div class="hero-background" style="background-image: url('Images/947dc882ed15c601098e96accc86f5d0.jpg');"></div>
-            <div class="hero-content">
+        <div class="hero-content">
                 <div class="hero-text">
                     <div class="hero-badge">Foi • Science • Société</div>
-                    <h1 class="hero-title">
+                <h1 class="hero-title">
                         Concilier foi<br>
                         et rigueur<br>
                         scientifique
-                    </h1>
-                    <p class="hero-subtitle">
+                </h1>
+                <p class="hero-subtitle">
                         Découvrez les défis et opportunités de concilier foi chrétienne et rigueur scientifique/académique chez les jeunes. Un espace de dialogue pour étudiants, chercheurs et communautés chrétiennes.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="articles.html" class="btn-primary">
-                            Explorer les articles
-                            <span>→</span>
-                        </a>
-                        <a href="apropos.html" class="btn-secondary">
-                            À propos
-                            <span>→</span>
-                        </a>
-                    </div>
+                </p>
+            <div class="hero-cta">
+                    <a href="articles.html" class="btn-primary">
+                    Explorer les articles
+                        <span>→</span>
+                    </a>
+                    <a href="apropos.html" class="btn-secondary">
+                        À propos
+                        <span>→</span>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Featured Articles Section -->
-        <section class="featured-section">
-            <div class="featured-container">
+    <!-- Featured Articles Section -->
+    <section class="featured-section">
+        <div class="featured-container">
                 <div class="section-header">
-                    <div class="section-badge">Articles en vedette</div>
+                <div class="section-badge">Articles en vedette</div>
                     <h2 class="section-title">Nos dernières publications</h2>
                     <p class="section-subtitle">Découvrez nos articles sur la conciliation entre foi chrétienne et rigueur scientifique</p>
-                </div>
+        </div>
                 <div class="articles-grid" id="featured-articles">
                     <!-- Les articles en vedette seront chargés ici par le CMS -->
-                </div>
-            </div>
-        </section>
+        </div>
+        </div>
+    </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <div class="footer-logo">
+            <div class="footer-logo">
                     <div class="logo-icon"></div>
-                    <div class="logo-text">CrossCheck</div>
-                </div>
+                <div class="logo-text">CrossCheck</div>
+            </div>
                 <p class="footer-description">Plateforme dédiée à la conciliation entre foi chrétienne et rigueur scientifique/académique pour les étudiants, le corps académique et les communautés chrétiennes de jeunes.</p>
             </div>
             
@@ -213,40 +213,40 @@
                 yearEl.textContent = new Date().getFullYear();
             }
 
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                const header = document.querySelector('.header');
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
 
             // Menu mobile
-            function toggleMobileMenu() {
-                const nav = document.querySelector('.nav');
-                const toggle = document.querySelector('.mobile-menu-toggle');
-                
-                nav.classList.toggle('active');
-                
-                if (nav.classList.contains('active')) {
-                    toggle.innerHTML = `
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    `;
-                } else {
-                    toggle.innerHTML = `
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg>
-                    `;
-                }
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            nav.classList.toggle('active');
+            
+            if (nav.classList.contains('active')) {
+                toggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                `;
+            } else {
+                toggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                `;
             }
+        }
             window.toggleMobileMenu = toggleMobileMenu;
 
             // Recherche

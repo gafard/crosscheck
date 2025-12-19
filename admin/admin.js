@@ -112,7 +112,8 @@ function formatDate(dateString) {
 // Charger les articles avec migration automatique
 async function loadArticles() {
   try {
-    // Essayer de charger depuis le JSON
+    // Essayer de charger depuis le JSON (seulement si pas en mode file://)
+    // En mode file://, fetch() est bloqué par CORS, on utilise directement ARTICLES_DATA
     if (window.location.protocol !== 'file:') {
       try {
         const response = await fetch('../data/articles.json');
@@ -127,6 +128,8 @@ async function loadArticles() {
       } catch (e) {
         console.log('Chargement depuis JSON échoué, utilisation des données intégrées', e);
       }
+    } else {
+      console.log('Mode file:// détecté - utilisation directe de ARTICLES_DATA (pas de fetch)');
     }
 
     // Utiliser les données intégrées

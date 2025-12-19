@@ -112,28 +112,12 @@ function formatDate(dateString) {
 // Charger les articles avec migration automatique
 async function loadArticles() {
   try {
-    // Essayer de charger depuis le JSON (seulement si pas en mode file://)
-    // En mode file://, fetch() est bloqué par CORS, on utilise directement ARTICLES_DATA
-    if (window.location.protocol !== 'file:') {
-      try {
-        const response = await fetch('../data/articles.json');
-        if (response.ok) {
-          const data = await response.json();
-          // Migrer les anciens types vers les nouveaux genres
-          articlesData = migrateData(data);
-          displayArticles();
-          updateStats();
-          return;
-        }
-      } catch (e) {
-        console.log('Chargement depuis JSON échoué, utilisation des données intégrées', e);
-      }
-    } else {
-      console.log('Mode file:// détecté - utilisation directe de ARTICLES_DATA (pas de fetch)');
-    }
-
-    // Utiliser les données intégrées
+    // En mode file://, on utilise UNIQUEMENT ARTICLES_DATA chargé via <script>
+    // Pas de fetch() qui est bloqué par CORS
+    
+    // Utiliser les données intégrées (chargées via balise <script>)
     if (typeof ARTICLES_DATA !== 'undefined') {
+      console.log('✅ ARTICLES_DATA trouvé, chargement des articles...');
       articlesData = migrateData(ARTICLES_DATA);
       displayArticles();
       updateStats();
@@ -142,7 +126,7 @@ async function loadArticles() {
     
     // Si ARTICLES_DATA n'est pas disponible, initialiser avec des données vides
     // pour que le CMS puisse fonctionner même sans données
-    console.warn('ARTICLES_DATA non disponible. Initialisation avec des données vides.');
+    console.warn('⚠️ ARTICLES_DATA non disponible. Initialisation avec des données vides.');
     articlesData = {
       editorial: [],
       reportage: [],
@@ -154,8 +138,23 @@ async function loadArticles() {
     displayArticles();
     updateStats();
     
-    // Afficher un message d'aide
-    showError('⚠️ Le fichier js/articles-data.js n\'a pas pu être chargé. Vérifiez que le fichier existe et que le chemin est correct (../js/articles-data.js depuis admin/index.html).');
+    // Afficher un message d'aide seulement si vraiment nécessaire
+    const container = document.getElementById('articles-container');
+    if (container && container.innerHTML.includes('Chargement')) {
+      container.innerHTML = `
+        <div style="padding: 2rem; background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; color: #92400e;">
+          <h3 style="margin-top: 0; color: #78350f;">⚠️ Aucun article trouvé</h3>
+          <p>Le fichier <code>js/articles-data.js</code> n'a pas pu être chargé ou est vide.</p>
+          <p><strong>Vérifications :</strong></p>
+          <ul style="text-align: left; display: inline-block;">
+            <li>Le fichier <code>../js/articles-data.js</code> existe-t-il ?</li>
+            <li>Le chemin est-il correct depuis <code>admin/index.html</code> ?</li>
+            <li>Ouvrez la console (F12) pour voir les erreurs détaillées</li>
+          </ul>
+          <p style="margin-top: 1rem;"><strong>💡 Astuce :</strong> Vous pouvez créer un nouvel article pour générer le fichier automatiquement.</p>
+        </div>
+      `;
+    }
   } catch (error) {
     console.error('Erreur:', error);
     showError('Erreur lors du chargement des articles: ' + error.message);

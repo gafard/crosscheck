@@ -782,7 +782,7 @@ function detectProjectFolderFromURL() {
   const href = window.location.href;
   
   // Si on est sur localhost ou file://
-  if (path.includes('/Echos des moeurs/') || path.includes('/admin/')) {
+  if (path.includes('/admin/')) {
     // Extraire le chemin jusqu'au dossier racine
     const parts = path.split('/').filter(p => p);
     const adminIndex = parts.indexOf('admin');

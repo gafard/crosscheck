@@ -1028,17 +1028,36 @@
       }
     }, true);
   </script>
-  <script src="../js/articles-data.js" onerror="console.error('❌ Impossible de charger articles-data.js');"></script>
+  <script src="../js/articles-data.js" 
+          onerror="console.error('❌ Impossible de charger articles-data.js'); window.ARTICLES_DATA_LOAD_ERROR = true;"
+          onload="console.log('✅ Script articles-data.js chargé'); window.ARTICLES_DATA_SCRIPT_LOADED = true;"></script>
   <script>
     // Vérifier immédiatement si ARTICLES_DATA est chargé
     console.log('🔍 Vérification après chargement de articles-data.js');
     console.log('ARTICLES_DATA défini:', typeof ARTICLES_DATA !== 'undefined');
+    
     if (typeof ARTICLES_DATA !== 'undefined') {
       const total = Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0);
       console.log('✅ ARTICLES_DATA chargé! Nombre d\'articles:', total);
+      window.ARTICLES_DATA_AVAILABLE = true;
     } else {
-      console.error('❌ ARTICLES_DATA non défini après chargement du script!');
-      console.error('💡 Le script peut se charger de manière asynchrone, attendez quelques secondes...');
+      console.warn('⚠️ ARTICLES_DATA non défini immédiatement après chargement du script');
+      console.warn('💡 Le script peut se charger de manière asynchrone, le CMS attendra...');
+      
+      // Vérifier périodiquement
+      let checkCount = 0;
+      const checkInterval = setInterval(function() {
+        checkCount++;
+        if (typeof ARTICLES_DATA !== 'undefined') {
+          clearInterval(checkInterval);
+          console.log('✅ ARTICLES_DATA disponible après', checkCount, 'vérifications');
+          window.ARTICLES_DATA_AVAILABLE = true;
+        } else if (checkCount >= 50) {
+          clearInterval(checkInterval);
+          console.error('❌ ARTICLES_DATA toujours non disponible après 5 secondes');
+          console.error('💡 Ouvrez test-debug.html pour diagnostiquer le problème');
+        }
+      }, 100);
     }
   </script>
   <script src="../libs/quill/quill.js"></script>

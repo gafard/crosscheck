@@ -1581,6 +1581,7 @@
                     const genre = this.getAttribute('data-tab');
                     if (genre === 'all') {
                         // Charger tous les articles
+                        // Afficher les articles dans le conteneur principal
                         cms.loadArticles().then(data => {
                             if (data) {
                                 const allArticles = [

@@ -162,6 +162,26 @@ async function loadArticles() {
           };
           displayArticles();
           updateStats();
+          
+          // Afficher un message d'erreur visible
+          const container = document.getElementById('articles-container');
+          if (container) {
+            container.innerHTML = `
+              <div style="padding: 2rem; background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; color: #92400e;">
+                <h3 style="margin-top: 0; color: #78350f;">⚠️ Aucun article trouvé</h3>
+                <p>Le fichier <code>js/articles-data.js</code> n'a pas pu être chargé.</p>
+                <p><strong>Vérifications :</strong></p>
+                <ul style="text-align: left; display: inline-block;">
+                  <li>Le fichier <code>../js/articles-data.js</code> existe-t-il ?</li>
+                  <li>Le chemin est-il correct depuis <code>admin/index.html</code> ?</li>
+                  <li>Ouvrez la console (F12) pour voir les erreurs détaillées</li>
+                  <li>Ouvrez <a href="test-simple.html" target="_blank" style="color: #3b82f6;">test-simple.html</a> pour tester le chargement</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>💡 Astuce :</strong> Vous pouvez créer un nouvel article pour générer le fichier automatiquement.</p>
+              </div>
+            `;
+          }
+          
           showError('Données d\'articles non disponibles. Vérifiez que js/articles-data.js est chargé.');
         }
       }, 100);

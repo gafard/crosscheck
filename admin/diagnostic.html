@@ -161,3 +161,327 @@
 </body>
 </html>
 
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic CMS - CrossCheck</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-result {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border-left: 4px solid #ccc;
+    }
+    .success {
+      border-left-color: #10b981;
+      background: #d1fae5;
+    }
+    .error {
+      border-left-color: #ef4444;
+      background: #fee2e2;
+    }
+    .warning {
+      border-left-color: #f59e0b;
+      background: #fef3c7;
+    }
+    h1 {
+      color: #0a0a0a;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Diagnostic du CMS CrossCheck</h1>
+  <div id="results"></div>
+
+  <script>
+    const results = document.getElementById('results');
+    
+    function addResult(title, message, type = 'info') {
+      const div = document.createElement('div');
+      div.className = `test-result ${type}`;
+      div.innerHTML = `<strong>${title}</strong><br/>${message}`;
+      results.appendChild(div);
+    }
+
+    // Test 1: Vérifier l'URL
+    addResult('Test 1: URL actuelle', `URL: <code>${window.location.href}</code><br/>Protocole: <code>${window.location.protocol}</code>`, 'info');
+
+    // Test 2: Vérifier si articles-data.js peut être chargé
+    const script = document.createElement('script');
+    script.src = '../js/articles-data.js';
+    script.onload = function() {
+      addResult('Test 2: Chargement du script', '✅ Le script <code>../js/articles-data.js</code> a été chargé avec succès', 'success');
+      
+      // Test 3: Vérifier si ARTICLES_DATA est défini
+      setTimeout(() => {
+        if (typeof ARTICLES_DATA !== 'undefined') {
+          const totalArticles = Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0);
+          addResult('Test 3: Variable ARTICLES_DATA', `✅ ARTICLES_DATA est défini<br/>Total d'articles: <code>${totalArticles}</code>`, 'success');
+          
+          // Afficher le détail
+          let detail = '<ul>';
+          Object.keys(ARTICLES_DATA).forEach(key => {
+            detail += `<li><code>${key}</code>: ${ARTICLES_DATA[key]?.length || 0} articles</li>`;
+          });
+          detail += '</ul>';
+          addResult('Détail des articles', detail, 'info');
+        } else {
+          addResult('Test 3: Variable ARTICLES_DATA', '❌ ARTICLES_DATA n\'est pas défini après le chargement du script', 'error');
+        }
+      }, 100);
+    };
+    script.onerror = function() {
+      addResult('Test 2: Chargement du script', '❌ Impossible de charger <code>../js/articles-data.js</code><br/>Vérifiez que le fichier existe et que le chemin est correct', 'error');
+    };
+    document.head.appendChild(script);
+
+    // Test 4: Vérifier les fichiers nécessaires (seulement si pas en mode file://)
+    if (window.location.protocol === 'file:') {
+      addResult('Test 4: Accessibilité du fichier', '⚠️ Mode <code>file://</code> détecté - fetch() est bloqué par CORS<br/>Le script sera chargé via balise &lt;script&gt; à la place', 'warning');
+    } else {
+      fetch('../js/articles-data.js')
+        .then(response => {
+          if (response.ok) {
+            addResult('Test 4: Accessibilité du fichier', '✅ Le fichier <code>../js/articles-data.js</code> est accessible via fetch', 'success');
+          } else {
+            addResult('Test 4: Accessibilité du fichier', `❌ Le fichier retourne le code HTTP <code>${response.status}</code>`, 'error');
+          }
+        })
+        .catch(error => {
+          addResult('Test 4: Accessibilité du fichier', `❌ Erreur lors de l'accès au fichier: <code>${error.message}</code>`, 'error');
+        });
+    }
+
+    // Test 5: Vérifier Quill
+    const quillScript = document.createElement('script');
+    quillScript.src = '../libs/quill/quill.js';
+    quillScript.onload = function() {
+      setTimeout(() => {
+        if (typeof Quill !== 'undefined') {
+          addResult('Test 5: Quill.js', '✅ Quill.js est chargé', 'success');
+        } else {
+          addResult('Test 5: Quill.js', '❌ Quill n\'est pas défini après le chargement', 'error');
+        }
+      }, 100);
+    };
+    quillScript.onerror = function() {
+      addResult('Test 5: Quill.js', '❌ Impossible de charger Quill.js', 'error');
+    };
+    document.head.appendChild(quillScript);
+
+    // Test 6: Vérifier la structure des dossiers
+    addResult('Test 6: Structure attendue', `
+      <ul>
+        <li><code>admin/index.html</code> (fichier actuel)</li>
+        <li><code>admin/admin.js</code></li>
+        <li><code>js/articles-data.js</code> (relatif: <code>../js/articles-data.js</code>)</li>
+        <li><code>libs/quill/quill.js</code> (relatif: <code>../libs/quill/quill.js</code>)</li>
+        <li><code>data/articles.json</code> (relatif: <code>../data/articles.json</code>)</li>
+      </ul>
+    `, 'info');
+
+    // Test 7: Recommandation pour le protocole file://
+    if (window.location.protocol === 'file:') {
+      addResult('Test 7: Recommandation IMPORTANTE', `
+        <strong style="color: #ef4444;">⚠️ PROBLÈME CORS DÉTECTÉ</strong><br/><br/>
+        Vous utilisez le protocole <code>file://</code> qui bloque certaines fonctionnalités.<br/><br/>
+        <strong>Solution : Utilisez un serveur local</strong><br/><br/>
+        <strong>Option 1 - Python (recommandé) :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          cd /Users/gafardgnane/Downloads/crosscheck-site<br/>
+          python3 -m http.server 8000
+        </code><br/>
+        Puis ouvrez : <code>http://localhost:8000/admin/index.html</code><br/><br/>
+        <strong>Option 2 - Node.js :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          npx http-server -p 8000
+        </code><br/><br/>
+        <strong>Option 3 - PHP :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          php -S localhost:8000
+        </code>
+      `, 'error');
+    } else {
+      addResult('Test 7: Protocole', `✅ Vous utilisez le protocole <code>${window.location.protocol}</code> - Pas de problème CORS`, 'success');
+    }
+  </script>
+</body>
+</html>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic CMS - CrossCheck</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-result {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border-left: 4px solid #ccc;
+    }
+    .success {
+      border-left-color: #10b981;
+      background: #d1fae5;
+    }
+    .error {
+      border-left-color: #ef4444;
+      background: #fee2e2;
+    }
+    .warning {
+      border-left-color: #f59e0b;
+      background: #fef3c7;
+    }
+    h1 {
+      color: #0a0a0a;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Diagnostic du CMS CrossCheck</h1>
+  <div id="results"></div>
+
+  <script>
+    const results = document.getElementById('results');
+    
+    function addResult(title, message, type = 'info') {
+      const div = document.createElement('div');
+      div.className = `test-result ${type}`;
+      div.innerHTML = `<strong>${title}</strong><br/>${message}`;
+      results.appendChild(div);
+    }
+
+    // Test 1: Vérifier l'URL
+    addResult('Test 1: URL actuelle', `URL: <code>${window.location.href}</code><br/>Protocole: <code>${window.location.protocol}</code>`, 'info');
+
+    // Test 2: Vérifier si articles-data.js peut être chargé
+    const script = document.createElement('script');
+    script.src = '../js/articles-data.js';
+    script.onload = function() {
+      addResult('Test 2: Chargement du script', '✅ Le script <code>../js/articles-data.js</code> a été chargé avec succès', 'success');
+      
+      // Test 3: Vérifier si ARTICLES_DATA est défini
+      setTimeout(() => {
+        if (typeof ARTICLES_DATA !== 'undefined') {
+          const totalArticles = Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0);
+          addResult('Test 3: Variable ARTICLES_DATA', `✅ ARTICLES_DATA est défini<br/>Total d'articles: <code>${totalArticles}</code>`, 'success');
+          
+          // Afficher le détail
+          let detail = '<ul>';
+          Object.keys(ARTICLES_DATA).forEach(key => {
+            detail += `<li><code>${key}</code>: ${ARTICLES_DATA[key]?.length || 0} articles</li>`;
+          });
+          detail += '</ul>';
+          addResult('Détail des articles', detail, 'info');
+        } else {
+          addResult('Test 3: Variable ARTICLES_DATA', '❌ ARTICLES_DATA n\'est pas défini après le chargement du script', 'error');
+        }
+      }, 100);
+    };
+    script.onerror = function() {
+      addResult('Test 2: Chargement du script', '❌ Impossible de charger <code>../js/articles-data.js</code><br/>Vérifiez que le fichier existe et que le chemin est correct', 'error');
+    };
+    document.head.appendChild(script);
+
+    // Test 4: Vérifier les fichiers nécessaires (seulement si pas en mode file://)
+    if (window.location.protocol === 'file:') {
+      addResult('Test 4: Accessibilité du fichier', '⚠️ Mode <code>file://</code> détecté - fetch() est bloqué par CORS<br/>Le script sera chargé via balise &lt;script&gt; à la place', 'warning');
+    } else {
+      fetch('../js/articles-data.js')
+        .then(response => {
+          if (response.ok) {
+            addResult('Test 4: Accessibilité du fichier', '✅ Le fichier <code>../js/articles-data.js</code> est accessible via fetch', 'success');
+          } else {
+            addResult('Test 4: Accessibilité du fichier', `❌ Le fichier retourne le code HTTP <code>${response.status}</code>`, 'error');
+          }
+        })
+        .catch(error => {
+          addResult('Test 4: Accessibilité du fichier', `❌ Erreur lors de l'accès au fichier: <code>${error.message}</code>`, 'error');
+        });
+    }
+
+    // Test 5: Vérifier Quill
+    const quillScript = document.createElement('script');
+    quillScript.src = '../libs/quill/quill.js';
+    quillScript.onload = function() {
+      setTimeout(() => {
+        if (typeof Quill !== 'undefined') {
+          addResult('Test 5: Quill.js', '✅ Quill.js est chargé', 'success');
+        } else {
+          addResult('Test 5: Quill.js', '❌ Quill n\'est pas défini après le chargement', 'error');
+        }
+      }, 100);
+    };
+    quillScript.onerror = function() {
+      addResult('Test 5: Quill.js', '❌ Impossible de charger Quill.js', 'error');
+    };
+    document.head.appendChild(quillScript);
+
+    // Test 6: Vérifier la structure des dossiers
+    addResult('Test 6: Structure attendue', `
+      <ul>
+        <li><code>admin/index.html</code> (fichier actuel)</li>
+        <li><code>admin/admin.js</code></li>
+        <li><code>js/articles-data.js</code> (relatif: <code>../js/articles-data.js</code>)</li>
+        <li><code>libs/quill/quill.js</code> (relatif: <code>../libs/quill/quill.js</code>)</li>
+        <li><code>data/articles.json</code> (relatif: <code>../data/articles.json</code>)</li>
+      </ul>
+    `, 'info');
+
+    // Test 7: Recommandation pour le protocole file://
+    if (window.location.protocol === 'file:') {
+      addResult('Test 7: Recommandation IMPORTANTE', `
+        <strong style="color: #ef4444;">⚠️ PROBLÈME CORS DÉTECTÉ</strong><br/><br/>
+        Vous utilisez le protocole <code>file://</code> qui bloque certaines fonctionnalités.<br/><br/>
+        <strong>Solution : Utilisez un serveur local</strong><br/><br/>
+        <strong>Option 1 - Python (recommandé) :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          cd /Users/gafardgnane/Downloads/crosscheck-site<br/>
+          python3 -m http.server 8000
+        </code><br/>
+        Puis ouvrez : <code>http://localhost:8000/admin/index.html</code><br/><br/>
+        <strong>Option 2 - Node.js :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          npx http-server -p 8000
+        </code><br/><br/>
+        <strong>Option 3 - PHP :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          php -S localhost:8000
+        </code>
+      `, 'error');
+    } else {
+      addResult('Test 7: Protocole', `✅ Vous utilisez le protocole <code>${window.location.protocol}</code> - Pas de problème CORS`, 'success');
+    }
+  </script>
+</body>
+</html>
+

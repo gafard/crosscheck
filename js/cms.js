@@ -454,3 +454,75 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = CMS;
 }
 
+
+          ...(data.editorial || []).filter(a => a.featured).slice(0, 1),
+          ...(data.reportage || []).filter(a => a.featured).slice(0, 1),
+          ...(data.interview || []).filter(a => a.featured).slice(0, 1),
+          ...(data.enquete || []).filter(a => a.featured).slice(0, 1),
+          ...(data.analyse || []).filter(a => a.featured).slice(0, 1),
+          ...(data.billet || []).filter(a => a.featured).slice(0, 1)
+        ];
+        
+        const container = document.querySelector('.articles-grid');
+        if (container && featuredArticles.length > 0) {
+          container.innerHTML = featuredArticles
+            .map(article => cms.renderArticleCard(article, article.genre || article.category || 'editorial'))
+            .join('');
+        }
+      }
+    });
+  }
+
+  // Gestion des filtres de catégories
+  const categoryButtons = document.querySelectorAll('.category-btn');
+  categoryButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+      categoryButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      cms.filterByCategory(category);
+    });
+  });
+});
+
+// Exporter pour utilisation dans d'autres scripts
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = CMS;
+}
+
+
+          ...(data.editorial || []).filter(a => a.featured).slice(0, 1),
+          ...(data.reportage || []).filter(a => a.featured).slice(0, 1),
+          ...(data.interview || []).filter(a => a.featured).slice(0, 1),
+          ...(data.enquete || []).filter(a => a.featured).slice(0, 1),
+          ...(data.analyse || []).filter(a => a.featured).slice(0, 1),
+          ...(data.billet || []).filter(a => a.featured).slice(0, 1)
+        ];
+        
+        const container = document.querySelector('.articles-grid');
+        if (container && featuredArticles.length > 0) {
+          container.innerHTML = featuredArticles
+            .map(article => cms.renderArticleCard(article, article.genre || article.category || 'editorial'))
+            .join('');
+        }
+      }
+    });
+  }
+
+  // Gestion des filtres de catégories
+  const categoryButtons = document.querySelectorAll('.category-btn');
+  categoryButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+      categoryButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      cms.filterByCategory(category);
+    });
+  });
+});
+
+// Exporter pour utilisation dans d'autres scripts
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = CMS;
+}
+

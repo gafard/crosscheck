@@ -1335,21 +1335,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Charger les articles au chargement de la page
 window.addEventListener('load', function() {
+  console.log('🔍 Début du chargement du CMS...');
+  console.log('📍 URL actuelle:', window.location.href);
+  console.log('📂 Chemin attendu pour articles-data.js:', '../js/articles-data.js');
+  
   // Attendre que le script articles-data.js soit chargé
   let loadAttempts = 0;
   const maxLoadAttempts = 30;
   
   const tryLoadArticles = setInterval(function() {
     loadAttempts++;
+    console.log(`🔄 Tentative ${loadAttempts}/${maxLoadAttempts} - ARTICLES_DATA disponible:`, typeof ARTICLES_DATA !== 'undefined');
     
     // Vérifier si ARTICLES_DATA est disponible
     if (typeof ARTICLES_DATA !== 'undefined') {
       clearInterval(tryLoadArticles);
+      console.log('✅ ARTICLES_DATA chargé avec succès!');
+      console.log('📊 Nombre d\'articles:', Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0));
       loadArticles();
       autoRestoreFolders();
     } else if (loadAttempts >= maxLoadAttempts) {
       clearInterval(tryLoadArticles);
-      console.error('ARTICLES_DATA non disponible après', maxLoadAttempts, 'tentatives');
+      console.error('❌ ARTICLES_DATA non disponible après', maxLoadAttempts, 'tentatives');
+      console.error('💡 Vérifiez que le fichier ../js/articles-data.js existe et est accessible');
+      
       // Essayer quand même de charger (peut-être depuis JSON)
       loadArticles();
       autoRestoreFolders();
@@ -1357,8 +1366,24 @@ window.addEventListener('load', function() {
       // Afficher un message d'aide
       const statusText = document.getElementById('folders-status');
       if (statusText) {
-        statusText.textContent = '⚠️ Le fichier js/articles-data.js n\'a pas pu être chargé. Vérifiez le chemin du fichier.';
+        statusText.innerHTML = '⚠️ Le fichier js/articles-data.js n\'a pas pu être chargé.<br/>Vérifiez que le fichier existe à: <code>../js/articles-data.js</code><br/>Ouvrez la console (F12) pour plus de détails.';
         statusText.style.color = '#f59e0b';
+      }
+      
+      // Afficher aussi dans alert-container
+      const alertContainer = document.getElementById('alert-container');
+      if (alertContainer) {
+        alertContainer.innerHTML = `
+          <div class="alert alert-error" style="background: #fee; border: 1px solid #fcc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <strong>⚠️ Problème de chargement:</strong><br/>
+            Le fichier <code>js/articles-data.js</code> n'a pas pu être chargé.<br/>
+            <strong>Solutions:</strong><br/>
+            1. Vérifiez que le fichier existe dans le dossier <code>js/</code><br/>
+            2. Vérifiez que le chemin est correct (depuis admin/, le chemin est <code>../js/articles-data.js</code>)<br/>
+            3. Ouvrez la console du navigateur (F12) pour voir les erreurs détaillées<br/>
+            4. Si vous utilisez un serveur local, assurez-vous qu'il est bien démarré
+          </div>
+        `;
       }
     }
   }, 200);

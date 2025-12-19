@@ -1003,7 +1003,15 @@ function updateFolderSelectionUI(selected) {
 
 // Appeler automatiquement au chargement pour afficher les infos
 async function autoRestoreFolders() {
-  if (!window.showDirectoryPicker) return;
+  if (!window.showDirectoryPicker) {
+    // Afficher un message d'aide si l'API n'est pas supportée
+    const statusText = document.getElementById('folders-status');
+    if (statusText) {
+      statusText.textContent = '⚠️ Votre navigateur ne supporte pas la sauvegarde automatique. Utilisez le bouton "Sauvegarder" pour télécharger les fichiers.';
+      statusText.style.color = '#f59e0b';
+    }
+    return;
+  }
   
   const lastPath = localStorage.getItem('lastProjectPath');
   const lastFolder = localStorage.getItem('lastProjectFolder');

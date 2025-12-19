@@ -132,6 +132,31 @@
         <li><code>data/articles.json</code> (relatif: <code>../data/articles.json</code>)</li>
       </ul>
     `, 'info');
+
+    // Test 7: Recommandation pour le protocole file://
+    if (window.location.protocol === 'file:') {
+      addResult('Test 7: Recommandation IMPORTANTE', `
+        <strong style="color: #ef4444;">⚠️ PROBLÈME CORS DÉTECTÉ</strong><br/><br/>
+        Vous utilisez le protocole <code>file://</code> qui bloque certaines fonctionnalités.<br/><br/>
+        <strong>Solution : Utilisez un serveur local</strong><br/><br/>
+        <strong>Option 1 - Python (recommandé) :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          cd /Users/gafardgnane/Downloads/crosscheck-site<br/>
+          python3 -m http.server 8000
+        </code><br/>
+        Puis ouvrez : <code>http://localhost:8000/admin/index.html</code><br/><br/>
+        <strong>Option 2 - Node.js :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          npx http-server -p 8000
+        </code><br/><br/>
+        <strong>Option 3 - PHP :</strong><br/>
+        <code style="background: #f3f4f6; padding: 0.5rem; display: block; margin: 0.5rem 0;">
+          php -S localhost:8000
+        </code>
+      `, 'error');
+    } else {
+      addResult('Test 7: Protocole', `✅ Vous utilisez le protocole <code>${window.location.protocol}</code> - Pas de problème CORS`, 'success');
+    }
   </script>
 </body>
 </html>

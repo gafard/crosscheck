@@ -91,7 +91,7 @@ class CMS {
     });
   }
 
-  // Rendre un article en HTML (format liste complète)
+  // Rendre un article en HTML (format liste complète - Style Nouvel Obs)
   renderArticleFull(article, type = 'editorial') {
     const categoryMap = {
       'editorial': 'Éditorial',
@@ -103,56 +103,92 @@ class CMS {
     };
 
     const categoryLabel = categoryMap[article.genre] || categoryMap[article.category] || article.genre || article.category || categoryMap[type] || type;
+    
     // Convertir le Markdown en HTML pour chaque paragraphe
     const paragraphs = article.content.map(p => `<p>${markdownToHtml(p)}</p>`).join('');
+    
+    // Calculer le temps de lecture approximatif (250 mots par minute)
+    const wordCount = (article.excerpt || '').split(/\s+/).length + 
+                     paragraphs.replace(/<[^>]*>/g, '').split(/\s+/).length;
+    const readingTime = Math.max(1, Math.ceil(wordCount / 250));
     
     // Normaliser le chemin de l'image
     let imagePath = article.image || '';
     if (imagePath) {
-      // Si c'est une URL complète (http/https), la garder telle quelle
       if (!imagePath.startsWith('http://') && !imagePath.startsWith('https://')) {
-        // Chemin relatif : encoder les espaces et caractères spéciaux dans chaque segment
         const pathParts = imagePath.split('/');
-        imagePath = pathParts.map(part => {
-          // Encoder chaque partie du chemin pour gérer les espaces et caractères spéciaux
-          return encodeURIComponent(part);
-        }).join('/');
+        imagePath = pathParts.map(part => encodeURIComponent(part)).join('/');
       }
     }
-    // Créer l'élément image avec gestion d'erreur améliorée
-    const imageHtml = imagePath ? `<img src="${imagePath}" alt="${escapeHtml(article.title)}" class="article-image" loading="lazy" onerror="console.error('Image non trouvée:', '${imagePath}'); this.style.display='none'; if(this.nextElementSibling && this.nextElementSibling.classList && this.nextElementSibling.classList.contains('image-credits')) { this.nextElementSibling.style.display='none'; }" />` : '';
-    const imageCreditsHtml = (imagePath && article.imageCredits) ? `<p class="image-credits">${escapeHtml(article.imageCredits)}</p>` : '';
-
-    // Pour les articles complets, pas de lien "Lire la suite" car tout est déjà affiché
-    // Seulement pour les ressources avec URL externe
-    const linkHtml = article.url ? `<a href="${article.url}" target="_blank" class="external-link">Accéder à la ressource →</a>` : '';
-
-    const authorHtml = article.author ? `<div class="author">Par <strong>${escapeHtml(article.author)}</strong></div>` : '';
     
-    // Boutons de partage social
+    // Image principale
+    const imageHtml = imagePath ? `
+      <div class="article-featured-image">
+        <img src="${imagePath}" alt="${escapeHtml(article.title)}" loading="lazy" 
+             onerror="this.style.display='none';" />
+        ${article.imageCredits ? `<p class="article-image-credits">${escapeHtml(article.imageCredits)}</p>` : ''}
+      </div>
+    ` : '';
+    
+    // Auteur et date
+    const authorHtml = article.author ? `<span class="article-author">Par <strong>${escapeHtml(article.author)}</strong></span>` : '';
+    const dateHtml = article.date ? `<span class="article-date">Publié le ${article.date}</span>` : '';
+    
+    // Résumé/lead
+    const excerptHtml = article.excerpt ? `<div class="article-lead">${markdownToHtml(article.excerpt)}</div>` : '';
+    
+    // Boutons d'interaction
     const currentUrl = encodeURIComponent(window.location.href);
     const shareTitle = encodeURIComponent(article.title);
     const shareText = encodeURIComponent(article.excerpt || article.title);
-    const shareButtons = `
-      <div class="share-buttons" aria-label="Partager cet article">
-        <span class="share-label">Partager :</span>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=${currentUrl}" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook" class="share-btn share-facebook">Facebook</a>
-        <a href="https://twitter.com/intent/tweet?url=${currentUrl}&text=${shareTitle}" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Twitter" class="share-btn share-twitter">Twitter</a>
-        <a href="https://www.linkedin.com/shareArticle?url=${currentUrl}&title=${shareTitle}" target="_blank" rel="noopener noreferrer" aria-label="Partager sur LinkedIn" class="share-btn share-linkedin">LinkedIn</a>
-        <button onclick="navigator.share({title: '${escapeHtml(article.title)}', text: '${escapeHtml(shareText)}', url: '${window.location.href}'})" class="share-btn share-native" aria-label="Partager via l'appareil" style="display: none;">Partager</button>
-      </div>
-    `;
     
     return `
-      <article class="article-item" data-category="${article.genre || article.category || type}">
+      <article class="article-full-nouvelobs" data-category="${article.genre || article.category || type}">
+        <div class="article-category-tags">
+          <span class="article-category">${categoryLabel}</span>
+          <span class="article-badge">Info « CrossCheck »</span>
+        </div>
+        
+        <h1 class="article-title-nouvelobs">${escapeHtml(article.title)}</h1>
+        
+        ${excerptHtml}
+        
+        <div class="article-meta-nouvelobs">
+          ${authorHtml}
+          ${dateHtml}
+          <span class="article-reading-time">Lecture: ${readingTime} min.</span>
+        </div>
+        
         ${imageHtml}
-        ${imageCreditsHtml}
-        <h3>${article.title}</h3>
-        <div class="date">Publié le ${article.date} • ${categoryLabel}</div>
-        ${authorHtml}
-        ${shareButtons}
-        ${paragraphs}
-        ${linkHtml}
+        
+        <div class="article-actions-nouvelobs">
+          <button class="action-btn comment-btn" aria-label="Commenter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Commenter
+          </button>
+          <button class="action-btn share-btn-icon" aria-label="Partager" onclick="navigator.share({title: '${escapeHtml(article.title)}', text: '${escapeHtml(shareText)}', url: '${window.location.href}'})">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="article-content-nouvelobs">
+          ${paragraphs}
+        </div>
+        
+        <div class="article-share-nouvelobs">
+          <span class="share-label">Partager :</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${currentUrl}" target="_blank" rel="noopener noreferrer" class="share-link">Facebook</a>
+          <a href="https://twitter.com/intent/tweet?url=${currentUrl}&text=${shareTitle}" target="_blank" rel="noopener noreferrer" class="share-link">Twitter</a>
+          <a href="https://www.linkedin.com/shareArticle?url=${currentUrl}&title=${shareTitle}" target="_blank" rel="noopener noreferrer" class="share-link">LinkedIn</a>
+        </div>
       </article>
     `;
   }

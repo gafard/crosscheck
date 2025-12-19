@@ -1336,72 +1336,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Charger les articles au chargement de la page
-// Fonctionne en mode file:// sans serveur local
-(function() {
-  'use strict';
-  
-  // Fonction pour charger les articles une fois que ARTICLES_DATA est disponible
-  function tryLoadArticles() {
-    // Le script articles-data.js est chargé via <script> dans le HTML
-    // Il devrait être disponible immédiatement ou très rapidement
-    if (typeof ARTICLES_DATA !== 'undefined') {
-      console.log('✅ ARTICLES_DATA disponible');
-      const totalArticles = Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0);
-      console.log('📊 Nombre d\'articles:', totalArticles);
-      loadArticles();
-      autoRestoreFolders();
-      return true;
-    }
-    return false;
-  }
-  
-  // Essayer immédiatement si le script est déjà chargé
-  if (tryLoadArticles()) {
-    return;
-  }
-  
-  // Sinon, attendre que le DOM soit prêt
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      // Essayer plusieurs fois car le script peut se charger après DOMContentLoaded
-      let attempts = 0;
-      const maxAttempts = 20;
-      const checkInterval = setInterval(function() {
-        attempts++;
-        if (tryLoadArticles() || attempts >= maxAttempts) {
-          clearInterval(checkInterval);
-          if (attempts >= maxAttempts && typeof ARTICLES_DATA === 'undefined') {
-            console.warn('⚠️ ARTICLES_DATA non disponible après', maxAttempts, 'tentatives');
-            // Charger quand même (avec données vides)
-            loadArticles();
-            autoRestoreFolders();
-          }
-        }
-      }, 100);
-    });
-  } else {
-    // DOM déjà chargé, essayer immédiatement
-    let attempts = 0;
-    const maxAttempts = 20;
-    const checkInterval = setInterval(function() {
-      attempts++;
-      if (tryLoadArticles() || attempts >= maxAttempts) {
-        clearInterval(checkInterval);
-        if (attempts >= maxAttempts && typeof ARTICLES_DATA === 'undefined') {
-          console.warn('⚠️ ARTICLES_DATA non disponible après', maxAttempts, 'tentatives');
-          // Charger quand même (avec données vides)
-          loadArticles();
-          autoRestoreFolders();
-        }
-      }
-    }, 100);
-  }
-  
-  // Backup : essayer aussi au window.load
-  window.addEventListener('load', function() {
-    if (typeof ARTICLES_DATA !== 'undefined' && articlesData.editorial.length === 0) {
-      // Si les articles n'ont pas encore été chargés
-      tryLoadArticles();
-    }
-  });
-})();
+// Même approche que les autres CMS (Orient.infos.com, Enfance360, etc.)
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    loadArticles();
+    // Essayer de restaurer automatiquement les informations du dossier
+    autoRestoreFolders();
+  }, 300);
+});

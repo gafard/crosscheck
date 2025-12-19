@@ -1333,9 +1333,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Charger les articles au chargement de la page
 window.addEventListener('load', function() {
-  setTimeout(function() {
-    loadArticles();
-    // Essayer de restaurer automatiquement les informations du dossier
-    autoRestoreFolders();
-  }, 300);
+  // Attendre que le script articles-data.js soit chargé
+  let loadAttempts = 0;
+  const maxLoadAttempts = 30;
+  
+  const tryLoadArticles = setInterval(function() {
+    loadAttempts++;
+    
+    // Vérifier si ARTICLES_DATA est disponible
+    if (typeof ARTICLES_DATA !== 'undefined') {
+      clearInterval(tryLoadArticles);
+      loadArticles();
+      autoRestoreFolders();
+    } else if (loadAttempts >= maxLoadAttempts) {
+      clearInterval(tryLoadArticles);
+      console.error('ARTICLES_DATA non disponible après', maxLoadAttempts, 'tentatives');
+      // Essayer quand même de charger (peut-être depuis JSON)
+      loadArticles();
+      autoRestoreFolders();
+      
+      // Afficher un message d'aide
+      const statusText = document.getElementById('folders-status');
+      if (statusText) {
+        statusText.textContent = '⚠️ Le fichier js/articles-data.js n\'a pas pu être chargé. Vérifiez le chemin du fichier.';
+        statusText.style.color = '#f59e0b';
+      }
+    }
+  }, 200);
 });

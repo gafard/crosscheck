@@ -537,10 +537,41 @@ body {
 /* ============================================
    STYLE NOUVEL OBS POUR ARTICLES
    ============================================ */
-.article-full-nouvelobs {
-  max-width: 800px;
+
+/* Mise en page à deux colonnes pour les articles */
+.articles-layout-nouvelobs {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
+}
+
+.articles-main-column {
+  min-width: 0; /* Permet au contenu de se rétrécir */
+}
+
+.articles-sidebar-column {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+@media (max-width: 1024px) {
+  .articles-layout-nouvelobs {
+    grid-template-columns: 1fr;
+  }
+  
+  .articles-sidebar-column {
+    position: static;
+  }
+}
+
+.article-full-nouvelobs {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   background: var(--white);
 }
 

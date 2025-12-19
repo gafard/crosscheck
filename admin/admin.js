@@ -134,23 +134,25 @@ async function loadArticles() {
       articlesData = migrateData(ARTICLES_DATA);
       displayArticles();
       updateStats();
-    } else {
-      // Attendre que le script soit chargé
-      let attempts = 0;
-      const maxAttempts = 20;
-      const checkInterval = setInterval(() => {
-        attempts++;
-        if (typeof ARTICLES_DATA !== 'undefined') {
-          clearInterval(checkInterval);
-          articlesData = migrateData(ARTICLES_DATA);
-          displayArticles();
-          updateStats();
-        } else if (attempts >= maxAttempts) {
-          clearInterval(checkInterval);
-          showError('Données d\'articles non disponibles. Vérifiez que js/articles-data.js est chargé.');
-        }
-      }, 100);
+      return;
     }
+    
+    // Si ARTICLES_DATA n'est pas disponible, initialiser avec des données vides
+    // pour que le CMS puisse fonctionner même sans données
+    console.warn('ARTICLES_DATA non disponible. Initialisation avec des données vides.');
+    articlesData = {
+      editorial: [],
+      reportage: [],
+      interview: [],
+      enquete: [],
+      analyse: [],
+      billet: []
+    };
+    displayArticles();
+    updateStats();
+    
+    // Afficher un message d'aide
+    showError('⚠️ Le fichier js/articles-data.js n\'a pas pu être chargé. Vérifiez que le fichier existe et que le chemin est correct (../js/articles-data.js depuis admin/index.html).');
   } catch (error) {
     console.error('Erreur:', error);
     showError('Erreur lors du chargement des articles: ' + error.message);

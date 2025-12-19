@@ -1613,8 +1613,23 @@
                             }
                         });
                     } else {
-                        // Charger les articles du genre spécifique
-                        cms.displayArticleCards(`#articles-${genre}`, genre);
+                        // Charger les articles du genre spécifique avec le style Nouvel Obs
+                        cms.displayArticles(`#articles-${genre}`, genre);
+                        
+                        // Charger les articles en vedette dans la sidebar
+                        cms.loadArticles().then(data => {
+                            if (data && data[genre]) {
+                                const sidebarContainer = document.getElementById(`sidebar-${genre}`);
+                                if (sidebarContainer) {
+                                    const featuredArticles = data[genre]
+                                        .filter(a => a.featured)
+                                        .slice(0, 3)
+                                        .map(article => cms.renderArticleCard(article, genre))
+                                        .join('');
+                                    sidebarContainer.innerHTML = featuredArticles || '<p style="color: var(--secondary); font-size: 0.875rem;">Aucun article en vedette</p>';
+                                }
+                            }
+                        });
                     }
                 });
             });

@@ -1010,6 +1010,17 @@
   </div>
 
   <script src="../js/articles-data.js"></script>
+  <script>
+    // Vérifier immédiatement si ARTICLES_DATA est chargé
+    console.log('🔍 Vérification après chargement de articles-data.js');
+    console.log('ARTICLES_DATA défini:', typeof ARTICLES_DATA !== 'undefined');
+    if (typeof ARTICLES_DATA !== 'undefined') {
+      console.log('✅ ARTICLES_DATA chargé! Nombre d\'articles:', 
+        Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0));
+    } else {
+      console.error('❌ ARTICLES_DATA non défini après chargement du script!');
+    }
+  </script>
   <script src="../libs/quill/quill.js"></script>
   <script src="admin.js"></script>
 </body>

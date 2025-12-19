@@ -1649,13 +1649,26 @@
                             .join('');
                     }
                     
-                    // Charger aussi les genres individuels
-                    cms.displayArticleCards('#articles-editorial', 'editorial');
-                    cms.displayArticleCards('#articles-reportage', 'reportage');
-                    cms.displayArticleCards('#articles-interview', 'interview');
-                    cms.displayArticleCards('#articles-enquete', 'enquete');
-                    cms.displayArticleCards('#articles-analyse', 'analyse');
-                    cms.displayArticleCards('#articles-billet', 'billet');
+                    // Charger aussi les genres individuels avec le style Nouvel Obs
+                    cms.displayArticles('#articles-editorial', 'editorial');
+                    cms.displayArticles('#articles-reportage', 'reportage');
+                    cms.displayArticles('#articles-interview', 'interview');
+                    cms.displayArticles('#articles-enquete', 'enquete');
+                    cms.displayArticles('#articles-analyse', 'analyse');
+                    cms.displayArticles('#articles-billet', 'billet');
+                    
+                    // Charger les articles en vedette dans les sidebars
+                    ['editorial', 'reportage', 'interview', 'enquete', 'analyse', 'billet'].forEach(genre => {
+                        const sidebarContainer = document.getElementById(`sidebar-${genre}`);
+                        if (sidebarContainer && data[genre]) {
+                            const featuredArticles = data[genre]
+                                .filter(a => a.featured)
+                                .slice(0, 3)
+                                .map(article => cms.renderArticleCard(article, genre))
+                                .join('');
+                            sidebarContainer.innerHTML = featuredArticles || '<p style="color: var(--secondary); font-size: 0.875rem;">Aucun article en vedette</p>';
+                        }
+                    });
                 }
             });
         });

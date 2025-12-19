@@ -1334,30 +1334,60 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Charger les articles au chargement de la page
+// Utiliser DOMContentLoaded ET window.load pour s'assurer que tout est prêt
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('📄 DOMContentLoaded déclenché');
+  
+  // Vérifier immédiatement si ARTICLES_DATA est disponible
+  if (typeof ARTICLES_DATA !== 'undefined') {
+    console.log('✅ ARTICLES_DATA disponible immédiatement');
+    setTimeout(() => {
+      loadArticles();
+      autoRestoreFolders();
+    }, 100);
+    return;
+  }
+  
+  // Sinon, attendre que le script soit chargé
+  console.log('⏳ ARTICLES_DATA non disponible, attente du chargement du script...');
+});
+
 window.addEventListener('load', function() {
-  console.log('🔍 Début du chargement du CMS...');
+  console.log('🔍 Début du chargement du CMS (window.load)...');
   console.log('📍 URL actuelle:', window.location.href);
   console.log('📂 Chemin attendu pour articles-data.js:', '../js/articles-data.js');
+  console.log('🔍 ARTICLES_DATA disponible:', typeof ARTICLES_DATA !== 'undefined');
   
-  // Attendre que le script articles-data.js soit chargé
+  // Si ARTICLES_DATA est déjà disponible, charger immédiatement
+  if (typeof ARTICLES_DATA !== 'undefined') {
+    console.log('✅ ARTICLES_DATA chargé avec succès!');
+    const totalArticles = Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0);
+    console.log('📊 Nombre d\'articles:', totalArticles);
+    loadArticles();
+    autoRestoreFolders();
+    return;
+  }
+  
+  // Sinon, attendre que le script soit chargé
   let loadAttempts = 0;
-  const maxLoadAttempts = 30;
+  const maxLoadAttempts = 50; // Augmenté à 50 tentatives (10 secondes)
   
   const tryLoadArticles = setInterval(function() {
     loadAttempts++;
-    console.log(`🔄 Tentative ${loadAttempts}/${maxLoadAttempts} - ARTICLES_DATA disponible:`, typeof ARTICLES_DATA !== 'undefined');
     
     // Vérifier si ARTICLES_DATA est disponible
     if (typeof ARTICLES_DATA !== 'undefined') {
       clearInterval(tryLoadArticles);
-      console.log('✅ ARTICLES_DATA chargé avec succès!');
-      console.log('📊 Nombre d\'articles:', Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0));
+      console.log('✅ ARTICLES_DATA chargé avec succès après', loadAttempts, 'tentatives!');
+      const totalArticles = Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0);
+      console.log('📊 Nombre d\'articles:', totalArticles);
       loadArticles();
       autoRestoreFolders();
     } else if (loadAttempts >= maxLoadAttempts) {
       clearInterval(tryLoadArticles);
-      console.error('❌ ARTICLES_DATA non disponible après', maxLoadAttempts, 'tentatives');
+      console.error('❌ ARTICLES_DATA non disponible après', maxLoadAttempts, 'tentatives (10 secondes)');
       console.error('💡 Vérifiez que le fichier ../js/articles-data.js existe et est accessible');
+      console.error('💡 Ouvrez diagnostic.html pour un diagnostic complet');
       
       // Essayer quand même de charger (peut-être depuis JSON)
       loadArticles();
@@ -1366,7 +1396,7 @@ window.addEventListener('load', function() {
       // Afficher un message d'aide
       const statusText = document.getElementById('folders-status');
       if (statusText) {
-        statusText.innerHTML = '⚠️ Le fichier js/articles-data.js n\'a pas pu être chargé.<br/>Vérifiez que le fichier existe à: <code>../js/articles-data.js</code><br/>Ouvrez la console (F12) pour plus de détails.';
+        statusText.innerHTML = '⚠️ Le fichier js/articles-data.js n\'a pas pu être chargé.<br/>Vérifiez que le fichier existe à: <code>../js/articles-data.js</code><br/>Ouvrez <a href="diagnostic.html" target="_blank" style="color: #3b82f6;">diagnostic.html</a> pour un diagnostic complet.';
         statusText.style.color = '#f59e0b';
       }
       
@@ -1378,13 +1408,17 @@ window.addEventListener('load', function() {
             <strong>⚠️ Problème de chargement:</strong><br/>
             Le fichier <code>js/articles-data.js</code> n'a pas pu être chargé.<br/>
             <strong>Solutions:</strong><br/>
-            1. Vérifiez que le fichier existe dans le dossier <code>js/</code><br/>
-            2. Vérifiez que le chemin est correct (depuis admin/, le chemin est <code>../js/articles-data.js</code>)<br/>
-            3. Ouvrez la console du navigateur (F12) pour voir les erreurs détaillées<br/>
-            4. Si vous utilisez un serveur local, assurez-vous qu'il est bien démarré
+            1. Ouvrez <a href="diagnostic.html" target="_blank" style="color: #3b82f6; font-weight: bold;">diagnostic.html</a> pour un diagnostic complet<br/>
+            2. Vérifiez que le fichier existe dans le dossier <code>js/</code><br/>
+            3. Vérifiez que le chemin est correct (depuis admin/, le chemin est <code>../js/articles-data.js</code>)<br/>
+            4. Ouvrez la console du navigateur (F12) pour voir les erreurs détaillées<br/>
+            5. Si vous utilisez un serveur local, assurez-vous qu'il est bien démarré
           </div>
         `;
       }
+    } else if (loadAttempts % 10 === 0) {
+      // Afficher un log toutes les 10 tentatives
+      console.log(`⏳ Tentative ${loadAttempts}/${maxLoadAttempts} - ARTICLES_DATA toujours non disponible...`);
     }
   }, 200);
 });

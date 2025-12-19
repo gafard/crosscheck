@@ -110,50 +110,61 @@ function formatDate(dateString) {
 }
 
 // Charger les articles avec migration automatique
+// Charger les articles avec migration automatique
+// Même logique que les autres CMS (Orient.infos.com, Enfance360, etc.)
 async function loadArticles() {
   try {
-    // En mode file://, on utilise UNIQUEMENT ARTICLES_DATA chargé via <script>
-    // Pas de fetch() qui est bloqué par CORS
-    
-    // Utiliser les données intégrées (chargées via balise <script>)
+    // Essayer de charger depuis le JSON (seulement si on est sur un serveur HTTP/HTTPS)
+    if (window.location.protocol !== 'file:') {
+      try {
+        const response = await fetch('../data/articles.json');
+        if (response.ok) {
+          const data = await response.json();
+          // Migrer les anciens types vers les nouveaux genres
+          articlesData = migrateData(data);
+          displayArticles();
+          updateStats();
+          return;
+        }
+      } catch (e) {
+        console.log('Chargement depuis JSON échoué, utilisation des données intégrées', e);
+      }
+    }
+
+    // Utiliser les données intégrées (fonctionne sur file:// et serveur)
     if (typeof ARTICLES_DATA !== 'undefined') {
-      console.log('✅ ARTICLES_DATA trouvé, chargement des articles...');
       articlesData = migrateData(ARTICLES_DATA);
       displayArticles();
       updateStats();
-      return;
-    }
-    
-    // Si ARTICLES_DATA n'est pas disponible, initialiser avec des données vides
-    // pour que le CMS puisse fonctionner même sans données
-    console.warn('⚠️ ARTICLES_DATA non disponible. Initialisation avec des données vides.');
-    articlesData = {
-      editorial: [],
-      reportage: [],
-      interview: [],
-      enquete: [],
-      analyse: [],
-      billet: []
-    };
-    displayArticles();
-    updateStats();
-    
-    // Afficher un message d'aide seulement si vraiment nécessaire
-    const container = document.getElementById('articles-container');
-    if (container && container.innerHTML.includes('Chargement')) {
-      container.innerHTML = `
-        <div style="padding: 2rem; background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; color: #92400e;">
-          <h3 style="margin-top: 0; color: #78350f;">⚠️ Aucun article trouvé</h3>
-          <p>Le fichier <code>js/articles-data.js</code> n'a pas pu être chargé ou est vide.</p>
-          <p><strong>Vérifications :</strong></p>
-          <ul style="text-align: left; display: inline-block;">
-            <li>Le fichier <code>../js/articles-data.js</code> existe-t-il ?</li>
-            <li>Le chemin est-il correct depuis <code>admin/index.html</code> ?</li>
-            <li>Ouvrez la console (F12) pour voir les erreurs détaillées</li>
-          </ul>
-          <p style="margin-top: 1rem;"><strong>💡 Astuce :</strong> Vous pouvez créer un nouvel article pour générer le fichier automatiquement.</p>
-        </div>
-      `;
+    } else {
+      // Attendre que le script soit chargé (important sur Windows avec file://)
+      let attempts = 0;
+      const maxAttempts = 30; // Augmenté pour Windows
+      const checkInterval = setInterval(() => {
+        attempts++;
+        if (typeof ARTICLES_DATA !== 'undefined') {
+          clearInterval(checkInterval);
+          articlesData = migrateData(ARTICLES_DATA);
+          displayArticles();
+          updateStats();
+        } else if (attempts >= maxAttempts) {
+          clearInterval(checkInterval);
+          // Sur Windows, le script peut prendre plus de temps à charger
+          console.warn('ARTICLES_DATA non trouvé après', maxAttempts, 'tentatives');
+          // Initialiser avec des données vides pour permettre l'utilisation du CMS
+          articlesData = {
+            editorial: [],
+            reportage: [],
+            interview: [],
+            enquete: [],
+            analyse: [],
+            billet: []
+          };
+          displayArticles();
+          updateStats();
+          showError('Données d\'articles non disponibles. Vérifiez que js/articles-data.js est chargé.');
+        }
+      }, 100);
     }
   } catch (error) {
     console.error('Erreur:', error);

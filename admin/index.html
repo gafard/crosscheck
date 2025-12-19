@@ -1009,16 +1009,36 @@
     </div>
   </div>
 
-  <script src="../js/articles-data.js"></script>
+  <script>
+    // Gestionnaire d'erreur pour le chargement du script
+    window.addEventListener('error', function(e) {
+      if (e.filename && e.filename.includes('articles-data.js')) {
+        console.error('❌ Erreur lors du chargement de articles-data.js:', e.message);
+        const alertContainer = document.getElementById('alert-container');
+        if (alertContainer) {
+          alertContainer.innerHTML = `
+            <div class="alert alert-error" style="background: #fee; border: 1px solid #fcc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <strong>❌ Erreur de chargement:</strong><br/>
+              Le fichier <code>../js/articles-data.js</code> n'a pas pu être chargé.<br/>
+              <strong>Erreur:</strong> ${e.message}<br/>
+              <strong>Vérifiez:</strong> Le fichier existe-t-il? Le chemin est-il correct?
+            </div>
+          `;
+        }
+      }
+    }, true);
+  </script>
+  <script src="../js/articles-data.js" onerror="console.error('❌ Impossible de charger articles-data.js');"></script>
   <script>
     // Vérifier immédiatement si ARTICLES_DATA est chargé
     console.log('🔍 Vérification après chargement de articles-data.js');
     console.log('ARTICLES_DATA défini:', typeof ARTICLES_DATA !== 'undefined');
     if (typeof ARTICLES_DATA !== 'undefined') {
-      console.log('✅ ARTICLES_DATA chargé! Nombre d\'articles:', 
-        Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0));
+      const total = Object.keys(ARTICLES_DATA).reduce((sum, key) => sum + (ARTICLES_DATA[key]?.length || 0), 0);
+      console.log('✅ ARTICLES_DATA chargé! Nombre d\'articles:', total);
     } else {
       console.error('❌ ARTICLES_DATA non défini après chargement du script!');
+      console.error('💡 Le script peut se charger de manière asynchrone, attendez quelques secondes...');
     }
   </script>
   <script src="../libs/quill/quill.js"></script>

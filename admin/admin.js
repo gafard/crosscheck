@@ -1369,9 +1369,25 @@ document.addEventListener('DOMContentLoaded', function() {
 // Charger les articles au chargement de la page
 // Même approche que les autres CMS (Orient.infos.com, Enfance360, etc.)
 window.addEventListener('load', function() {
+  // Sur Windows, attendre un peu plus longtemps pour que les scripts se chargent
+  const isWindows = navigator.platform.toLowerCase().includes('win') || 
+                   navigator.userAgent.toLowerCase().includes('windows');
+  const delay = isWindows ? 500 : 300;
+  
   setTimeout(function() {
     loadArticles();
     // Essayer de restaurer automatiquement les informations du dossier
     autoRestoreFolders();
-  }, 300);
+  }, delay);
+  
+  // Sur Windows, essayer aussi après un délai plus long au cas où
+  if (isWindows) {
+    setTimeout(function() {
+      // Vérifier si les articles sont chargés
+      if (typeof ARTICLES_DATA === 'undefined' && articlesData.editorial.length === 0) {
+        console.log('Tentative de rechargement des articles...');
+        loadArticles();
+      }
+    }, 2000);
+  }
 });

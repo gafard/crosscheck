@@ -88,18 +88,22 @@
     };
     document.head.appendChild(script);
 
-    // Test 4: Vérifier les fichiers nécessaires
-    fetch('../js/articles-data.js')
-      .then(response => {
-        if (response.ok) {
-          addResult('Test 4: Accessibilité du fichier', '✅ Le fichier <code>../js/articles-data.js</code> est accessible via fetch', 'success');
-        } else {
-          addResult('Test 4: Accessibilité du fichier', `❌ Le fichier retourne le code HTTP <code>${response.status}</code>`, 'error');
-        }
-      })
-      .catch(error => {
-        addResult('Test 4: Accessibilité du fichier', `❌ Erreur lors de l'accès au fichier: <code>${error.message}</code>`, 'error');
-      });
+    // Test 4: Vérifier les fichiers nécessaires (seulement si pas en mode file://)
+    if (window.location.protocol === 'file:') {
+      addResult('Test 4: Accessibilité du fichier', '⚠️ Mode <code>file://</code> détecté - fetch() est bloqué par CORS<br/>Le script sera chargé via balise &lt;script&gt; à la place', 'warning');
+    } else {
+      fetch('../js/articles-data.js')
+        .then(response => {
+          if (response.ok) {
+            addResult('Test 4: Accessibilité du fichier', '✅ Le fichier <code>../js/articles-data.js</code> est accessible via fetch', 'success');
+          } else {
+            addResult('Test 4: Accessibilité du fichier', `❌ Le fichier retourne le code HTTP <code>${response.status}</code>`, 'error');
+          }
+        })
+        .catch(error => {
+          addResult('Test 4: Accessibilité du fichier', `❌ Erreur lors de l'accès au fichier: <code>${error.message}</code>`, 'error');
+        });
+    }
 
     // Test 5: Vérifier Quill
     const quillScript = document.createElement('script');

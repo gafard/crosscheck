@@ -104,14 +104,27 @@ class CMS {
 
     const categoryLabel = categoryMap[article.genre] || categoryMap[article.category] || article.genre || article.category || categoryMap[type] || type;
     
-    // Le contenu peut être soit un tableau de paragraphes HTML, soit du HTML direct
+    // Le contenu peut être soit un tableau de paragraphes HTML (depuis Quill), soit du HTML direct
     let paragraphs = '';
     if (Array.isArray(article.content)) {
-      // Si c'est un tableau, joindre les éléments (déjà en HTML depuis Quill)
-      paragraphs = article.content.join('');
+      // Vérifier si le premier élément contient déjà du HTML (balises)
+      const firstItem = article.content[0] || '';
+      const isHtml = typeof firstItem === 'string' && (firstItem.includes('<p>') || firstItem.includes('<div>') || firstItem.includes('<span>'));
+      
+      if (isHtml) {
+        // Le contenu est déjà du HTML depuis Quill, l'utiliser directement
+        paragraphs = article.content.join('');
+      } else {
+        // Le contenu est du texte brut, le convertir en HTML
+        paragraphs = article.content.map(p => `<p>${markdownToHtml(p)}</p>`).join('');
+      }
     } else if (typeof article.content === 'string') {
-      // Si c'est une chaîne, l'utiliser directement
-      paragraphs = article.content;
+      // Si c'est une chaîne, vérifier si c'est du HTML
+      if (article.content.includes('<p>') || article.content.includes('<div>') || article.content.includes('<span>')) {
+        paragraphs = article.content;
+      } else {
+        paragraphs = `<p>${markdownToHtml(article.content)}</p>`;
+      }
     } else {
       // Fallback : convertir en paragraphes avec markdownToHtml
       paragraphs = article.content.map(p => `<p>${markdownToHtml(p)}</p>`).join('');

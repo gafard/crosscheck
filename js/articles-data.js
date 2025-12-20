@@ -7,7 +7,7 @@ const ARTICLES_DATA = {
     {
       "id": 1766134155185,
       "title": "Pour une excellence qui touche aussi le cœur",
-      "date": "19 décembre 2025",
+      "date": "20 décembre 2025",
       "excerpt": "À l’Université on forme des intelligences, des compétences et des ambitions. Ceci par une rigueur scientifique, une discipline quotidienne, en somme une recherche de l’excellence.",
       "content": [
         "<p><span style=\"background-color: transparent; color: rgb(0, 0, 0);\">À l’Université on forme des intelligences, des compétences et des ambitions. Ceci par une rigueur scientifique, une discipline quotidienne, en somme une recherche de l’excellence.&nbsp;</span></p>",
@@ -33,5 +33,6 @@ const ARTICLES_DATA = {
   "interview": [],
   "enquete": [],
   "analyse": [],
-  "billet": []
+  "billet": [],
+  "temoignages": []
 };

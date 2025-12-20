@@ -222,8 +222,15 @@
                             };
                             const linkUrl = linkUrls[article.genre] || 'articles.html';
                             const articleId = article.id || Date.now();
-                            const imageHtml = article.image ? 
-                                `<div class="article-image" style="background-image: url('${article.image}');"></div>` : 
+                            
+                            // Corriger le chemin de l'image (Images avec majuscule)
+                            let imagePath = article.image || '';
+                            if (imagePath && imagePath.startsWith('images/')) {
+                                imagePath = 'Images/' + imagePath.replace('images/', '');
+                            }
+                            
+                            const imageHtml = imagePath ? 
+                                `<div class="article-image" style="background-image: url('${imagePath}');"></div>` : 
                                 '';
                             
                             return `

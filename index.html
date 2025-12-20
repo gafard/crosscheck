@@ -147,9 +147,17 @@
     <script src="js/articles-data.js"></script>
     <script src="js/cms.js"></script>
     <script>
+        // Vérifier que tout est chargé
+        console.log('📦 ARTICLES_DATA défini:', typeof ARTICLES_DATA !== 'undefined');
+        console.log('📦 cms défini:', typeof cms !== 'undefined');
+        
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 DOMContentLoaded déclenché');
             // Charger les articles en vedette
             const featuredArticles = document.getElementById('featured-articles');
+            console.log('📄 featured-articles trouvé:', !!featuredArticles);
+            console.log('📦 cms disponible:', typeof cms !== 'undefined');
+            
             if (featuredArticles && typeof cms !== 'undefined') {
                 console.log('🔍 Chargement des articles...');
                 cms.loadArticles().then(() => {

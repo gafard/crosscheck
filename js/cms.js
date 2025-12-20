@@ -116,6 +116,10 @@ class CMS {
     let imagePath = article.image || '';
     if (imagePath) {
       if (!imagePath.startsWith('http://') && !imagePath.startsWith('https://')) {
+        // Corriger le chemin : Images avec majuscule
+        if (imagePath.startsWith('images/')) {
+          imagePath = 'Images/' + imagePath.replace('images/', '');
+        }
         const pathParts = imagePath.split('/');
         imagePath = pathParts.map(part => encodeURIComponent(part)).join('/');
       }

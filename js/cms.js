@@ -107,41 +107,24 @@ class CMS {
     // Le contenu peut être soit un tableau de paragraphes HTML (depuis Quill), soit du HTML direct
     let paragraphs = '';
     if (Array.isArray(article.content)) {
-      // Vérifier si le premier élément contient déjà du HTML (balises)
-      const firstItem = article.content[0] || '';
-      // Détecter si c'est du HTML en cherchant des balises HTML communes
-      // Le contenu de Quill contient toujours du HTML, donc on vérifie simplement s'il y a des balises
-      const isHtml = typeof firstItem === 'string' && (
-        firstItem.includes('<') || 
-        firstItem.includes('style=') ||
-        firstItem.includes('&nbsp;') ||
-        firstItem.includes('&lt;') ||
-        firstItem.trim().startsWith('<')
-      );
-      
-      if (isHtml || article.content.length > 0) {
-        // Le contenu est déjà du HTML depuis Quill, l'utiliser directement SANS échappement
-        // Joindre tous les éléments du tableau (qui sont déjà du HTML)
-        paragraphs = article.content.join('');
-      } else {
-        // Le contenu est du texte brut, le convertir en HTML
-        paragraphs = article.content.map(p => `<p>${markdownToHtml(p)}</p>`).join('');
-      }
+      // Le contenu de Quill est toujours un tableau de chaînes HTML
+      // On les joint directement sans échappement car c'est déjà du HTML valide
+      paragraphs = article.content.join('');
     } else if (typeof article.content === 'string') {
       // Si c'est une chaîne, vérifier si c'est du HTML
       const isHtml = article.content.includes('<') || 
                      article.content.includes('style=') ||
-                     article.content.includes('&nbsp;') ||
                      article.content.trim().startsWith('<');
       
       if (isHtml) {
         // C'est du HTML, l'utiliser directement SANS échappement
         paragraphs = article.content;
       } else {
+        // C'est du texte brut, le convertir en HTML
         paragraphs = `<p>${markdownToHtml(article.content)}</p>`;
       }
     } else {
-      // Fallback : si le contenu existe mais n'est ni un tableau ni une chaîne, essayer de le convertir
+      // Fallback : si le contenu existe mais n'est ni un tableau ni une chaîne
       paragraphs = '';
     }
     

@@ -159,11 +159,43 @@
                         });
                     });
                     
-                    // Prendre les 6 articles les plus récents
-                    const latestArticles = allArticles
+                    // Filtrer les articles en vedette
+                    const featuredOnly = allArticles.filter(a => a.featured === true);
+                    
+                    // Prendre les 6 articles en vedette les plus récents
+                    const latestArticles = featuredOnly
                         .sort((a, b) => {
                             try {
-                                return new Date(b.date) - new Date(a.date);
+                                // Essayer de parser la date au format français "20 décembre 2025"
+                                const parseFrenchDate = (dateStr) => {
+                                    if (!dateStr) return new Date(0);
+                                    // Si c'est déjà une date ISO, l'utiliser directement
+                                    if (dateStr.match(/^\d{4}-\d{2}-\d{2}/)) {
+                                        return new Date(dateStr);
+                                    }
+                                    // Parser le format français
+                                    const months = {
+                                        'janvier': 0, 'février': 1, 'mars': 2, 'avril': 3,
+                                        'mai': 4, 'juin': 5, 'juillet': 6, 'août': 7,
+                                        'septembre': 8, 'octobre': 9, 'novembre': 10, 'décembre': 11
+                                    };
+                                    const parts = dateStr.toLowerCase().split(' ');
+                                    if (parts.length === 3) {
+                                        const day = parseInt(parts[0]);
+                                        const month = months[parts[1]];
+                                        const year = parseInt(parts[2]);
+                                        if (!isNaN(day) && month !== undefined && !isNaN(year)) {
+                                            return new Date(year, month, day);
+                                        }
+                                    }
+                                    // Fallback: essayer new Date normal
+                                    const date = new Date(dateStr);
+                                    return isNaN(date.getTime()) ? new Date(0) : date;
+                                };
+                                
+                                const dateA = parseFrenchDate(a.date);
+                                const dateB = parseFrenchDate(b.date);
+                                return dateB - dateA; // Plus récent en premier
                             } catch (e) {
                                 return 0;
                             }

@@ -1497,7 +1497,29 @@
         function handleHashNavigation() {
             const hash = window.location.hash.substring(1); // Enlever le #
             
+            // Vérifier si c'est un hash d'article individuel (format: genre#article-{id})
+            const articleMatch = hash.match(/^([^#]+)#article-(\d+)$/);
+            if (articleMatch) {
+                const genre = articleMatch[1];
+                const articleId = articleMatch[2];
+                
+                // Afficher l'article individuel
+                displaySingleArticle(genre, articleId);
+                return;
+            }
+            
+            // Sinon, gérer la navigation par onglet
             if (hash && ['editorial', 'reportage', 'interview', 'enquete', 'analyse', 'billet'].includes(hash)) {
+                // Cacher la vue d'article individuel si elle est visible
+                const articleView = document.getElementById('single-article-view');
+                if (articleView) {
+                    articleView.style.display = 'none';
+                }
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.style.display = 'block';
+                }
+                
                 // Trouver et cliquer sur le bouton d'onglet correspondant
                 const targetButton = document.querySelector(`[data-tab="${hash}"]`);
                 if (targetButton) {
@@ -1515,6 +1537,82 @@
                         }
                     }, 200);
                 }
+            } else {
+                // Si pas de hash valide, cacher la vue d'article individuel
+                const articleView = document.getElementById('single-article-view');
+                if (articleView) {
+                    articleView.style.display = 'none';
+                }
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.style.display = 'block';
+                }
+            }
+        }
+        
+        // Fonction pour afficher un article individuel
+        async function displaySingleArticle(genre, articleId) {
+            if (typeof cms === 'undefined') {
+                console.error('CMS non disponible');
+                return;
+            }
+            
+            // Cacher le contenu principal
+            const mainContent = document.querySelector('.main-content');
+            if (mainContent) {
+                mainContent.style.display = 'none';
+            }
+            
+            // Afficher la vue d'article individuel
+            let articleView = document.getElementById('single-article-view');
+            if (!articleView) {
+                // Créer le conteneur s'il n'existe pas
+                articleView = document.createElement('div');
+                articleView.id = 'single-article-view';
+                articleView.style.cssText = 'max-width: 900px; margin: 0 auto; padding: 2rem;';
+                document.body.insertBefore(articleView, document.querySelector('.main-content'));
+            }
+            articleView.style.display = 'block';
+            
+            // Afficher un loader
+            articleView.innerHTML = '<div style="text-align: center; padding: 3rem;">Chargement de l\'article...</div>';
+            
+            try {
+                // Charger les articles
+                const data = await cms.loadArticles();
+                if (!data || !data[genre]) {
+                    articleView.innerHTML = '<div style="text-align: center; padding: 3rem; color: var(--secondary);">Article non trouvé.</div>';
+                    return;
+                }
+                
+                // Trouver l'article par ID
+                const article = data[genre].find(a => (a.id && a.id.toString() === articleId) || 
+                                                      (a.id === undefined && Date.now().toString() === articleId));
+                
+                if (!article) {
+                    articleView.innerHTML = '<div style="text-align: center; padding: 3rem; color: var(--secondary);">Article non trouvé.</div>';
+                    return;
+                }
+                
+                // Rendre l'article avec le style Nouvel Obs
+                const articleHtml = cms.renderArticleFull(article, genre);
+                
+                // Ajouter un bouton retour
+                const backButton = `
+                    <button onclick="window.location.hash=''; handleHashNavigation();" 
+                            style="margin-bottom: 2rem; padding: 0.75rem 1.5rem; background: var(--accent); color: var(--primary); border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.875rem;">
+                        ← Retour aux articles
+                    </button>
+                `;
+                
+                articleView.innerHTML = backButton + articleHtml;
+                
+                // Faire défiler vers le haut
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Erreur lors du chargement de l\'article:', error);
+                articleView.innerHTML = '<div style="text-align: center; padding: 3rem; color: var(--secondary);">Erreur lors du chargement de l\'article.</div>';
             }
         }
 

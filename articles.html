@@ -1570,8 +1570,13 @@
                 // Créer le conteneur s'il n'existe pas
                 articleView = document.createElement('div');
                 articleView.id = 'single-article-view';
-                articleView.style.cssText = 'max-width: 900px; margin: 0 auto; padding: 2rem;';
-                document.body.insertBefore(articleView, document.querySelector('.main-content'));
+                articleView.style.cssText = 'max-width: 900px; margin: 120px auto 4rem; padding: 2rem; background: var(--white); min-height: 100vh;';
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent && mainContent.parentNode) {
+                    mainContent.parentNode.insertBefore(articleView, mainContent);
+                } else {
+                    document.body.appendChild(articleView);
+                }
             }
             articleView.style.display = 'block';
             

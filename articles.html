@@ -1599,11 +1599,22 @@
                 
                 // Ajouter un bouton retour
                 const backButton = `
-                    <button onclick="window.location.hash=''; handleHashNavigation();" 
+                    <button id="back-to-articles-btn" 
                             style="margin-bottom: 2rem; padding: 0.75rem 1.5rem; background: var(--accent); color: var(--primary); border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.875rem;">
                         ← Retour aux articles
                     </button>
                 `;
+                
+                // Ajouter l'event listener après l'insertion du HTML
+                setTimeout(() => {
+                    const backBtn = document.getElementById('back-to-articles-btn');
+                    if (backBtn) {
+                        backBtn.addEventListener('click', () => {
+                            window.location.hash = '';
+                            handleHashNavigation();
+                        });
+                    }
+                }, 100);
                 
                 articleView.innerHTML = backButton + articleHtml;
                 

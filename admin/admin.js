@@ -1264,8 +1264,15 @@ function downloadFiles(json, jsContent) {
 
 // Gestion du formulaire
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialiser Quill
-  initQuillEditor();
+  // Initialiser Quill - attendre que le script soit chargé
+  // Sur Windows avec file://, les scripts peuvent se charger plus lentement
+  const isWindows = navigator.platform.toLowerCase().includes('win') || 
+                   navigator.userAgent.toLowerCase().includes('windows');
+  const quillDelay = isWindows ? 300 : 100;
+  
+  setTimeout(() => {
+    initQuillEditor();
+  }, quillDelay);
   
   const form = document.getElementById('article-form');
   if (!form) return;

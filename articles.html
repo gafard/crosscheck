@@ -1586,8 +1586,12 @@
                 }
                 
                 // Trouver l'article par ID
-                const article = data[genre].find(a => (a.id && a.id.toString() === articleId) || 
-                                                      (a.id === undefined && Date.now().toString() === articleId));
+                const article = data[genre].find(a => {
+                    if (a.id) {
+                        return a.id.toString() === articleId;
+                    }
+                    return false;
+                });
                 
                 if (!article) {
                     articleView.innerHTML = '<div style="text-align: center; padding: 3rem; color: var(--secondary);">Article non trouvé.</div>';

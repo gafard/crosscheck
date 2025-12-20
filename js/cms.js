@@ -173,7 +173,6 @@ class CMS {
       <article class="article-full-nouvelobs" data-category="${article.genre || article.category || type}">
         <div class="article-category-tags">
           <span class="article-category">${categoryLabel}</span>
-          <span class="article-badge">Info « CrossCheck »</span>
         </div>
         
         <h1 class="article-title-nouvelobs">${escapeHtml(article.title)}</h1>

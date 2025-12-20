@@ -109,10 +109,20 @@ class CMS {
     if (Array.isArray(article.content)) {
       // Vérifier si le premier élément contient déjà du HTML (balises)
       const firstItem = article.content[0] || '';
-      const isHtml = typeof firstItem === 'string' && (firstItem.includes('<p>') || firstItem.includes('<div>') || firstItem.includes('<span>'));
+      // Détecter si c'est du HTML en cherchant des balises HTML communes
+      const isHtml = typeof firstItem === 'string' && (
+        firstItem.includes('<p>') || 
+        firstItem.includes('<div>') || 
+        firstItem.includes('<span>') ||
+        firstItem.includes('<strong>') ||
+        firstItem.includes('<em>') ||
+        firstItem.includes('<br>') ||
+        firstItem.includes('style=') ||
+        firstItem.trim().startsWith('<')
+      );
       
       if (isHtml) {
-        // Le contenu est déjà du HTML depuis Quill, l'utiliser directement
+        // Le contenu est déjà du HTML depuis Quill, l'utiliser directement SANS échappement
         paragraphs = article.content.join('');
       } else {
         // Le contenu est du texte brut, le convertir en HTML
@@ -120,7 +130,16 @@ class CMS {
       }
     } else if (typeof article.content === 'string') {
       // Si c'est une chaîne, vérifier si c'est du HTML
-      if (article.content.includes('<p>') || article.content.includes('<div>') || article.content.includes('<span>')) {
+      const isHtml = article.content.includes('<p>') || 
+                     article.content.includes('<div>') || 
+                     article.content.includes('<span>') ||
+                     article.content.includes('<strong>') ||
+                     article.content.includes('<em>') ||
+                     article.content.includes('style=') ||
+                     article.content.trim().startsWith('<');
+      
+      if (isHtml) {
+        // C'est du HTML, l'utiliser directement SANS échappement
         paragraphs = article.content;
       } else {
         paragraphs = `<p>${markdownToHtml(article.content)}</p>`;

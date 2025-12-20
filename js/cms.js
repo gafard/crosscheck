@@ -208,7 +208,18 @@ class CMS {
       'billet': 'billet.html'
     };
     const genre = article.genre || article.category || type;
-    const linkUrl = linkUrls[genre] || 'articles.html';
+    
+    // Si on est sur articles.html, utiliser le format hash pour afficher l'article sur la même page
+    const isOnArticlesPage = window.location.pathname.includes('articles.html');
+    const articleId = article.id || Date.now();
+    
+    let linkUrl;
+    if (isOnArticlesPage) {
+      // Format: articles.html#genre#article-{id}
+      linkUrl = `articles.html#${genre}#article-${articleId}`;
+    } else {
+      linkUrl = linkUrls[genre] || 'articles.html';
+    }
     
     // Normaliser le chemin de l'image
     let imagePath = article.image || '';

@@ -248,10 +248,17 @@
                                 </a>
                             `;
                         }).join('');
+                        console.log('✅ Articles affichés:', latestArticles.length);
                     } else {
+                        console.warn('⚠️ Aucun article à afficher');
                         featuredArticles.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1 / -1;">Aucun article pour le moment.</p>';
                     }
+                }).catch(error => {
+                    console.error('❌ Erreur lors du chargement des articles:', error);
+                    featuredArticles.innerHTML = '<p style="text-align: center; padding: 2rem; grid-column: 1 / -1; color: #e94560;">Erreur lors du chargement des articles. Vérifiez la console.</p>';
                 });
+            } else {
+                console.error('❌ Élément featured-articles ou cms non trouvé');
             }
 
             // Mettre à jour l'année

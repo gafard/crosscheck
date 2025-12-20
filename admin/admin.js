@@ -21,22 +21,38 @@ let imagesFolderHandle = null;
 
 // Initialiser l'éditeur Quill
 function initQuillEditor() {
-  // Si déjà initialisé, on ne recommence pas
-  if (quillEditor) return;
-  
-  const editorContainer = document.getElementById('article-content-editor');
-  if (!editorContainer) {
-    console.warn('Conteneur Quill (#article-content-editor) non trouvé');
+  // Vérifier que Quill est chargé
+  if (typeof Quill === 'undefined') {
+    console.error('Quill n\'est pas chargé. Vérifiez que ../libs/quill/quill.js est accessible.');
+    // Réessayer après un court délai
+    setTimeout(() => {
+      if (typeof Quill !== 'undefined') {
+        initQuillEditor();
+      } else {
+        const contentDiv = document.getElementById('article-content-editor');
+        if (contentDiv) {
+          contentDiv.innerHTML = '<div style="padding: 2rem; background: #fee; border: 2px solid #f00; border-radius: 8px; color: #c00;"><strong>Erreur :</strong> Quill n\'a pas pu être chargé. Vérifiez que le fichier <code>libs/quill/quill.js</code> existe et est accessible.</div>';
+        }
+      }
+    }, 500);
     return;
   }
   
-  if (typeof Quill === 'undefined') {
-    console.error("Quill.js n'est pas chargé (script CDN manquant ou ordre incorrect).");
+  // Vérifier que l'élément existe
+  const contentDiv = document.getElementById('article-content-editor');
+  if (!contentDiv) {
+    console.error('L\'élément #article-content-editor n\'existe pas.');
+    return;
+  }
+  
+  // Si déjà initialisé, on ne recommence pas
+  if (quillEditor) {
+    console.log('Quill déjà initialisé');
     return;
   }
   
   try {
-    quillEditor = new Quill(editorContainer, {
+    quillEditor = new Quill('#article-content-editor', {
       theme: 'snow',
       modules: {
         toolbar: [
@@ -44,16 +60,21 @@ function initQuillEditor() {
           ['bold', 'italic', 'underline', 'strike'],
           [{ 'list': 'ordered'}, { 'list': 'bullet' }],
           [{ 'align': [] }],
-          ['link', 'image'],
+          [{ 'color': [] }, { 'background': [] }],
           ['blockquote', 'code-block'],
+          ['link', 'image'],
+          [{ 'table': true }],
           ['clean']
         ]
       },
       placeholder: 'Rédigez votre article ici...'
     });
-    console.log('✅ Quill initialisé');
+    console.log('Quill initialisé avec succès');
   } catch (error) {
     console.error('Erreur lors de l\'initialisation de Quill:', error);
+    if (contentDiv) {
+      contentDiv.innerHTML = '<div style="padding: 2rem; background: #fee; border: 2px solid #f00; border-radius: 8px; color: #c00;"><strong>Erreur :</strong> Impossible d\'initialiser Quill. ' + error.message + '</div>';
+    }
   }
 }
 

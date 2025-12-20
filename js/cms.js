@@ -230,7 +230,7 @@ class CMS {
       'analyse': 'Analyse',
       'billet': 'Billet'
     };
-    const genre = article.genre || article.category || type;
+    // genre est déjà déclaré ligne 206, on réutilise la variable
     const categoryLabel = categoryMap[genre] || genre;
     
     const authorHtml = article.author ? `<span class="article-author"><strong>${escapeHtml(article.author)}</strong></span>` : '';

@@ -1750,17 +1750,36 @@
                         // Charger les articles du genre spécifique avec le style Nouvel Obs
                         cms.displayArticles(`#articles-${genre}`, genre);
                         
-                        // Charger les articles en vedette dans la sidebar
+                        // Charger les articles en vedette dans la sidebar (exclure le genre actuel)
                         cms.loadArticles().then(data => {
-                            if (data && data[genre]) {
+                            if (data) {
                                 const sidebarContainer = document.getElementById(`sidebar-${genre}`);
                                 if (sidebarContainer) {
-                                    const featuredArticles = data[genre]
-                                        .filter(a => a.featured)
-                                        .slice(0, 3)
-                                        .map(article => cms.renderArticleCard(article, genre))
-                                        .join('');
-                                    sidebarContainer.innerHTML = featuredArticles || '<p style="color: var(--secondary); font-size: 0.875rem;">Aucun article en vedette</p>';
+                                    // Récupérer les articles en vedette de tous les genres SAUF le genre actuel
+                                    const allGenres = ['editorial', 'reportage', 'interview', 'enquete', 'analyse', 'billet'];
+                                    const otherGenres = allGenres.filter(g => g !== genre);
+                                    
+                                    const featuredArticles = [];
+                                    otherGenres.forEach(otherGenre => {
+                                        if (data[otherGenre]) {
+                                            const featured = data[otherGenre]
+                                                .filter(a => a.featured)
+                                                .slice(0, 1)
+                                                .map(article => ({ ...article, genre: otherGenre }));
+                                            featuredArticles.push(...featured);
+                                        }
+                                    });
+                                    
+                                    // Prendre les 3 premiers articles en vedette d'autres genres
+                                    const articlesToShow = featuredArticles.slice(0, 3);
+                                    
+                                    if (articlesToShow.length > 0) {
+                                        sidebarContainer.innerHTML = articlesToShow
+                                            .map(article => cms.renderArticleCard(article, article.genre))
+                                            .join('');
+                                    } else {
+                                        sidebarContainer.innerHTML = '<p style="color: var(--secondary); font-size: 0.875rem;">Aucun article en vedette</p>';
+                                    }
                                 }
                             }
                         });

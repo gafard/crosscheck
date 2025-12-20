@@ -211,6 +211,10 @@ class CMS {
     if (imagePath) {
       // Si c'est une URL complète (http/https), la garder telle quelle
       if (!imagePath.startsWith('http://') && !imagePath.startsWith('https://')) {
+        // Corriger le chemin : Images avec majuscule
+        if (imagePath.startsWith('images/')) {
+          imagePath = 'Images/' + imagePath.replace('images/', '');
+        }
         // Chemin relatif : encoder les espaces et caractères spéciaux dans chaque segment
         const pathParts = imagePath.split('/');
         imagePath = pathParts.map(part => {

@@ -1393,6 +1393,86 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Afficher le bouton si l'API est supportée
     const statusDiv = document.getElementById('folder-selection-status');
+    const windowsHelp = document.getElementById('windows-help');
+    
+    // Détecter Windows
+    const isWindows = navigator.platform.toLowerCase().includes('win') || 
+                     navigator.userAgent.toLowerCase().includes('windows');
+    
+    // Toujours afficher le statut sur Windows pour aider l'utilisateur
+    if (statusDiv) {
+      statusDiv.style.display = 'block';
+      
+      if (window.showDirectoryPicker) {
+        updateFolderSelectionUI(false);
+        // Afficher l'aide Windows si nécessaire
+        if (isWindows && windowsHelp) {
+          windowsHelp.style.display = 'block';
+        }
+      } else {
+        // API non supportée, afficher l'aide
+        if (isWindows && windowsHelp) {
+          windowsHelp.style.display = 'block';
+          windowsHelp.innerHTML = '<strong>⚠️ Navigateur non compatible :</strong><p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Utilisez <strong>Chrome</strong> ou <strong>Edge</strong> sur Windows pour la sauvegarde automatique. Firefox ne supporte pas cette fonctionnalité. Les fichiers seront téléchargés normalement si vous utilisez un autre navigateur.</p>';
+        } else if (windowsHelp) {
+          windowsHelp.style.display = 'block';
+          windowsHelp.innerHTML = '<strong>⚠️ Navigateur non compatible :</strong><p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Utilisez Chrome ou Edge pour la sauvegarde automatique. Les fichiers seront téléchargés normalement.</p>';
+        }
+      }
+    }
+  }
+
+  // Gestion de l'upload d'image
+  const imageUploadInput = document.getElementById('image-upload');
+  if (imageUploadInput) {
+    imageUploadInput.addEventListener('change', handleImageUpload);
+  }
+
+  // Initialiser la modal de lien
+  initLinkModal();
+});
+
+// Charger les articles au chargement de la page
+// Même approche que les autres CMS (Orient.infos.com, Enfance360, etc.)
+window.addEventListener('load', function() {
+  // Sur Windows, attendre un peu plus longtemps pour que les scripts se chargent
+  const isWindows = navigator.platform.toLowerCase().includes('win') || 
+                   navigator.userAgent.toLowerCase().includes('windows');
+  const delay = isWindows ? 500 : 300;
+  
+  setTimeout(function() {
+    loadArticles();
+    // Essayer de restaurer automatiquement les informations du dossier
+    autoRestoreFolders();
+  }, delay);
+  
+  // Sur Windows, essayer aussi après un délai plus long au cas où
+  if (isWindows) {
+    setTimeout(function() {
+      // Vérifier si les articles sont chargés
+      if (typeof ARTICLES_DATA === 'undefined' && articlesData.editorial.length === 0) {
+        console.log('Tentative de rechargement des articles...');
+        loadArticles();
+      }
+    }, 2000);
+  }
+});
+
+        e.preventDefault();
+        addTag();
+      }
+    });
+  }
+
+  // Gestion du bouton de sélection de dossiers
+  const selectFoldersBtn = document.getElementById('select-folders-btn');
+  if (selectFoldersBtn) {
+    selectFoldersBtn.addEventListener('click', async () => {
+      await selectProjectFolder();
+    });
+    
+    // Afficher le bouton si l'API est supportée
+    const statusDiv = document.getElementById('folder-selection-status');
     if (statusDiv && window.showDirectoryPicker) {
       statusDiv.style.display = 'block';
       updateFolderSelectionUI(false);

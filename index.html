@@ -151,7 +151,9 @@
             // Charger les articles en vedette
             const featuredArticles = document.getElementById('featured-articles');
             if (featuredArticles && typeof cms !== 'undefined') {
+                console.log('🔍 Chargement des articles...');
                 cms.loadArticles().then(() => {
+                    console.log('✅ Articles chargés:', cms.articles);
                     const allArticles = [];
                     Object.keys(cms.articles).forEach(genre => {
                         cms.articles[genre].forEach(article => {
@@ -159,11 +161,17 @@
                         });
                     });
                     
+                    console.log('📝 Total articles:', allArticles.length);
+                    
                     // Filtrer les articles en vedette
                     const featuredOnly = allArticles.filter(a => a.featured === true);
+                    console.log('⭐ Articles en vedette:', featuredOnly.length, featuredOnly);
                     
-                    // Prendre les 6 articles en vedette les plus récents
-                    const latestArticles = featuredOnly
+                    // Si pas d'articles en vedette, prendre les plus récents
+                    const articlesToShow = featuredOnly.length > 0 ? featuredOnly : allArticles;
+                    
+                    // Prendre les 6 articles les plus récents
+                    const latestArticles = articlesToShow
                         .sort((a, b) => {
                             try {
                                 // Essayer de parser la date au format français "20 décembre 2025"

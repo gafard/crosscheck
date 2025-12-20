@@ -1573,8 +1573,18 @@
     <script src="js/articles-data.js"></script>
     <script src="js/cms.js"></script>
     <script>
+        // Vérifier que cms est défini avant d'utiliser
+        if (typeof cms === 'undefined') {
+            console.error('❌ cms n\'est pas défini. Vérifiez que js/cms.js est chargé correctement.');
+        }
+        
         // Charger les articles par genre quand on change d'onglet
         document.addEventListener('DOMContentLoaded', function() {
+            // Vérifier à nouveau que cms est disponible
+            if (typeof cms === 'undefined') {
+                console.error('❌ cms n\'est toujours pas défini après DOMContentLoaded');
+                return;
+            }
             const tabs = document.querySelectorAll('.tab-button, .tab-btn');
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {

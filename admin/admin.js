@@ -816,10 +816,17 @@ function detectProjectFolderFromURL() {
   const path = window.location.pathname;
   const href = window.location.href;
   
+  // Normaliser les chemins Windows (remplacer \ par /)
+  const normalizedPath = path.replace(/\\/g, '/');
+  const normalizedHref = href.replace(/\\/g, '/');
+  
   // Si on est sur localhost ou file://
-  if (path.includes('/admin/')) {
+  if (normalizedPath.includes('/crosscheck-site/') || normalizedPath.includes('/crosscheck-site%20/') || 
+      normalizedPath.includes('/CrossCheck/') || normalizedPath.includes('/CrossCheck%20/') ||
+      normalizedPath.includes('crosscheck-site') || normalizedPath.includes('crosscheck-site%20') ||
+      normalizedPath.includes('CrossCheck') || normalizedPath.includes('CrossCheck%20')) {
     // Extraire le chemin jusqu'au dossier racine
-    const parts = path.split('/').filter(p => p);
+    const parts = normalizedPath.split('/').filter(p => p);
     const adminIndex = parts.indexOf('admin');
     if (adminIndex > 0) {
       // Retourner le chemin jusqu'au dossier racine
@@ -828,13 +835,24 @@ function detectProjectFolderFromURL() {
     }
   }
   
-  // Si on est sur file://, essayer de détecter
-  if (href.startsWith('file://')) {
-    const urlPath = new URL(href).pathname;
-    const parts = urlPath.split('/').filter(p => p);
-    const adminIndex = parts.indexOf('admin');
-    if (adminIndex > 0) {
-      return '/' + parts.slice(0, adminIndex).join('/');
+  // Si on est sur file://, essayer de détecter (Windows et autres)
+  if (normalizedHref.startsWith('file://')) {
+    try {
+      const urlPath = new URL(normalizedHref).pathname;
+      // Normaliser pour Windows (enlever le préfixe /C:/ ou /c:/)
+      let cleanPath = urlPath.replace(/^\/[A-Za-z]:/, '').replace(/\\/g, '/');
+      const parts = cleanPath.split('/').filter(p => p);
+      const adminIndex = parts.indexOf('admin');
+      if (adminIndex > 0) {
+        // Sur Windows, reconstruire le chemin avec le drive
+        if (urlPath.match(/^\/[A-Za-z]:/)) {
+          const drive = urlPath.match(/^\/([A-Za-z]):/)[1];
+          return `/${drive}:/${parts.slice(0, adminIndex).join('/')}`;
+        }
+        return '/' + parts.slice(0, adminIndex).join('/');
+      }
+    } catch (e) {
+      console.log('Erreur lors de la détection du chemin:', e);
     }
   }
   

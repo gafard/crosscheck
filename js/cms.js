@@ -104,8 +104,18 @@ class CMS {
 
     const categoryLabel = categoryMap[article.genre] || categoryMap[article.category] || article.genre || article.category || categoryMap[type] || type;
     
-    // Convertir le Markdown en HTML pour chaque paragraphe
-    const paragraphs = article.content.map(p => `<p>${markdownToHtml(p)}</p>`).join('');
+    // Le contenu peut être soit un tableau de paragraphes HTML, soit du HTML direct
+    let paragraphs = '';
+    if (Array.isArray(article.content)) {
+      // Si c'est un tableau, joindre les éléments (déjà en HTML depuis Quill)
+      paragraphs = article.content.join('');
+    } else if (typeof article.content === 'string') {
+      // Si c'est une chaîne, l'utiliser directement
+      paragraphs = article.content;
+    } else {
+      // Fallback : convertir en paragraphes avec markdownToHtml
+      paragraphs = article.content.map(p => `<p>${markdownToHtml(p)}</p>`).join('');
+    }
     
     // Calculer le temps de lecture approximatif (250 mots par minute)
     const wordCount = (article.excerpt || '').split(/\s+/).length + 

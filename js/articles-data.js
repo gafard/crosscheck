@@ -52,7 +52,7 @@ const ARTICLES_DATA = {
       "image": "images/upload-1766266411629.jpg",
       "imageCredits": "© Université de Lomé",
       "author": "GNANE Gbandi Abdoul Gafard",
-      "featured": false,
+      "featured": true,
       "genre": "reportage"
     }
   ],

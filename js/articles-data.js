@@ -27,24 +27,6 @@ const ARTICLES_DATA = {
       "author": "GNANE Gbandi Abdoul)-Gafard",
       "featured": true,
       "genre": "editorial"
-    },
-    {
-      "id": 1766276408004,
-      "title": "Diplômés de pacotille : Le savoir sans le socle",
-      "date": "21 décembre 2025",
-      "excerpt": "À l’Université de Lomé, on connaît bien la chanson. Celle du stress qui monte à l’approche des examens, et de cette question qui brûle les lèvres : « Comment valider par tous les moyens ? ».",
-      "content": [
-        "<p>On nous parle de « formation intégrale », de « futur de la nation » et de « cadres de demain ». Mais soyons sérieux un instant : à quoi sert une tête pleine d’équations si le cœur est vide de principes ? Autrement dit, on forme des ingénieurs qui savent construire des ponts, mais ont-ils l'intégrité nécessaire pour ne pas détourner le ciment destiné à ces ouvrages ?</p>",
-        "<p>Jésus, avec son style inimitable, avait déjà mis en lumière nos paradoxes contemporains. Il évoquait l’image de ceux qui bâtissent leur maison sur du sable : à l’UL, le « sable » désigne ce savoir superficiel qu’on récite lors des examens après avoir, par exemple, copié sur le voisin. Cela peut sembler solide, mais à la moindre difficulté réelle — comme résister à une proposition de corruption ou à une pression injuste — tout s'effondre faute de bases solides.</p>",
-        "<p>Le chiffre de notre enquête tombe comme un couperet : <strong>85,7 %</strong> des étudiants chrétiens disent « Non » à la triche. Ce n’est pas par peur du surveillant, mais par fidélité à un Maître qui voit dans le noir. Pendant que certains cherchent le salut dans une antiseche, d’autres le trouvent dans une boussole intérieure.</p>",
-        "<p>Alors, on peut continuer à collectionner les mentions “Très Bien” avec des méthodes de pacotille. Mais ne nous étonnons pas si, demain, nos infrastructures et nos institutions tanguent. Le plus beau diplôme ne s’affiche pas sur un mur, il se lit dans une conscience qui ne baisse pas les yeux.</p>",
-        "<p>À l’Université, on nous apprend à gagner notre vie. Il serait peut-être temps qu’on nous aide aussi à ne pas la perdre.</p>"
-      ],
-      "image": "images/upload-1766276386444.png",
-      "imageCredits": "Illustration",
-      "author": "GNANE Gbandi Abdoul-Gafard",
-      "featured": true,
-      "genre": "editorial"
     }
   ],
   "reportage": [

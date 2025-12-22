@@ -55,7 +55,7 @@ const ARTICLES_DATA = {
     {
       "id": 1766401791492,
       "title": "À l'Université de Lomé : Le dilemme entre l'Amphi et la Bible",
-      "date": "22 décembre 2025",
+      "date": "21 décembre 2025",
       "excerpt": "Tricherie, théories de l'évolution, pressions sociales… Comment les jeunes chrétiens de l'UL naviguent-ils entre leurs convictions et les exigences académiques ? Une enquête exclusive de CrossCheck révèle que la foi, loin d'être un frein, s'érige en véritable code de conduite. Plongée au cœur d’une foi à l’épreuve du savoir.",
       "content": [
         "<p>Lomé, Campus Nord. Sous les arbres qui bordent la Faculté des Lettres (FLLA), Akossiwa*, étudiante en Licence 2, ferme son manuel de biologie avec un soupir.</p>",
@@ -77,7 +77,7 @@ const ARTICLES_DATA = {
         "<p>L'enquête de <em>CrossCheck</em> confirme que pour le jeune chrétien à l'Université de Lomé, l'excellence n'est pas qu'une question de moyenne générale, mais de cohérence entre le cœur et le cerveau. Si les défis sont réels, la foi semble apporter une résilience supplémentaire pour affronter la jungle universitaire.</p>",
         "<p><em>Vous pouvez retrouver les données complètes de l'enquête </em><a href=\"https://crosscheck-nine.vercel.app/ressources.html\" target=\"_blank\"><em>ici </em></a></p>"
       ],
-      "image": "images/upload-1766401784976.png",
+      "image": "images/upload-1766402474040.jpg",
       "author": "GNANE Gbandi Abdoul-Gafard",
       "featured": true,
       "genre": "enquete"

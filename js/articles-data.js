@@ -41,6 +41,8 @@ const ARTICLES_DATA = {
         "<p class=\"ql-align-right\"><em>Copyright : Université de Lomé. </em></p>",
         "<h3>Le défi de la cohérence : l'ancrage spirituel comme moteur</h3>",
         "<p>Le moment fort de la matinée fut la conférence du <strong>Dr Tchamyè Boroze</strong>, maître de conférences à l’École Polytechnique de Lomé.  Le Dr Boroze a dressé un pont entre la rigueur de l'ingénieur et la discipline du croyant. Il a parlé de vocation en citant des figures bibliques, il a démontré que la discipline scientifique gagne en puissance lorsqu’elle est guidée par une mission de vie claire.</p>",
+        "<p>Cette vision a trouvé un écho immédiat dans l'auditoire, notamment chez les étudiantes confrontées à la dureté du parcours académique. C’est le cas de Marie (prénom d’emprunt), en fin de cycle de licence, qui confie avec émotion :</p>",
+        "<blockquote><em>« Plusieurs fois, l'idée m'est venue d'abandonner. Mais chaque fois que j'ai l'occasion de suivre un enseignement comme celui-ci sur le \"jeune sans limite\", cette envie me quitte. Aujourd'hui, je suis plus déterminée que jamais à m'enfoncer dans les études et à aller jusqu'au bout.»</em>  Un témoignage qui illustre la vocation de ces rencontres : transformer la foi en un moteur de persévérance scolaire.</blockquote>",
         "<p>Les activités, qui se sont poursuivies les 31 mai et 1er juin, ont dessiné les contours d'une nouvelle génération de leaders : ceux qui, selon la vision de <strong>CrossCheck</strong>, cherchent la cohérence entre la vérité biblique et la rigueur scientifique.</p>"
       ],
       "image": "images/upload-1766266411629.jpg",

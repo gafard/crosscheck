@@ -1,4 +1,8 @@
-{
+// Données des articles intégrées directement dans le JavaScript
+// Cela permet au CMS de fonctionner même sans serveur local (file://)
+// Généré automatiquement depuis data/articles.json
+
+const ARTICLES_DATA = {
   "editorial": [
     {
       "id": 1766485506124,
@@ -198,4 +202,4 @@
     }
   ],
   "temoignages": []
-}
+};

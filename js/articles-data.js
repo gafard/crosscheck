@@ -3,7 +3,27 @@
 // Généré automatiquement depuis data/articles.json
 
 const ARTICLES_DATA = {
-  "editorial": [],
+  "editorial": [
+    {
+      "id": 1766485506124,
+      "title": "Pour une excellence qui touche aussi le cœur",
+      "date": "23 décembre 2025",
+      "excerpt": "« La mission de l’institution ne se limite pas à la transmission de savoirs théoriques, mais s’étend à une formation intégrale, incluant les dimensions humaine, éthique et civique.» Ces mots du Professeur Edinam Kola, lors du lancement de la Semaine de Grand Impact 2025, sonnent comme une promesse. Mais pour le jeune chrétien qui foule le sol de l’Université de Lomé, la réalité est souvent moins lisse que les discours officiels.",
+      "content": [
+        "<p>Être chrétien à l’UL aujourd’hui, c’est avancer sur une ligne de crête. C’est affronter, parfois seul, le <strong>regard narquois</strong> de certains camarades qui voient en piété une béquille pour « esprits faibles ». C’est subir la <strong>tentation de la facilité</strong> quand, face à une épreuve, la fraude semble être l’unique piste de solution. C’est aussi ce <strong>sentiment de solitude</strong> profonde quand, en plein cours de biologie ou de philosophie, nos convictions les plus chères sont balayées d’un revers de main, sans espace pour le dialogue.</p>",
+        "<p>À <strong>CrossCheck</strong>, média chrétien, nous ne voulons pas ignorer ces défis. Entre la précarité du quotidien et l’exigence d’excellence, le doute s’installe parfois : peut-on vraiment réussir ici sans sacrifier son âme ?</p>",
+        "<p>Notre enquête apporte une réponse qui force le respect : <strong>85,7 % des étudiants chrétiens interrogés affirment avoir déjà dit « non » à la triche</strong>, non par peur du surveillant, mais par fidélité à une boussole intérieure. Malgré la <strong>discrimination</strong> subtile, cette jeunesse prouve que la foi n’est pas une fuite, mais une armure.</p>",
+        "<p>Il ne s’agit pas de demander à l’UL d’enseigner le dogme. Mais former ne signifie pas seulement instruire. Si l’Université enseigne l’éthique comme une discipline froide, c’est souvent la foi qui la transforme en un mode de vie capable de résister à la corruption.</p>",
+        "<p>Ces tensions entre théories scientifiques et convictions bibliques ne doivent plus être une souffrance vécue dans l’isolement. Comme le souligne le Dr Boroze, physicien et homme de foi dans notre entretien, « <em>Il ne s’agit pas d’équilibrer foi et études comme deux réalités distinctes. C’est une seule et même vie. </em>». Il ajoute que les associations chrétiennes au sein de l’université comme J², Christian Fellowship ou le GBUL sont des <strong>laboratoires de caractère</strong> où l’on apprend à transformer la pression en performance.</p>",
+        "<p>Notre plaidoyer est simple : que l’Université de Lomé reconnaisse en cette jeunesse chrétienne une chance pour la nation. Car celui qui ne cède pas à la tentation d’une antisèche aujourd’hui est celui qui ne détournera pas le dernier public demain.</p>",
+        "<p>Il est temps que le savoir touche enfin le cœur.</p>"
+      ],
+      "image": "images/upload-1766485445640.jpg",
+      "author": "GNANE Gbandi Abdoul-Gafard",
+      "featured": true,
+      "genre": "editorial"
+    }
+  ],
   "reportage": [],
   "interview": [],
   "enquete": [],

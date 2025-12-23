@@ -183,6 +183,23 @@ const ARTICLES_DATA = {
       "genre": "analyse"
     }
   ],
-  "billet": [],
+  "billet": [
+    {
+      "id": 1766488006731,
+      "title": "Le savoir sans le socle",
+      "date": "23 décembre 2025",
+      "excerpt": "À l’Université de Lomé, on connaît bien la chanson. C’est celle du stress qui monte à l’approche des examens et de cette question qui brûle les lèvres dans les couloirs de l’amphi : « Comment valider par tous les moyens ? ».",
+      "content": [
+        "<p>Alors qu’on nous parle de « futurs cadres » et de « bâtisseurs de la nation », soyons sérieux un instant : à quoi sert une tête pleine d’équations si le cœur est vide de principes ? Former des ingénieurs qui savent calculer la résistance d’un pont est une chose. S’assurer qu’ils auront l’intégrité nécessaire pour ne pas détourner le ciment destiné à l’ouvrage en est une autre.</p>",
+        "<p>Jésus, avec son style inimitable, avait déjà mis en lumière nos paradoxes contemporains. Il évoquait ces bâtisseurs qui construisent sur du sable. À l’UL, le « sable », c’est ce diplôme obtenu au prix d’un coup d’œil furtif sur la copie du voisin ou d’un « arrangement » avec la rigueur. L’édifice semble solide, mais à la première secousse de la vie réelle — u<em>ne proposition de corruption ou une pression </em> — tout s’effondre. Pourquoi ? Faute de socle.</p>",
+        "<p>Le chiffre de notre enquête <strong>CrossCheck</strong> tombe d’ailleurs comme un couperet : <strong>75 %</strong> des étudiants chrétiens interrogés disent « Non » à la triche. Ce n’est pas par peur du surveillant, mais par fidélité à un Maître qui voit dans le noir. Pendant que certains cherchent le salut dans une antisèche, d’autres le trouvent dans leur boussole intérieure.</p>",
+        "<p>On peut continuer à collectionner les mentions « Très Bien » avec des méthodes de pacotille. Mais ne nous étonnons pas si, demain, nos institutions tanguent à la moindre pluie. Le plus beau diplôme ne s’affiche pas seulement sur un mur ; il se lit dans une conscience qui ne baisse pas les yeux devant le compromis.</p>"
+      ],
+      "image": "images/upload-1766487992275.jpg",
+      "author": "GNANE Gbandi Abdoul-Gafard",
+      "featured": true,
+      "genre": "billet"
+    }
+  ],
   "temoignages": []
 };

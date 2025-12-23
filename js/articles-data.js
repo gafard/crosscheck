@@ -159,7 +159,30 @@ const ARTICLES_DATA = {
       "genre": "enquete"
     }
   ],
-  "analyse": [],
+  "analyse": [
+    {
+      "id": 1766487786272,
+      "title": "Le défi de la « formation intégrale » à l’Université de Lomé : Quand la foi sécurise le savoir",
+      "date": "23 décembre 2025",
+      "excerpt": "À l’Université de Lomé, l’année 2025 marque peut-être le début d’un dialogue nécessaire. Entre les murs de l’amphithéâtre Ampah Johnson, lors de la « Semaine de Grand Impact », une convergence rare s’est opérée : celle des autorités universitaires et des communautés de foi. Mais au-delà des discours officiels, que nous disent réellement les faits ?",
+      "content": [
+        "<h3>La fin d’un malentendu : la foi, alliée de l’institution</h3>",
+        "<p>Pendant longtemps, la laïcité a été perçue comme un mur séparant la science de la foi, surtout dans un milieu académique comme l'UL. Pourtant, les propos du Professeur Edinam Kola, rappelant que la mission de l’institution est une « formation intégrale », prouvent que l’université est consciente de ses limites : elle peut instruire, mais elle peine à « habiter » le cœur de l’étudiant.</p>",
+        "<p>Les chiffres de notre enquête CrossCheck viennent confirmer cette intuition : la foi chrétienne n’est pas une force d'opposition au savoir, mais un catalyseur d'éthique. Quand <strong>75 %</strong> des étudiants chrétiens déclarent avoir refusé de tricher par fidélité à leurs convictions, ils ne font pas que pratiquer leur religion ; ils protègent la valeur du diplôme délivré par l’Université de Lomé. La foi devient ainsi le bras armé de l’intégrité académique dans un système sous pression.</p>",
+        "<h3>Combler le vide entre savoir et savoir-être</h3>",
+        "<p>Si <strong>100 %</strong> des étudiants ressentent une tension entre leurs cours et leurs convictions, ce n’est pas par rejet de la méthode scientifique, mais par soif de cohérence. L’étudiant chrétien ne veut pas seulement des réponses techniques (le « comment ») ; il cherche des raisons de servir (le « pourquoi »).</p>",
+        "<p>Les structures comme J², le GBUL ou Christian Fellowship n’apparaissent plus comme de simples groupes de prière, mais comme de véritables <strong>laboratoires de caractère</strong>. En enseignant la gestion du temps, la discipline et le leadership, ces associations transforment la piété en performance académique.</p>",
+        "<h3>Le paradoxe de l’excellence : Le cœur comme moteur</h3>",
+        "<p>L'analyse de nos résultats est sans appel : <strong>100 %</strong> des répondants voient la foi comme un facteur d'excellence. Ce chiffre révèle une réalité psychologique majeure : un étudiant en paix avec ses convictions est plus résilient face à l'échec et plus discipliné dans l'effort.</p>",
+        "<p>L'idée n'est pas de demander à l’Université de devenir une église, mais de l’inviter à reconnaître que la vie intérieure de l’étudiant est le terreau de sa probité future. En s'appuyant sur l'ancrage moral des communautés chrétiennes, l'Université de Lomé s'assure que l'excellence produite ne touchera pas seulement les bulletins de notes, mais transformera durablement la nation.</p>",
+        "<p>Car à quoi sert de conquérir le savoir, si l'on finit par perdre son intégrité ?</p>"
+      ],
+      "image": "images/upload-1766487617994.jpg",
+      "author": "GNANE Gbandi Abdoul-Gafard",
+      "featured": true,
+      "genre": "analyse"
+    }
+  ],
   "billet": [],
   "temoignages": []
 };
